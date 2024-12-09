@@ -1,0 +1,129 @@
+com.gsitm.ustra.java.mvc.view.UstraMvcView:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.view.config.UstraSpringTemplateEngineCustomizer:
+  extends: null
+  implements: []
+  imports:
+  - org.thymeleaf.spring5.SpringTemplateEngine
+com.gsitm.ustra.java.mvc.view.error.StaticResourceWebPageRequestErrorResultHandler:
+  extends: null
+  implements:
+  - WebPageRequestErrorResultHandler
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler
+com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.mvc.view.rest.DefaultUstraSecuredWebRequestParser:
+  extends: null
+  implements:
+  - UstraSecuredWebRequestParser
+  imports:
+  - java.nio.charset.StandardCharsets
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.mvc.filter.security.ParsedSecuredRequestParameter
+  - com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.view.rest.RawApiRestResultWrapperConditioner:
+  extends: null
+  implements:
+  - RestResultWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler:
+  extends: null
+  implements:
+  - RestExceptionHandler
+  imports:
+  - java.io.IOException
+  - java.util.HashMap
+  - java.util.Map
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.lang.Nullable
+  - org.springframework.web.method.HandlerMethod
+  - org.springframework.web.servlet.ModelAndView
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler
+  - com.gsitm.ustra.java.mvc.rest.error.RestExceptionHandler
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor
+com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor:
+  extends: HandlerInterceptorAdapter
+  implements: []
+  imports:
+  - java.util.EnumSet
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.validation.BeanPropertyBindingResult
+  - org.springframework.web.method.HandlerMethod
+  - org.springframework.web.servlet.ModelAndView
+  - org.springframework.web.servlet.handler.HandlerInterceptorAdapter
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.mvc.view.properties.ViewType
+  - com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils
+  - com.gsitm.ustra.web.core.exception.UstraWebResponseCode
+com.gsitm.ustra.java.mvc.view.web.HandlerValidationChecker:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+com.gsitm.ustra.java.mvc.view.web.ProfileInfoController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils
+com.gsitm.ustra.java.mvc.view.web.ViewTemplateMappingController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestMethod
+  - org.springframework.web.servlet.ModelAndView
+com.gsitm.ustra.java.mvc.vue.test.MvcVueApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest

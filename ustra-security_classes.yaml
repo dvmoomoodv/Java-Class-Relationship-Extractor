@@ -1,0 +1,612 @@
+com.gsitm.ustra.java.security.UstraDummyAuthenticationProvider:
+  extends: null
+  implements:
+  - AuthenticationProvider
+  imports:
+  - org.springframework.security.authentication.AuthenticationProvider
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.AuthenticationException
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.UstraSecurity:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationChecker
+  - com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationKeyChecker
+  - com.gsitm.ustra.java.security.authentication.authority.UstraAuthenticationAuthorityChecker
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationPropertiesProvider
+  - com.gsitm.ustra.java.security.authentication.request.UstraAuthenticationRequestTokenChecker
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.SessionAuthenticationStore
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator
+  - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidatorFactory
+com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication:
+  extends: null
+  implements:
+  - Authentication
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Arrays
+  - java.util.Collection
+  - java.util.HashMap
+  - java.util.Map
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.GrantedAuthority
+  - com.gsitm.ustra.java.security.authentication.authority.UstraGrantedAuthority
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationChecker:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceContextHolder
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationKeyChecker:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+com.gsitm.ustra.java.security.authentication.authority.UstraAuthenticationAuthorityChecker:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authentication.authority.UstraGrantedAuthority:
+  extends: null
+  implements:
+  - GrantedAuthority
+  imports:
+  - org.springframework.security.core.GrantedAuthority
+  - org.springframework.util.Assert
+com.gsitm.ustra.java.security.authentication.cache.SecurityCacheNames:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor:
+  extends: UstraAuthenticationProcessor
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.BeanUtils
+  - org.springframework.lang.NonNull
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.AuthenticationStoredToken
+  - com.gsitm.ustra.java.security.authentication.request.token.DeviceIdContainedToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor:
+  extends: null
+  implements:
+  - ApplicationContextAware
+  imports:
+  - javax.annotation.Nullable
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationChecker
+  - com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationKeyChecker
+  - com.gsitm.ustra.java.security.authentication.authority.UstraAuthenticationAuthorityChecker
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationPropertiesProvider
+  - com.gsitm.ustra.java.security.authentication.request.UstraAuthenticationRequestTokenChecker
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - lombok.Getter
+com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.concurrent.CopyOnWriteArrayList
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - lombok.Data
+com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  - lombok.Data
+com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationPropertiesProvider:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+com.gsitm.ustra.java.security.authentication.request.UstraAuthenticationRequestTokenChecker:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken:
+  extends: UstraAuthenticationRequestToken
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.authentication.request.token.AuthenticationStoredToken:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.security.core.Authentication
+com.gsitm.ustra.java.security.authentication.request.token.DeviceIdContainedToken:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken:
+  extends: UstraAuthenticationRequestToken
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken:
+  extends: UstraAuthenticationRequestToken
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+com.gsitm.ustra.java.security.authentication.store.SessionAuthenticationStore:
+  extends: null
+  implements:
+  - UstraAuthenticationStore
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.security.authentication.AnonymousAuthenticationToken
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser:
+  extends: UstraUser
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.Collection
+  - org.springframework.security.core.GrantedAuthority
+  - com.gsitm.ustra.java.security.authentication.authority.UstraGrantedAuthority
+com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider:
+  extends: null
+  implements:
+  - UstraUserDetailProvider
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.authentication.user.UstraUser:
+  extends: User
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.Collection
+  - org.springframework.security.core.GrantedAuthority
+  - org.springframework.security.core.userdetails.User
+  - com.fasterxml.jackson.annotation.JsonCreator
+  - com.fasterxml.jackson.annotation.JsonIgnoreProperties
+  - com.fasterxml.jackson.annotation.JsonProperty
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker:
+  extends: null
+  implements:
+  - UstraUserDetailChecker
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.crypto.password.PasswordEncoder
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+com.gsitm.ustra.java.security.authentication.validation.DeviceIdClientValidator:
+  extends: null
+  implements:
+  - UstraClientValidator
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+com.gsitm.ustra.java.security.authentication.validation.HttpHeaderClientValidator:
+  extends: null
+  implements:
+  - UstraClientValidator
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.properties.ClientValidationValueEncryptionType
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authentication.validation.UstraClientValidatorFactory:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.properties.ClientValidationType
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties.ClientValidation
+com.gsitm.ustra.java.security.authority.UstraAuthority:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.http.HttpMethod
+  - lombok.Data
+com.gsitm.ustra.java.security.authority.UstraAuthorityChecker:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.security.core.Authentication
+com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+com.gsitm.ustra.java.security.authority.permission.AllGrantedPermissionAuthorityCheckerExecutor:
+  extends: null
+  implements:
+  - PermissionAuthorityCheckerExecutor
+  imports:
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authority.permission.DefaultPermissionAuthorityChecker:
+  extends: null
+  implements:
+  - PermissionAuthorityChecker
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authority.permission.OneGrantedPermissionAuthorityCheckerExecutor:
+  extends: null
+  implements:
+  - PermissionAuthorityCheckerExecutor
+  imports:
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckInterceptor:
+  extends: HandlerInterceptorAdapter
+  implements: []
+  imports:
+  - java.util.EnumSet
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.boot.web.servlet.error.ErrorController
+  - org.springframework.core.annotation.AnnotatedElementUtils
+  - org.springframework.web.method.HandlerMethod
+  - org.springframework.web.servlet.handler.HandlerInterceptorAdapter
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authority.UstraAccessType
+  - com.gsitm.ustra.java.security.authority.UstraAuthority
+  - com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.utils.UstraSecurityUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityChecker:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckerExecutor:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+com.gsitm.ustra.java.security.config.DefaultUstraSecurityConfigure:
+  extends: null
+  implements:
+  - UstraSecurityConfigure
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.List
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.Ordered
+  - org.springframework.security.access.AccessDeniedException
+  - org.springframework.security.config.annotation.web.builders.HttpSecurity
+  - org.springframework.security.config.annotation.web.builders.WebSecurity
+  - org.springframework.security.core.AuthenticationException
+  - org.springframework.security.web.AuthenticationEntryPoint
+  - org.springframework.security.web.access.AccessDeniedHandler
+  - org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authority.UstraAuthorityChecker
+  - com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter
+  - com.gsitm.ustra.web.socket.config.UstraWebSocketConfigurer
+com.gsitm.ustra.java.security.config.UstraSecurityConfigure:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.security.config.annotation.web.builders.HttpSecurity
+  - org.springframework.security.config.annotation.web.builders.WebSecurity
+com.gsitm.ustra.java.security.connection.ConcurrentMapConnectionStorage:
+  extends: null
+  implements:
+  - UstraConnectionStorage
+  imports:
+  - java.util.List
+  - java.util.Map
+  - java.util.concurrent.ConcurrentHashMap
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.security.connection.ConnectionInfo:
+  extends: Serializable
+  implements: []
+  imports:
+  - java.io.Serializable
+  - java.util.concurrent.atomic.AtomicInteger
+com.gsitm.ustra.java.security.connection.UstraConnectionStorage:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+com.gsitm.ustra.java.security.exception.AccountLockedUserException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.CannotAnonymousAccessException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.CredentialsExpiredUserException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.DisabledUserException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.DuplicatedAuthenticationException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.ExpiredUserException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.InvalidAuthenticationRequestException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.NotAllowedConnectionRegionException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.NotMatchPasswordException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.NotMatchUserException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException:
+  extends: UstraSecurityException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.exception.UstraSecurityException:
+  extends: UstraException
+  implements: []
+  imports:
+  - org.springframework.http.HttpStatus
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter:
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.Ordered
+  - org.springframework.security.core.AuthenticationException
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.exception.DuplicatedAuthenticationException
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.filter.UstraXssApplicationWrapperAware:
+  extends: null
+  implements:
+  - UstraApplicationWrapperAware
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.io.IOUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper
+  - com.gsitm.ustra.java.security.properties.UstraSecurityProperties
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.filter.xss.DefaultXssTextEscaper:
+  extends: null
+  implements:
+  - UstraXssTextEscaper
+  imports: []
+com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.core.annotation.AnnotationUtils
+  - com.gsitm.ustra.java.core.utils.UstraBeanUtils
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+com.gsitm.ustra.java.security.properties.UstraSecurityProperties:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.security.test.SecurityApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.security.utils.UstraSecurityUtils:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter
+com.gsitm.ustra.java.security.web.DefaultUstraWebAuthenticationInfoDetector:
+  extends: null
+  implements:
+  - UstraWebAuthenticationInfoDetector
+  imports:
+  - com.gsitm.ustra.java.mvc.security.UstraWebAuthenticationInfoDetector
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager

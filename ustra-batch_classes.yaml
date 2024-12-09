@@ -1,0 +1,888 @@
+ch.qos.logback.core.joran.event.SaxEventRecorder:
+  extends: DefaultHandler
+  implements:
+  - ContextAware
+  imports:
+  - ch.qos.logback.core.CoreConstants.XML_PARSING
+  - java.io.IOException
+  - java.io.InputStream
+  - java.util.ArrayList
+  - java.util.List
+  - javax.xml.parsers.SAXParser
+  - javax.xml.parsers.SAXParserFactory
+  - org.xml.sax.Attributes
+  - org.xml.sax.InputSource
+  - org.xml.sax.Locator
+  - org.xml.sax.SAXException
+  - org.xml.sax.SAXParseException
+  - org.xml.sax.helpers.DefaultHandler
+  - ch.qos.logback.core.Context
+  - ch.qos.logback.core.joran.spi.ElementPath
+  - ch.qos.logback.core.joran.spi.JoranException
+  - ch.qos.logback.core.spi.ContextAware
+  - ch.qos.logback.core.spi.ContextAwareImpl
+  - ch.qos.logback.core.status.Status
+com.gsitm.ustra.java.batch.UstraBatch:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.batch.UstraBatchConfigProperties:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - com.gsitm.ustra.java.batch.model.TaskScheduleType
+  - lombok.Data
+  - org.springframework.context.annotation.Configuration
+com.gsitm.ustra.java.batch.bootstrap.BatchServerMain:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.SpringApplication
+  - org.springframework.boot.autoconfigure.SpringBootApplication
+com.gsitm.ustra.java.batch.bootstrap.ManagerServerMain:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.context.ApplicationContext
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+com.gsitm.ustra.java.batch.bootstrap.UstraBatchServer:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.List
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.context.ApplicationContext
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+com.gsitm.ustra.java.batch.bootstrap.WorkerServerMain:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.context.ApplicationContext
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+com.gsitm.ustra.java.batch.common.DigestUtils:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - java.nio.charset.StandardCharsets
+com.gsitm.ustra.java.batch.common.DigestUtilsTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.junit.jupiter.api.Assertions
+com.gsitm.ustra.java.batch.common.DurationUtils:
+  extends: null
+  implements: []
+  imports:
+  - lombok.experimental.UtilityClass
+  - java.time.Duration
+  - java.time.Instant
+  - java.time.ZoneOffset
+  - java.time.format.DateTimeFormatter
+com.gsitm.ustra.java.batch.common.DurationUtilsTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - java.time.Duration
+  - org.junit.jupiter.api.Assertions
+com.gsitm.ustra.java.batch.common.NetworkUtils:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.extern.slf4j.Slf4j
+  - lombok.extern.slf4j.XSlf4j
+  - org.apache.commons.lang3.ObjectUtils
+  - org.apache.commons.lang3.StringUtils
+  - java.net.Inet4Address
+  - java.net.InetAddress
+  - java.net.NetworkInterface
+  - java.net.UnknownHostException
+com.gsitm.ustra.java.batch.config.BatchInterfaceLoggingFilter:
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.batch.data.domain.mapper.TaskDomainMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.Task
+  - com.gsitm.ustra.java.batch.model.TaskDetail
+  - com.gsitm.ustra.java.batch.model.TaskFilter
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - org.apache.ibatis.annotations.Param
+  - java.util.List
+com.gsitm.ustra.java.batch.data.domain.mapper.TaskInstanceDomainMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.TaskInstance
+  - com.gsitm.ustra.java.batch.model.TaskInstanceFilter
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - org.apache.ibatis.annotations.Param
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatMngrMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngr
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngrExample
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecParamMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamKey
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExample
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskParamMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParam
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamKey
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskSchdlMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdl
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlKey
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskWrkrMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkr
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkrExample
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapperTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.mybatis.spring.boot.test.autoconfigure.MybatisTest
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.junit.jupiter.api.Assertions
+com.gsitm.ustra.java.batch.data.mapper.table.UstraBatchSpringConfig:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.SpringBootApplication
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatMngrTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskExecParamTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskExecTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskParamTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskSchdlTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskWrkrTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatWrkrTableMapping:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngr:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngrExample:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExample:
+  extends: null
+  implements: []
+  imports:
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam:
+  extends: UstraBatTaskExecParamKey
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamExample:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamKey:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParam:
+  extends: UstraBatTaskParamKey
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.math.BigDecimal
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamExample:
+  extends: null
+  implements: []
+  imports:
+  - java.math.BigDecimal
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamKey:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdl:
+  extends: UstraBatTaskSchdlKey
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlExample:
+  extends: null
+  implements: []
+  imports:
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlKey:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.math.BigDecimal
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkr:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkrExample:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample:
+  extends: null
+  implements: []
+  imports:
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.batch.data.repository.CommandLocalRepository:
+  extends: null
+  implements:
+  - CommandRepository
+  imports:
+  - java.util.Collections
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.UUID
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.session.RowBounds
+  - org.springframework.util.ObjectUtils
+  - com.gsitm.ustra.java.batch.model.Command
+  - com.gsitm.ustra.java.batch.model.CommandFilter
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.Worker
+com.gsitm.ustra.java.batch.data.repository.CommandLocalRepositoryTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.Command
+  - com.gsitm.ustra.java.batch.model.CommandFilter
+  - org.apache.ibatis.session.RowBounds
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Tag
+  - org.junit.jupiter.api.Test
+  - java.util.Arrays
+  - java.util.List
+  - org.junit.jupiter.api.Assertions
+com.gsitm.ustra.java.batch.data.repository.CommandRemoteRepository:
+  extends: null
+  implements:
+  - CommandRepository
+  imports:
+  - java.net.URI
+  - java.util.List
+  - org.apache.ibatis.session.RowBounds
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpMethod
+  - org.springframework.http.RequestEntity
+  - org.springframework.web.client.RestTemplate
+  - com.gsitm.ustra.java.batch.model.Command
+  - com.gsitm.ustra.java.batch.model.CommandFilter
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - lombok.RequiredArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.batch.data.repository.CommandRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.session.RowBounds
+  - com.gsitm.ustra.java.batch.model.Command
+  - com.gsitm.ustra.java.batch.model.CommandFilter
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.Worker
+com.gsitm.ustra.java.batch.data.repository.ManagerDatabaseRepository:
+  extends: null
+  implements:
+  - ManagerRepository
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatMngrMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngr
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngrExample
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.ManagerFilter
+  - org.springframework.cache.annotation.CacheEvict
+  - org.springframework.cache.annotation.Cacheable
+com.gsitm.ustra.java.batch.data.repository.ManagerHolder:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.Manager
+com.gsitm.ustra.java.batch.data.repository.ManagerLocalRepository:
+  extends: null
+  implements:
+  - ManagerRepository
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.ManagerFilter
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.batch.data.repository.ManagerRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.stereotype.Repository
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.ManagerFilter
+com.gsitm.ustra.java.batch.data.repository.SimpleFileRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.FileInputStream
+  - java.io.FileNotFoundException
+com.gsitm.ustra.java.batch.data.repository.TaskDatabaseRepository:
+  extends: null
+  implements:
+  - TaskRepository
+  imports:
+  - java.util.Collections
+  - java.util.List
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.batch.data.domain.mapper.TaskDomainMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskParamMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskSchdlMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskWrkrMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.model
+  - com.gsitm.ustra.java.batch.model
+  - com.gsitm.ustra.java.data.datasource.DataSource
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.cache.annotation.CacheEvict
+  - org.springframework.cache.annotation.Cacheable
+com.gsitm.ustra.java.batch.data.repository.TaskInstanceRepository:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.common.NetworkUtils
+  - com.gsitm.ustra.java.batch.data.domain.mapper.TaskInstanceDomainMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecParamMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamExample
+  - com.gsitm.ustra.java.batch.model.TaskInstance
+  - com.gsitm.ustra.java.batch.model.TaskInstanceFilter
+  - com.gsitm.ustra.java.data.domains.DefaultPaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - lombok.RequiredArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  - org.springframework.cache.annotation.CacheEvict
+  - org.springframework.cache.annotation.Cacheable
+  - java.time.LocalDateTime
+  - java.util.List
+  - java.util.UUID
+com.gsitm.ustra.java.batch.data.repository.TaskLocalRepository:
+  extends: null
+  implements:
+  - TaskRepository
+  imports:
+  - java.util.ArrayList
+  - java.util.Collections
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.batch.model.Task
+  - com.gsitm.ustra.java.batch.model.TaskDetail
+  - com.gsitm.ustra.java.batch.model.TaskFilter
+  - com.gsitm.ustra.java.batch.model.TaskSchedule
+  - com.gsitm.ustra.java.batch.model.TaskScheduleFilter
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.batch.data.repository.TaskRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.batch.model.Task
+  - com.gsitm.ustra.java.batch.model.TaskDetail
+  - com.gsitm.ustra.java.batch.model.TaskFilter
+  - com.gsitm.ustra.java.batch.model.TaskSchedule
+  - com.gsitm.ustra.java.batch.model.TaskScheduleFilter
+com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecConverter:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.common.NetworkUtils
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec
+  - com.gsitm.ustra.java.batch.model.TaskInstance
+  - lombok.experimental.UtilityClass
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecParamConverter:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam
+  - com.gsitm.ustra.java.batch.model.TaskInstance
+  - lombok.experimental.UtilityClass
+  - java.util.List
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.batch.data.repository.UstraBatchCache:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.batch.data.repository.UstraBatchSpringConfig:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.SpringBootApplication
+com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepository:
+  extends: null
+  implements:
+  - WorkerRepository
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapper
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.batch.model.WorkerFilter
+  - org.springframework.cache.annotation.CacheEvict
+  - org.springframework.cache.annotation.Cacheable
+com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepositoryTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.batch.model.WorkerFilter
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableEntityMapper
+  - com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - org.junit.jupiter.api.BeforeAll
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - org.mybatis.spring.boot.test.autoconfigure.MybatisTest
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.junit.jupiter.api.Assertions
+  - org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.annotation.Import
+  - org.springframework.test.annotation.Rollback
+  - org.springframework.transaction.annotation.Transactional
+  - java.util.List
+com.gsitm.ustra.java.batch.data.repository.WorkerHolder:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.model.Worker
+com.gsitm.ustra.java.batch.data.repository.WorkerRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.batch.model.WorkerFilter
+com.gsitm.ustra.java.batch.data.repository.WorkerYmlRepository:
+  extends: null
+  implements:
+  - WorkerRepository
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.NotImplementedException
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties.WorkerProperties
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.batch.model.WorkerFilter
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.batch.model.Command:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Collections
+  - java.util.List
+  - java.util.UUID
+  - org.apache.commons.collections4.ListUtils
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+com.gsitm.ustra.java.batch.model.CommandFilter:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - lombok.Builder
+  - lombok.Getter
+com.gsitm.ustra.java.batch.model.CommandTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions.assertEquals
+  - java.util.Arrays
+  - java.util.UUID
+  - org.junit.jupiter.api.Test
+com.gsitm.ustra.java.batch.model.Manager:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.batch.common.DigestUtils
+  - com.gsitm.ustra.java.batch.common.NetworkUtils
+  - lombok.Getter
+  - lombok.Setter
+  - java.io.Serializable
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.model.ManagerFilter:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+  - lombok.ToString
+com.gsitm.ustra.java.batch.model.Schedule:
+  extends: null
+  implements: []
+  imports:
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+com.gsitm.ustra.java.batch.model.ScheduleTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions.assertEquals
+  - org.junit.jupiter.api.Assertions.assertNotEquals
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+com.gsitm.ustra.java.batch.model.Task:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+  - java.io.Serializable
+  - java.time.LocalDateTime
+  - java.util.List
+  - lombok.ToString
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
+com.gsitm.ustra.java.batch.model.TaskDetail:
+  extends: Task
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParam
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdl
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkr
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - java.math.BigDecimal
+  - java.util.Collections
+  - java.util.List
+  - java.util.Map
+  - java.util.concurrent.atomic.AtomicInteger
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.batch.model.TaskFilter:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.ToString
+  - java.time.LocalDateTime
+  - java.util.Set
+com.gsitm.ustra.java.batch.model.TaskInstance:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.time.LocalDateTime
+  - java.util
+  - java.util.stream.Collectors
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam
+  - lombok.Getter
+  - lombok.Setter
+  - org.apache.commons.lang3.StringUtils
+com.gsitm.ustra.java.batch.model.TaskInstanceFilter:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.List
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - lombok
+  - org.apache.commons.lang3.ObjectUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample.Criteria
+  - org.springframework.format.annotation.DateTimeFormat
+com.gsitm.ustra.java.batch.model.TaskInstanceParam:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+  - java.io.Serializable
+com.gsitm.ustra.java.batch.model.TaskObjectMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
+  - org.apache.commons.lang3.StringUtils
+  - java.math.BigDecimal
+com.gsitm.ustra.java.batch.model.TaskParam:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParam
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+  - org.apache.commons.lang3.StringUtils
+  - java.io.Serializable
+  - java.math.BigDecimal
+com.gsitm.ustra.java.batch.model.TaskSchedule:
+  extends: null
+  implements: []
+  imports:
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.batch.model.TaskScheduleFilter:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+  - java.time.LocalDateTime
+  - java.util.List
+com.gsitm.ustra.java.batch.model.TaskTrigger:
+  extends: null
+  implements: []
+  imports:
+  - java.util.UUID
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.batch.model.Worker:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties.WorkerProperties
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr
+  - lombok.AllArgsConstructor
+  - lombok.Getter
+  - lombok.NoArgsConstructor
+  - lombok.Setter
+  - lombok.ToString
+  - lombok.With
+com.gsitm.ustra.java.batch.model.WorkerFilter:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkrExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample
+  - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample.Criteria
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+com.gsitm.ustra.java.batch.test.BatchApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest

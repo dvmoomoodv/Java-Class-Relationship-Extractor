@@ -1,4 +1,3 @@
-````markdown
 # Java Class Relationship Extractor
 
 이 스크립트는 지정한 자바 소스 디렉토리 내의 `.java` 파일들을 파싱하여 클래스 관계(상속, 구현, import)를 분석한 뒤, YAML 형태로 출력하는 유틸리티입니다.
@@ -27,6 +26,7 @@
    ```bash
    python test.py [DIRECTORY_NAME]
    ```
+
 ````
 
 여기서 `[DIRECTORY_NAME]`은 `framework` 디렉토리 하위의 대상 모듈 디렉토리명입니다.
@@ -72,4 +72,4 @@ com.example.ParentClass:
 
 ```
 
-```
+````

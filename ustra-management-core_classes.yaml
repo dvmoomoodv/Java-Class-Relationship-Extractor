@@ -1,0 +1,3811 @@
+com.gsitm.ustra.java.management.UstraManagementCore:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority:
+  extends: null
+  implements:
+  - GrantedAuthority
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.security.core.GrantedAuthority
+  - com.fasterxml.jackson.annotation.JsonCreator
+  - com.fasterxml.jackson.annotation.JsonIgnoreProperties
+  - com.fasterxml.jackson.annotation.JsonInclude
+  - com.fasterxml.jackson.annotation.JsonProperty
+com.gsitm.ustra.java.management.controllers.UstraCommonController:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.time.ZoneId
+  - java.time.ZonedDateTime
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+com.gsitm.ustra.java.management.controllers.UstraFileActionController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataException
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.model.FileMetaDataInput
+  - com.gsitm.ustra.java.data.file.model.FileRemoveInput
+  - com.gsitm.ustra.java.data.file.model.FileUploadInput
+  - com.gsitm.ustra.java.data.file.model.FileUploadOutput
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToMultiSheetDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalTextFileConvert
+  - com.gsitm.ustra.java.data.poi.convert.DefaultDataFormatter
+  - com.gsitm.ustra.java.management.data.file.utils.FileConvertVo
+  - com.gsitm.ustra.java.management.data.file.utils.UstraFileInputUtils
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter
+com.gsitm.ustra.java.management.controllers.UstraManagementInterfaceLoggingController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceRequestLoggingInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceResponseLoggingInfo
+  - com.gsitm.ustra.java.management.services.UstraManagementInterfaceService
+com.gsitm.ustra.java.management.data.file.FileMetaDataStorageService:
+  extends: null
+  implements:
+  - FileMetaDataStorage
+  imports:
+  - java.util.ArrayList
+  - java.util.Collections
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.core.utils.UstraSystemUtils
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.processor.storage.FileMetaDataStorage
+  - com.gsitm.ustra.java.data.file.utils.UstraFileModuleUtils
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - com.gsitm.ustra.java.management.services.UstraFileService
+com.gsitm.ustra.java.management.data.file.UstraManagementFileGroupPolicyProvider:
+  extends: null
+  implements:
+  - FileGroupPolicyProvider
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.collections4.map.HashedMap
+  - com.gsitm.ustra.java.data.file.model.DirStructType
+  - com.gsitm.ustra.java.data.file.model.FileNmSvMethType
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicy
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyProvider
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+com.gsitm.ustra.java.management.data.file.UstraManagementFileOperationProcessor:
+  extends: AbstractFileOperationProcessor
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.file.config.FileOperationConfigurer
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.data.file.processor.AbstractFileOperationProcessor
+  - com.gsitm.ustra.java.data.file.processor.FileOperationProcessorCustomizer
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractorResolver
+  - com.gsitm.ustra.java.data.file.processor.storage.FileMetaDataStorage
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceInfoExtractorResolver
+com.gsitm.ustra.java.management.data.file.utils.FileConvertVo:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.management.data.file.utils.UstraFileInputUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.io.Resource
+  - org.springframework.web.multipart.MultipartFile
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.model.FileUploadInput
+  - com.gsitm.ustra.java.mvc.utils.UstraMultipartFileResource
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.management.data.mapper.UstraAuthorityGroupDataMapper:
+  extends: CommonDataMapper
+  implements: []
+  imports:
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Optional
+  - com.gsitm.ustra.java.data.store.CommonDataMapper
+  - com.gsitm.ustra.java.data.store.CommonDataStore
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper:
+  extends: CommonDataMapper
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Optional
+  - java.util.stream.Stream
+  - com.gsitm.ustra.java.data.store.CommonDataMapper
+  - com.gsitm.ustra.java.data.store.CommonDataStore
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+com.gsitm.ustra.java.management.data.mapper.UstraMessageTypeModelMapper:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.message.model.UstraMessageType
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - org.apache.commons.lang3.ObjectUtils
+  - org.apache.commons.lang3.StringUtils
+  - java.util.Properties
+com.gsitm.ustra.java.management.data.mapper.UstraMessageTypeModelMapperTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.message.model.UstraMessageType
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+  - lombok.extern.slf4j.Slf4j
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - java.util.ArrayList
+  - java.util.List
+  - org.junit.jupiter.api.Assertions.assertNotNull
+com.gsitm.ustra.java.management.data.mapping.UstraAppSttMnuTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAppSttTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalStepTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.LimitAuthGroupByUserTypeTableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthGroupRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalUserRequestTargetGroupTableMappingModel:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalUserTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.LimitAuthGroupByUserTypeTableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthGroupRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.LimitAuthGroupByUserTypeTableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthGroupRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupUserHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupUserRequestTargetGroupTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupUserTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraAuthorityTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthRoleTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraBatchHistTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraBatchInstanceTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraBatchTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraCodeTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraFileGroupTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseFileCryptoTableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseFileTemporaryUploadTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraFileTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseFileAccessUrlTableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseFileCryptoTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceChannelTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceKeyTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceRequestControlChannelTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceRequestControlTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraInterfaceTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraLoginHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuAccessHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuAuthorityApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuAuthorityHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuAuthorityTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuFunctionAccessHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuFunctionAuthorityApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuFunctionAuthorityHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuFunctionAuthorityTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuFunctionTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMenuTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMessageTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMessageTypeMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraMessageTypePropTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraPostGroupTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraPostTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraPrivateInfoAccessHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraRefreshTokenTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraSysDbmsQryHistTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraTextTemplateTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraUserApprovalStepTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraUserApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UseUserApprovalAddInfoTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraUserHistoryTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraUserMenuTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.processor.UserMenuIncludeSystemCodeTableMappingPostProcessor
+com.gsitm.ustra.java.management.data.mapping.UstraUserStatusApprovalTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.UstraUserTableMappingModel:
+  extends: UstraTableMappingModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.processor.LimitAuthGroupByUserTypeTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupHistoryTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthGroupRoleTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupHistoryTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseAdditionalAuthRoleTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityApprovalTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityHistoryTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseFileAccessUrlTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraFileTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseFileCryptoTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.file.config.UstraDataFileConfigProperties
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraFileGroupTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraFileTableMappingModel
+com.gsitm.ustra.java.management.data.mapping.processor.UseFileTemporaryUploadTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraFileGroupTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseMenuDeviceScopeTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraMenuTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseMenuGuideTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraMenuTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UseUserApprovalAddInfoTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraUserApprovalTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.mapping.processor.UserMenuIncludeSystemCodeTableMappingPostProcessor:
+  extends: null
+  implements:
+  - TableMappingPostProcessor
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mapping.TableMappingPostProcessor
+  - com.gsitm.ustra.java.management.data.mapping.UstraUserMenuTableMappingModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.data.message.DbMessageTypeStore:
+  extends: null
+  implements:
+  - UstraMessageTypeStore
+  imports:
+  - com.gsitm.ustra.java.data.message.model.UstraMessageType
+  - com.gsitm.ustra.java.data.message.type.UstraMessageTypeStore
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraMessageTypeModelMapper
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+  - com.gsitm.ustra.java.management.repositories.UstraMessageTypeRepository
+  - org.apache.commons.lang3.ObjectUtils
+  - org.springframework.scheduling.annotation.Scheduled
+  - javax.validation.constraints.NotBlank
+  - java.util
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.management.data.text.DbTextTemplateStore:
+  extends: null
+  implements:
+  - UstraTextTemplateStore
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.data.text.UstraTextTemplate
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateStore
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.management.repositories.UstraTextTemplateRepository
+  - lombok.extern.slf4j.Slf4j
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.scheduling.annotation.Scheduled
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+com.gsitm.ustra.java.management.exception.NotHasApprovalAuthorityException:
+  extends: UstraManagementException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+com.gsitm.ustra.java.management.exception.UstraManagementException:
+  extends: UstraException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+com.gsitm.ustra.java.management.logging.UstraManagementQueryLogWriter:
+  extends: null
+  implements:
+  - QueryLogWriter
+  imports:
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.data.logging.query.QueryLogWriter
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  - com.gsitm.ustra.java.management.models.UstraSysDbmsQryHistModel
+  - com.gsitm.ustra.java.management.repositories.UstraSysDbmsQryHistRepository
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceHistoryModifier:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceInfoProvider:
+  extends: null
+  implements:
+  - InterfaceInfoProvider
+  imports:
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceDirection
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceHttpMethod
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceLogType
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceType
+  - com.gsitm.ustra.java.data.logging.interfaces.provider.InterfaceInfoProvider
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.services.UstraManagementInterfaceService
+com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceLogWriter:
+  extends: null
+  implements:
+  - InterfaceLogWriter
+  imports:
+  - java.util.List
+  - org.springframework.transaction.annotation.Propagation
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.logging.interfaces.InterfaceLogWriter
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraManagementInterfaceService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.logging.intefaces.UstraManagementWebInterfaceLoggingFilter:
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.management.models.UstraAppSttMnuModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAppSttModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.BeanUtils
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserRequestTargetGroupModel:
+  extends: UstraAuthorityGroupUserRequestTargetGroupModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.data.mapping.UstraAuthorityGroupApprovalUserRequestTargetGroupTableMappingModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupHistoryModel:
+  extends: UstraAuthorityGroupModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserHistoryModel:
+  extends: UstraAuthorityGroupUserModel
+  implements: []
+  imports:
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserRequestTargetGroupModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityHistoryModel:
+  extends: UstraAuthorityModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Map
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraBatchHistModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+  - org.springframework.format.annotation.DateTimeFormat
+com.gsitm.ustra.java.management.models.UstraBatchInstanceModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Map
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraBatchManagerModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.management.models.UstraBatchModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraBatchParamModel:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.management.models.UstraBatchWorkerModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.management.models.UstraCodeModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotBlank
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraFileGroupModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.file.model.FileCryptoType
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraFileModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - javax.validation.constraints.Positive
+  - com.gsitm.ustra.java.data.file.model.FileCryptoType
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraIfsChannelModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraIfsHistoryModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraIfsKeyModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraIfsModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.springframework.util.LinkedMultiValueMap
+  - org.springframework.util.MultiValueMap
+  - com.fasterxml.jackson.annotation.JsonIgnore
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlChannelModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.management.models.UstraLoginHistoryModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuAuthorityApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuAuthorityHistoryModel:
+  extends: UstraMenuAuthorityModel
+  implements: []
+  imports:
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel:
+  extends: UstraMenuModel
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityHistoryModel:
+  extends: UstraMenuFunctionAuthorityModel
+  implements: []
+  imports:
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuFunctionModel:
+  extends: UstraStateBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMenuModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.regex.Pattern
+  - javax.validation.constraints.Positive
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+  - lombok.experimental.UtilityClass
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.util.Assert
+com.gsitm.ustra.java.management.models.UstraMessageModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok
+  - lombok.experimental.SuperBuilder
+  - javax.validation.constraints.NotBlank
+  - java.time.LocalDateTime
+  - java.util.List
+com.gsitm.ustra.java.management.models.UstraMessageTypeModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotBlank
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraMessageTypePropModel:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.constraints.NotBlank
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraPostGroupModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraPostModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraRefreshTokenModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.nio.ByteBuffer
+  - java.time.LocalDateTime
+  - java.util.UUID
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.core.utils.enc.Base62
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraStateBaseModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraSysDbmsQryHistModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraTextTemplateModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserApprovalStepModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserHistoryModel:
+  extends: UstraUserModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserMenuModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.List
+  - javax.validation.constraints.NotBlank
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.UstraUserStatusApprovalModel:
+  extends: UstraManagementBaseModel
+  implements: []
+  imports:
+  - javax.validation.constraints.NotBlank
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.approval.ActivateUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.AssignAuthGroupUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraUserStatusApprovalModel
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserStatusApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.AuthGroupUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserRequestTargetGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.properties.ApprovalType
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRequestTargetGroupRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.AuthUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.RegisterUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserStatusApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.ReleaseLockUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+com.gsitm.ustra.java.management.models.approval.ResetPasswordUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+com.gsitm.ustra.java.management.models.approval.UpdateStatusUserApprovalProcessor:
+  extends: UserApprovalProccesorTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraUserStatusApprovalModel
+  - com.gsitm.ustra.java.management.repositories.UstraUserStatusApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+com.gsitm.ustra.java.management.models.approval.UserApprovalProccesor:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.repositories.UstraUserApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.approval.UserApprovalProccesorTemplate:
+  extends: null
+  implements:
+  - UserApprovalProccesor
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.properties.ApprovalType
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraUserApprovalStepRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+com.gsitm.ustra.java.management.models.approval.UserApprovalType:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.Collection
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel:
+  extends: UstraBaseModel
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.data.base.UstraBaseModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - lombok.AccessLevel
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.vo.TextTemplateParam:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+  - javax.validation.constraints.NotEmpty
+  - java.util.List
+  - java.util.Map
+com.gsitm.ustra.java.management.models.vo.UstraAppSttOneRqVo:
+  extends: null
+  implements: []
+  imports:
+  - com.sun.istack.NotNull
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraAppSttRqVo:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupCheckRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraBatchHistOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraBatchHistParamVo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+com.gsitm.ustra.java.management.models.vo.UstraBatchHistRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraBatchManagerRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraBatchOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - java.util.Collections
+  - java.util.List
+com.gsitm.ustra.java.management.models.vo.UstraBatchRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraBatchRsVo:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotNull
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.vo.UstraBatchWorkerRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeGridRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeGroupDepthVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeGroupVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraCodeRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileGroupListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileGroupOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileGroupRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraFileRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraIfsHistoryOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraIfsListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraIfsOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraIfsRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuAuthorityListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuAuthorityOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuAuthorityRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuBatchUpdateRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunAuthListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunAuthOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunAuthRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunctionListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunctionOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuFunctionRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMenuRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMessageOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - javax.validation.constraints.NotEmpty
+com.gsitm.ustra.java.management.models.vo.UstraMessageRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - javax.validation.constraints.NotNull
+com.gsitm.ustra.java.management.models.vo.UstraMessageTypeOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraMessageTypeRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostGroupListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostGroupOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostGroupRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostListRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraPostRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraTextTemplateOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - javax.validation.constraints.NotEmpty
+com.gsitm.ustra.java.management.models.vo.UstraTextTemplateRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - javax.validation.constraints.NotNull
+com.gsitm.ustra.java.management.models.vo.UstraUserHistoryOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraUserHistoryRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo:
+  extends: UstraBaseModel
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.base.UstraBaseModel
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+com.gsitm.ustra.java.management.models.vo.UstraUserOneRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraUserPasswordCheckRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.models.vo.UstraUserRqVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.properties.UstraManagementBoProperties:
+  extends: null
+  implements:
+  - InitializingBean
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.InitializingBean
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties:
+  extends: null
+  implements:
+  - InitializingBean
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - java.util.Set
+  - org.apache.commons.collections4.SetUtils
+  - org.springframework.beans.factory.InitializingBean
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.management.repositories.UstraAppSttMnuRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAppSttMnuModel
+com.gsitm.ustra.java.management.repositories.UstraAppSttRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityApprovalModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalStepRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel.Criteria
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRequestTargetGroupRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserRequestTargetGroupModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserRequestTargetGroupRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserRequestTargetGroupModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+com.gsitm.ustra.java.management.repositories.UstraAuthorityStatusRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+com.gsitm.ustra.java.management.repositories.UstraBatchHistRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+com.gsitm.ustra.java.management.repositories.UstraBatchInstanceRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraBatchInstanceModel
+com.gsitm.ustra.java.management.repositories.UstraBatchManagerRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+com.gsitm.ustra.java.management.repositories.UstraBatchRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+com.gsitm.ustra.java.management.repositories.UstraCodeRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+com.gsitm.ustra.java.management.repositories.UstraFileGroupRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+com.gsitm.ustra.java.management.repositories.UstraFileRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+com.gsitm.ustra.java.management.repositories.UstraIfsChannelRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraIfsChannelModel
+com.gsitm.ustra.java.management.repositories.UstraIfsHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraIfsKeyRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraIfsKeyModel
+com.gsitm.ustra.java.management.repositories.UstraIfsRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+com.gsitm.ustra.java.management.repositories.UstraLoginHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraMenuAccessHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAccessHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel
+com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel
+com.gsitm.ustra.java.management.repositories.UstraMenuFunctionRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionModel
+com.gsitm.ustra.java.management.repositories.UstraMenuRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - org.apache.ibatis.annotations.Param
+com.gsitm.ustra.java.management.repositories.UstraMessageRepository:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+  - org.apache.ibatis.annotations.Mapper
+  - org.apache.ibatis.annotations.Param
+  - org.apache.ibatis.session.RowBounds
+  - java.util.List
+com.gsitm.ustra.java.management.repositories.UstraMessageTypeRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+com.gsitm.ustra.java.management.repositories.UstraPostGroupRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+com.gsitm.ustra.java.management.repositories.UstraPostRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+com.gsitm.ustra.java.management.repositories.UstraPrivateInfoAccessHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraRefreshTokenRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraRefreshTokenModel
+com.gsitm.ustra.java.management.repositories.UstraSysDbmsQryHistRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraSysDbmsQryHistModel
+com.gsitm.ustra.java.management.repositories.UstraTextTemplateRepository:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - org.apache.ibatis.annotations.Mapper
+  - java.util.List
+com.gsitm.ustra.java.management.repositories.UstraUserApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+com.gsitm.ustra.java.management.repositories.UstraUserApprovalStepRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalStepModel
+com.gsitm.ustra.java.management.repositories.UstraUserHistoryRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+com.gsitm.ustra.java.management.repositories.UstraUserMenuRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+com.gsitm.ustra.java.management.repositories.UstraUserRepository:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+com.gsitm.ustra.java.management.repositories.UstraUserStatusApprovalRepository:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.management.models.UstraUserStatusApprovalModel
+com.gsitm.ustra.java.management.samples.excel.UstraExcelCreationController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+com.gsitm.ustra.java.management.samples.excel.UstraExcelCreationMapper:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+com.gsitm.ustra.java.management.samples.excel.UstraExcelCreationModel:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - lombok.Data
+com.gsitm.ustra.java.management.samples.excel.UstraExcelSamplePostProcessor:
+  extends: null
+  implements:
+  - ExcelDataPostProcessor
+  imports:
+  - java.util.List
+  - java.util.Map
+  - java.util.concurrent.CompletableFuture
+  - java.util.concurrent.Executor
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.stereotype.Component
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelDataPostProcessor
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter.Option
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils.RowInfo
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.samples.excel.UstraExcelSampleUploadModel:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.poi.annotation.UstraExcelCellInfo
+  - lombok.Data
+com.gsitm.ustra.java.management.samples.file.UstraManagementSampleFileGroupPolicyProvider:
+  extends: null
+  implements:
+  - FileGroupPolicyProvider
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.beans.BeanUtils
+  - com.gsitm.ustra.java.data.file.model.DirStructType
+  - com.gsitm.ustra.java.data.file.model.FileCryptoType
+  - com.gsitm.ustra.java.data.file.model.FileNmSvMethType
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicy
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyProvider
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+com.gsitm.ustra.java.management.services.UstraAppSttService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityGroupService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraAuthorityStatusService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraBatchHistService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraBatchManagerService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraBatchService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+  - org.apache.commons.lang3.tuple.Pair
+com.gsitm.ustra.java.management.services.UstraBatchWorkerService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraCodeService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraFileGroupService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraFileService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraIfsHistoryService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraIfsService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraInterfaceRequestControlService:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel
+com.gsitm.ustra.java.management.services.UstraLoginHistoryService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraManagementInterfaceService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceRequestLoggingInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceResponseLoggingInfo
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraManagementRefreshTokenService:
+  extends: UstraJwtRefreshTokenStore
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+com.gsitm.ustra.java.management.services.UstraMenuFunctionService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraMenuService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraMessageService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+  - java.util.List
+com.gsitm.ustra.java.management.services.UstraMessageTypeService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel.Criteria
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraPostGroupService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraPostService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraSysDbmsQryHistService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraSysDbmsQryHistModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraSystemLoginService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraTextTemplateService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngine
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.management.models.vo.TextTemplateParam
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateRqVo
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+  - java.util.List
+  - java.util.Map
+com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.management.services.UstraUserApprovalService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraUserHistoryService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraUserMenuService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.UstraUserService:
+  extends: UstraBaseService
+  implements: []
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.base.UstraBaseService
+com.gsitm.ustra.java.management.services.base.UstraBaseService:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAppSttService:
+  extends: null
+  implements:
+  - UstraAppSttService
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAppSttMnuModel
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel.Criteria
+  - com.gsitm.ustra.java.management.repositories.UstraAppSttMnuRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAppSttRepository
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupApprovalStepService:
+  extends: null
+  implements:
+  - UstraAuthorityGroupApprovalStepService
+  imports:
+  - java.util.List
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalStepRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupService:
+  extends: null
+  implements:
+  - UstraAuthorityGroupService
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.BeanUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraFunctionUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraAuthorityGroupDataMapper
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel.Criteria
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserRequestTargetGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.properties.ApprovalType
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserRequestTargetGroupRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener.AuthorityGroupEventArg
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupUserService:
+  extends: null
+  implements:
+  - UstraAuthorityGroupUserService
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.collections4.ListUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.context.annotation.Lazy
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraCollectionUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener.AuthorityGroupEventArg
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityService:
+  extends: null
+  implements:
+  - UstraAuthorityService
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - java.util.Map
+  - java.util.Set
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.management.models
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.core.utils.UstraCollectionUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.approval.UserApprovalType
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener.AuthorityGroupEventArg
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityServiceEventListener.AuthorityEventArg
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityStatusService:
+  extends: null
+  implements:
+  - UstraAuthorityStatusService
+  imports:
+  - java.time.format.DateTimeFormatter
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.Optional
+  - java.util.stream.Collectors
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityStatusRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraBatchHistService:
+  extends: null
+  implements:
+  - UstraBatchHistService
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel.Criteria
+  - com.gsitm.ustra.java.management.repositories.UstraBatchHistRepository
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraBatchService:
+  extends: null
+  implements:
+  - UstraBatchService
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.NotImplementedException
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraBatchInstanceModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.repositories.UstraBatchInstanceRepository
+  - com.gsitm.ustra.java.management.repositories.UstraBatchRepository
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - org.apache.commons.lang3.tuple.Pair
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraCodeService:
+  extends: null
+  implements:
+  - UstraCodeService
+  imports:
+  - java.util.List
+  - org.springframework.transaction.annotation.Transactional
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.repositories.UstraCodeRepository
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraFileGroupService:
+  extends: null
+  implements:
+  - UstraFileGroupService
+  imports:
+  - java.util.List
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.repositories.UstraFileGroupRepository
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraFileService:
+  extends: null
+  implements:
+  - UstraFileService
+  imports:
+  - java.util.List
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.management.repositories.UstraFileRepository
+  - com.gsitm.ustra.java.management.services.UstraFileService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraIfsHistoryService:
+  extends: null
+  implements:
+  - UstraIfsHistoryService
+  imports:
+  - java.time.format.DateTimeFormatter
+  - java.util.List
+  - java.util.Optional
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.repositories.UstraIfsHistoryRepository
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraIfsService:
+  extends: null
+  implements:
+  - UstraIfsService
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraIfsChannelModel
+  - com.gsitm.ustra.java.management.models.UstraIfsKeyModel
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.repositories.UstraIfsChannelRepository
+  - com.gsitm.ustra.java.management.repositories.UstraIfsKeyRepository
+  - com.gsitm.ustra.java.management.repositories.UstraIfsRepository
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraLoginHistoryService:
+  extends: null
+  implements:
+  - UstraLoginHistoryService
+  imports:
+  - java.time.format.DateTimeFormatter
+  - java.time.temporal.ChronoUnit
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.repositories.UstraLoginHistoryRepository
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMenuFunctionService:
+  extends: null
+  implements:
+  - UstraMenuFunctionService
+  imports:
+  - java.util.List
+  - java.util.concurrent.atomic.AtomicInteger
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionModel
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionRepository
+  - com.gsitm.ustra.java.management.services.UstraMenuFunctionService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMenuService:
+  extends: null
+  implements:
+  - UstraMenuService
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.ObjectUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.lang3.math.NumberUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.core.GrantedAuthority
+  - org.springframework.transaction.annotation.Transactional
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel.Criteria
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAccessHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAccessHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuRepository
+  - com.gsitm.ustra.java.management.services.UstraMenuFunctionService
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.management.services.listeners.UstraMenuServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraMenuServiceEventListener.MenuEventArg
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMessageService:
+  extends: null
+  implements:
+  - UstraMessageService
+  imports:
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.processor.storage.LocalFileResourceStorage
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel.Criteria
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+  - com.gsitm.ustra.java.management.models.code.MessageState
+  - com.gsitm.ustra.java.management.repositories.UstraMessageRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMessageTypeRepository
+  - com.gsitm.ustra.java.management.services.UstraMessageService
+  - com.gsitm.ustra.java.management.services.UstraMessageTypeService
+  - org.apache.ibatis.session.RowBounds
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - java.time.LocalDateTime
+  - java.util.List
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMessageTypeService:
+  extends: null
+  implements:
+  - UstraMessageTypeService
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.message.provider.JavaMailMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProviderStore
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel.Criteria
+  - com.gsitm.ustra.java.management.models.UstraMessageTypePropModel
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.repositories.UstraMessageTypeRepository
+  - com.gsitm.ustra.java.management.repositories.UstraPostRepository
+  - com.gsitm.ustra.java.management.services.UstraMessageTypeService
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraPostGroupService:
+  extends: null
+  implements:
+  - UstraPostGroupService
+  imports:
+  - java.util.List
+  - java.util.Optional
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.repositories.UstraPostGroupRepository
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraPostService:
+  extends: null
+  implements:
+  - UstraPostService
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.repositories.UstraPostRepository
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraPrivateInfoAccessHistoryService:
+  extends: null
+  implements:
+  - UstraPrivateInfoAccessHistoryService
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.lang.NonNull
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel.Criteria
+  - com.gsitm.ustra.java.management.repositories.UstraPrivateInfoAccessHistoryRepository
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraSysDbmsQryHistService:
+  extends: null
+  implements:
+  - UstraSysDbmsQryHistService
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraSysDbmsQryHistModel
+  - com.gsitm.ustra.java.management.repositories.UstraSysDbmsQryHistRepository
+  - com.gsitm.ustra.java.management.services.UstraSysDbmsQryHistService
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraTextTemplateService:
+  extends: null
+  implements:
+  - UstraTextTemplateService
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.data.text
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateRqVo
+  - com.gsitm.ustra.java.management.repositories.UstraTextTemplateRepository
+  - com.gsitm.ustra.java.management.services.UstraTextTemplateService
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - org.springframework.util.ObjectUtils
+  - org.thymeleaf.util.StringUtils
+  - java.util.List
+  - java.util.Map
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserAccountPolicyService:
+  extends: null
+  implements:
+  - UstraUserAccountPolicyService
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.crypto.password.PasswordEncoder
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.code.UserStatus
+  - com.gsitm.ustra.java.management.repositories.UstraUserRepository
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.management.utils.ManagementSupport
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserApprovalService:
+  extends: null
+  implements:
+  - UstraUserApprovalService
+  imports:
+  - java.util.ArrayList
+  - java.util.Collections
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Value
+  - org.springframework.transaction.annotation.Transactional
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraAuthorityGroupDataMapper
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalUserModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraUserStatusApprovalModel
+  - com.gsitm.ustra.java.management.models.approval.UserApprovalType
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraMenuFunctionAuthorityApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserApprovalRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserStatusApprovalRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserApprovalServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserApprovalServiceEventListener.UserApprovalEventArg
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserHistoryService:
+  extends: null
+  implements:
+  - UstraUserHistoryService
+  imports:
+  - java.time.format.DateTimeFormatter
+  - java.util.List
+  - java.util.Optional
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel.Criteria
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.repositories.UstraUserHistoryRepository
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserMenuService:
+  extends: null
+  implements:
+  - UstraUserMenuService
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.repositories.UstraUserMenuRepository
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserService:
+  extends: null
+  implements:
+  - UstraUserService
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.Arrays
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.Optional
+  - java.util.stream.Collectors
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.crypto.password.PasswordEncoder
+  - org.springframework.transaction.annotation.Propagation
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel.Criteria
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupUserModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.code.UserStatus
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupApprovalStepRepository
+  - com.gsitm.ustra.java.management.repositories.UstraAuthorityGroupUserRepository
+  - com.gsitm.ustra.java.management.repositories.UstraUserRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.listeners.UstraProfileServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraProfileServiceEventListener.ProfileEventArg
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener.ModifyType
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener.UserEventArg
+  - com.gsitm.ustra.java.management.utils.ManagementSupport
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultUstraManagementInterfaceService:
+  extends: null
+  implements:
+  - UstraManagementInterfaceService
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceRequestLoggingInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.logging.InterfaceResponseLoggingInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceHistoryModifier
+  - com.gsitm.ustra.java.management.models.UstraIfsChannelModel
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraIfsKeyModel
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.repositories.UstraIfsChannelRepository
+  - com.gsitm.ustra.java.management.repositories.UstraIfsHistoryRepository
+  - com.gsitm.ustra.java.management.repositories.UstraIfsKeyRepository
+  - com.gsitm.ustra.java.management.repositories.UstraIfsRepository
+  - com.gsitm.ustra.java.management.services.UstraManagementInterfaceService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.defaults.DefaultUstraManagementRefreshTokenService:
+  extends: null
+  implements:
+  - UstraManagementRefreshTokenService
+  imports:
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraRefreshTokenModel
+  - com.gsitm.ustra.java.management.repositories.UstraRefreshTokenRepository
+  - com.gsitm.ustra.java.management.services.UstraManagementRefreshTokenService
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+com.gsitm.ustra.java.management.services.jdbc.JdbcInterfaceRequestControlService:
+  extends: UstraJdbcTemplateService
+  implements:
+  - UstraInterfaceRequestControlService
+  imports:
+  - java.sql.Connection
+  - java.sql.PreparedStatement
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Optional
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.jdbc.core.BeanPropertyRowMapper
+  - com.gsitm.ustra.java.data.utils.UstraJdbcTemplateService
+  - com.gsitm.ustra.java.management.data.mapping.UstraInterfaceRequestControlChannelTableMappingModel
+  - com.gsitm.ustra.java.management.data.mapping.UstraInterfaceRequestControlTableMappingModel
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlChannelModel
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraInterfaceRequestControlService
+com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener.AuthorityGroupEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraAuthorityServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityServiceEventListener.AuthorityEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener.BatchEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraMenuServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraMenuServiceEventListener.MenuEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraProfileServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraProfileServiceEventListener.ProfileEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraUserApprovalServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserApprovalServiceEventListener.UserApprovalEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.management.models.UstraMenuAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener.UserEventArg
+  - lombok.Data
+com.gsitm.ustra.java.management.services.listeners.approval.ApprovalEventListenerTemplate:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - java.util.function.Function
+  - java.util.stream.Collectors
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.exception.UstraException
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupApprovalEventListenerTemplate:
+  extends: ApprovalEventListenerTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.BooleanUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupAuthGroupApprovalEventListener:
+  extends: CustomByGroupApprovalEventListenerTemplate
+  implements:
+  - UstraAuthorityGroupServiceEventListener
+  imports:
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupUserApprovalEventListener:
+  extends: CustomByGroupApprovalEventListenerTemplate
+  implements:
+  - UstraUserServiceEventListener
+  imports:
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupUserApprovalServiceEventListener:
+  extends: CustomByGroupApprovalEventListenerTemplate
+  implements:
+  - UstraUserApprovalServiceEventListener
+  imports:
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.HashSet
+  - java.util.List
+  - java.util.Set
+  - java.util.stream.Collectors
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraAuthorityApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupApprovalStepModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalStepModel
+  - com.gsitm.ustra.java.management.repositories.UstraUserApprovalStepRepository
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserApprovalServiceEventListener
+com.gsitm.ustra.java.management.services.listeners.approval.SimpleApprovalEventListenerTemplate:
+  extends: ApprovalEventListenerTemplate
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.BooleanUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+com.gsitm.ustra.java.management.services.listeners.approval.SimpleAuthApprovalEventListener:
+  extends: SimpleApprovalEventListenerTemplate
+  implements:
+  - UstraAuthorityServiceEventListener
+  imports:
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityServiceEventListener
+com.gsitm.ustra.java.management.services.listeners.approval.SimpleAuthGroupApprovalEventListener:
+  extends: SimpleApprovalEventListenerTemplate
+  implements:
+  - UstraAuthorityGroupServiceEventListener
+  imports:
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.listeners.UstraAuthorityGroupServiceEventListener
+com.gsitm.ustra.java.management.services.listeners.approval.SimpleUserApprovalEventListener:
+  extends: SimpleApprovalEventListenerTemplate
+  implements:
+  - UstraUserServiceEventListener
+  imports:
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+com.gsitm.ustra.java.management.services.listeners.history.ProfileHistoryEventListener:
+  extends: ApprovalEventListenerTemplate
+  implements:
+  - UstraProfileServiceEventListener
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.listeners.UstraProfileServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.ApprovalEventListenerTemplate
+com.gsitm.ustra.java.management.services.listeners.history.UserHistoryEventListener:
+  extends: ApprovalEventListenerTemplate
+  implements:
+  - UstraUserServiceEventListener
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.ApprovalEventListenerTemplate
+com.gsitm.ustra.java.management.services.policies.DefaultUstraUserAccountPolicyResolver:
+  extends: null
+  implements:
+  - UstraUserAccountPolicyResolver
+  imports:
+  - java.util.regex.Pattern
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraSystemUtils
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver:
+  extends: null
+  implements: []
+  imports:
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.management.test.ManagementApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.management.test.UtilityTest:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.math.NumberUtils
+  - org.junit.jupiter.api.Test
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.utils.ManagementSupport:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.management.web.UstraManagementCoreMethodArgumentResolverListener:
+  extends: null
+  implements:
+  - UstraMethodArgumentResolverListener
+  imports:
+  - java.beans.PropertyDescriptor
+  - java.lang.reflect.InvocationTargetException
+  - java.util.List
+  - java.util.Map
+  - org.springframework.beans.BeanUtils
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.management.models.base.UstraManagementBaseModel
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener

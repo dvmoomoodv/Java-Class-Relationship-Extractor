@@ -1,0 +1,1008 @@
+com.gsitm.ustra.java.management.bo.UstraManagementBo:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.management.bo.authentication.ManagementBoSecurityConfigure:
+  extends: null
+  implements:
+  - UstraSecurityConfigure
+  imports:
+  - org.springframework.security.config.annotation.web.builders.WebSecurity
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+com.gsitm.ustra.java.management.bo.authentication.claims.ManagementJwtClaimAppender:
+  extends: DefaultUstraJwtClaimAppender
+  implements: []
+  imports:
+  - org.springframework.security.core.Authentication
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoAuthenticationController:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDate
+  - java.time.LocalDateTime
+  - java.time.temporal.ChronoUnit
+  - java.util.List
+  - java.util.Optional
+  - javax.validation.Valid
+  - lombok.Getter
+  - lombok.Setter
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.core.Authentication
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserAuthenticationKeyRequestToken
+  - com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserRequestToken
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoLoginCompleteReqVo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoLoginReqVo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraLoginResVo:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Collection
+  - java.util.List
+  - org.springframework.security.core.GrantedAuthority
+  - com.fasterxml.jackson.annotation.JsonProperty
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - lombok.Data
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraPasswordEditReqVo:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener:
+  extends: null
+  implements:
+  - UstraAuthenticationListener
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.authentication.processor.ManagementBoAuthenticationProcessor:
+  extends: DefaultUstraAuthenticationProcessor
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener
+  - com.gsitm.ustra.java.management.bo.authentication.user.CachedManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+com.gsitm.ustra.java.management.bo.authentication.processor.ManagementBoJwtAuthenticationProcessor:
+  extends: UstraJwtAuthenticationProcessor
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.management.bo.authentication.claims.ManagementJwtClaimAppender
+  - com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener
+  - com.gsitm.ustra.java.management.bo.authentication.user.CachedJwtManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookieJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserAuthenticationKeyRequestToken:
+  extends: UserNameWithKeyAuthenticationRequestToken
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserRequestToken:
+  extends: UserNamePasswordAuthenticationRequestToken
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.authentication.user.CachedJwtManagementUserDetailProvider:
+  extends: UstraCachedUserDetailProvider
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+com.gsitm.ustra.java.management.bo.authentication.user.CachedManagementUserDetailProvider:
+  extends: UstraCachedUserDetailProvider
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider:
+  extends: null
+  implements:
+  - UstraUserDetailProvider
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser:
+  extends: UstraUser
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Collection
+  - org.springframework.security.core.GrantedAuthority
+  - com.fasterxml.jackson.annotation.JsonCreator
+  - com.fasterxml.jackson.annotation.JsonIgnoreProperties
+  - com.fasterxml.jackson.annotation.JsonProperty
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.management.bo.controllers.UstraAppSttController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAppSttOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraAppSttRqVo
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityGroupController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupCheckRqVo
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityStatusController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.validation.Valid
+  - org.apache.commons.lang3.tuple.Pair
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchHistController:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - javax.validation.Valid
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - org.springframework.web.servlet.mvc.method.annotation.SseEmitter
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchHistOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchManagerController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchManagerRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchManagerService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchWorkerController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchWorkerRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchWorkerService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.management.bo.controllers.UstraCodeController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeGroupDepthVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeGroupVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeRqVo
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraFileController:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.FileNotFoundException
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - org.springframework.web.multipart.MultipartFile
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.management.models.vo.UstraFileListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileService
+com.gsitm.ustra.java.management.bo.controllers.UstraFileGroupController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraFileGroupOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileGroupRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraIfsController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraIfsHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsHistoryOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+com.gsitm.ustra.java.management.bo.controllers.UstraInitializingDataController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.bo.data.BoInitialDataProvider
+com.gsitm.ustra.java.management.bo.controllers.UstraLoginHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.controllers.UstraMenuController:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestMethod
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMenuBatchUpdateRqVo
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.controllers.UstraMessageController:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeRqVo
+  - com.gsitm.ustra.java.management.services.UstraMessageService
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation
+  - javax.validation.Valid
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.List
+com.gsitm.ustra.java.management.bo.controllers.UstraMessageTypeController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.message.provider.ConsoleMessageProvider
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.message.provider.JavaMailMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProviderStore
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostRqVo
+  - com.gsitm.ustra.java.management.services.UstraMessageTypeService
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+com.gsitm.ustra.java.management.bo.controllers.UstraPostController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.models.vo.UstraPostOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostRqVo
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+com.gsitm.ustra.java.management.bo.controllers.UstraPostGroupController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraPostGroupOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostGroupRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraPrivateInfoAccessHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraTextTemplateController:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngine
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngineStore
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.management.models.vo.TextTemplateParam
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateRqVo
+  - com.gsitm.ustra.java.management.services.UstraTextTemplateService
+  - lombok.Getter
+  - lombok.Setter
+  - org.apache.commons.lang3.ObjectUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation
+  - javax.validation.Valid
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+com.gsitm.ustra.java.management.bo.controllers.UstraUserApprovalController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.controllers.UstraUserController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraUserPasswordCheckRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraUserRqVo
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraUserHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.management.bo.controllers.UstraUserMenuController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestMethod
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.management.bo.data.BoInitialDataProvider:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+com.gsitm.ustra.java.management.bo.data.DefaultBoInitialDataProvider:
+  extends: null
+  implements:
+  - BoInitialDataProvider
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicy
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties.AppInfo
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+com.gsitm.ustra.java.management.bo.logging.UstraManagementBoInterfaceHistoryModifier:
+  extends: null
+  implements:
+  - UstraManagementInterfaceHistoryModifier
+  imports:
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceHistoryModifier
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+com.gsitm.ustra.java.management.bo.services.rest.TaskDetailConverter:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - lombok.experimental.UtilityClass
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - java.util.Arrays
+  - java.util.Collections
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchApiServiceTemplate:
+  extends: null
+  implements: []
+  imports:
+  - java.net.URI
+  - java.net.URISyntaxException
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Value
+  - org.springframework.web.client.RestTemplate
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.repositories.UstraBatchManagerRepository
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchApiServiceTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions.assertEquals
+  - java.time.LocalDateTime
+  - java.util.List
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel.Criteria
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchManagerApiService:
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchManagerService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.util.List
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchManagerService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskApiService:
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - java.nio.charset.Charset
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.time.LocalDateTime
+  - java.util
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - com.gsitm.ustra.java.management.models.UstraBatchParamModel
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.lang3.tuple.Pair
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - org.springframework.web.client.RestTemplate
+  - org.springframework.web.util.UriComponents
+  - org.springframework.web.util.UriComponentsBuilder
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.management.models.UstraBatchInstanceModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener.BatchEventArg
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener.UserEventArg
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskInstanceApiService:
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchHistService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.Optional
+  - java.util.List
+  - lombok.ToString
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.util.UriComponentsBuilder
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchWorkerApiService:
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchWorkerService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.util.List
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchWorkerService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  - lombok.extern.slf4j.Slf4j

@@ -1,0 +1,655 @@
+com.gsitm.ustra.java.mvc.UstraMvc:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.app.ServletApplicationRunner:
+  extends: SpringBootServletInitializer
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.SpringApplication
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.boot.web.servlet.support.SpringBootServletInitializer
+  - org.springframework.context.annotation.ComponentScan
+  - org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator
+  - org.springframework.web.context.WebApplicationContext
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.converter.HttpStringMappingJackson2XmlHttpMessageConverter:
+  extends: MappingJackson2XmlHttpMessageConverter
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.lang.reflect.Type
+  - org.apache.commons.io.IOUtils
+  - org.springframework.http.HttpInputMessage
+  - org.springframework.http.converter.HttpMessageConversionException
+  - org.springframework.http.converter.HttpMessageNotReadableException
+  - org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.JsonMappingException
+  - com.fasterxml.jackson.databind.exc.InvalidDefinitionException
+  - com.fasterxml.jackson.databind.exc.MismatchedInputException
+  - com.gsitm.ustra.java.core.utils.UstraXmlUtils
+com.gsitm.ustra.java.mvc.converter.UstraConverterConfigurationApplicationListener:
+  extends: null
+  implements:
+  - ApplicationListener
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.context.ApplicationListener
+  - org.springframework.context.event.ContextRefreshedEvent
+  - org.springframework.core.Ordered
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter
+  - com.fasterxml.jackson.core.JsonParser
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.core.Version
+  - com.fasterxml.jackson.databind.DeserializationContext
+  - com.fasterxml.jackson.databind.JsonDeserializer
+  - com.fasterxml.jackson.databind.Module
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.module.SimpleModule
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.UstraXmlUtils
+com.gsitm.ustra.java.mvc.converter.UstraConverterDefitionHelper:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinition:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.NonNull
+  - org.springframework.util.Assert
+  - lombok.Data
+com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinitionProvider:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter:
+  extends: null
+  implements:
+  - FileConverter
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.ServletOutputStream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.core.io.ByteArrayResource
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.WritableResource
+  - org.springframework.http.ResponseEntity
+  - org.springframework.util.Assert
+  - com.google.common.net.HttpHeaders
+  - com.gsitm.ustra.java.core.io.UstraOutputStreamResource
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverterOption
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.data.poi.UstraExcelModel
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils
+  - com.gsitm.ustra.java.data.poi.UstraExcelWorkbook
+  - com.gsitm.ustra.java.data.poi.support.UstraExcelWorksheetDataProvider
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter.Option
+  - com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.mvc.data.file.MultipartFileResourceInfoExtractor:
+  extends: null
+  implements:
+  - ResourceInfoExtractor
+  imports:
+  - org.apache.commons.io.FilenameUtils
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractor
+  - com.gsitm.ustra.java.mvc.utils.UstraMultipartFileResource
+com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter:
+  extends: null
+  implements:
+  - FileConverter
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.UnsupportedEncodingException
+  - java.net.URLConnection
+  - java.nio.file.Files
+  - java.nio.file.Paths
+  - java.util.List
+  - java.util.zip.ZipEntry
+  - java.util.zip.ZipOutputStream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.io.IOUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.io.ByteArrayResource
+  - org.springframework.core.io.FileSystemResource
+  - org.springframework.core.io.FileUrlResource
+  - org.springframework.core.io.Resource
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.ResponseEntity
+  - com.google.common.net.HttpHeaders
+  - com.gsitm.ustra.java.data.exception.UstraDataException
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput.FileMetaId
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverterOption
+  - com.gsitm.ustra.java.data.utils.UstraByteArrayResource
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter.Option
+  - com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.data.file.WebResourceInfoExtractorResolver:
+  extends: null
+  implements:
+  - ResourceInfoExtractorResolver
+  imports:
+  - java.util.Set
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractor
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractorResolver
+com.gsitm.ustra.java.mvc.error.DefaultErrorController:
+  extends: AbstractErrorController
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.http.HttpServletRequest
+  - javax.validation.constraints.NotNull
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver
+  - org.springframework.boot.web.servlet.error.ErrorAttributes
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.servlet.ModelAndView
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+com.gsitm.ustra.java.mvc.filter.UstraAppRequestContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.NamedThreadLocal
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper:
+  extends: HttpServletRequestWrapper
+  implements: []
+  imports:
+  - java.io.BufferedReader
+  - java.io.ByteArrayInputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.InputStreamReader
+  - java.nio.charset.Charset
+  - java.nio.charset.StandardCharsets
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.Collections
+  - java.util.Enumeration
+  - java.util.HashMap
+  - java.util.LinkedHashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.ReadListener
+  - javax.servlet.ServletInputStream
+  - javax.servlet.ServletRequest
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletRequestWrapper
+  - org.apache.commons.codec.DecoderException
+  - org.apache.commons.codec.net.URLCodec
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.MediaType
+  - org.springframework.util.StreamUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.filter.security.ParsedSecuredRequestParameter
+  - com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper:
+  extends: HttpServletResponseWrapper
+  implements: []
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.DataOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.List
+  - javax.servlet.ServletOutputStream
+  - javax.servlet.WriteListener
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - javax.servlet.http.HttpServletResponseWrapper
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.filter.UstraGlobalWrapperFilter:
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.List
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.Ordered
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.filter.conditioner.ConfigBasedApplicationWrapperConditioner:
+  extends: null
+  implements:
+  - UstraApplicationWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+com.gsitm.ustra.java.mvc.filter.conditioner.WebSocketRequestApplicationWrapperConditioner:
+  extends: null
+  implements:
+  - UstraApplicationWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.filter.security.ParsedSecuredRequestParameter:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.Map
+  - lombok.Data
+com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolver:
+  extends: null
+  implements:
+  - HandlerMethodArgumentResolver
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.MethodParameter
+  - org.springframework.web.bind.support.WebDataBinderFactory
+  - org.springframework.web.context.request.NativeWebRequest
+  - org.springframework.web.method.support.HandlerMethodArgumentResolver
+  - org.springframework.web.method.support.ModelAndViewContainer
+  - com.fasterxml.jackson.databind.type.TypeFactory
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+  - com.gsitm.ustra.web.core.exception.UstraWebResponseCode
+com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener:
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+  - lombok.Getter
+com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.http.ResponseCookie
+  - org.springframework.http.ResponseCookie.ResponseCookieBuilder
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+com.gsitm.ustra.java.mvc.logging.interfaces.ConfigBasedWebInterfaceLoggingFilter:
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.logging.interfaces.ResourceWebInterfaceLoggingFilter:
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InboundInterfaceContextHolder
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceLoggingFilter:
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - org.apache.commons.lang3.ObjectUtils
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.core.Ordered
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.data.logging.interfaces.InterfaceLogWriter
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceLogType
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.InterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceExtractedInfoSetter:
+  extends: DefaultInterfaceExtractedInfoSetter
+  implements: []
+  imports:
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceHttpMethod
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.DefaultInterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceInfoStoreHelper:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.EnumSet
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.Objects
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.cache.UstraCacheNames
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceDirection
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceLogType
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceType
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.logging.interfaces.utils.InterfaceLoggingHelper
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+com.gsitm.ustra.java.mvc.logging.interfaces.WebSocketInterfaceLoggingFilter:
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.web.socket.utils.UstraWebSocketUtils
+com.gsitm.ustra.java.mvc.process.ChannelCodeResolver:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.ServletRequest
+com.gsitm.ustra.java.mvc.process.HttpHeaderSystemCodeResolver:
+  extends: null
+  implements:
+  - SystemCodeResolver
+  imports:
+  - javax.servlet.ServletRequest
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.text.StringEscapeUtils
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+com.gsitm.ustra.java.mvc.process.ProcessInfoFilter:
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.Ordered
+  - org.springframework.lang.Nullable
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+com.gsitm.ustra.java.mvc.process.ProcessInfoLoggingFilter:
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.Ordered
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.mvc.process.SystemCodeResolver:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.ServletRequest
+com.gsitm.ustra.java.mvc.properties.UstraMvcProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.RestResCodeStore:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.UstraMvcRequestBodyAdvice:
+  extends: RequestBodyAdviceAdapter
+  implements: []
+  imports:
+  - java.lang.reflect.Type
+  - org.springframework.core.MethodParameter
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.http.HttpInputMessage
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.web.bind.annotation.ControllerAdvice
+  - org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+com.gsitm.ustra.java.mvc.security.UstraWebAuthenticationInfoDetector:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.test.MvcApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.mvc.utils.UstraCookieUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.Serializable
+  - java.util.Base64
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.SerializationUtils
+  - org.springframework.http.HttpHeaders
+  - org.springframework.http.ResponseCookie
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.mvc.utils.UstraMultipartFileResource:
+  extends: AbstractResource
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.io.InputStream
+  - org.springframework.core.io.AbstractResource
+  - org.springframework.lang.Nullable
+  - org.springframework.util.Assert
+  - org.springframework.web.multipart.MultipartFile
+com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.net.URLEncoder
+  - java.nio.charset.StandardCharsets
+  - javax.servlet.http.HttpServletRequest
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.util.Assert
+com.gsitm.ustra.java.mvc.utils.UstraWebUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.security.AccessController
+  - java.security.PrivilegedAction
+  - java.util.Collection
+  - java.util.Enumeration
+  - java.util.HashMap
+  - java.util.Map
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.HttpHeaders
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+  - org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter
+  - org.springframework.web.context.request.RequestContextHolder
+  - org.springframework.web.context.request.ServletRequestAttributes
+  - org.springframework.web.servlet.View
+  - org.springframework.web.servlet.view.json.MappingJackson2JsonView
+  - org.springframework.web.servlet.view.xml.MappingJackson2XmlView
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.filter.UstraAppRequestContextHolder
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.web.core.utils.UstraWebCoreUtils
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.mvc.utils.UstraZipFileOutputStreamUtil:
+  extends: null
+  implements: []
+  imports:
+  - java.io.FileInputStream
+  - java.io.FileOutputStream
+  - java.util.List
+  - java.util.zip.ZipEntry
+  - java.util.zip.ZipOutputStream
+  - org.springframework.core.io.Resource
+  - lombok.experimental.UtilityClass

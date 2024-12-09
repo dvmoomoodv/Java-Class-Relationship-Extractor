@@ -1,0 +1,11 @@
+com.gsitm.ustra.java.data.jpa.UstraDataJpa:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.data.jpa.test.DataJpaApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest

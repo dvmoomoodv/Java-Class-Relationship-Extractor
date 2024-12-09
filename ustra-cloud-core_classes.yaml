@@ -1,0 +1,4 @@
+com.gsitm.ustra.java.cloud.core.UstraCloudCore:
+  extends: null
+  implements: []
+  imports: []

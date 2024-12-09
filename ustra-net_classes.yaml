@@ -1,0 +1,122 @@
+com.gsitm.ustra.java.net.UstraNet:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.net.exception.UstraNetException:
+  extends: UstraException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+com.gsitm.ustra.java.net.ftp.FtpConnectionProperties:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+com.gsitm.ustra.java.net.ftp.FtpFileTransferInfo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+com.gsitm.ustra.java.net.ftp.SimpleFtpTransfer:
+  extends: null
+  implements:
+  - AutoCloseable
+  imports:
+  - java.io.File
+  - java.io.FileInputStream
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.util.Arrays
+  - java.util.List
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.net.ftp.FTP
+  - org.apache.commons.net.ftp.FTPClient
+  - org.apache.commons.net.ftp.FTPReply
+  - org.apache.commons.net.ftp.FTPSClient
+  - org.springframework.util.Assert
+  - org.springframework.util.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraFileUtils
+  - com.gsitm.ustra.java.net.exception.UstraNetResponseCode
+com.gsitm.ustra.java.net.mail.DefaultMailSender:
+  extends: null
+  implements:
+  - MailSender
+  imports:
+  - java.io.IOException
+  - java.io.UnsupportedEncodingException
+  - java.util.List
+  - java.util.Map
+  - javax.activation.DataHandler
+  - javax.activation.DataSource
+  - javax.activation.FileDataSource
+  - javax.mail.MessagingException
+  - javax.mail.Multipart
+  - javax.mail.Session
+  - javax.mail.Transport
+  - javax.mail.internet.MimeBodyPart
+  - javax.mail.internet.MimeMessage
+  - javax.mail.internet.MimeMultipart
+  - org.apache.commons.collections4.map.HashedMap
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.net.exception.UstraNetResponseCode
+  - com.gsitm.ustra.java.net.mail.MailData.EmailReceiver
+  - com.gsitm.ustra.java.net.properties.UstraNetProperties
+  - com.gsitm.ustra.java.net.utils.UstraMailUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.net.mail.MailData:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.mail.Message.RecipientType
+  - org.springframework.core.io.Resource
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.net.mail.MailSender:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.net.properties.UstraNetProperties:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Map
+  - java.util.Properties
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.net.test.MailTest:
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - javax.mail.internet.AddressException
+  - javax.mail.internet.InternetAddress
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.net.utils.UstraMailUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.net.utils.UstraMailUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - javax.mail.internet.AddressException
+  - javax.mail.internet.InternetAddress
+  - org.apache.commons.lang3.StringUtils
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.net.utils.UstraShellUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.BufferedReader
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.InputStreamReader
+  - org.apache.commons.lang3.StringUtils
+  - lombok.Data
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j

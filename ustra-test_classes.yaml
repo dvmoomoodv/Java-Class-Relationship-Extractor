@@ -1,0 +1,158 @@
+com.gsitm.ustra.java.test.AbstractUstraSpringTest:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.test.TestConfigurationSupport:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.EnumSet
+  - java.util.List
+  - com.gsitm.ustra.java.core.app.UstraFrameworkModules
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.test.UstraFrameworkMockTest:
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.extension.ExtendWith
+  - org.springframework.test.context.junit.jupiter.SpringExtension
+com.gsitm.ustra.java.test.UstraFrameworkTest:
+  extends: null
+  implements: []
+  imports:
+  - java.nio.charset.StandardCharsets
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.Filter
+  - org.junit.jupiter.api.TestInstance
+  - org.junit.jupiter.api.TestInstance.Lifecycle
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.boot.test.context.SpringBootTest
+  - org.springframework.test.context.ContextConfiguration
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.setup.MockMvcBuilders
+  - org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder
+  - org.springframework.web.filter.CharacterEncodingFilter
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
+  - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+com.gsitm.ustra.java.test.UstraFrameworkTestAutoConfigurationInitializer:
+  extends: null
+  implements:
+  - ApplicationContextInitializer
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.context.ApplicationContextInitializer
+  - org.springframework.context.ConfigurableApplicationContext
+  - com.gsitm.ustra.java.core.app.UstraFrameworkModules
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
+  - com.gsitm.ustra.java.test.utils.UstraTestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.test.UstraSpringMockMvcTest:
+  extends: AbstractUstraSpringTest
+  implements: []
+  imports:
+  - java.util.List
+  - org.junit.jupiter.api.BeforeAll
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.TestInstance
+  - org.junit.jupiter.api.TestInstance.Lifecycle
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+  - org.springframework.boot.test.context.SpringBootTest
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.result.MockMvcResultHandlers
+  - org.springframework.test.web.servlet.setup.MockMvcBuilders
+  - org.springframework.web.context.WebApplicationContext
+  - org.springframework.web.filter.CharacterEncodingFilter
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.test.utils.UstraTestUtils
+  - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+com.gsitm.ustra.java.test.UstraSpringTest:
+  extends: AbstractUstraSpringTest
+  implements: []
+  imports:
+  - java.util.List
+  - org.junit.jupiter.api.BeforeAll
+  - org.junit.jupiter.api.TestInstance
+  - org.junit.jupiter.api.TestInstance.Lifecycle
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.test.utils.UstraTestUtils
+  - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+com.gsitm.ustra.java.test.UstraTest:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.test.exception.UstraTestException:
+  extends: UstraException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+com.gsitm.ustra.java.test.mvc.MockRestResult:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - lombok.Data
+com.gsitm.ustra.java.test.mvc.RestResultMatchers:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Map
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.ArrayUtils
+  - org.springframework.test.web.servlet.ResultMatcher
+  - org.springframework.util.Assert
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.test.utils.UstraTestUtils
+com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.test.utils.UstraTestUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.context.ConfigurableApplicationContext
+  - org.springframework.core.env.MapPropertySource
+  - org.springframework.lang.NonNull
+  - org.springframework.test.context.support.TestPropertySourceUtils
+  - org.springframework.test.web.servlet.MvcResult
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor
+  - com.gsitm.ustra.java.test.AbstractUstraSpringTest
+  - com.gsitm.ustra.java.test.UstraTest
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j

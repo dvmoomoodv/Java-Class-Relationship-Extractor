@@ -1,0 +1,40 @@
+com.gsitm.ustra.web.core.UstraWebCore:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.web.core.exception.UstraWebException:
+  extends: UstraException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+com.gsitm.ustra.web.core.properties.UstraHttpHeaders:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.web.core.properties.UstraWebProperties:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.web.core.utils.UstraWebCoreUtils:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.http.HttpHeaders
+  - org.springframework.http.server.PathContainer
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServletServerHttpRequest
+  - org.springframework.http.server.reactive.AbstractServerHttpRequest
+  - org.springframework.web.util.pattern.PathPattern
+  - org.springframework.web.util.pattern.PathPatternParser
+  - com.gsitm.ustra.java.core.utils.UstraFileUtils
+com.gsitm.ustra.web.core.utils.UstraWebFileUtils:
+  extends: null
+  implements: []
+  imports:
+  - lombok.experimental.UtilityClass

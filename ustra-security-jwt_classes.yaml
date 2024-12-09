@@ -1,0 +1,486 @@
+com.gsitm.ustra.java.security.jwt.UstraSecurityJwt:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.jwt.authentication.UstraCurrentJwtInfo:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - org.springframework.http.HttpHeaders
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer:
+  extends: UstraAuthenticationConfigurer
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.EmptyTokenJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookiePostmanJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager:
+  extends: UstraAuthenticationManager
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication:
+  extends: UstraAuthentication
+  implements: []
+  imports:
+  - java.util.Map
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - io.jsonwebtoken.Claims
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.authentication.claims.AccessInfo:
+  extends: null
+  implements: []
+  imports:
+  - java.util.LinkedHashMap
+  - java.util.Map
+  - org.apache.commons.beanutils.BeanUtils
+  - lombok.Data
+com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender:
+  extends: null
+  implements:
+  - UstraJwtClaimAppender
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.security.core.Authentication
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.security.core.Authentication
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker:
+  extends: null
+  implements: []
+  imports:
+  - io.jsonwebtoken.Claims
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims:
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - lombok.Data
+com.gsitm.ustra.java.security.jwt.authentication.decisioner.EmptyTokenJwtValidationFailureDecisioner:
+  extends: null
+  implements:
+  - UstraJwtValidationFailureDecisioner
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.security.jwt.authentication.parser.DefaultUstraJwtAuthenticationParser:
+  extends: null
+  implements:
+  - UstraJwtAuthenticationParser
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.HashMap
+  - java.util.Map
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.SignatureAlgorithm
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - io.jsonwebtoken.impl.TextCodec
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.authentication.parser.EncryptedUstraJwtAuthenticationParser:
+  extends: DefaultUstraJwtAuthenticationParser
+  implements: []
+  imports:
+  - java.security.KeyFactory
+  - java.security.interfaces.RSAPrivateKey
+  - java.security.interfaces.RSAPublicKey
+  - java.security.spec.RSAPrivateKeySpec
+  - java.security.spec.RSAPublicKeySpec
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.LinkedHashMap
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.UUID
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncRsaUtils
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - com.nimbusds.jose.EncryptionMethod
+  - com.nimbusds.jose.JWEAlgorithm
+  - com.nimbusds.jose.JWEHeader
+  - com.nimbusds.jose.crypto.RSADecrypter
+  - com.nimbusds.jose.crypto.RSAEncrypter
+  - com.nimbusds.jwt.EncryptedJWT
+  - com.nimbusds.jwt.JWTClaimsSet
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.impl.DefaultClaims
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties.EncryptionType
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.JwsHeader
+com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor:
+  extends: DefaultUstraAuthenticationProcessor
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  - lombok.Getter
+com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties:
+  extends: UstraAuthenticationProperties
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookieJwtAuthenticationStore:
+  extends: HttpHeaderJwtAuthenticationStore
+  implements: []
+  imports:
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.ResponseCookie
+  - com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookiePostmanJwtAuthenticationStore:
+  extends: HttpHeaderCookieJwtAuthenticationStore
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderJwtAuthenticationStore:
+  extends: UstraJwtAuthenticationStore
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpParameterJwtAuthenticatonStore:
+  extends: HttpHeaderJwtAuthenticationStore
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+com.gsitm.ustra.java.security.jwt.authentication.store.NonStoredUstraJwtRefreshTokenStore:
+  extends: null
+  implements:
+  - UstraJwtRefreshTokenStore
+  imports:
+  - java.util.Collections
+  - java.util.Date
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.DefaultUstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.SignatureAlgorithm
+com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore:
+  extends: null
+  implements:
+  - UstraAuthenticationStore
+  imports:
+  - java.time.ZoneId
+  - java.util.Date
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.exception.UstraException
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.impl.DefaultClaims
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.UUID
+  - com.devskiller.friendly_id.FriendlyId
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - io.jsonwebtoken.Claims
+com.gsitm.ustra.java.security.jwt.config.DefaultUstraSecurityJwtConfigure:
+  extends: null
+  implements:
+  - UstraSecurityConfigure
+  - Ordered
+  imports:
+  - org.springframework.core.Ordered
+  - org.springframework.security.config.annotation.web.builders.HttpSecurity
+  - org.springframework.security.config.http.SessionCreationPolicy
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+com.gsitm.ustra.java.security.jwt.redis.RedisRefreshTokenDto:
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.concurrent.TimeUnit
+  - org.springframework.data.annotation.Id
+  - org.springframework.data.redis.core.RedisHash
+  - org.springframework.data.redis.core.TimeToLive
+  - org.springframework.data.redis.core.index.Indexed
+  - org.springframework.data.redis.repository.configuration.EnableRedisRepositories
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+com.gsitm.ustra.java.security.jwt.redis.RedisRefreshTokenRepository:
+  extends: CrudRepository
+  implements: []
+  imports:
+  - org.springframework.data.repository.CrudRepository
+com.gsitm.ustra.java.security.jwt.redis.RedisUstraJwtRefreshTokenStore:
+  extends: null
+  implements:
+  - UstraJwtRefreshTokenStore
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.test.SecurityJwtApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Date
+  - java.util.Map
+  - java.util.Optional
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - io.jsonwebtoken.Claims
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.text.SimpleDateFormat
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.HashMap
+  - java.util.Map
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - io.jsonwebtoken.impl.TextCodec
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationAdvice:
+  extends: null
+  implements:
+  - ResponseBodyAdvice
+  imports:
+  - org.springframework.core.MethodParameter
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServerHttpResponse
+  - org.springframework.web.bind.annotation.ControllerAdvice
+  - org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationInterceptorWebMvcConfigurer:
+  extends: null
+  implements:
+  - WebMvcConfigurer
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.web.method.HandlerMethod
+  - org.springframework.web.servlet.HandlerInterceptor
+  - org.springframework.web.servlet.ModelAndView
+  - org.springframework.web.servlet.config.annotation.InterceptorRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager

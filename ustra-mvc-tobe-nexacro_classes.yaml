@@ -1,0 +1,311 @@
+com.gsitm.ustra.java.mvc.tobe.nexacro.UstraMvcTobeNexacro:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.tobe.nexacro.config.NexacroTemplateResolverFactoryBean:
+  extends: null
+  implements:
+  - FactoryBean
+  imports:
+  - org.springframework.beans.factory.FactoryBean
+  - org.springframework.context.ApplicationContext
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - org.thymeleaf.templatemode.TemplateMode
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - lombok.Data
+com.gsitm.ustra.java.mvc.tobe.nexacro.config.UstraNexacroSpringTemplateEngineCustomizer:
+  extends: null
+  implements:
+  - UstraSpringTemplateEngineCustomizer
+  imports:
+  - org.thymeleaf.spring5.SpringTemplateEngine
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - com.gsitm.ustra.java.mvc.view.config.UstraSpringTemplateEngineCustomizer
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAppSttController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityGroupController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupCheckRqVo
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityStatusController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroCodeController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.vo.UstraFileListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileGroupController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsController:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsRequestControlController:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel
+  - com.gsitm.ustra.java.management.services.UstraInterfaceRequestControlService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroLoginHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroMenuController:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.ResponseBody
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroPrivateInfoAccessHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserApprovalController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserHistoryController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserMenuController:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.controllers.UstraNexacroFileActionController:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataException
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput.FileMetaId
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.model.FileMetaDataInput
+  - com.gsitm.ustra.java.data.file.model.FileUploadOutput
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToMultiSheetDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalTextFileConvert
+  - com.gsitm.ustra.java.data.poi.convert.DefaultDataFormatter
+  - com.gsitm.ustra.java.management.data.file.utils.FileConvertVo
+  - com.gsitm.ustra.java.management.data.file.utils.UstraFileInputUtils
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiFileResult
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.tobe.nexacro.properties.UstraMvcTobeNexacroProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data

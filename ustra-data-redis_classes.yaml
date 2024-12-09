@@ -1,0 +1,10 @@
+com.gsitm.ustra.java.data.redis.UstraDataRedis:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.data.redis.properties.UstraDataRedisProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data

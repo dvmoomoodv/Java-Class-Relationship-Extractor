@@ -1,0 +1,301 @@
+com.gsitm.ustra.java.mvc.rest.UstraMvcRest:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.mvc.rest.condition.ActuatorRestResultWrapperConditioner:
+  extends: null
+  implements:
+  - RestResultWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.beans.factory.annotation.Value
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.condition.ConfigBasedRestResultWrapperConditioner:
+  extends: null
+  implements:
+  - RestResultWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+com.gsitm.ustra.java.mvc.rest.error.BasicExceptionMessageHandler:
+  extends: null
+  implements:
+  - RestExceptionMessageHandler
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.mvc.rest.error.ExceptionMessageInfo.MessageFormatter
+com.gsitm.ustra.java.mvc.rest.error.EmptyExceptionMessageHandler:
+  extends: null
+  implements:
+  - RestExceptionMessageHandler
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+com.gsitm.ustra.java.mvc.rest.error.ExceptionMessageInfo:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.http.HttpServletRequest
+  - javax.validation.ConstraintViolationException
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.dao.DataAccessException
+  - org.springframework.dao.DuplicateKeyException
+  - org.springframework.http.ResponseEntity
+  - org.springframework.validation.FieldError
+  - org.springframework.web.bind.MethodArgumentNotValidException
+  - org.springframework.web.bind.annotation.ExceptionHandler
+  - org.springframework.web.bind.annotation.RestControllerAdvice
+  - org.springframework.web.method.HandlerMethod
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.rest.model.RestErrResult
+  - com.gsitm.ustra.java.mvc.rest.model.RestHeader
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.mvc.rest.error.RestBodyWriteEvent:
+  extends: ApplicationEvent
+  implements: []
+  imports:
+  - org.springframework.context.ApplicationEvent
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.mvc.rest.error.RestErrorController:
+  extends: DefaultErrorController
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver
+  - org.springframework.boot.web.servlet.error.ErrorAttributes
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.ResponseEntity
+  - org.springframework.security.web.WebAttributes
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.servlet.ModelAndView
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.mvc.error.DefaultErrorController
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.rest.model.RestErrResult
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+com.gsitm.ustra.java.mvc.rest.error.RestErrorHandler:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.http.HttpStatus
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.mvc.rest.error.RestExceptionHandler:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.lang.Nullable
+  - org.springframework.web.method.HandlerMethod
+com.gsitm.ustra.java.mvc.rest.error.RestExceptionMessageHandler:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+com.gsitm.ustra.java.mvc.rest.error.RestExceptionMessageManager:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.exception.ExceptionUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+com.gsitm.ustra.java.mvc.rest.model.PaginationRestVo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.model.RestDataVo:
+  extends: RestVo
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.mvc.rest.model.RestErrResult:
+  extends: RestResult
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - javax.validation.ConstraintViolation
+  - org.springframework.validation.FieldError
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+com.gsitm.ustra.java.mvc.rest.model.RestHeader:
+  extends: null
+  implements:
+  - PaginationRequest
+  imports:
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.validation.constraints.PositiveOrZero
+  - com.fasterxml.jackson.annotation.JsonAnyGetter
+  - com.fasterxml.jackson.annotation.JsonAnySetter
+  - com.fasterxml.jackson.databind.annotation.JsonDeserialize
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.mvc.rest.model.RestResult:
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - com.fasterxml.jackson.annotation.JsonIgnore
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.model.RestVo:
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - javax.validation.constraints.NotNull
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.mvc.rest.test.MvcRestApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.mvc.rest.utils.DefaultBodyWriteHandler:
+  extends: null
+  implements:
+  - RestBodyWriteHandler
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.MethodParameter
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServerHttpResponse
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.model.RestErrResult
+  - com.gsitm.ustra.java.mvc.rest.model.RestHeader
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.MethodParameter
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServerHttpResponse
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+com.gsitm.ustra.java.mvc.rest.utils.RestRequestHeaderInjector:
+  extends: null
+  implements:
+  - UstraApplicationWrapperAware
+  imports:
+  - com.gsitm.ustra.java.data.pagination.PaginationRequestContextHolder
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+com.gsitm.ustra.java.mvc.rest.utils.RestResponseBodyAdvice:
+  extends: null
+  implements:
+  - ResponseBodyAdvice
+  imports:
+  - java.util.List
+  - org.springframework.core.MethodParameter
+  - org.springframework.core.io.Resource
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.converter.StringHttpMessageConverter
+  - org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServerHttpResponse
+  - org.springframework.web.bind.annotation.RestControllerAdvice
+  - org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils:
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.lang.NonNull
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.data.domains.PaginationInfo
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationResponse
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper
+  - com.gsitm.ustra.java.mvc.rest.model.RestHeader
+  - com.gsitm.ustra.java.mvc.rest.model.RestVo
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+com.gsitm.ustra.java.mvc.rest.validation.ValidationBasicGroups:
+  extends: null
+  implements: []
+  imports: []

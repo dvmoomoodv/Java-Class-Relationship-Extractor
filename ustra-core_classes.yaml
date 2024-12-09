@@ -1,0 +1,1069 @@
+com.gsitm.ustra.java.core.UstraCore:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.lang.reflect.Field
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.lang3.ObjectUtils
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.context.annotation.ComponentScan
+  - org.springframework.core.annotation.AnnotationUtils
+  - org.springframework.core.io.ClassPathResource
+com.gsitm.ustra.java.core.app.ApplicationControlSupport:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.SpringApplication
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.app.BasePackages:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Set
+  - org.apache.commons.lang3.StringUtils
+  - com.google.common.collect.Sets
+com.gsitm.ustra.java.core.app.ConsoleApplicationRunner:
+  extends: null
+  implements:
+  - CommandLineRunner
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.CommandLineRunner
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.annotation.ComponentScan
+  - org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+com.gsitm.ustra.java.core.app.UstraApplicationRunner:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+com.gsitm.ustra.java.core.app.listener.OnceContextRefreshedEventApplicationListener:
+  extends: null
+  implements:
+  - ApplicationListener
+  imports:
+  - java.util.concurrent.atomic.AtomicBoolean
+  - org.springframework.context.ApplicationListener
+  - org.springframework.context.event.ContextRefreshedEvent
+com.gsitm.ustra.java.core.cache.EhChacheMangerPostProcessor:
+  extends: null
+  implements:
+  - BeanDefinitionRegistryPostProcessor
+  - ApplicationContextAware
+  - EnvironmentAware
+  imports:
+  - java.io.IOException
+  - java.util.HashMap
+  - java.util.Map
+  - java.util.Map.Entry
+  - org.springframework.beans.BeansException
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.beans.factory.config.ConfigurableListableBeanFactory
+  - org.springframework.beans.factory.support.AutowireCandidateQualifier
+  - org.springframework.beans.factory.support.BeanDefinitionRegistry
+  - org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
+  - org.springframework.beans.factory.support.GenericBeanDefinition
+  - org.springframework.cache.jcache.JCacheCacheManager
+  - org.springframework.cache.jcache.JCacheManagerFactoryBean
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - org.springframework.context.EnvironmentAware
+  - org.springframework.core.env.Environment
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.core.properties.UstraProperties.CoreInfo.CacheInfo.EhInfo
+  - com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils
+com.gsitm.ustra.java.core.cache.UstraCacheEventLoggingListener:
+  extends: null
+  implements:
+  - CacheEventListener
+  imports:
+  - org.ehcache.event.CacheEvent
+  - org.ehcache.event.CacheEventListener
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+com.gsitm.ustra.java.core.cache.UstraCacheManager:
+  extends: SimpleCacheManager
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.concurrent.TimeUnit
+  - java.util.function.Function
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.BeanInstantiationException
+  - org.springframework.beans.BeanUtils
+  - org.springframework.cache.Cache
+  - org.springframework.cache.caffeine.CaffeineCache
+  - org.springframework.cache.concurrent.ConcurrentMapCache
+  - org.springframework.cache.support.SimpleCacheManager
+  - com.github.benmanes.caffeine.cache.Caffeine
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.core.properties.UstraProperties.CoreInfo.CacheInfo.CaffeineInfo
+com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport:
+  extends: null
+  implements: []
+  imports:
+  - javax.annotation.Nullable
+  - org.springframework.cache.Cache
+  - org.springframework.cache.CacheManager
+  - org.springframework.data.redis.cache.RedisCacheManager
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.cache.UstraCacheNames:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.cache.UstraEhCacheNames:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.exception.ResponseCode:
+  extends: null
+  implements: []
+  imports:
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.core.env.Environment
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+com.gsitm.ustra.java.core.exception.UstraCoreException:
+  extends: UstraException
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.exception.UstraException:
+  extends: RuntimeException
+  implements:
+  - ResponseCode
+  imports:
+  - java.text.MessageFormat
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.validation.FieldError
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.core.imaging.ImageProcessorTest:
+  extends: null
+  implements: []
+  imports:
+  - java.io.BufferedOutputStream
+  - java.io.File
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - org.springframework.core.io.ClassPathResource
+  - com.gsitm.ustra.java.core.io.imaging.ImageCropOption
+  - com.gsitm.ustra.java.core.io.imaging.ImageProcessOption
+  - com.gsitm.ustra.java.core.io.imaging.ImageProcessor
+  - com.gsitm.ustra.java.core.io.imaging.ImageResizeOption
+com.gsitm.ustra.java.core.io.UstraFileSystemResource:
+  extends: FileSystemResource
+  implements: []
+  imports:
+  - java.io.File
+  - java.nio.file.Path
+  - org.springframework.core.io.FileSystemResource
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.core.io.UstraNamedResource:
+  extends: null
+  implements:
+  - Resource
+  imports:
+  - java.io.File
+  - java.io.IOException
+  - java.io.InputStream
+  - java.net.URI
+  - java.net.URL
+  - org.springframework.core.io.Resource
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.core.io.UstraOutputStreamResource:
+  extends: AbstractResource
+  implements:
+  - WritableResource
+  imports:
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - org.springframework.core.io.AbstractResource
+  - org.springframework.core.io.WritableResource
+com.gsitm.ustra.java.core.io.imaging.ImageCropOption:
+  extends: null
+  implements:
+  - ImageProcessOption
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+  - lombok.RequiredArgsConstructor
+com.gsitm.ustra.java.core.io.imaging.ImageProcessOption:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.io.imaging.ImageProcessor:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Getter
+  - lombok.RequiredArgsConstructor
+  - org.imgscalr.Scalr
+  - org.springframework.util.Assert
+  - javax.imageio.ImageIO
+  - java.awt.image.BufferedImage
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.util.List
+com.gsitm.ustra.java.core.io.imaging.ImageResizeOption:
+  extends: null
+  implements:
+  - ImageProcessOption
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+com.gsitm.ustra.java.core.logging.LogbackSystemFilter:
+  extends: Filter
+  implements: []
+  imports:
+  - ch.qos.logback.classic.spi.ILoggingEvent
+  - ch.qos.logback.core.filter.Filter
+  - ch.qos.logback.core.spi.FilterReply
+com.gsitm.ustra.java.core.message.Message:
+  extends: null
+  implements: []
+  imports:
+  - lombok.AllArgsConstructor
+  - lombok.Data
+com.gsitm.ustra.java.core.message.MessageContext:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Locale
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.context.MessageSource
+  - org.springframework.context.NoSuchMessageException
+  - org.springframework.context.i18n.LocaleContextHolder
+  - org.springframework.stereotype.Component
+com.gsitm.ustra.java.core.message.MessageParameter:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.util.StringUtils
+  - lombok.Data
+com.gsitm.ustra.java.core.message.MessageSourceConfiguration:
+  extends: MessageSourceAutoConfiguration
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.AutoConfigureOrder
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.SearchStrategy
+  - org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration
+  - org.springframework.boot.autoconfigure.context.MessageSourceProperties
+  - org.springframework.context.MessageSource
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.Ordered
+com.gsitm.ustra.java.core.process.ProcessInfo:
+  extends: null
+  implements:
+  - Closeable
+  imports:
+  - java.io.Closeable
+  - java.io.IOException
+  - java.util.concurrent.atomic.AtomicInteger
+  - com.gsitm.ustra.java.core.utils.UstraSystemUtils
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.core.process.ProcessInfoContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.core.process.ProcessInfoUtils:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.Nullable
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.process.RootProcessInfoContextHolder:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.Nullable
+com.gsitm.ustra.java.core.properties.UstraProperties:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Map
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.core.test.CaseFormatUtilsTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraCaseFormatUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.test.CollectionUtilityTest:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraCollectionUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.test.CoreApplicationTests:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+com.gsitm.ustra.java.core.test.EncUtilsTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.test.MaskingUtilityTest:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils
+  - com.gsitm.ustra.java.core.utils.UstraMaskingUtils.MaskingType
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  - org.junit.jupiter.api.Assertions.assertEquals
+com.gsitm.ustra.java.core.test.StringUtilityTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+com.gsitm.ustra.java.core.utils.ApplicationContextProvider:
+  extends: null
+  implements:
+  - ApplicationContextAware
+  - EnvironmentAware
+  - Ordered
+  imports:
+  - java.util.Collection
+  - org.springframework.beans.BeansException
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - org.springframework.context.EnvironmentAware
+  - org.springframework.core.Ordered
+  - org.springframework.core.env.Environment
+com.gsitm.ustra.java.core.utils.ListTrackerTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.list.UstraListTracker
+  - lombok.Getter
+  - lombok.RequiredArgsConstructor
+  - lombok.ToString
+  - org.junit.jupiter.api.Test
+  - java.util.ArrayList
+  - java.util.Comparator
+  - java.util.List
+  - java.util.concurrent.atomic.AtomicInteger
+  - java.util.function.Function
+  - org.junit.jupiter.api.Assertions.assertEquals
+com.gsitm.ustra.java.core.utils.PieCutter:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - java.math.BigDecimal
+  - java.math.RoundingMode
+  - java.util.concurrent.atomic.AtomicLong
+com.gsitm.ustra.java.core.utils.PieCutterTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - java.math.BigDecimal
+  - org.junit.jupiter.api.Assertions.assertEquals
+com.gsitm.ustra.java.core.utils.PojoWatchTest:
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+  - java.util.List
+  - org.junit.jupiter.api.Assertions.assertEquals
+com.gsitm.ustra.java.core.utils.ProfileSupport:
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashSet
+  - java.util.Set
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.ArrayUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.env.Environment
+  - org.springframework.core.env.Profiles
+  - org.springframework.util.Assert
+  - lombok.Getter
+com.gsitm.ustra.java.core.utils.TestPojo:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+  - java.math.BigDecimal
+  - java.time.LocalDateTime
+com.gsitm.ustra.java.core.utils.UstraAnnotationUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.annotation.Annotation
+  - java.lang.reflect.AnnotatedElement
+  - java.lang.reflect.Method
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraBeanUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.beans.PropertyDescriptor
+  - java.lang.reflect.Field
+  - java.lang.reflect.InvocationTargetException
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.springframework.beans.BeanUtils
+  - org.springframework.core.annotation.AnnotationUtils
+  - com.gsitm.ustra.java.core.utils.annotation.MapField
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraBigDecimalUtils:
+  extends: null
+  implements: []
+  imports:
+  - lombok.experimental.UtilityClass
+  - java.math.BigDecimal
+  - java.math.MathContext
+  - java.math.RoundingMode
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Stream
+com.gsitm.ustra.java.core.utils.UstraCaseFormatUtils:
+  extends: null
+  implements: []
+  imports:
+  - com.google.common.base.CaseFormat
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraCollectionUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.lang.NonNull
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraDateUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.time.Instant
+  - java.time.LocalDate
+  - java.time.LocalDateTime
+  - java.time.ZoneId
+  - java.util.Date
+  - java.util.TimeZone
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraDomUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.ByteArrayInputStream
+  - java.io.ByteArrayOutputStream
+  - java.io.InputStream
+  - java.nio.charset.StandardCharsets
+  - javax.annotation.Nullable
+  - javax.xml.parsers.DocumentBuilderFactory
+  - javax.xml.transform.Source
+  - javax.xml.transform.Transformer
+  - javax.xml.transform.TransformerFactory
+  - javax.xml.transform.dom.DOMSource
+  - javax.xml.transform.stream.StreamResult
+  - org.w3c.dom.Document
+  - org.w3c.dom.Node
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraEncAesUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - java.security.Key
+  - java.security.MessageDigest
+  - java.time.LocalDateTime
+  - java.util.Random
+  - javax.crypto.Cipher
+  - javax.crypto.spec.IvParameterSpec
+  - javax.crypto.spec.SecretKeySpec
+  - org.apache.commons.lang3.StringUtils
+  - org.bouncycastle.crypto.BufferedBlockCipher
+  - org.bouncycastle.crypto.engines.RijndaelEngine
+  - org.bouncycastle.crypto.modes.CBCBlockCipher
+  - org.bouncycastle.crypto.paddings.PKCS7Padding
+  - org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher
+  - org.bouncycastle.crypto.params.KeyParameter
+  - org.bouncycastle.crypto.params.ParametersWithIV
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraEncDesUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.enc.DES
+com.gsitm.ustra.java.core.utils.UstraEncRsaUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.security.KeyFactory
+  - java.security.KeyPair
+  - java.security.KeyPairGenerator
+  - java.security.NoSuchAlgorithmException
+  - java.security.PrivateKey
+  - java.security.PublicKey
+  - java.security.SecureRandom
+  - java.security.spec.InvalidKeySpecException
+  - java.security.spec.PKCS8EncodedKeySpec
+  - java.security.spec.X509EncodedKeySpec
+  - java.util.Base64
+  - javax.annotation.Nullable
+  - javax.crypto.Cipher
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraEncShaUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.nio.charset.StandardCharsets
+  - java.security.MessageDigest
+  - java.security.NoSuchAlgorithmException
+  - java.security.SecureRandom
+  - org.apache.commons.lang3.StringUtils
+  - org.bouncycastle.util.encoders.Hex
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.bind.Bindable
+  - org.springframework.boot.context.properties.bind.Binder
+  - org.springframework.boot.context.properties.source.ConfigurationPropertySource
+  - org.springframework.core.env.Environment
+com.gsitm.ustra.java.core.utils.UstraFileUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.File
+  - java.io.FileInputStream
+  - java.io.FileNotFoundException
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.net.URLConnection
+  - java.nio.file.Files
+  - java.nio.file.Path
+  - java.nio.file.Paths
+  - java.util.List
+  - java.util.concurrent.TimeUnit
+  - java.util.zip.ZipEntry
+  - java.util.zip.ZipOutputStream
+  - org.apache.commons.io.FileUtils
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.io.IOUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.tika.Tika
+  - org.springframework.core.io.Resource
+  - org.springframework.lang.NonNull
+  - org.springframework.lang.Nullable
+  - org.springframework.util.AntPathMatcher
+  - org.springframework.util.ResourceUtils
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraFunctionUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Set
+  - java.util.concurrent.ConcurrentHashMap
+  - java.util.function.Function
+  - java.util.function.Predicate
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraJsonUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.time.LocalDate
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.annotation.JsonInclude
+  - com.fasterxml.jackson.core.JsonParseException
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.fasterxml.jackson.databind.DeserializationFeature
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.JsonMappingException
+  - com.fasterxml.jackson.databind.JsonNode
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.ObjectWriter
+  - com.fasterxml.jackson.databind.SerializationFeature
+  - com.fasterxml.jackson.databind.module.SimpleModule
+  - com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer
+  - com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
+  - com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer
+  - com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
+  - com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraListJoinUtils:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.tuple.Pair
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.function.BiPredicate
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.core.utils.UstraMapUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.beans.PropertyDescriptor
+  - java.lang.reflect.Field
+  - java.lang.reflect.InvocationTargetException
+  - java.math.BigDecimal
+  - java.math.BigInteger
+  - java.util.AbstractMap
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.Collection
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.Optional
+  - java.util.function.Function
+  - java.util.stream.Collectors
+  - org.springframework.beans.BeanUtils
+  - org.springframework.core.annotation.AnnotationUtils
+  - org.springframework.lang.NonNull
+  - org.springframework.util.ObjectUtils
+  - com.gsitm.ustra.java.core.utils.annotation.MapField
+  - com.gsitm.ustra.java.core.utils.data.BiValue
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraMaskingUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Field
+  - java.util
+  - java.util.function.Function
+  - java.util.regex.Matcher
+  - java.util.regex.Pattern
+  - org.apache.commons.lang3.ArrayUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.annotation.AnnotationUtils
+  - org.springframework.util.ObjectUtils
+  - com.gsitm.ustra.java.core.utils.annotation.Masked
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraNetUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.net.InetAddress
+  - java.net.InterfaceAddress
+  - java.net.NetworkInterface
+  - java.net.SocketException
+  - java.net.UnknownHostException
+  - java.util.Enumeration
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraObjectCompareUtils:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.Getter
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.lang3.reflect.FieldUtils
+  - java.lang.annotation.ElementType
+  - java.lang.annotation.Retention
+  - java.lang.annotation.RetentionPolicy
+  - java.lang.annotation.Target
+  - java.lang.reflect.Field
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+com.gsitm.ustra.java.core.utils.UstraReflectionUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Field
+  - java.lang.reflect.Type
+  - java.math.BigDecimal
+  - java.util.Arrays
+  - java.util.Collection
+  - java.util.HashMap
+  - java.util.HashSet
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Map
+  - java.util.Set
+  - java.util.function.BiConsumer
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.core.ResolvableType
+  - org.springframework.util.Assert
+  - org.springframework.util.ObjectUtils
+  - com.fasterxml.jackson.core.type.TypeReference
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraResourceUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.InputStreamReader
+  - java.io.Reader
+  - java.nio.file.Paths
+  - java.util.List
+  - org.apache.commons.io.FileUtils
+  - org.springframework.core.io.ClassPathResource
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.support.ResourcePatternResolver
+  - org.springframework.util.FileCopyUtils
+  - org.springframework.util.StringUtils
+  - com.google.common.collect.Lists
+  - com.gsitm.ustra.java.core.utils.spring.SpecificResourcePatternResolver
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraSoapUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.ByteArrayInputStream
+  - java.io.ByteArrayOutputStream
+  - java.io.IOException
+  - java.nio.charset.Charset
+  - javax.annotation.Nullable
+  - javax.xml.soap.MessageFactory
+  - javax.xml.soap.MimeHeaders
+  - javax.xml.soap.SOAPBody
+  - javax.xml.soap.SOAPEnvelope
+  - javax.xml.soap.SOAPException
+  - javax.xml.soap.SOAPMessage
+  - javax.xml.soap.SOAPPart
+  - org.w3c.dom.Document
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.core.utils.UstraStringUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - java.net.URLDecoder
+  - java.net.URLEncoder
+  - java.nio.ByteBuffer
+  - java.nio.CharBuffer
+  - java.nio.charset.Charset
+  - java.nio.charset.CharsetDecoder
+  - java.nio.charset.CodingErrorAction
+  - java.nio.charset.StandardCharsets
+  - java.util.Base64
+  - java.util.concurrent.ThreadLocalRandom
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.enc.Base62
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraSystemUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - java.nio.ByteBuffer
+  - java.util.UUID
+  - org.apache.commons.lang3.RandomStringUtils
+  - com.gsitm.ustra.java.core.utils.enc.Base62
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.UstraXmlUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - javax.xml.bind.JAXBContext
+  - javax.xml.bind.JAXBException
+  - javax.xml.bind.SchemaOutputResolver
+  - javax.xml.transform.Result
+  - javax.xml.transform.stream.StreamResult
+  - org.apache.commons.io.FilenameUtils
+  - com.ctc.wstx.stax.WstxInputFactory
+  - com.ctc.wstx.stax.WstxOutputFactory
+  - com.fasterxml.jackson.core.JsonParseException
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.fasterxml.jackson.databind.DeserializationFeature
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.JsonMappingException
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.SerializationFeature
+  - com.fasterxml.jackson.databind.module.SimpleModule
+  - com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
+  - com.fasterxml.jackson.dataformat.xml.XmlFactory
+  - com.fasterxml.jackson.dataformat.xml.XmlMapper
+  - com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer
+  - com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule
+  - com.gsitm.ustra.java.core.utils.map.XmlEmptyElementWithWhitespacesModule
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.core.utils.config.YamlPropertySourceFactory:
+  extends: null
+  implements:
+  - PropertySourceFactory
+  imports:
+  - java.io.IOException
+  - java.util.Properties
+  - org.springframework.beans.factory.config.YamlPropertiesFactoryBean
+  - org.springframework.core.env.PropertiesPropertySource
+  - org.springframework.core.env.PropertySource
+  - org.springframework.core.io.support.EncodedResource
+  - org.springframework.core.io.support.PropertySourceFactory
+com.gsitm.ustra.java.core.utils.data.BiValue:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.utils.data.CodeValueType:
+  extends: null
+  implements: []
+  imports:
+  - java.util.EnumSet
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.annotation.JsonValue
+com.gsitm.ustra.java.core.utils.data.QuadValue:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.utils.data.TriValue:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeDeserializer:
+  extends: StdDeserializer
+  implements:
+  - ContextualDeserializer
+  imports:
+  - java.io.IOException
+  - java.util.EnumSet
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.core.JsonParser
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.databind.BeanProperty
+  - com.fasterxml.jackson.databind.DeserializationContext
+  - com.fasterxml.jackson.databind.JsonDeserializer
+  - com.fasterxml.jackson.databind.JsonMappingException
+  - com.fasterxml.jackson.databind.JsonNode
+  - com.fasterxml.jackson.databind.deser.ContextualDeserializer
+  - com.fasterxml.jackson.databind.deser.std.StdDeserializer
+  - com.gsitm.ustra.java.core.utils.data.CodeValueType
+com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule:
+  extends: Module
+  implements: []
+  imports:
+  - java.util.Map
+  - java.util.concurrent.ConcurrentHashMap
+  - com.fasterxml.jackson.core.Version
+  - com.fasterxml.jackson.databind.BeanDescription
+  - com.fasterxml.jackson.databind.DeserializationConfig
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.JsonDeserializer
+  - com.fasterxml.jackson.databind.JsonSerializer
+  - com.fasterxml.jackson.databind.Module
+  - com.fasterxml.jackson.databind.SerializationConfig
+  - com.fasterxml.jackson.databind.deser.Deserializers
+  - com.fasterxml.jackson.databind.ser.Serializers
+  - com.fasterxml.jackson.databind.type.ClassKey
+  - com.fasterxml.jackson.databind.util.TypeKey
+  - com.gsitm.ustra.java.core.utils.data.CodeValueType
+com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeSerializer:
+  extends: StdSerializer
+  implements: []
+  imports:
+  - java.io.IOException
+  - com.fasterxml.jackson.core.JsonGenerator
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.SerializerProvider
+  - com.fasterxml.jackson.databind.ser.std.StdSerializer
+  - com.gsitm.ustra.java.core.utils.data.CodeValueType
+com.gsitm.ustra.java.core.utils.enc.Base62:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+com.gsitm.ustra.java.core.utils.enc.DES:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.utils.event.UstraEventListener:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.core.utils.event.UstraEventUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.Collection
+  - java.util.List
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+com.gsitm.ustra.java.core.utils.list.UstraListTracker:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Builder
+  - lombok.extern.slf4j.Slf4j
+  - org.apache.commons.lang3.tuple.Pair
+  - java.util.ArrayList
+  - java.util.Comparator
+  - java.util.List
+  - java.util.Map
+  - java.util.function.BiConsumer
+  - java.util.function.Consumer
+  - java.util.function.Function
+  - java.util.stream.Collectors
+com.gsitm.ustra.java.core.utils.map.XmlEmptyElementWithWhitespacesModule:
+  extends: SimpleModule
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.core.JsonParser
+  - com.fasterxml.jackson.core.JsonToken
+  - com.fasterxml.jackson.databind.BeanDescription
+  - com.fasterxml.jackson.databind.DeserializationConfig
+  - com.fasterxml.jackson.databind.DeserializationContext
+  - com.fasterxml.jackson.databind.JsonDeserializer
+  - com.fasterxml.jackson.databind.deser.BeanDeserializer
+  - com.fasterxml.jackson.databind.deser.BeanDeserializerBase
+  - com.fasterxml.jackson.databind.deser.BeanDeserializerModifier
+  - com.fasterxml.jackson.databind.deser.std.StringDeserializer
+  - com.fasterxml.jackson.databind.module.SimpleModule
+com.gsitm.ustra.java.core.utils.reflection.ParameterizedTypeSupport:
+  extends: null
+  implements:
+  - ParameterizedType
+  imports:
+  - java.lang.reflect.ParameterizedType
+  - java.lang.reflect.Type
+  - lombok.Getter
+  - lombok.Setter
+com.gsitm.ustra.java.core.utils.spring.EmbeddedValueResolverProvider:
+  extends: null
+  implements:
+  - EmbeddedValueResolverAware
+  - Supplier
+  imports:
+  - java.util.function.Supplier
+  - org.springframework.context.EmbeddedValueResolverAware
+  - org.springframework.util.StringValueResolver
+com.gsitm.ustra.java.core.utils.spring.ResourceLoaderProvider:
+  extends: null
+  implements:
+  - ResourceLoaderAware
+  - Supplier
+  imports:
+  - java.util.function.Supplier
+  - org.springframework.context.ResourceLoaderAware
+  - org.springframework.core.io.ResourceLoader
+com.gsitm.ustra.java.core.utils.spring.SpecificResourcePatternResolver:
+  extends: PathMatchingResourcePatternResolver
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.net.URL
+  - java.util.Enumeration
+  - java.util.LinkedHashSet
+  - java.util.Set
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.support.PathMatchingResourcePatternResolver
+com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor:
+  extends: null
+  implements:
+  - EnvironmentPostProcessor
+  imports:
+  - java.io.IOException
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.env.EnvironmentPostProcessor
+  - org.springframework.boot.env.YamlPropertySourceLoader
+  - org.springframework.core.env.ConfigurableEnvironment
+  - org.springframework.core.env.MapPropertySource
+  - org.springframework.core.env.MutablePropertySources
+  - org.springframework.core.env.PropertySource
+  - org.springframework.core.io.Resource
+  - org.springframework.lang.NonNull
+  - org.springframework.lang.Nullable
+org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider:
+  extends: null
+  implements:
+  - BindConstructorProvider
+  imports:
+  - java.lang.reflect.Constructor
+  - org.springframework.beans.BeanUtils
+  - org.springframework.core.KotlinDetector

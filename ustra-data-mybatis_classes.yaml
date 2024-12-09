@@ -1,0 +1,624 @@
+com.gsitm.ustra.java.data.mybatis.UstraDataMybatis:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.data.mybatis.config.DynamicMapperScanConfigurer:
+  extends: null
+  implements:
+  - BeanDefinitionRegistryPostProcessor
+  - EnvironmentAware
+  imports:
+  - java.util.Map.Entry
+  - org.apache.ibatis.annotations.Mapper
+  - org.mybatis.spring.mapper.MapperScannerConfigurer
+  - org.springframework.beans.BeansException
+  - org.springframework.beans.factory.config.BeanDefinition
+  - org.springframework.beans.factory.config.ConfigurableListableBeanFactory
+  - org.springframework.beans.factory.support.BeanDefinitionBuilder
+  - org.springframework.beans.factory.support.BeanDefinitionRegistry
+  - org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor
+  - org.springframework.context.EnvironmentAware
+  - org.springframework.core.env.Environment
+  - org.springframework.util.Assert
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties.SourceProperties
+  - com.microsoft.sqlserver.jdbc.StringUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Method
+  - java.util.Map
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.session.RowBounds
+  - org.mybatis.spring.SqlSessionTemplate
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+com.gsitm.ustra.java.data.mybatis.interceptor.MybatisLoggingInterceptor:
+  extends: null
+  implements:
+  - Interceptor
+  imports:
+  - java.util.Collection
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - org.apache.commons.lang3.ObjectUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.cache.CacheKey
+  - org.apache.ibatis.executor.Executor
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.plugin.Interceptor
+  - org.apache.ibatis.plugin.Intercepts
+  - org.apache.ibatis.plugin.Invocation
+  - org.apache.ibatis.plugin.Signature
+  - org.apache.ibatis.session.ResultHandler
+  - org.apache.ibatis.session.RowBounds
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.util.StopWatch
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.core.utils.data.BiValue
+  - com.gsitm.ustra.java.data.logging.query.QueryLogWriter
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+com.gsitm.ustra.java.data.mybatis.interceptor.MybatisPaginationInterceptor:
+  extends: null
+  implements:
+  - Interceptor
+  imports:
+  - java.beans.PropertyDescriptor
+  - java.lang.reflect.Constructor
+  - java.lang.reflect.InvocationTargetException
+  - java.lang.reflect.Method
+  - java.sql.SQLException
+  - java.util.List
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.Properties
+  - java.util.Set
+  - java.util.concurrent.ExecutorService
+  - java.util.concurrent.Executors
+  - java.util.stream.Collectors
+  - java.util.stream.IntStream
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.cache.Cache
+  - org.apache.ibatis.cache.CacheKey
+  - org.apache.ibatis.executor.Executor
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.MappedStatement.Builder
+  - org.apache.ibatis.mapping.ParameterMapping
+  - org.apache.ibatis.mapping.SqlSource
+  - org.apache.ibatis.plugin.Interceptor
+  - org.apache.ibatis.plugin.Intercepts
+  - org.apache.ibatis.plugin.Invocation
+  - org.apache.ibatis.plugin.Plugin
+  - org.apache.ibatis.plugin.Signature
+  - org.apache.ibatis.session.ResultHandler
+  - org.apache.ibatis.session.RowBounds
+  - org.reflections.ReflectionUtils
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.beans.BeanUtils
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator
+  - com.gsitm.ustra.java.data.mybatis.pagination.support.PropertiesHelper
+  - com.gsitm.ustra.java.data.mybatis.pagination.support.SQLHelp
+  - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils
+  - com.gsitm.ustra.java.data.pagination.PaginationRequestContextHolder
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.data.mybatis.interceptor.MybatisParameterModifierInterceptor:
+  extends: null
+  implements:
+  - Interceptor
+  imports:
+  - java.sql.SQLException
+  - java.util.Map
+  - java.util.concurrent.ConcurrentHashMap
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.cache.CacheKey
+  - org.apache.ibatis.executor.Executor
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.DatabaseIdProvider
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.plugin.Interceptor
+  - org.apache.ibatis.plugin.Intercepts
+  - org.apache.ibatis.plugin.Invocation
+  - org.apache.ibatis.plugin.Signature
+  - org.apache.ibatis.session.ResultHandler
+  - org.apache.ibatis.session.RowBounds
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.datasource.DataSourceNameContextHolder
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
+  - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.data.mybatis.interceptor.MybatisStatementIdInterceptor:
+  extends: null
+  implements:
+  - Interceptor
+  imports:
+  - java.lang.reflect.Field
+  - java.sql.Connection
+  - org.apache.ibatis.executor.statement.StatementHandler
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.plugin.Interceptor
+  - org.apache.ibatis.plugin.Intercepts
+  - org.apache.ibatis.plugin.Invocation
+  - org.apache.ibatis.plugin.Signature
+  - org.apache.ibatis.reflection.DefaultReflectorFactory
+  - org.apache.ibatis.reflection.MetaObject
+  - org.apache.ibatis.reflection.SystemMetaObject
+com.gsitm.ustra.java.data.mybatis.pagination.CleanupMybatisPaginatorListener:
+  extends: null
+  implements:
+  - ServletContextListener
+  imports:
+  - javax.servlet.ServletContextEvent
+  - javax.servlet.ServletContextListener
+  - com.gsitm.ustra.java.data.mybatis.interceptor.MybatisPaginationInterceptor
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.Collection
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.ParameterMapping
+  - org.apache.ibatis.reflection.MetaObject
+  - org.apache.ibatis.reflection.property.PropertyTokenizer
+  - org.apache.ibatis.reflection.wrapper.ObjectWrapper
+  - org.apache.ibatis.session.RowBounds
+  - org.apache.ibatis.type.SimpleTypeRegistry
+  - org.apache.ibatis.type.TypeHandlerRegistry
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.MultiRoutingDataSourceDialect:
+  extends: Dialect
+  implements: []
+  imports:
+  - java.lang.reflect.InvocationTargetException
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.ibatis.mapping.MappedStatement
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.H2VendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.MySqlVendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.PostgreSQLVendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.VendorDialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.provider.MybatisVendorDatabaseIdProvider
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.PaginationQueryExtractor:
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql:
+  extends: null
+  implements: []
+  imports: []
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.NonParsingAreaReplaceSql:
+  extends: null
+  implements:
+  - ReplaceSql
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.OracleStringConnectionReplaceSql:
+  extends: null
+  implements:
+  - ReplaceSql
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.OracleStringConnectionReplaceSqlTest:
+  extends: null
+  implements: []
+  imports:
+  - lombok.extern.slf4j.Slf4j
+  - org.junit.jupiter.api.Test
+  - org.junit.jupiter.api.Assertions.assertEquals
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.RegexWithNolockReplaceSql:
+  extends: null
+  implements:
+  - ReplaceSql
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.SimpleWithNolockReplaceSql:
+  extends: null
+  implements:
+  - ReplaceSql
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.DB2VendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - org.apache.commons.collections.CollectionUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.JSQLParserException
+  - net.sf.jsqlparser.expression.Expression
+  - net.sf.jsqlparser.parser.CCJSqlParserUtil
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.statement.select.PlainSelect
+  - net.sf.jsqlparser.statement.select.SelectItem
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.H2VendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - net.sf.jsqlparser.expression.JdbcParameter
+  - net.sf.jsqlparser.statement.select.Limit
+  - net.sf.jsqlparser.statement.select.Offset
+  - net.sf.jsqlparser.statement.select.PlainSelect
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.HSQLVendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - net.sf.jsqlparser.expression.JdbcParameter
+  - net.sf.jsqlparser.statement.select.Limit
+  - net.sf.jsqlparser.statement.select.Offset
+  - net.sf.jsqlparser.statement.select.PlainSelect
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.MySqlVendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - net.sf.jsqlparser.expression.JdbcParameter
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.statement.select.Limit
+  - net.sf.jsqlparser.statement.select.PlainSelect
+  - net.sf.jsqlparser.statement.select.SelectItem
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - net.sf.jsqlparser.statement.select
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.OracleStringConnectionReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.JSQLParserException
+  - net.sf.jsqlparser.expression.Expression
+  - net.sf.jsqlparser.parser.CCJSqlParserUtil
+  - net.sf.jsqlparser.schema.Column
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialectTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.parser.ParseException
+  - org.apache.ibatis.builder.StaticSqlSource
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.SqlCommandType
+  - org.apache.ibatis.mapping.SqlSource
+  - org.apache.ibatis.session.Configuration
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.PostgreSQLVendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - org.apache.commons.collections.CollectionUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - net.sf.jsqlparser.expression.JdbcParameter
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.statement.select.Limit
+  - net.sf.jsqlparser.statement.select.Offset
+  - net.sf.jsqlparser.statement.select.PlainSelect
+  - net.sf.jsqlparser.statement.select.SelectItem
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDialect:
+  extends: VendorDialect
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.SimpleWithNolockReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - net.sf.jsqlparser.expression.JdbcParameter
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.statement.select.Fetch
+  - net.sf.jsqlparser.statement.select.Offset
+  - net.sf.jsqlparser.statement.select.OrderByElement
+  - net.sf.jsqlparser.statement.select.PlainSelect
+  - net.sf.jsqlparser.statement.select.SelectItem
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDialectTest:
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - org.apache.ibatis.builder.StaticSqlSource
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.SqlCommandType
+  - org.apache.ibatis.mapping.SqlSource
+  - org.apache.ibatis.session.Configuration
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order.Direction
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.parser.ParseException
+com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.VendorDialect:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - net.sf.jsqlparser.statement.select
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.NonParsingAreaReplaceSql
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order.Direction
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.pagination.support.SqlParserHelper
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.expression.Alias
+  - net.sf.jsqlparser.parser.CCJSqlParserUtil
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.schema.Table
+  - net.sf.jsqlparser.statement.Statement
+com.gsitm.ustra.java.data.mybatis.pagination.domain.Order:
+  extends: null
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.Locale
+  - java.util.regex.Pattern
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds:
+  extends: RowBounds
+  implements:
+  - Serializable
+  imports:
+  - java.io.Serializable
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - org.apache.ibatis.session.RowBounds
+com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList:
+  extends: PaginationList
+  implements: []
+  imports:
+  - java.util.Collection
+  - com.gsitm.ustra.java.data.domains.PaginationInfo
+  - com.gsitm.ustra.java.data.domains.PaginationList
+com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator:
+  extends: null
+  implements:
+  - Serializable
+  - PaginationInfo
+  imports:
+  - java.io.Serializable
+  - com.gsitm.ustra.java.data.domains.PaginationInfo
+com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonMapper:
+  extends: ObjectMapper
+  implements: []
+  imports:
+  - com.fasterxml.jackson.core.Version
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.module.SimpleModule
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
+com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonSerializer:
+  extends: JsonSerializer
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.Map
+  - com.fasterxml.jackson.core.JsonGenerator
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.databind.JsonSerializer
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.SerializerProvider
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator
+com.gsitm.ustra.java.data.mybatis.pagination.support.DefaultParameterHandler:
+  extends: null
+  implements:
+  - ParameterHandler
+  imports:
+  - java.sql.PreparedStatement
+  - java.sql.SQLException
+  - java.util.List
+  - org.apache.ibatis.executor.ErrorContext
+  - org.apache.ibatis.executor.ExecutorException
+  - org.apache.ibatis.executor.parameter.ParameterHandler
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.ParameterMapping
+  - org.apache.ibatis.mapping.ParameterMode
+  - org.apache.ibatis.reflection.MetaObject
+  - org.apache.ibatis.session.Configuration
+  - org.apache.ibatis.type.JdbcType
+  - org.apache.ibatis.type.TypeHandler
+  - org.apache.ibatis.type.TypeHandlerRegistry
+com.gsitm.ustra.java.data.mybatis.pagination.support.PropertiesHelper:
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.io.PrintStream
+  - java.io.PrintWriter
+  - java.util.ArrayList
+  - java.util.Collection
+  - java.util.Enumeration
+  - java.util.InvalidPropertiesFormatException
+  - java.util.List
+  - java.util.Map
+  - java.util.Properties
+  - java.util.Set
+  - java.util.StringTokenizer
+  - java.util.Map.Entry
+com.gsitm.ustra.java.data.mybatis.pagination.support.SQLHelp:
+  extends: null
+  implements: []
+  imports:
+  - java.sql.Connection
+  - java.sql.PreparedStatement
+  - java.sql.ResultSet
+  - java.sql.SQLException
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.transaction.Transaction
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+com.gsitm.ustra.java.data.mybatis.pagination.support.SqlParserHelper:
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - lombok.experimental.UtilityClass
+  - net.sf.jsqlparser.schema.Column
+  - net.sf.jsqlparser.schema.Table
+com.gsitm.ustra.java.data.mybatis.properties.UstraDataMybatisProperties:
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+com.gsitm.ustra.java.data.mybatis.provider.MybatisVendorDatabaseIdProvider:
+  extends: VendorDatabaseIdProvider
+  implements: []
+  imports:
+  - java.util.Properties
+  - org.apache.ibatis.mapping.VendorDatabaseIdProvider
+com.gsitm.ustra.java.data.mybatis.proxy.MapperManager:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Proxy
+com.gsitm.ustra.java.data.mybatis.proxy.MapperProxyHandler:
+  extends: null
+  implements:
+  - InvocationHandler
+  imports:
+  - java.beans.PropertyDescriptor
+  - java.lang.reflect.Field
+  - java.lang.reflect.InvocationHandler
+  - java.lang.reflect.Method
+  - java.lang.reflect.Parameter
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.ibatis.annotations.Param
+  - org.apache.ibatis.session.RowBounds
+  - org.springframework.beans.BeanUtils
+  - org.springframework.context.ApplicationContext
+  - org.springframework.data.domain.PageRequest
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraMapUtils
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.core.utils.data.BiValue
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mapping.TableEntityMapper
+  - com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor
+  - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils
+  - com.gsitm.ustra.java.data.utils.UstraDataUtils
+  - lombok.extern.slf4j.Slf4j
+com.gsitm.ustra.java.data.mybatis.typehandler.CodeValueTypeHandler:
+  extends: BaseTypeHandler
+  implements: []
+  imports:
+  - java.sql.CallableStatement
+  - java.sql.PreparedStatement
+  - java.sql.ResultSet
+  - java.sql.SQLException
+  - org.apache.ibatis.type.BaseTypeHandler
+  - org.apache.ibatis.type.JdbcType
+  - com.gsitm.ustra.java.core.utils.data.CodeValueType
+com.gsitm.ustra.java.data.mybatis.utils.CamelCaseMap:
+  extends: LinkedHashMap
+  implements: []
+  imports:
+  - java.util.LinkedHashMap
+  - org.springframework.jdbc.support.JdbcUtils
+com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.data.domain.PageRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.Order
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - lombok.experimental.UtilityClass
+com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisUtils:
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Field
+  - java.lang.reflect.Method
+  - java.util.HashMap
+  - java.util.Map
+  - org.apache.ibatis.mapping.BoundSql
+  - org.apache.ibatis.mapping.MappedStatement
+  - org.apache.ibatis.mapping.ParameterMapping
+  - org.apache.ibatis.reflection.MetaObject
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+net.sf.jsqlparser.parser.CCJSqlParserTest:
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - lombok.extern.slf4j.Slf4j
+  - net.sf.jsqlparser.statement.Statement
+  - net.sf.jsqlparser.statement.select.OrderByElement
+  - net.sf.jsqlparser.statement.select.PlainSelect
+  - net.sf.jsqlparser.statement.select.Select
+  - net.sf.jsqlparser.statement.select.SetOperationList
+  - org.junit.jupiter.api.Assertions.assertNotNull
+  - org.junit.jupiter.api.Assertions.assertThrows

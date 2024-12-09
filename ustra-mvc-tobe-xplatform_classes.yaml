@@ -1,0 +1,4 @@
+com.gsitm.ustra.java.mvc.tobe.xplatform.UstraMvcTobeXplatform:
+  extends: null
+  implements: []
+  imports: []

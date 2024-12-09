@@ -1,0 +1,4 @@
+com.gsitm.ustra.java.cloud.eureka.server.UstraCloudEurekaServer:
+  extends: null
+  implements: []
+  imports: []
