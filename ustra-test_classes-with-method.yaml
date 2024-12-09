@@ -1,8 +1,12 @@
 com.gsitm.ustra.java.test.AbstractUstraSpringTest:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.test.TestConfigurationSupport:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -12,13 +16,43 @@ com.gsitm.ustra.java.test.TestConfigurationSupport:
   - com.gsitm.ustra.java.core.app.UstraFrameworkModules
   - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
   - lombok.experimental.UtilityClass
+  methods:
+    adjustDependencyLibrary:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: configurer
+        type: UstraFrameworkConfigurer
+      return_type: UstraFrameworkConfigurer
+    getFrameworkPropertySourceFileNames:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: configurer
+        type: UstraFrameworkConfigurer
+      return_type: List
+    getIncludedModules:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: configurer
+        type: UstraFrameworkConfigurer
+      return_type: EnumSet
 com.gsitm.ustra.java.test.UstraFrameworkMockTest:
+  class_annotations:
+  - ExtendWith
   extends: UstraFrameworkTest
   implements: []
   imports:
   - org.junit.jupiter.api.extension.ExtendWith
   - org.springframework.test.context.junit.jupiter.SpringExtension
+  methods: {}
 com.gsitm.ustra.java.test.UstraFrameworkTest:
+  class_annotations:
+  - SpringBootTest
+  - EnableEncryptableProperties
+  - ContextConfiguration
+  - TestInstance
   extends: null
   implements: []
   imports:
@@ -40,7 +74,35 @@ com.gsitm.ustra.java.test.UstraFrameworkTest:
   - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
   - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
   - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+  methods:
+    configurer:
+      annotations: []
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    createMockMvc:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: controller
+        type: Object
+      - annotations: []
+        name: filters
+        type: Filter
+      return_type: MockMvc
+    initializeConfigurer:
+      annotations: []
+      parameters: []
+      return_type: null
+    standalone:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: controller
+        type: Object
+      return_type: StandaloneMockMvcBuilder
 com.gsitm.ustra.java.test.UstraFrameworkTestAutoConfigurationInitializer:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - ApplicationContextInitializer
@@ -55,7 +117,22 @@ com.gsitm.ustra.java.test.UstraFrameworkTestAutoConfigurationInitializer:
   - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
   - com.gsitm.ustra.java.test.utils.UstraTestUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    initialize:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ConfigurableApplicationContext
+      return_type: null
 com.gsitm.ustra.java.test.UstraSpringMockMvcTest:
+  class_annotations:
+  - SpringBootTest
+  - EnableEncryptableProperties
+  - AutoConfigureMockMvc
+  - TestInstance
+  - EnableAutoConfiguration
   extends: AbstractUstraSpringTest
   implements: []
   imports:
@@ -76,7 +153,32 @@ com.gsitm.ustra.java.test.UstraSpringMockMvcTest:
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
   - com.gsitm.ustra.java.test.utils.UstraTestUtils
   - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+  methods:
+    additionalPropertyFiles:
+      annotations: []
+      parameters: []
+      return_type: List
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    setUp:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    setUpTest:
+      annotations:
+      - BeforeAll
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.test.UstraSpringTest:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
+  - EnableEncryptableProperties
+  - TestInstance
+  - EnableAutoConfiguration
   extends: AbstractUstraSpringTest
   implements: []
   imports:
@@ -90,24 +192,46 @@ com.gsitm.ustra.java.test.UstraSpringTest:
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
   - com.gsitm.ustra.java.test.utils.UstraTestUtils
   - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+  methods:
+    additionalPropertyFiles:
+      annotations: []
+      parameters: []
+      return_type: List
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    setUpTest:
+      annotations:
+      - BeforeAll
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.test.UstraTest:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.test.exception.UstraTestException:
+  class_annotations: []
   extends: UstraException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
   - com.gsitm.ustra.java.core.exception.UstraException
+  methods: {}
 com.gsitm.ustra.java.test.mvc.MockRestResult:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - java.util.List
   - java.util.Map
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.test.mvc.RestResultMatchers:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -119,7 +243,24 @@ com.gsitm.ustra.java.test.mvc.RestResultMatchers:
   - com.fasterxml.jackson.core.type.TypeReference
   - com.gsitm.ustra.java.core.exception.ResponseCode
   - com.gsitm.ustra.java.test.utils.UstraTestUtils
+  methods:
+    expectCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: codes
+        type: ResponseCode
+      return_type: ResultMatcher
+    success:
+      annotations: []
+      parameters: []
+      return_type: ResultMatcher
 com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer:
+  class_annotations:
+  - Data
+  - Builder
+  - NoArgsConstructor
+  - AllArgsConstructor
   extends: null
   implements: []
   imports:
@@ -130,12 +271,43 @@ com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer:
   - lombok.Builder
   - lombok.Data
   - lombok.NoArgsConstructor
+  methods:
+    addPropertyFiles:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: locations
+        type: String
+      return_type: null
 com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.lang.Nullable
+  methods:
+    clear:
+      annotations:
+      - Nullable
+      parameters: []
+      return_type: null
+    get:
+      annotations:
+      - Nullable
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    set:
+      annotations:
+      - Nullable
+      parameters:
+      - annotations: []
+        name: config
+        type: UstraFrameworkConfigurer
+      return_type: null
 com.gsitm.ustra.java.test.utils.UstraTestUtils:
+  class_annotations:
+  - UtilityClass
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -156,3 +328,40 @@ com.gsitm.ustra.java.test.utils.UstraTestUtils:
   - com.gsitm.ustra.java.test.UstraTest
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
+  methods:
+    addPropertyToEnvironment:
+      annotations: []
+      parameters:
+      - annotations:
+        - NonNull
+        name: applicationContext
+        type: ConfigurableApplicationContext
+      - annotations:
+        - NonNull
+        name: propertyKey
+        type: String
+      - annotations:
+        - NonNull
+        name: propertyValue
+        type: String
+      return_type: null
+    configureFrameworkPropertyFiles:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: testClassInstance
+        type: AbstractUstraSpringTest
+      - annotations: []
+        name: additionalProperyFiles
+        type: List
+      return_type: null
+    mvcResultToObject:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: result
+        type: MvcResult
+      - annotations: []
+        name: typeRef
+        type: TypeReference
+      return_type: T

@@ -1,0 +1,300 @@
+com.gsitm.ustra.java.net.UstraNet:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.net.exception.UstraNetException:
+  class_annotations: []
+  extends: UstraException
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraException
+  methods: {}
+com.gsitm.ustra.java.net.ftp.FtpConnectionProperties:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.net.ftp.FtpFileTransferInfo:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.net.ftp.SimpleFtpTransfer:
+  class_annotations: []
+  extends: null
+  implements:
+  - AutoCloseable
+  imports:
+  - java.io.File
+  - java.io.FileInputStream
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.OutputStream
+  - java.util.Arrays
+  - java.util.List
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.net.ftp.FTP
+  - org.apache.commons.net.ftp.FTPClient
+  - org.apache.commons.net.ftp.FTPReply
+  - org.apache.commons.net.ftp.FTPSClient
+  - org.springframework.util.Assert
+  - org.springframework.util.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraFileUtils
+  - com.gsitm.ustra.java.net.exception.UstraNetResponseCode
+  methods:
+    close:
+      annotations:
+      - Override
+      parameters: []
+      return_type: null
+    connect:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    disconnect:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    getFtpClient:
+      annotations: []
+      parameters: []
+      return_type: FTPClient
+    isFileExists:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: remotePath
+        type: String
+      return_type: boolean
+    makeFtpDirReclusive:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: dirs
+        type: String
+      return_type: null
+    receive:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: receiveFileProperties
+        type: FtpFileTransferInfo
+      return_type: List
+    receiveFile:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: remotePath
+        type: String
+      - annotations: []
+        name: localPath
+        type: String
+      - annotations: []
+        name: overWrite
+        type: boolean
+      return_type: boolean
+    remove:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: removeFileProperties
+        type: FtpFileTransferInfo
+      return_type: List
+    removeFile:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: remotePath
+        type: String
+      return_type: boolean
+    send:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sendFileProperties
+        type: FtpFileTransferInfo
+      return_type: List
+    sendFile:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: localFile
+        type: File
+      - annotations: []
+        name: remotePath
+        type: String
+      - annotations: []
+        name: overWrite
+        type: boolean
+      return_type: boolean
+com.gsitm.ustra.java.net.mail.DefaultMailSender:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - MailSender
+  imports:
+  - java.io.IOException
+  - java.io.UnsupportedEncodingException
+  - java.util.List
+  - java.util.Map
+  - javax.activation.DataHandler
+  - javax.activation.DataSource
+  - javax.activation.FileDataSource
+  - javax.mail.MessagingException
+  - javax.mail.Multipart
+  - javax.mail.Session
+  - javax.mail.Transport
+  - javax.mail.internet.MimeBodyPart
+  - javax.mail.internet.MimeMessage
+  - javax.mail.internet.MimeMultipart
+  - org.apache.commons.collections4.map.HashedMap
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.net.exception.UstraNetResponseCode
+  - com.gsitm.ustra.java.net.mail.MailData.EmailReceiver
+  - com.gsitm.ustra.java.net.properties.UstraNetProperties
+  - com.gsitm.ustra.java.net.utils.UstraMailUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getSession:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Session
+    send:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: data
+        type: MailData
+      return_type: null
+    setDataSource:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: multipart
+        type: Multipart
+      - annotations: []
+        name: resources
+        type: List
+      return_type: null
+com.gsitm.ustra.java.net.mail.MailData:
+  class_annotations:
+  - Data
+  - Builder
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.mail.Message.RecipientType
+  - org.springframework.core.io.Resource
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  methods: {}
+com.gsitm.ustra.java.net.mail.MailSender:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods:
+    send:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: data
+        type: MailData
+      return_type: null
+com.gsitm.ustra.java.net.properties.UstraNetProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.Map
+  - java.util.Properties
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.net.test.MailTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - javax.mail.internet.AddressException
+  - javax.mail.internet.InternetAddress
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.net.utils.UstraMailUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    testAddressParsing:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.net.utils.UstraMailUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - javax.mail.internet.AddressException
+  - javax.mail.internet.InternetAddress
+  - org.apache.commons.lang3.StringUtils
+  - lombok.experimental.UtilityClass
+  methods:
+    parseAddress:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: address
+        type: String
+      return_type: InternetAddress
+com.gsitm.ustra.java.net.utils.UstraShellUtils:
+  class_annotations:
+  - UtilityClass
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.io.BufferedReader
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.InputStreamReader
+  - org.apache.commons.lang3.StringUtils
+  - lombok.Data
+  - lombok.experimental.UtilityClass
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    execCommand:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: cmds
+        type: String
+      return_type: Result
+    read:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: is
+        type: InputStream
+      return_type: StringBuilder

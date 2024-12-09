@@ -1,0 +1,5041 @@
+com.gsitm.ustra.java.autoconfigure.UstraAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - EnableConfigurationProperties
+  - EnableCaching
+  - EnableAspectJAutoProxy
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.BeanInstantiationException
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.cache.CacheManager
+  - org.springframework.cache.annotation.EnableCaching
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.EnableAspectJAutoProxy
+  - org.springframework.context.annotation.Primary
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - com.gsitm.ustra.java.core.cache.EhChacheMangerPostProcessor
+  - com.gsitm.ustra.java.core.cache.UstraCacheManager
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule
+  - com.gsitm.ustra.java.core.utils.spring.EmbeddedValueResolverProvider
+  - com.gsitm.ustra.java.core.utils.spring.ResourceLoaderProvider
+  methods:
+    applicationContextProvider:
+      annotations:
+      - Bean
+      - Order
+      parameters: []
+      return_type: ApplicationContextProvider
+    codeValueTypeModule:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: CodeValueTypeModule
+    embeddedValueResolverProvider:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: EmbeddedValueResolverProvider
+    resourceLoaderProvider:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: ResourceLoaderProvider
+com.gsitm.ustra.java.autoconfigure.UstraBatchAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - AutoConfigureAfter
+  - EnableWebMvc
+  - EnableScheduling
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.UstraBatch
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties
+  - com.gsitm.ustra.java.batch.config.BatchInterfaceLoggingFilter
+  - com.gsitm.ustra.java.batch.data.repository.ManagerDatabaseRepository
+  - com.gsitm.ustra.java.batch.data.repository.ManagerLocalRepository
+  - com.gsitm.ustra.java.batch.data.repository.ManagerRepository
+  - com.gsitm.ustra.java.batch.model.Manager
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.scheduling.annotation.EnableScheduling
+  - org.springframework.web.servlet.config.annotation.EnableWebMvc
+  - java.util.Collections
+  - java.util.List
+  - java.util.stream.Collectors
+  methods:
+    batchInterfaceLoggingFilter:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: BatchInterfaceLoggingFilter
+    managerLocalRepository:
+      annotations: []
+      parameters: []
+      return_type: ManagerLocalRepository
+    managerRepository:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: ManagerRepository
+com.gsitm.ustra.java.autoconfigure.UstraBatchManagerAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - AutoConfigureAfter
+  - EnableConfigurationProperties
+  - Slf4j
+  - ConditionalOnExpression
+  extends: null
+  implements: []
+  imports:
+  - com.github.benmanes.caffeine.cache.Caffeine
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties.ConfigType
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties.ManagerProperties
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties.WorkerProperties
+  - com.gsitm.ustra.java.batch.data.repository
+  - com.gsitm.ustra.java.batch.manager.UstraBatchManager
+  - com.gsitm.ustra.java.batch.manager.config.ManagerApp
+  - com.gsitm.ustra.java.batch.manager.controller
+  - com.gsitm.ustra.java.batch.manager.service
+  - com.gsitm.ustra.java.batch.model.Manager
+  - com.gsitm.ustra.java.batch.model.TaskDetail
+  - com.gsitm.ustra.java.batch.model.TaskSchedule
+  - lombok.extern.slf4j.Slf4j
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.cache.Cache
+  - org.springframework.cache.CacheManager
+  - org.springframework.cache.caffeine.CaffeineCache
+  - org.springframework.cache.support.SimpleCacheManager
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.data.redis.cache.CacheKeyPrefix
+  - org.springframework.data.redis.cache.RedisCacheConfiguration
+  - org.springframework.data.redis.cache.RedisCacheManager
+  - org.springframework.data.redis.connection.RedisConnectionFactory
+  - org.springframework.data.redis.serializer.RedisSerializationContext
+  - org.springframework.data.redis.serializer.StringRedisSerializer
+  - org.springframework.scheduling.TaskScheduler
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - java.time.Duration
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - java.util.concurrent.TimeUnit
+  - java.util.stream.Collectors
+  methods:
+    batchTaskScheduler:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: TaskScheduler
+    commandController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: commandService
+        type: CommandService
+      - annotations: []
+        name: workerService
+        type: WorkerService
+      return_type: CommandController
+    commandLocalRepository:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: CommandLocalRepository
+    commandService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: commandLocalRepository
+        type: CommandLocalRepository
+      - annotations: []
+        name: taskRepository
+        type: TaskRepository
+      - annotations: []
+        name: taskInstanceRepository
+        type: TaskInstanceRepository
+      - annotations: []
+        name: workerRepository
+        type: WorkerRepository
+      - annotations: []
+        name: managerHolder
+        type: ManagerHolder
+      return_type: CommandService
+    managerApp:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: commandService
+        type: CommandService
+      - annotations: []
+        name: managerHolder
+        type: ManagerHolder
+      - annotations: []
+        name: managerService
+        type: ManagerService
+      - annotations: []
+        name: taskInstanceService
+        type: ManagerTaskInstanceService
+      return_type: ManagerApp
+    managerController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: managerService
+        type: ManagerService
+      return_type: ManagerController
+    managerHolder:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: ManagerHolder
+    managerService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      return_type: ManagerService
+    managerTaskInstanceService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: taskInstanceRepository
+        type: TaskInstanceRepository
+      - annotations: []
+        name: workerRepository
+        type: WorkerRepository
+      - annotations: []
+        name: taskRepository
+        type: TaskRepository
+      return_type: ManagerTaskInstanceService
+    taskController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: taskService
+        type: TaskService
+      - annotations: []
+        name: managerTaskInstanceService
+        type: ManagerTaskInstanceService
+      - annotations: []
+        name: managerHolder
+        type: ManagerHolder
+      return_type: TaskController
+    taskDetailOfTaskProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskProperties
+        type: UstraBatchConfigProperties
+      return_type: TaskDetail
+    taskInstanceController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: managerTaskInstanceService
+        type: ManagerTaskInstanceService
+      - annotations: []
+        name: taskService
+        type: TaskService
+      - annotations: []
+        name: commandService
+        type: CommandService
+      return_type: TaskInstanceController
+    taskInstanceRepository:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: TaskInstanceRepository
+    taskRepository:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: TaskRepository
+    taskScheduleOfTaskScheduleProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskScheduleProperties
+        type: UstraBatchConfigProperties
+      return_type: TaskSchedule
+    taskService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: taskRepository
+        type: TaskRepository
+      - annotations: []
+        name: taskInstanceRepository
+        type: TaskInstanceRepository
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: commandRepository
+        type: CommandLocalRepository
+      return_type: TaskService
+    workerController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerService
+        type: WorkerService
+      - annotations: []
+        name: managerHolder
+        type: ManagerHolder
+      return_type: WorkerController
+    workerRepository:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: WorkerRepository
+    workerService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerRepository
+        type: WorkerRepository
+      - annotations: []
+        name: taskInstanceRepository
+        type: TaskInstanceRepository
+      return_type: WorkerService
+com.gsitm.ustra.java.autoconfigure.UstraBatchWorkerAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - AutoConfigureAfter
+  - EnableConfigurationProperties
+  - ConditionalOnExpression
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.batch.UstraBatchConfigProperties
+  - com.gsitm.ustra.java.batch.common.NetworkUtils
+  - com.gsitm.ustra.java.batch.data.repository
+  - com.gsitm.ustra.java.batch.model.Worker
+  - com.gsitm.ustra.java.batch.runner.DefaultUstraBatchTaskRunnerObserver
+  - com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunner
+  - com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunnerObserver
+  - com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContextObserver
+  - com.gsitm.ustra.java.batch.worker.UstraBatchWorker
+  - com.gsitm.ustra.java.batch.worker.WorkerApp
+  - com.gsitm.ustra.java.batch.worker.config.LogPathGenerator
+  - com.gsitm.ustra.java.batch.worker.config.LoggerConfig
+  - com.gsitm.ustra.java.batch.worker.config.LoggerInitializer
+  - com.gsitm.ustra.java.batch.worker.config.UstraBatchTaskRunnerInitializer
+  - com.gsitm.ustra.java.batch.worker.connector.ManagerConnector
+  - com.gsitm.ustra.java.batch.worker.controller.WorkerTaskInstanceController
+  - com.gsitm.ustra.java.batch.worker.service.BatchService
+  - com.gsitm.ustra.java.batch.worker.service.WorkerCommandService
+  - com.gsitm.ustra.java.batch.worker.service.WorkerMaintainService
+  - com.gsitm.ustra.java.batch.worker.service.WorkerTaskInstanceService
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.web.client.RestTemplate
+  - java.util.concurrent.LinkedBlockingQueue
+  - java.util.concurrent.ThreadPoolExecutor
+  - java.util.concurrent.TimeUnit
+  methods:
+    batchRestTemplate:
+      annotations:
+      - Bean
+      - Qualifier
+      parameters: []
+      return_type: RestTemplate
+    batchService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: taskRunner
+        type: UstraBatchTaskRunner
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: managerConnector
+        type: ManagerConnector
+      return_type: BatchService
+    commandRemoteRepository:
+      annotations:
+      - Bean
+      parameters:
+      - annotations:
+        - Qualifier
+        name: restTemplate
+        type: RestTemplate
+      return_type: CommandRemoteRepository
+    defaultUstraBatchTaskRunnerObserver:
+      annotations:
+      - Bean
+      parameters:
+      - annotations:
+        - Autowired
+        name: workerTaskInstanceService
+        type: WorkerTaskInstanceService
+      return_type: UstraBatchTaskRunnerObserver
+    logPathGenerator:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: loggerConfig
+        type: LoggerConfig
+      return_type: LogPathGenerator
+    logPattern:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: loggerConfig
+        type: LoggerConfig
+      return_type: String
+    loggerConfig:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: LoggerConfig
+    loggerInitializer:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: loggerConfig
+        type: LoggerConfig
+      - annotations: []
+        name: logPathGenerator
+        type: LogPathGenerator
+      return_type: LoggerInitializer
+    managerConnector:
+      annotations:
+      - Bean
+      parameters:
+      - annotations:
+        - Qualifier
+        name: restTemplate
+        type: RestTemplate
+      return_type: ManagerConnector
+    simpleFileRepository:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SimpleFileRepository
+    taskInstanceService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: logPathGenerator
+        type: LogPathGenerator
+      - annotations: []
+        name: simpleFileRepository
+        type: SimpleFileRepository
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: managerConnector
+        type: ManagerConnector
+      return_type: WorkerTaskInstanceService
+    taskRunner:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraBatchTaskRunner
+    ustraBatchTaskRunnerInitializer:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchTaskRunner
+        type: UstraBatchTaskRunner
+      - annotations: []
+        name: ustraBatchWorkerContextObserver
+        type: UstraBatchWorkerContextObserver
+      - annotations: []
+        name: defaultUstraBatchTaskRunnerObserver
+        type: UstraBatchTaskRunnerObserver
+      return_type: UstraBatchTaskRunnerInitializer
+    ustraBatchWorkerContextObserver:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: managerConnector
+        type: ManagerConnector
+      return_type: UstraBatchWorkerContextObserver
+    workerApp:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerCommandService
+        type: WorkerCommandService
+      - annotations: []
+        name: batchService
+        type: BatchService
+      - annotations: []
+        name: workerMaintainService
+        type: WorkerMaintainService
+      return_type: WorkerApp
+    workerCommandService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerHolder
+        type: WorkerHolder
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: managerConnector
+        type: ManagerConnector
+      return_type: WorkerCommandService
+    workerExecutor:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: ThreadPoolExecutor
+    workerHolder:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraBatchConfigProperties
+        type: UstraBatchConfigProperties
+      return_type: WorkerHolder
+    workerMaintainService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerHolder
+        type: WorkerHolder
+      - annotations: []
+        name: managerRepository
+        type: ManagerRepository
+      - annotations: []
+        name: managerConnector
+        type: ManagerConnector
+      return_type: WorkerMaintainService
+    workerTaskInstanceController:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: workerTaskInstanceService
+        type: WorkerTaskInstanceService
+      return_type: WorkerTaskInstanceController
+com.gsitm.ustra.java.autoconfigure.UstraDataAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.sql.DataSource
+  - com.gsitm.ustra.java.data.poi.UstraDataPoiInitializer
+  - org.springframework.aop.PointcutAdvisor
+  - org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.data.UstraData
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
+  - com.gsitm.ustra.java.data.logging.interfaces.InterfaceLogWriter
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InboundInterfaceContextHolder
+  - com.gsitm.ustra.java.data.logging.interfaces.outbound.aop.OutboundInterfaceAdvice
+  - com.gsitm.ustra.java.data.logging.interfaces.outbound.aop.OutboundInterfacePointCut
+  - com.gsitm.ustra.java.data.logging.interfaces.provider.ConfigInterfaceInfoProvider
+  - com.gsitm.ustra.java.data.logging.interfaces.provider.InterfaceInfoProvider
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.DefaultInterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.InterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoApplicationListener
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoCollector
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoDataMapper
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.logging.interfaces.store.MapperInterfaceInfoStore
+  - com.gsitm.ustra.java.data.logging.interfaces.store.StaticInterfaceInfoStore
+  - com.gsitm.ustra.java.data.mapping.ObjectFieldsDataMapper
+  - com.gsitm.ustra.java.data.mapping.TableEntityMapper
+  - com.gsitm.ustra.java.data.mapping.TableEntityMapperApplicationListener
+  - com.gsitm.ustra.java.data.message.UstraMessageProcessor
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProviderStore
+  - com.gsitm.ustra.java.data.message.type.UstraMessageTypeStore
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.data.store.CommonDataApplicationListener
+  - com.gsitm.ustra.java.data.store.CommonDataStore
+  - com.gsitm.ustra.java.data.utils.ProcedureManager
+  methods:
+    procedureManager:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters:
+      - annotations: []
+        name: dataSource
+        type: DataSource
+      - annotations: []
+        name: dataSourceProperties
+        type: MultiDataSourceProperties
+      return_type: ProcedureManager
+com.gsitm.ustra.java.autoconfigure.UstraDataFileAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - ConditionalOnProperty
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.scheduling.annotation.EnableScheduling
+  - org.springframework.scheduling.annotation.SchedulingConfigurer
+  - org.springframework.scheduling.config.ScheduledTaskRegistrar
+  - org.springframework.scheduling.config.TriggerTask
+  - org.springframework.scheduling.support.CronTrigger
+  - org.springframework.util.ClassUtils
+  - com.gsitm.ustra.java.autoconfigure.test.UstraDataFileTestProcessorBeanFactory
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.UstraData
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.aws.AwsS3FileOperationConfigurer
+  - com.gsitm.ustra.java.data.file.config.DataFileApplicationEventListener
+  - com.gsitm.ustra.java.data.file.config.FileOperationConfigurer
+  - com.gsitm.ustra.java.data.file.config.UstraDataFileConfigProperties
+  - com.gsitm.ustra.java.data.file.policy.ConfigFileGroupPolicyProvider
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyCollector
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyProvider
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.data.file.processor.AbstractFileOperationProcessor
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractorResolver
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceInfoExtractorResolver
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
+  methods:
+    FileGroupPolicyProvider:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: propperties
+        type: UstraDataFileConfigProperties
+      return_type: FileGroupPolicyProvider
+    dataFileApplicationEventListener:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: DataFileApplicationEventListener
+    defaultFileOperationProcessor:
+      annotations:
+      - Bean
+      - Order
+      - ConditionalOnExpression
+      - ConditionalOnMissingBean
+      - ConditionalOnMissingClass
+      parameters:
+      - annotations: []
+        name: fileGroupPolicyStore
+        type: FileGroupPolicyStore
+      return_type: AbstractFileOperationProcessor
+    defaultFileS3OperationProcessor:
+      annotations:
+      - Bean
+      - Order
+      - ConditionalOnExpression
+      - ConditionalOnMissingBean
+      - ConditionalOnMissingClass
+      parameters:
+      - annotations: []
+        name: fileGroupPolicyStore
+        type: FileGroupPolicyStore
+      - annotations: []
+        name: properties
+        type: UstraDataFileConfigProperties
+      return_type: AbstractFileOperationProcessor
+    fileGroupPolicyCollector:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: providers
+        type: List
+      - annotations: []
+        name: store
+        type: FileGroupPolicyStore
+      return_type: FileGroupPolicyCollector
+    fileGroupPolicyStore:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: FileGroupPolicyStore
+    fileOperationManager:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: FileOperationManager
+    ustraDataFileTestProcessorBeanFactory:
+      annotations:
+      - Bean
+      - ConditionalOnExpression
+      - ConditionalOnClass
+      parameters:
+      - annotations: []
+        name: fileGroupPolicyStore
+        type: FileGroupPolicyStore
+      return_type: UstraDataFileTestProcessorBeanFactory
+com.gsitm.ustra.java.autoconfigure.UstraDataH2AutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnWebApplication
+  - ConditionalOnClass
+  - ConditionalOnProperty
+  - AutoConfigureAfter
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+  - org.springframework.boot.autoconfigure.h2.H2ConsoleProperties
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - javax.servlet.annotation.WebServlet
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  methods:
+    h2ConsoleRestResultWrapperConditioner:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters:
+      - annotations: []
+        name: h2ConsoleProperties
+        type: H2ConsoleProperties
+      return_type: RestResultWrapperConditioner
+    h2ConsoleWrapperConditioner:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: h2ConsoleProperties
+        type: H2ConsoleProperties
+      return_type: UstraApplicationWrapperConditioner
+com.gsitm.ustra.java.autoconfigure.UstraDataMybatisAutoConfiguration:
+  class_annotations:
+  - Slf4j
+  - org.springframework.context.annotation.Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - ConditionalOnProperty
+  - AutoConfigureAfter
+  - AutoConfigureBefore
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashSet
+  - java.util.List
+  - java.util.Set
+  - javax.sql.DataSource
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.ibatis.mapping.DatabaseIdProvider
+  - org.apache.ibatis.mapping.VendorDatabaseIdProvider
+  - org.apache.ibatis.plugin.Interceptor
+  - org.apache.ibatis.scripting.LanguageDriver
+  - org.apache.ibatis.session.Configuration
+  - org.apache.ibatis.session.ExecutorType
+  - org.apache.ibatis.session.SqlSessionFactory
+  - org.apache.ibatis.type.TypeHandler
+  - org.mybatis.spring.SqlSessionTemplate
+  - org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer
+  - org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
+  - org.mybatis.spring.boot.autoconfigure.MybatisLanguageDriverAutoConfiguration
+  - org.mybatis.spring.boot.autoconfigure.MybatisProperties
+  - org.reflections.Reflections
+  - org.reflections.scanners.SubTypesScanner
+  - org.reflections.scanners.TypeElementsScanner
+  - org.reflections.util.ClasspathHelper
+  - org.reflections.util.ConfigurationBuilder
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.DependsOn
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.core.utils.data.CodeValueType
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
+  - com.gsitm.ustra.java.data.mybatis.UstraDataMybatis
+  - com.gsitm.ustra.java.data.mybatis.config.DynamicMapperScanConfigurer
+  - com.gsitm.ustra.java.data.mybatis.config.DynamicSqlSessionFactoryConfigurer
+  - com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor
+  - com.gsitm.ustra.java.data.mybatis.properties.UstraDataMybatisProperties
+  - com.gsitm.ustra.java.data.mybatis.provider.MybatisVendorDatabaseIdProvider
+  - com.gsitm.ustra.java.data.mybatis.typehandler.CodeValueTypeHandler
+  - com.gsitm.ustra.java.data.mybatis.utils.CamelCaseMap
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.UstraMvc
+  - com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinition
+  - com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinitionProvider
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    defaultTypeAliasConfigurationCustomizer:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: ConfigurationCustomizer
+    deserializationTypeDefinitionConfigurationCustomizer:
+      annotations:
+      - Bean
+      - ConditionalOnClass
+      - ConditionalOnBean
+      parameters:
+      - annotations: []
+        name: typeDefinitionProviders
+        type: List
+      return_type: ConfigurationCustomizer
+    dynamicMapperScanConfigurer:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: multiDataSourceProperties
+        type: MultiDataSourceProperties
+      return_type: DynamicMapperScanConfigurer
+    dynamicSqlSessionFactoryConfigurer:
+      annotations:
+      - Bean
+      - DependsOn
+      parameters:
+      - annotations: []
+        name: properties
+        type: MybatisProperties
+      - annotations: []
+        name: dataProperties
+        type: UstraDataProperties
+      - annotations: []
+        name: dataMybatisProperties
+        type: UstraDataMybatisProperties
+      - annotations: []
+        name: databaseIdProvider
+        type: ObjectProvider
+      - annotations: []
+        name: interceptorsProvider
+        type: ObjectProvider
+      - annotations:
+        - SuppressWarnings
+        name: typeHandlersProvider
+        type: ObjectProvider
+      - annotations: []
+        name: languageDriversProvider
+        type: ObjectProvider
+      - annotations: []
+        name: configurationCustomizersProvider
+        type: ObjectProvider
+      - annotations: []
+        name: dataSourceProvider
+        type: ObjectProvider
+      - annotations:
+        - Autowired
+        - Qualifier
+        name: loggingThreadPoolTaskScheduler
+        type: ThreadPoolTaskScheduler
+      return_type: DynamicSqlSessionFactoryConfigurer
+    sqlSessionTemplate:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: properties
+        type: MybatisProperties
+      - annotations: []
+        name: sqlSessionFactory
+        type: SqlSessionFactory
+      return_type: SqlSessionTemplate
+    statementExecutor:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: sqlSessionTemplate
+        type: SqlSessionTemplate
+      return_type: MybatisStatementExecutor
+    vendorDatabaseIdProvider:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: VendorDatabaseIdProvider
+com.gsitm.ustra.java.autoconfigure.UstraDataRedisAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - ConditionalOnProperty
+  extends: null
+  implements: []
+  imports:
+  - java.time.Duration
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.autoconfigure.cache.RedisCacheManagerBuilderCustomizer
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.cache.CacheManager
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.data.redis.cache.RedisCacheConfiguration
+  - org.springframework.data.redis.cache.RedisCacheManager
+  - org.springframework.data.redis.cache.RedisCacheManager.RedisCacheManagerBuilder
+  - org.springframework.data.redis.connection.RedisConnectionFactory
+  - org.springframework.data.redis.connection.RedisStandaloneConfiguration
+  - org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
+  - org.springframework.data.redis.core.RedisKeyValueAdapter.EnableKeyspaceEvents
+  - org.springframework.data.redis.core.RedisTemplate
+  - org.springframework.data.redis.repository.configuration.EnableRedisRepositories
+  - org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
+  - org.springframework.data.redis.serializer.RedisSerializationContext
+  - org.springframework.data.redis.serializer.StringRedisSerializer
+  - com.fasterxml.jackson.annotation.JsonTypeInfo.As
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.ObjectMapper.DefaultTyping
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.data.redis.UstraDataRedis
+  - com.gsitm.ustra.java.data.redis.properties.UstraDataRedisProperties
+  methods:
+    genericJackson2JsonRedisSerializer:
+      annotations:
+      - SuppressWarnings
+      parameters: []
+      return_type: GenericJackson2JsonRedisSerializer
+    redisCacheManager:
+      annotations:
+      - ConditionalOnProperty
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: redisConnectionFactory
+        type: RedisConnectionFactory
+      - annotations: []
+        name: properties
+        type: UstraDataRedisProperties
+      - annotations: []
+        name: customizers
+        type: List
+      return_type: CacheManager
+    redisConnectionFactory:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraDataRedisProperties
+      return_type: RedisConnectionFactory
+    redisTemplate:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: connectionFactory
+        type: RedisConnectionFactory
+      return_type: RedisTemplate
+com.gsitm.ustra.java.autoconfigure.UstraManagementBoAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.concurrent.TimeUnit
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.scheduling.annotation.EnableScheduling
+  - org.springframework.scheduling.annotation.SchedulingConfigurer
+  - org.springframework.scheduling.config.ScheduledTaskRegistrar
+  - org.springframework.scheduling.config.TriggerTask
+  - org.springframework.scheduling.support.PeriodicTrigger
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.data.store.CommonDataStore
+  - com.gsitm.ustra.java.management.bo.UstraManagementBo
+  - com.gsitm.ustra.java.management.bo.authentication.ManagementBoSecurityConfigure
+  - com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoAuthenticationController
+  - com.gsitm.ustra.java.management.bo.authentication.processor.ManagementBoJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.management.bo.controllers.UstraAppSttController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityGroupController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityStatusController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraBatchController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraBatchHistController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraBatchManagerController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraBatchWorkerController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraCodeController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraFileController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraFileGroupController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraIfsController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraIfsHistoryController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraInitializingDataController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraLoginHistoryController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraMenuController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraMessageTypeController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraPostController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraPostGroupController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraPrivateInfoAccessHistoryController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraUserApprovalController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraUserController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraUserHistoryController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraUserMenuController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraTextTemplateController
+  - com.gsitm.ustra.java.management.bo.controllers.UstraMessageController
+  - com.gsitm.ustra.java.management.bo.data.BoInitialDataProvider
+  - com.gsitm.ustra.java.management.bo.data.DefaultBoInitialDataProvider
+  - com.gsitm.ustra.java.management.bo.logging.UstraManagementBoInterfaceHistoryModifier
+  - com.gsitm.ustra.java.management.bo.services.rest.UstraBatchManagerApiService
+  - com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskApiService
+  - com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskInstanceApiService
+  - com.gsitm.ustra.java.management.bo.services.rest.UstraBatchWorkerApiService
+  - com.gsitm.ustra.java.management.data.mapper.UstraAuthorityGroupDataMapper
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.approval.ActivateUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.AssignAuthGroupUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.AuthGroupUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.AuthUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.RegisterUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.ReleaseLockUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.ResetPasswordUserApprovalProcessor
+  - com.gsitm.ustra.java.management.models.approval.UpdateStatusUserApprovalProcessor
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+  - com.gsitm.ustra.java.management.services.UstraBatchManagerService
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - com.gsitm.ustra.java.management.services.UstraBatchWorkerService
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+  - com.gsitm.ustra.java.management.services.UstraInterfaceRequestControlService
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.management.services.UstraManagementRefreshTokenService
+  - com.gsitm.ustra.java.management.services.UstraMenuFunctionService
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.management.services.UstraMessageTypeService
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAppSttService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupApprovalStepService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraAuthorityStatusService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraIfsHistoryService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraIfsService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraLoginHistoryService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMenuFunctionService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMenuService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraMessageTypeService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserApprovalService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserHistoryService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserMenuService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultDbUstraUserService
+  - com.gsitm.ustra.java.management.services.defaults.DefaultUstraManagementRefreshTokenService
+  - com.gsitm.ustra.java.management.services.jdbc.JdbcInterfaceRequestControlService
+  - com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupAuthGroupApprovalEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupUserApprovalEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.CustomByGroupUserApprovalServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.SimpleAuthApprovalEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.SimpleAuthGroupApprovalEventListener
+  - com.gsitm.ustra.java.management.services.listeners.approval.SimpleUserApprovalEventListener
+  - com.gsitm.ustra.java.management.services.listeners.history.ProfileHistoryEventListener
+  - com.gsitm.ustra.java.management.services.listeners.history.UserHistoryEventListener
+  - com.gsitm.ustra.java.management.services.policies.DefaultUstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.DefaultUstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    ustraManagementBoInterfaceHistoryModifier:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters: []
+      return_type: UstraManagementBoInterfaceHistoryModifier
+com.gsitm.ustra.java.autoconfigure.UstraManagementCoreAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - AutoConfigureAfter
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - java.util.concurrent.Executor
+  - com.gsitm.ustra.java.data.message.UstraMessageProcessor
+  - com.gsitm.ustra.java.management.task.UstraMessageRequestTask
+  - com.gsitm.ustra.java.data.message.provider.JavaMailMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProviderStore
+  - com.gsitm.ustra.java.data.message.type.UstraMessageTypeStore
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngineStore
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateProcessor
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateStore
+  - com.gsitm.ustra.java.management.data.message.DbMessageTypeStore
+  - com.gsitm.ustra.java.management.data.text.DbTextTemplateStore
+  - com.gsitm.ustra.java.management.services
+  - com.gsitm.ustra.java.management.services.defaults
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.Profile
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+  - org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.core.io.imaging.ImageResizeOption
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.data.file.aws.AwsS3FileOperationConfigurer
+  - com.gsitm.ustra.java.data.file.config.UstraDataFileConfigProperties
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.data.file.processor.AbstractFileOperationProcessor
+  - com.gsitm.ustra.java.data.file.processor.FileOperationProcessorCustomizer
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractorResolver
+  - com.gsitm.ustra.java.data.file.processor.resource.ImageResizingFileResourceConverter
+  - com.gsitm.ustra.java.data.file.processor.storage.FileMetaDataStorage
+  - com.gsitm.ustra.java.data.logging.query.QueryLogWriter
+  - com.gsitm.ustra.java.data.store.CommonDataStore
+  - com.gsitm.ustra.java.management.UstraManagementCore
+  - com.gsitm.ustra.java.management.controllers.UstraCommonController
+  - com.gsitm.ustra.java.management.controllers.UstraFileActionController
+  - com.gsitm.ustra.java.management.controllers.UstraManagementInterfaceLoggingController
+  - com.gsitm.ustra.java.management.data.file.FileMetaDataStorageService
+  - com.gsitm.ustra.java.management.data.file.UstraManagementFileGroupPolicyProvider
+  - com.gsitm.ustra.java.management.data.file.UstraManagementFileOperationProcessor
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.logging.UstraManagementQueryLogWriter
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceHistoryModifier
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceInfoProvider
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceLogWriter
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementWebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.samples.excel.UstraExcelCreationController
+  - com.gsitm.ustra.java.management.samples.excel.UstraExcelSamplePostProcessor
+  - com.gsitm.ustra.java.management.samples.file.UstraManagementSampleFileGroupPolicyProvider
+  - com.gsitm.ustra.java.management.web.UstraManagementCoreMethodArgumentResolverListener
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceInfoExtractorResolver
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.UstraMultiDataSourceAutoConfiguration:
+  class_annotations:
+  - EnableConfigurationProperties
+  - ConditionalOnProperty
+  - ConditionalOnClass
+  - EnableAspectJAutoProxy
+  - AutoConfigureBefore
+  - Import
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.aopalliance.intercept.MethodInterceptor
+  - org.springframework.aop.Pointcut
+  - org.springframework.aop.PointcutAdvisor
+  - org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor
+  - org.springframework.beans.factory.BeanFactoryUtils
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.DependsOn
+  - org.springframework.context.annotation.EnableAspectJAutoProxy
+  - org.springframework.context.annotation.Import
+  - org.springframework.context.annotation.Primary
+  - org.springframework.core.Ordered
+  - org.springframework.core.env.Environment
+  - org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
+  - org.springframework.util.Assert
+  - org.springframework.util.StringUtils
+  - com.gsitm.ustra.java.core.app.BasePackages
+  - com.gsitm.ustra.java.data.UstraData
+  - com.gsitm.ustra.java.data.datasource.DataSourceAwareApplicationListener
+  - com.gsitm.ustra.java.data.datasource.DataSourceFactory
+  - com.gsitm.ustra.java.data.datasource.DataSourceSet
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceInitializer
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties.SourceProperties
+  - com.gsitm.ustra.java.data.datasource.MultiDataSourceRegistrar
+  - com.gsitm.ustra.java.data.datasource.MultiRoutingDataSource
+  - com.gsitm.ustra.java.data.datasource.aop.DataSourceAdvice
+  - com.gsitm.ustra.java.data.datasource.aop.DataSourcePointcut
+  methods:
+    dataSourceAdvice:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: MethodInterceptor
+    dataSourceAwareApplicationListener:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: DataSourceAwareApplicationListener
+    dataSourcePointcut:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: Pointcut
+    getDefaultTargetDatasource:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: multiDataSourceProperties
+        type: MultiDataSourceProperties
+      - annotations: []
+        name: targetDataSourceSet
+        type: Map
+      return_type: Object
+    multiDataSourceInitializer:
+      annotations:
+      - DependsOn
+      - Bean
+      parameters: []
+      return_type: MultiDataSourceInitializer
+    potincutAdviser:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: dataSourceAdvice
+        type: MethodInterceptor
+      return_type: PointcutAdvisor
+    routeDataSource:
+      annotations:
+      - Bean
+      - Primary
+      - DependsOn
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      - annotations: []
+        name: multiDataSourceProperties
+        type: MultiDataSourceProperties
+      - annotations: []
+        name: environment
+        type: Environment
+      return_type: javax
+com.gsitm.ustra.java.autoconfigure.UstraMvcAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - AutoConfigureBefore
+  - EnableConfigurationProperties
+  - ConditionalOnWebApplication
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Locale
+  - java.util.stream.Collectors
+  - javax.servlet.ServletRequest
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.boot.web.servlet.error.DefaultErrorAttributes
+  - org.springframework.boot.web.servlet.error.ErrorAttributes
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.web.method.support.HandlerMethodArgumentResolver
+  - org.springframework.web.servlet.LocaleResolver
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - org.springframework.web.servlet.i18n.FixedLocaleResolver
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.data.logging.interfaces.InterfaceLogWriter
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InboundInterfaceContextHolder
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.InterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.UstraMvc
+  - com.gsitm.ustra.java.mvc.converter.UstraConverterConfigurationApplicationListener
+  - com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinitionProvider
+  - com.gsitm.ustra.java.mvc.error.DefaultErrorController
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware
+  - com.gsitm.ustra.java.mvc.filter.UstraGlobalWrapperFilter
+  - com.gsitm.ustra.java.mvc.filter.conditioner.ConfigBasedApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.filter.conditioner.WebSocketRequestApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolver
+  - com.gsitm.ustra.java.mvc.logging.interfaces.ConfigBasedWebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.logging.interfaces.ResourceWebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceContextHolder
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.logging.interfaces.WebSocketInterfaceLoggingFilter
+  - com.gsitm.ustra.java.mvc.process.ChannelCodeResolver
+  - com.gsitm.ustra.java.mvc.process.HttpHeaderSystemCodeResolver
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoFilter
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoLoggingFilter
+  - com.gsitm.ustra.java.mvc.process.SystemCodeResolver
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.rest.UstraMvcRequestBodyAdvice
+  - com.gsitm.ustra.web.core.properties.UstraWebProperties
+  - com.gsitm.ustra.web.socket.UstraWebSocket
+  methods:
+    channelCodeResolver:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: ChannelCodeResolver
+    configBasedUstraApplicationWrapperConditioner:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcProperties
+      return_type: UstraApplicationWrapperConditioner
+    localeResolver:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: LocaleResolver
+    processInfoFilter:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraProperties
+        type: UstraProperties
+      - annotations: []
+        name: systemCodeResolver
+        type: SystemCodeResolver
+      - annotations: []
+        name: channelCodeResolver
+        type: ChannelCodeResolver
+      return_type: ProcessInfoFilter
+    processInfoLoggingFilter:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: ProcessInfoLoggingFilter
+    systemCodeResolver:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: SystemCodeResolver
+    ustraGlobalWrapperFilter:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: applicationWrapperAwares
+        type: List
+      - annotations: []
+        name: applicationWrapperConditioners
+        type: List
+      - annotations: []
+        name: properties
+        type: UstraMvcProperties
+      return_type: UstraGlobalWrapperFilter
+    ustraMvcRequestBodyAdvice:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraMvcRequestBodyAdvice
+com.gsitm.ustra.java.autoconfigure.UstraMvcRestAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - ConditionalOnProperty
+  - AutoConfigureBefore
+  - EnableConfigurationProperties
+  - ConditionalOnWebApplication
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.boot.web.servlet.error.DefaultErrorAttributes
+  - org.springframework.boot.web.servlet.error.ErrorAttributes
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.web.method.support.HandlerMethodArgumentResolver
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.mvc.error.DefaultErrorController
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.rest.UstraMvcRest
+  - com.gsitm.ustra.java.mvc.rest.condition.ActuatorRestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.condition.ConfigBasedRestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler
+  - com.gsitm.ustra.java.mvc.rest.error.RestErrorController
+  - com.gsitm.ustra.java.mvc.rest.error.RestErrorHandler
+  - com.gsitm.ustra.java.mvc.rest.error.RestExceptionMessageManager
+  - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  - com.gsitm.ustra.java.mvc.rest.utils.DefaultBodyWriteHandler
+  - com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler
+  - com.gsitm.ustra.java.mvc.rest.utils.RestRequestHeaderInjector
+  - com.gsitm.ustra.java.mvc.rest.utils.RestResponseBodyAdvice
+  methods:
+    actuatorRestResultWrapperConditioner:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: RestResultWrapperConditioner
+    configBasedRestResultWrapperConditioner:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcRestProperties
+      return_type: RestResultWrapperConditioner
+    defaultBodyWriteHandler:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: DefaultBodyWriteHandler
+    resCodeStore:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RestResCodeStore
+    restBaseExceptionHandler:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RestBaseExceptionHandler
+    restExceptionMessageManager:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RestExceptionMessageManager
+    restRequestHeaderInjector:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcRestProperties
+      return_type: RestRequestHeaderInjector
+    restResponseBodyAdvice:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcRestProperties
+      - annotations: []
+        name: conditioners
+        type: List
+      return_type: RestResponseBodyAdvice
+com.gsitm.ustra.java.autoconfigure.UstraMvcTobeAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - ConditionalOnProperty
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.ServletContext
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.annotation.Order
+  - org.springframework.web.method.support.HandlerMethodArgumentResolver
+  - org.springframework.web.method.support.HandlerMethodReturnValueHandler
+  - org.springframework.web.servlet.HandlerAdapter
+  - org.springframework.web.servlet.HandlerExceptionResolver
+  - org.springframework.web.servlet.config.annotation.InterceptorRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
+  - org.springframework.web.servlet.mvc.ServletWrappingController
+  - org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.InterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.rest.error.RestErrorHandler
+  - com.gsitm.ustra.java.mvc.tobe.UstraMvcTobe
+  - com.gsitm.ustra.java.mvc.tobe.logging.interfaces.TobeWebInterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.mvc.tobe.properties.UstraMvcTobeProperties
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.resolve.UstraXApiHandlerMethodReturnValueHandler
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.resolve.UstraXApiMethodArgumentResolver
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.resolve.UstraXApiRequestMappingHandlerAdapter
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.servlet.UstraXApiInterceptor
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.view.UstraXApiFileView
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.view.UstraXApiView
+  - com.gsitm.ustra.java.mvc.tobe.spring.error.UstraXApiMappingExceptionResolver
+  - com.gsitm.ustra.java.mvc.tobe.spring.error.UstraXApiRestErrorHandler
+  - com.gsitm.ustra.java.mvc.tobe.spring.error.UstraXApiWebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.tobe.spring.filter.UstraXApiCorsFilter
+  - com.gsitm.ustra.java.mvc.tobe.xapi.excel.controller.UstraExcelExportController
+  - com.gsitm.ustra.java.mvc.tobe.xapi.excel.services.GridExportImportServlet
+  methods:
+    nexacroRequestMappingHandlerAdapter:
+      annotations:
+      - Bean
+      - Order
+      parameters: []
+      return_type: HandlerAdapter
+    nexacroRestErrorHandler:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraXApiMappingExceptionResolver
+        type: UstraXApiMappingExceptionResolver
+      return_type: RestErrorHandler
+    nexacroWebPageRequestErrorResultHandler:
+      annotations:
+      - Bean
+      - Order
+      parameters:
+      - annotations: []
+        name: ustraXApiMappingExceptionResolver
+        type: UstraXApiMappingExceptionResolver
+      return_type: WebPageRequestErrorResultHandler
+    ustraExcelExportController:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraExcelExportController
+    ustraXApiFileView:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraXApiFileView
+    ustraXApiInterceptor:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraXApiInterceptor
+    ustraXApiMappingExceptionResolver:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: ustraXApiView
+        type: UstraXApiView
+      - annotations: []
+        name: properties
+        type: UstraMvcTobeProperties
+      return_type: UstraXApiMappingExceptionResolver
+    ustraXApiView:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraXApiView
+    xeniUrlMapping:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcTobeProperties
+      - annotations: []
+        name: context
+        type: ServletContext
+      return_type: SimpleUrlHandlerMapping
+    xeniWrappingController:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: ServletWrappingController
+com.gsitm.ustra.java.autoconfigure.UstraMvcTobeNexacroAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - ConditionalOnProperty
+  extends: null
+  implements: []
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+  - org.springframework.web.servlet.config.annotation.ViewControllerRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - com.gsitm.ustra.java.management.UstraManagementCore
+  - com.gsitm.ustra.java.management.bo.UstraManagementBo
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.UstraMvcTobeNexacro
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.config.NexacroTemplateResolverFactoryBean
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.config.UstraNexacroSpringTemplateEngineCustomizer
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAppSttController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityGroupController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityStatusController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroCodeController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileGroupController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsRequestControlController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroLoginHistoryController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroMenuController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroPrivateInfoAccessHistoryController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserApprovalController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserHistoryController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserMenuController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.management.controllers.UstraNexacroFileActionController
+  - com.gsitm.ustra.java.mvc.tobe.nexacro.properties.UstraMvcTobeNexacroProperties
+  methods:
+    nexacroSpringResourceTemplateResolver:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters:
+      - annotations: []
+        name: context
+        type: ApplicationContext
+      - annotations: []
+        name: properties
+        type: UstraMvcTobeNexacroProperties
+      return_type: SpringResourceTemplateResolver
+    nexacroSpringTemplateEngineCustomizer:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: context
+        type: ApplicationContext
+      - annotations: []
+        name: properties
+        type: UstraMvcTobeNexacroProperties
+      return_type: UstraNexacroSpringTemplateEngineCustomizer
+com.gsitm.ustra.java.autoconfigure.UstraMvcViewAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - AutoConfigureAfter
+  - AutoConfigureBefore
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - java.util.EnumSet
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.core.env.Environment
+  - org.springframework.web.servlet.ViewResolver
+  - org.springframework.web.servlet.config.annotation.InterceptorRegistry
+  - org.springframework.web.servlet.config.annotation.ViewControllerRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - org.thymeleaf.spring5.SpringTemplateEngine
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - org.thymeleaf.spring5.view.ThymeleafViewResolver
+  - org.thymeleaf.templatemode.TemplateMode
+  - org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
+  - org.thymeleaf.templateresolver.ITemplateResolver
+  - com.gsitm.ustra.java.autoconfigure.websocket.WebSocketHandlerValidationChecker
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.view.UstraMvcView
+  - com.gsitm.ustra.java.mvc.view.config.UstraSpringTemplateEngineCustomizer
+  - com.gsitm.ustra.java.mvc.view.error.StaticResourceWebPageRequestErrorResultHandler
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.mvc.view.properties.ViewType
+  - com.gsitm.ustra.java.mvc.view.rest.DefaultUstraSecuredWebRequestParser
+  - com.gsitm.ustra.java.mvc.view.rest.RawApiRestResultWrapperConditioner
+  - com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler
+  - com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor
+  - com.gsitm.ustra.java.mvc.view.web.HandlerValidationChecker
+  - com.gsitm.ustra.java.mvc.view.web.ProfileInfoController
+  - com.gsitm.ustra.java.mvc.view.web.ViewTemplateMappingController
+  - com.gsitm.ustra.web.socket.UstraWebSocket
+  methods:
+    profileInfoController:
+      annotations:
+      - Bean
+      - ConditionalOnExpression
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcViewProperties
+      return_type: ProfileInfoController
+    rawApiRestResultWrapperConditioner:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: RestResultWrapperConditioner
+    securedWebRequestParser:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraSecuredWebRequestParser
+    staticResourceWebPageRequestErrorResultHandler:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      - Order
+      parameters:
+      - annotations: []
+        name: staticWebpageRestExceptionHandler
+        type: StaticWebpageRestExceptionHandler
+      return_type: WebPageRequestErrorResultHandler
+    staticWebpageRestExceptionHandler:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcViewProperties
+      return_type: StaticWebpageRestExceptionHandler
+    viewTemplateMappingController:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      parameters: []
+      return_type: ViewTemplateMappingController
+    webSocketHandlerValidationChecker:
+      annotations:
+      - Bean
+      - ConditionalOnClass
+      parameters: []
+      return_type: HandlerValidationChecker
+com.gsitm.ustra.java.autoconfigure.UstraNetAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.net.UstraNet
+  - com.gsitm.ustra.java.net.properties.UstraNetProperties
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.UstraSecurityAutoConfiguration:
+  class_annotations:
+  - ConditionalOnClass
+  - AutoConfigureAfter
+  - EnableConfigurationProperties
+  - EnableWebSecurity
+  - ConditionalOnWebApplication
+  - Import
+  - DependsOn
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.boot.autoconfigure.AutoConfigureAfter
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.DependsOn
+  - org.springframework.context.annotation.Import
+  - org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.crypto.password.PasswordEncoder
+  - org.springframework.security.web.savedrequest.HttpSessionRequestCache
+  - org.springframework.security.web.savedrequest.RequestCache
+  - org.springframework.web.servlet.config.annotation.InterceptorRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.UstraSessionAuthenticationDuplicationConfiguration
+  - com.gsitm.ustra.java.core.utils.UstraEncShaUtils
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.security.UstraWebAuthenticationInfoDetector
+  - com.gsitm.ustra.java.security.UstraDummyAuthenticationProvider
+  - com.gsitm.ustra.java.security.UstraSecurity
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authority.UstraAuthority
+  - com.gsitm.ustra.java.security.authority.UstraAuthorityChecker
+  - com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer
+  - com.gsitm.ustra.java.security.authority.permission.AllGrantedPermissionAuthorityCheckerExecutor
+  - com.gsitm.ustra.java.security.authority.permission.DefaultPermissionAuthorityChecker
+  - com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckInterceptor
+  - com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityChecker
+  - com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckerExecutor
+  - com.gsitm.ustra.java.security.config.DefaultUstraSecurityConfigure
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  - com.gsitm.ustra.java.security.connection.ConcurrentMapConnectionStorage
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  - com.gsitm.ustra.java.security.filter.UstraXssApplicationWrapperAware
+  - com.gsitm.ustra.java.security.filter.xss.DefaultXssTextEscaper
+  - com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper
+  - com.gsitm.ustra.java.security.properties.UstraSecurityProperties
+  - com.gsitm.ustra.java.security.web.DefaultUstraWebAuthenticationInfoDetector
+  - com.gsitm.ustra.web.core.properties.UstraWebProperties
+  - com.gsitm.ustra.web.socket.config.UstraWebSocketConfigurer
+  methods:
+    authenticationManager:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: processors
+        type: List
+      return_type: UstraAuthenticationManager
+    defaultXssTextEscaper:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraXssTextEscaper
+    globalAuthorityConfigurer:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraGlobalAuthorityConfigurer
+    passwordEncoder:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: PasswordEncoder
+    permissionAuthorityCheckInterceptor:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: executor
+        type: PermissionAuthorityCheckerExecutor
+      - annotations: []
+        name: checkers
+        type: List
+      - annotations: []
+        name: manager
+        type: UstraAuthenticationManager
+      return_type: PermissionAuthorityCheckInterceptor
+    permissionAuthorityChecker:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: PermissionAuthorityChecker
+    permissionAuthorityCheckerExecutor:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: PermissionAuthorityCheckerExecutor
+    requestCache:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RequestCache
+    securityConfigure:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: authenticationManager
+        type: UstraAuthenticationManager
+      - annotations: []
+        name: properties
+        type: UstraMvcProperties
+      - annotations: []
+        name: webSocketConfigurers
+        type: List
+      - annotations: []
+        name: authorityChecker
+        type: UstraAuthorityChecker
+      return_type: UstraSecurityConfigure
+    securityConnectionStorage:
+      annotations:
+      - SuppressWarnings
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraConnectionStorage
+    ustraAuthorityChecker:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: UstraAuthorityChecker
+    ustraDummyAuthenticationProvider:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: manager
+        type: UstraAuthenticationManager
+      return_type: UstraDummyAuthenticationProvider
+    ustraWebAuthenticationInfoDetector:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: authenticationManager
+        type: UstraAuthenticationManager
+      return_type: UstraWebAuthenticationInfoDetector
+    ustraXssApplicationWrapperAware:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraSecurityProperties
+      - annotations: []
+        name: escaper
+        type: UstraXssTextEscaper
+      return_type: UstraXssApplicationWrapperAware
+com.gsitm.ustra.java.autoconfigure.UstraSecurityJwtAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - ConditionalOnWebApplication
+  - ConditionalOnProperty
+  - Import
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.concurrent.TimeUnit
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.Import
+  - org.springframework.scheduling.annotation.EnableScheduling
+  - org.springframework.scheduling.annotation.SchedulingConfigurer
+  - org.springframework.scheduling.config.ScheduledTaskRegistrar
+  - org.springframework.scheduling.config.TriggerTask
+  - org.springframework.scheduling.support.PeriodicTrigger
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.UstraJwtAuthenticationDuplicationConfiguration
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  - com.gsitm.ustra.java.security.jwt.UstraSecurityJwt
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.config.DefaultUstraSecurityJwtConfigure
+  - com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationAdvice
+  - com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationInterceptorWebMvcConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.UstraStringEncyptorAutoConfiguration:
+  class_annotations:
+  - EnableEncryptableProperties
+  - Configuration
+  - EnableConfigurationProperties
+  - AutoConfigureBefore
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.io.BufferedReader
+  - java.io.InputStreamReader
+  - org.apache.commons.lang3.StringUtils
+  - org.jasypt.encryption.StringEncryptor
+  - org.jasypt.encryption.pbe.PooledPBEStringEncryptor
+  - org.jasypt.encryption.pbe.config.SimpleStringPBEConfig
+  - org.springframework.boot.autoconfigure.AutoConfigureBefore
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.env.Environment
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.ResourceLoader
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils
+  - com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    stringEncryptor:
+      annotations:
+      - Bean
+      - ConditionalOnProperty
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: ustraProperties
+        type: UstraProperties
+      - annotations: []
+        name: resourceLoader
+        type: ResourceLoader
+      - annotations: []
+        name: environment
+        type: Environment
+      return_type: StringEncryptor
+com.gsitm.ustra.java.autoconfigure.UstraWebSecurityConfigure:
+  class_annotations:
+  - Slf4j
+  - EnableWebSecurity
+  - RequiredArgsConstructor
+  - ConditionalOnClass
+  - ConditionalOnWebApplication
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.context.annotation.Bean
+  - org.springframework.security.config.annotation.web.builders.HttpSecurity
+  - org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+  - org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
+  - org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer
+  - org.springframework.security.web.SecurityFilterChain
+  - org.springframework.security.web.savedrequest.RequestCache
+  - com.gsitm.ustra.java.security.UstraSecurity
+  - com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  - lombok.RequiredArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    filterChain:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: http
+        type: HttpSecurity
+      return_type: SecurityFilterChain
+    webSecurityCustomizer:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: WebSecurityCustomizer
+com.gsitm.ustra.java.autoconfigure.UstraWebSocketAutoConfiguration:
+  class_annotations:
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - Import
+  - ConditionalOnWebApplication
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Import
+  - org.springframework.web.socket.server.HandshakeHandler
+  - org.springframework.web.socket.server.standard.TomcatRequestUpgradeStrategy
+  - org.springframework.web.socket.server.support.DefaultHandshakeHandler
+  - com.gsitm.ustra.java.autoconfigure.websocket.UstraDelegatingWebSocketConfiguration
+  - com.gsitm.ustra.web.core.properties.UstraWebProperties
+  - com.gsitm.ustra.web.socket.UstraWebSocket
+  methods:
+    handshakeHandler:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      - ConditionalOnClass
+      parameters: []
+      return_type: HandshakeHandler
+com.gsitm.ustra.java.autoconfigure.cloud.UstraCloudEurekaClientAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableEurekaClient
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.cloud.netflix.eureka.EnableEurekaClient
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.cloud.eureka.client.UstraCloudEurekaClient
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.cloud.UstraCloudEurekaServerAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableEurekaServer
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.cloud.netflix.eureka.server.EnableEurekaServer
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.cloud.eureka.server.UstraCloudEurekaServer
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.cloud.UstraCloudGatewayAutoConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnClass
+  - EnableConfigurationProperties
+  - Import
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
+  - org.springframework.boot.context.properties.EnableConfigurationProperties
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.annotation.Import
+  - org.springframework.http.codec.ServerCodecConfigurer
+  - com.gsitm.ustra.java.cloud.gateway.UstraCloudGateway
+  - com.gsitm.ustra.java.cloud.gateway.config.GatewayFilterConfiguration
+  - com.gsitm.ustra.java.cloud.gateway.config.GatewayRequestLimitFilterConfiguration
+  - com.gsitm.ustra.java.cloud.gateway.properties.UstraCloudGatewayProperties
+  methods:
+    serverCodecConfigurer:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: ServerCodecConfigurer
+com.gsitm.ustra.java.autoconfigure.env.CoreSpringEnvironmentPostProcessor:
+  class_annotations: []
+  extends: SpringEnvironmentPostProcessor
+  implements: []
+  imports:
+  - org.springframework.boot.SpringApplication
+  - org.springframework.core.env.ConfigurableEnvironment
+  - org.springframework.core.io.ClassPathResource
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor
+  methods:
+    postProcessEnvironment:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: environment
+        type: ConfigurableEnvironment
+      - annotations: []
+        name: application
+        type: SpringApplication
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.env.DataMybatisSpringEnvironmentPostProcessor:
+  class_annotations: []
+  extends: SpringEnvironmentPostProcessor
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.boot.SpringApplication
+  - org.springframework.core.env.ConfigurableEnvironment
+  - org.springframework.util.ClassUtils
+  - com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor
+  methods:
+    postProcessEnvironment:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: environment
+        type: ConfigurableEnvironment
+      - annotations: []
+        name: application
+        type: SpringApplication
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.env.ManagementCoreSpringEnvironmentPostProcessor:
+  class_annotations: []
+  extends: SpringEnvironmentPostProcessor
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.boot.SpringApplication
+  - org.springframework.core.env.ConfigurableEnvironment
+  - com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor
+  methods:
+    postProcessEnvironment:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: environment
+        type: ConfigurableEnvironment
+      - annotations: []
+        name: application
+        type: SpringApplication
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.env.MvcViewSpringEnvironmentPostProcessor:
+  class_annotations: []
+  extends: SpringEnvironmentPostProcessor
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.boot.SpringApplication
+  - org.springframework.core.env.ConfigurableEnvironment
+  - com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor
+  methods:
+    postProcessEnvironment:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: environment
+        type: ConfigurableEnvironment
+      - annotations: []
+        name: application
+        type: SpringApplication
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.UstraJwtAuthenticationDuplicationConfiguration:
+  class_annotations:
+  - Slf4j
+  - Configuration
+  - SuppressWarnings
+  extends: null
+  implements:
+  - BeanFactoryAware
+  imports:
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.ArrayUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.BeansException
+  - org.springframework.beans.factory.BeanFactory
+  - org.springframework.beans.factory.BeanFactoryAware
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.beans.factory.support.AbstractBeanDefinition
+  - org.springframework.beans.factory.support.BeanDefinitionBuilder
+  - org.springframework.beans.factory.support.BeanDefinitionRegistry
+  - org.springframework.context.ApplicationListener
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.event.ContextRefreshedEvent
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.scheduling.support.PeriodicTrigger
+  - org.springframework.security.config.annotation.web.builders.WebSecurity
+  - org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.polling.UstraJwtAuthenticationDuplicationCheckController
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.UstraJwtAuthenticationWebSocketConfigurer
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.UstraJwtAuthenticationWebSocketHandler
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationRealTimeDuplicationCheckType
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.web.socket.config.UstraWebSocketConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    authDuplicationCheckTaskScheduler:
+      annotations:
+      - Bean
+      - Qualifier
+      parameters: []
+      return_type: ThreadPoolTaskScheduler
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    pollingDuplicationCheckSecurityConfigure:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraSecurityConfigure
+    registerPollingBean:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraJwtAuthenticationProcessor
+      - annotations: []
+        name: properties
+        type: UstraMvcViewProperties
+      - annotations: []
+        name: beanIndex
+        type: int
+      return_type: null
+    registerWebSocketBean:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraJwtAuthenticationProcessor
+      - annotations: []
+        name: mvcProperties
+        type: UstraMvcViewProperties
+      - annotations: []
+        name: beanIndex
+        type: int
+      return_type: null
+    schedulerInitializingApplicationListener:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SchedulerInitializingApplicationListener
+    setBeanFactory:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: beanFactory
+        type: BeanFactory
+      return_type: null
+    setDataProperties:
+      annotations:
+      - Autowired
+      parameters:
+      - annotations: []
+        name: dataProperties
+        type: UstraDataProperties
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.UstraSessionAuthenticationDuplicationConfiguration:
+  class_annotations:
+  - Slf4j
+  - Configuration
+  - SuppressWarnings
+  - ConditionalOnClass
+  extends: null
+  implements:
+  - BeanFactoryAware
+  imports:
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.ArrayUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.BeansException
+  - org.springframework.beans.factory.BeanFactory
+  - org.springframework.beans.factory.BeanFactoryAware
+  - org.springframework.beans.factory.annotation.Qualifier
+  - org.springframework.beans.factory.support.AbstractBeanDefinition
+  - org.springframework.beans.factory.support.BeanDefinitionBuilder
+  - org.springframework.beans.factory.support.BeanDefinitionRegistry
+  - org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+  - org.springframework.context.ApplicationListener
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.context.event.ContextRefreshedEvent
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.web.servlet.handler.SimpleUrlHandlerMapping
+  - com.gsitm.ustra.java.autoconfigure.security.duplication.polling.UstraSessionAuthenticationCheckController
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.view.UstraMvcView
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationRealTimeDuplicationCheckType
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    authSessionDuplicationCheckTaskScheduler:
+      annotations:
+      - Bean
+      - Qualifier
+      parameters: []
+      return_type: ThreadPoolTaskScheduler
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    registerPollingBean:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: properties
+        type: UstraMvcViewProperties
+      - annotations: []
+        name: beanIndex
+        type: int
+      return_type: null
+    sessionSchedulerInitializingApplicationListener:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SchedulerInitializingApplicationListener
+    setBeanFactory:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: beanFactory
+        type: BeanFactory
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.polling.AuthenticationPollingClientInfo:
+  class_annotations:
+  - Data
+  - SuperBuilder
+  - NoArgsConstructor
+  - AllArgsConstructor
+  - EqualsAndHashCode
+  extends: null
+  implements:
+  - ConnectionInfo
+  imports:
+  - java.io.IOException
+  - java.util.Map
+  - java.util.concurrent.atomic.AtomicInteger
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.connection.ConnectionInfo
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+  methods:
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: encryptedString
+        type: String
+      - annotations: []
+        name: secretKey
+        type: String
+      return_type: AuthenticationPollingClientInfo
+com.gsitm.ustra.java.autoconfigure.security.duplication.polling.UstraJwtAuthenticationDuplicationCheckController:
+  class_annotations:
+  - Slf4j
+  - SuppressWarnings
+  extends: AbstractController
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.concurrent.CompletableFuture
+  - java.util.concurrent.Executor
+  - java.util.concurrent.atomic.AtomicBoolean
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+  - org.springframework.web.servlet.ModelAndView
+  - org.springframework.web.servlet.mvc.AbstractController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  - com.gsitm.ustra.java.mvc.rest.model.RestErrResult
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.connection.ConnectionInfo
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    checkAutoLogout:
+      annotations: []
+      parameters: []
+      return_type: null
+    checkDuplicatedAuthentication:
+      annotations: []
+      parameters: []
+      return_type: null
+    createDefaultAsyncExecutor:
+      annotations: []
+      parameters: []
+      return_type: Executor
+    executeUnAuthentication:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: clientInfo
+        type: ConnectionInfo
+      return_type: null
+    handleRequestInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ModelAndView
+    whenConnected:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clientInfo
+        type: AuthenticationPollingClientInfo
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.polling.UstraSessionAuthenticationCheckController:
+  class_annotations:
+  - Slf4j
+  - SuppressWarnings
+  extends: AbstractController
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.concurrent.CompletableFuture
+  - java.util.concurrent.Executor
+  - java.util.concurrent.atomic.AtomicBoolean
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+  - org.springframework.web.servlet.ModelAndView
+  - org.springframework.web.servlet.mvc.AbstractController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  - com.gsitm.ustra.java.mvc.rest.model.RestErrResult
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.connection.ConnectionInfo
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    checkAutoLogout:
+      annotations: []
+      parameters: []
+      return_type: null
+    createDefaultAsyncExecutor:
+      annotations: []
+      parameters: []
+      return_type: Executor
+    executeUnAuthentication:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: clientInfo
+        type: ConnectionInfo
+      return_type: null
+    handleRequestInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ModelAndView
+    whenConnected:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clientInfo
+        type: ConnectionInfo
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.redis.RedisConnectionStorage:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraConnectionStorage
+  imports:
+  - java.time.Duration
+  - java.util.List
+  - java.util.Set
+  - java.util.stream.Collectors
+  - javax.annotation.PostConstruct
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.data.redis.core.RedisTemplate
+  - org.springframework.data.redis.core.ValueOperations
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.security.connection.ConnectionInfo
+  - com.gsitm.ustra.java.security.connection.UstraConnectionStorage
+  methods:
+    add:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: connection
+        type: T
+      return_type: null
+    contains:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: boolean
+    get:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: T
+    getAll:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters: []
+      return_type: List
+    getByDuplicationKey:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: duplicationKey
+        type: String
+      return_type: List
+    getFirstKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: keyExpr
+        type: String
+      return_type: String
+    getRedisKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: procId
+        type: String
+      - annotations: []
+        name: duplicationKey
+        type: String
+      return_type: String
+    init:
+      annotations:
+      - PostConstruct
+      parameters: []
+      return_type: null
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.AuthenticationWebSocketClientInfo:
+  class_annotations:
+  - Data
+  - SuperBuilder
+  - NoArgsConstructor
+  - AllArgsConstructor
+  - EqualsAndHashCode
+  extends: WebSocketClientInfo
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - java.util.concurrent.atomic.AtomicInteger
+  - org.springframework.web.socket.WebSocketSession
+  - com.gsitm.ustra.web.socket.handlers.WebSocketClientInfo
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.experimental.SuperBuilder
+  methods:
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: session
+        type: WebSocketSession
+      return_type: AuthenticationWebSocketClientInfo
+    toMap:
+      annotations: []
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.RefreshTokenUpdatedCommandMessageListener:
+  class_annotations: []
+  extends: null
+  implements:
+  - CommandMessageListener
+  imports:
+  - org.springframework.web.socket.WebSocketSession
+  - com.gsitm.ustra.web.socket.handlers.CommandMessage
+  - com.gsitm.ustra.web.socket.handlers.CommandMessageListener
+  methods:
+    action:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: session
+        type: WebSocketSession
+      - annotations: []
+        name: clientInfo
+        type: AuthenticationWebSocketClientInfo
+      - annotations: []
+        name: message
+        type: CommandMessage
+      return_type: null
+    commandTypes:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.UstraJwtAuthenticationWebSocketConfigurer:
+  class_annotations:
+  - SuppressWarnings
+  extends: UstraWebSocketConfigurer
+  implements: []
+  imports:
+  - org.springframework.web.socket.WebSocketHandler
+  - org.springframework.web.socket.server.HandshakeInterceptor
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationRealTimeDuplicationCheckType
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.web.socket.config.UstraWebSocketConfigurer
+  - com.gsitm.ustra.web.socket.interceptors.EncryptedHttpSessionHandshakeInterceptor
+  methods:
+    createDefaultWebSocketHandler:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraJwtAuthenticationProcessor
+      - annotations: []
+        name: secretKey
+        type: String
+      return_type: WebSocketHandler
+    interceptors:
+      annotations: []
+      parameters: []
+      return_type: HandshakeInterceptor
+    socketJs:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.autoconfigure.security.duplication.websocket.UstraJwtAuthenticationWebSocketHandler:
+  class_annotations:
+  - Slf4j
+  - SuppressWarnings
+  extends: EncryptedTextWebSocketHandler
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.concurrent.CompletableFuture
+  - java.util.concurrent.Executor
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
+  - org.springframework.web.socket.CloseStatus
+  - org.springframework.web.socket.WebSocketSession
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  - com.gsitm.ustra.web.socket.handlers.CommandMessage
+  - com.gsitm.ustra.web.socket.handlers.EncryptedTextWebSocketHandler
+  - com.gsitm.ustra.web.socket.handlers.WebSocketClientInfo
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    afterConnectionClosed:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: session
+        type: WebSocketSession
+      - annotations: []
+        name: status
+        type: CloseStatus
+      return_type: null
+    afterConnectionEstablished:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: session
+        type: WebSocketSession
+      return_type: null
+    broadcastDuplicatedLogin:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: userKey
+        type: String
+      - annotations: []
+        name: procId
+        type: String
+      - annotations: []
+        name: clientIp
+        type: String
+      return_type: null
+    checkDuplicatedAuthentication:
+      annotations: []
+      parameters: []
+      return_type: null
+    createClientInfo:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: session
+        type: WebSocketSession
+      return_type: AuthenticationWebSocketClientInfo
+    createDefaultAsyncExecutor:
+      annotations: []
+      parameters: []
+      return_type: Executor
+    executeUnAuthentication:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: clientInfo
+        type: AuthenticationWebSocketClientInfo
+      return_type: null
+    makeCommandMessage:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: type
+        type: String
+      - annotations: []
+        name: clientInfo
+        type: AuthenticationWebSocketClientInfo
+      return_type: CommandMessage
+com.gsitm.ustra.java.autoconfigure.test.ConfigurerTest:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.CustomJwtAuthentication:
+  class_annotations: []
+  extends: UstraJwtAuthentication
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  methods:
+    getCustomData:
+      annotations: []
+      parameters: []
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.test.ManagementBoController:
+  class_annotations:
+  - RestController
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  methods:
+    login:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: UstraJwtAuthentication
+com.gsitm.ustra.java.autoconfigure.test.UstraCoreCacheTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  - SpringJUnitConfig
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.util.Map
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.cache.CacheManager
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.CacheTestService
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.CacheConfiguration
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    testBasicCache:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testBasicCacheOnAddionalKey:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testCaffeineCache:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testEhCache:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.UstraCoreTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    ustraPropertiesTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.UstraDataFileTestProcessorBeanFactory:
+  class_annotations: []
+  extends: null
+  implements:
+  - FactoryBean
+  imports:
+  - org.springframework.beans.factory.FactoryBean
+  - com.gsitm.ustra.java.autoconfigure.UstraDataFileAutoConfiguration
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.data.file.processor.AbstractFileOperationProcessor
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurerContextHolder
+  methods:
+    getObject:
+      annotations:
+      - Override
+      parameters: []
+      return_type: AbstractFileOperationProcessor
+    getObjectType:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Class
+com.gsitm.ustra.java.autoconfigure.test.UstraDataTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.util.Map
+  - org.junit.jupiter.api.Assertions
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.TableInfoConfiguration
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.core.utils.UstraMapUtils
+  - com.gsitm.ustra.java.data.mapping.TableEntityMapper
+  - com.gsitm.ustra.java.data.utils.ProcedureManager
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    procedureManagerTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    tableMappingTest:
+      annotations:
+      - SuppressWarnings
+      - Test
+      parameters: []
+      return_type: null
+    ustraPropertiesTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.base.UstraFrameworkMockMvcTest:
+  class_annotations:
+  - ExtendWith
+  - AutoConfigureMockMvc
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.nio.charset.StandardCharsets
+  - java.util.ArrayList
+  - java.util.List
+  - javax.servlet.Filter
+  - org.junit.jupiter.api.extension.ExtendWith
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+  - org.springframework.test.context.junit.jupiter.SpringExtension
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.setup.MockMvcBuilders
+  - org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder
+  - org.springframework.web.filter.CharacterEncodingFilter
+  - com.gsitm.ustra.java.mvc.filter.UstraGlobalWrapperFilter
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoFilter
+  - com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler
+  - com.gsitm.ustra.java.mvc.rest.utils.RestResponseBodyAdvice
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  methods:
+    applyFrameworkConfigToMockMvcBuilder:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: builder
+        type: StandaloneMockMvcBuilder
+      return_type: null
+    createMockMvc:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: controller
+        type: Object
+      - annotations: []
+        name: filters
+        type: Filter
+      return_type: MockMvc
+com.gsitm.ustra.java.autoconfigure.test.config.JwtConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.autoconfigure.test.controllers.JwtController
+  - com.gsitm.ustra.java.security.authority.UstraAccessType
+  - com.gsitm.ustra.java.security.authority.UstraAuthority
+  - com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer
+  methods:
+    globalAuthorityConfigurer:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraGlobalAuthorityConfigurer
+    jwtController:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: JwtController
+com.gsitm.ustra.java.autoconfigure.test.controllers.JwtController:
+  class_annotations:
+  - RestController
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  methods:
+    authenticate:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    test:
+      annotations:
+      - GetMapping
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.autoconfigure.test.controllers.MockMvcSampleController:
+  class_annotations:
+  - RestController
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.RestController
+  methods:
+    getMap:
+      annotations:
+      - GetMapping
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.autoconfigure.test.models.MenuModel:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  extends: UstraBaseModel
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.data.base.UstraBaseModel
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.models.UserModel:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.core.CacheTestService:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - org.springframework.cache.annotation.Cacheable
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.cache.UstraCacheNames
+  - com.gsitm.ustra.java.core.cache.UstraEhCacheNames
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getCacheData:
+      annotations:
+      - Cacheable
+      parameters: []
+      return_type: Map
+    getCacheDataOnAddtionalKey:
+      annotations:
+      - Cacheable
+      parameters: []
+      return_type: Map
+    getCacheDataOnCaffeineCache:
+      annotations:
+      - Cacheable
+      parameters: []
+      return_type: Map
+    getCacheDataOnEhCache:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Map
+com.gsitm.ustra.java.autoconfigure.test.unit.core.CryptoTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    clientCryptoTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.DateTypeTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - org.junit.jupiter.api.Test
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    dateFormatter:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.EventListenerTest:
+  class_annotations:
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration.EventArg2
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration.UstraEventListener1
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration.UstraEventListener1.EventArg1
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration.UstraEventListener2
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  methods:
+    notifyListeners:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.MessageFormatTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.text.MessageFormat
+  - org.junit.jupiter.api.Test
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    testFormat:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.ObjectMappingTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Map
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraBeanUtils
+  - com.gsitm.ustra.java.core.utils.UstraMapUtils
+  - com.gsitm.ustra.java.core.utils.annotation.MapField
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    objectToMap:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.ProfileTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    productionTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.UtilityTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.net.MalformedURLException
+  - org.junit.jupiter.api.Test
+  - org.springframework.core.io.FileSystemResource
+  - org.springframework.core.io.UrlResource
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    base62:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    pathPatternTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.XmlMappingTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.io.ByteArrayInputStream
+  - java.io.IOException
+  - java.util.Map
+  - org.junit.jupiter.api.Test
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.gsitm.ustra.java.core.utils.UstraXmlUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    mapEucKrInputStream:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    mapEucKrString:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.core.config.CacheConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.core.CacheTestService
+  methods:
+    cacheTestService:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: CacheTestService
+com.gsitm.ustra.java.autoconfigure.test.unit.core.config.EventListenerConfiguration:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - lombok.Data
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    ustraEventListener11:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraEventListener1
+    ustraEventListener12:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraEventListener1
+    ustraEventListener21:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraEventListener2
+    ustraEventListener22:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: UstraEventListener2
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataCaseFormattingTest:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataExcelTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  - SpringJUnitConfig
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.Arrays
+  - java.util.List
+  - java.util.Map
+  - org.apache.commons.lang3.StringUtils
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.ResourceLoader
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.DataExcelTestConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.ExcelTestDataMapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToMultiSheetDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalExcelFileToDataConverter
+  - com.gsitm.ustra.java.data.poi.UstraExcelModel
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils.RowInfo
+  - com.gsitm.ustra.java.data.poi.UstraExcelWorkbook
+  - com.gsitm.ustra.java.data.poi.annotation.UstraExcelCellInfo
+  - com.gsitm.ustra.java.data.poi.convert.DefaultDataFormatter
+  - com.gsitm.ustra.java.data.poi.convert.UstraExcelCellDecoder
+  - com.gsitm.ustra.java.data.poi.convert.UstraExcelDecodingOption
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.Data
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    paginationDataToExcel:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    readExcelByEntity:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    readExcelByMap:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    readExcelDataProcessByMap:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    readExcelMultisheetDataProcessByMap:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    readExcelToMapByFileModule:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataFileImageTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.Arrays
+  - java.util.List
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.core.io.ByteArrayResource
+  - org.springframework.core.io.FileSystemResource
+  - org.springframework.core.io.Resource
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.FileOperationConfiguration
+  - com.gsitm.ustra.java.core.utils.UstraFileUtils
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    convertBase64SrcFromTiffFile:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    convertBase64SrcFromTiffResource:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataFileTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - org.junit.jupiter.api.DisplayName
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.core.io.FileSystemResource
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.FileOperationConfiguration
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileUploadInput
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalTextFileConvert
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    convertBase64:
+      annotations:
+      - Test
+      - DisplayName
+      parameters: []
+      return_type: null
+    convertTextHtml:
+      annotations:
+      - Test
+      - DisplayName
+      parameters: []
+      return_type: null
+    uploadFromMetaData:
+      annotations:
+      - Test
+      - DisplayName
+      parameters: []
+      return_type: null
+    uploadFromResource:
+      annotations:
+      - Test
+      - DisplayName
+      parameters: []
+      return_type: null
+    uploadOfResourceAndMetaData:
+      annotations:
+      - Test
+      - DisplayName
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataMybatisPaginationTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.MybatisConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.OracleDataRepository
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.utils.UstraSqlHelper
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    parseErrorTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataMybatisTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.models.MenuModel
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.MybatisConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.MybatisConfiguration.TestService
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.services.OracleDataService
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.services.SqlDataService
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.data.utils.UstraSqlHelper
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    mutliDataSourceTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    paginationProgrammaticTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    paginationTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    paginationTest2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    parseErrorPaginationTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    selectTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    transactionTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataProcedureTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.sql.Timestamp
+  - java.time.LocalDateTime
+  - java.time.ZoneId
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.sql.DataSource
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.ProcedureManagerConfiguration
+  - com.gsitm.ustra.java.core.utils.annotation.MapField
+  - com.gsitm.ustra.java.data.utils.procedure.ProcedureCallOption
+  - com.gsitm.ustra.java.data.utils.procedure.ProcedureCallResult
+  - com.gsitm.ustra.java.data.utils.procedure.UstraMySqlProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraOracleProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraPostgreProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraSqlProcedureManager
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    callMySqlProcedure1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callMySqlProcedure2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callMySqlProcedure3:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callOralceProcedure1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callOralceProcedure2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callOralceProcedure3:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callOralceProcedure4:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callPostgreProcedure:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callPostgreProcedure2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callPostgreProcedure3:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callPostgreProcedureWithModel:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callSqlProcedure1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callSqlProcedure2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    callSqlProcedure3:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataRedisTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.concurrent.TimeUnit
+  - java.util.stream.Collectors
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.data.DataTemplateTest:
+  class_annotations:
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkMockMvcTest
+  implements: []
+  imports:
+  - org.hamcrest.CoreMatchers.is
+  - org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.model
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.mail.Message.RecipientType
+  - org.junit.jupiter.api.Disabled
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.http.MediaType
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.result.MockMvcResultHandlers
+  - com.gsitm.ustra.java.autoconfigure.test.base.UstraFrameworkMockMvcTest
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.config.DataTemplateConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.controller.DataTemplateController
+  - com.gsitm.ustra.java.core.utils.UstraSystemUtils
+  - com.gsitm.ustra.java.data.utils.UstraTemplateUtils
+  - com.gsitm.ustra.java.net.mail.DefaultMailSender
+  - com.gsitm.ustra.java.net.mail.MailData
+  - com.gsitm.ustra.java.net.mail.MailData.EmailReceiver
+  - com.gsitm.ustra.java.net.mail.MailSender
+  - com.gsitm.ustra.java.net.properties.UstraNetProperties
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  methods:
+    callController:
+      annotations:
+      - Test
+      - Disabled
+      parameters: []
+      return_type: null
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    html:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    xml:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.DataExcelTestConfiguration:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.excel.SampleDataExcelDataProcessor
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.excel.SampleDataExcelMultiSheetDataProcessor
+  methods:
+    sampleDataExcelDataProcessor:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SampleDataExcelDataProcessor
+    sampleDataExcelMultiSheetDataProcessor:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SampleDataExcelMultiSheetDataProcessor
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.DataTemplateConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.controller.DataTemplateController
+  methods:
+    dataTemplateController:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: DataTemplateController
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.FileOperationConfiguration:
+  class_annotations:
+  - Slf4j
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - java.util.LinkedList
+  - java.util.List
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - com.gsitm.ustra.java.data.file.config.FileOperationConfigurer
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.data.file.processor.AbstractFileOperationProcessor
+  - com.gsitm.ustra.java.data.file.processor.storage.FileMetaDataStorage
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    fileMetaDataStorage:
+      annotations: []
+      parameters: []
+      return_type: FileMetaDataStorage
+    metaFileOperationProcessor:
+      annotations:
+      - Bean
+      - Order
+      parameters:
+      - annotations: []
+        name: fileGroupPolicyStore
+        type: FileGroupPolicyStore
+      return_type: AbstractFileOperationProcessor
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.MybatisConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.autoconfigure.test.models.MenuModel
+  - com.gsitm.ustra.java.autoconfigure.test.models.UserModel
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.TestRepository
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.services.LoggerQueryLoggingWriter
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.services.OracleDataService
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.services.SqlDataService
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  methods:
+    loggerQueryLoggingWriter:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: LoggerQueryLoggingWriter
+    oracleDataService:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: OracleDataService
+    sqlDataService:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: SqlDataService
+    testService:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: repository
+        type: TestRepository
+      return_type: TestService
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.ProcedureManagerConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - javax.sql.DataSource
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.data.utils.procedure.UstraMySqlProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraOracleProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraPostgreProcedureManager
+  - com.gsitm.ustra.java.data.utils.procedure.UstraSqlProcedureManager
+  methods:
+    mySqlProcedureManager:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: dataSource
+        type: DataSource
+      return_type: UstraMySqlProcedureManager
+    oracleProcedureManager:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: dataSource
+        type: DataSource
+      return_type: UstraOracleProcedureManager
+    postgreProcedureManager:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: dataSource
+        type: DataSource
+      return_type: UstraPostgreProcedureManager
+    sqlProcedureManager:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: dataSource
+        type: DataSource
+      return_type: UstraSqlProcedureManager
+com.gsitm.ustra.java.autoconfigure.test.unit.data.config.TableInfoConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - com.gsitm.ustra.java.data.mapping.UstraTableMappingModel
+  methods:
+    testUstraTableMappingModel:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: TestUstraTableMappingModel
+com.gsitm.ustra.java.autoconfigure.test.unit.data.controller.DataTemplateController:
+  class_annotations:
+  - Controller
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.stereotype.Controller
+  - org.springframework.ui.Model
+  - org.springframework.web.bind.annotation.PostMapping
+  methods:
+    template:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations: []
+        name: model
+        type: Model
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.test.unit.data.excel.SampleDataExcelDataProcessor:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - ExcelDataPostProcessor
+  imports:
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelDataPostProcessor
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter.Option
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils.RowInfo
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    doProcess:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: option
+        type: Option
+      - annotations: []
+        name: excelReadDatas
+        type: List
+      - annotations: []
+        name: rowInfos
+        type: List
+      return_type: Object
+com.gsitm.ustra.java.autoconfigure.test.unit.data.excel.SampleDataExcelMultiSheetDataProcessor:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - ExcelDataMultisheetPostProcessor
+  imports:
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelDataMultisheetPostProcessor
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToMultiSheetDataProcessConverter.Option
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils.RowInfo
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    doProcess:
+      annotations:
+      - Override
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: option
+        type: Option
+      - annotations: []
+        name: rowInfoMap
+        type: Map
+      return_type: Object
+com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.ExcelTestDataMapper:
+  class_annotations:
+  - Mapper
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  methods:
+    selectMenuAccessList:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pr
+        type: PaginationRequest
+      return_type: List
+com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.OracleDataRepository:
+  class_annotations:
+  - Mapper
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  methods:
+    getDataSourceName:
+      annotations: []
+      parameters: []
+      return_type: String
+    selectNormalData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pr
+        type: PaginationRequest
+      return_type: PaginationList
+    selectParseErroredData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pr
+        type: PaginationRequest
+      return_type: PaginationList
+com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.SqlDataRepository:
+  class_annotations:
+  - Mapper
+  extends: null
+  implements: []
+  imports:
+  - org.apache.ibatis.annotations.Mapper
+  methods:
+    getDataSourceName:
+      annotations: []
+      parameters: []
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.TestRepository:
+  class_annotations:
+  - Mapper
+  - DataSource
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - org.apache.ibatis.annotations.Mapper
+  - com.gsitm.ustra.java.autoconfigure.test.models.MenuModel
+  - com.gsitm.ustra.java.autoconfigure.test.models.UserModel
+  - com.gsitm.ustra.java.data.datasource.DataSource
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  methods:
+    deleteAllTest:
+      annotations: []
+      parameters: []
+      return_type: int
+    getMenuList:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageBound
+        type: PageBounds
+      return_type: PageList
+    getMenuList2:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageBound
+        type: PaginationRequest
+      - annotations: []
+        name: sysCd
+        type: String
+      - annotations: []
+        name: sysCd2
+        type: String
+      - annotations: []
+        name: sysCd3
+        type: String
+      return_type: PaginationList
+    getMenuList3:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageBound
+        type: PaginationRequest
+      - annotations: []
+        name: criteria
+        type: UstraMenuModel
+      return_type: PaginationList
+    getMenuList4:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageBound
+        type: PaginationRequest
+      - annotations: []
+        name: criteria
+        type: UstraMenuModel
+      return_type: PaginationList
+    getUserList:
+      annotations: []
+      parameters: []
+      return_type: List
+    insertTest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: param
+        type: Map
+      return_type: int
+    pagingSelect:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageBound
+        type: PaginationRequest
+      - annotations: []
+        name: criteria
+        type: UstraMenuModel
+      return_type: PaginationList
+com.gsitm.ustra.java.autoconfigure.test.unit.data.services.LoggerQueryLoggingWriter:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - QueryLogWriter
+  imports:
+  - com.gsitm.ustra.java.data.logging.query.QueryLogWriter
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    support:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: statementId
+        type: String
+      return_type: boolean
+    writeLog:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: statementId
+        type: String
+      - annotations: []
+        name: orgCont
+        type: String
+      - annotations: []
+        name: execCont
+        type: String
+      - annotations: []
+        name: ms
+        type: long
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.data.services.OracleDataService:
+  class_annotations:
+  - Service
+  - Transactional
+  - DataSource
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Service
+  - org.springframework.transaction.annotation.Propagation
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.OracleDataRepository
+  - com.gsitm.ustra.java.data.datasource.DataSource
+  methods:
+    getDataSourceName:
+      annotations:
+      - Transactional
+      parameters: []
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.test.unit.data.services.SqlDataService:
+  class_annotations:
+  - Service
+  - Transactional
+  - DataSource
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Service
+  - org.springframework.transaction.annotation.Transactional
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.OracleDataRepository
+  - com.gsitm.ustra.java.autoconfigure.test.unit.data.repositories.SqlDataRepository
+  - com.gsitm.ustra.java.data.datasource.DataSource
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  methods:
+    getDataSourceName:
+      annotations: []
+      parameters: []
+      return_type: String
+    getDataSourceNames:
+      annotations: []
+      parameters: []
+      return_type: List
+    getOracleDataSourceName:
+      annotations:
+      - DataSource
+      parameters: []
+      return_type: String
+com.gsitm.ustra.java.autoconfigure.test.unit.managment.ManagementCodeTest:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.managment.UserAccountPolicyTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.management.services.policies.DefaultUstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver.ValidationResult
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    setUp:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testUserId:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testUserPassword:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.net.MailTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.nio.charset.Charset
+  - java.util.ArrayList
+  - java.util.List
+  - javax.mail.Message.RecipientType
+  - org.apache.commons.io.FileUtils
+  - org.junit.jupiter.api.BeforeAll
+  - org.junit.jupiter.api.Disabled
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.core.io.ClassPathResource
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.net.mail.DefaultMailSender
+  - com.gsitm.ustra.java.net.mail.MailData
+  - com.gsitm.ustra.java.net.mail.MailData.EmailReceiver
+  - com.gsitm.ustra.java.net.mail.MailSender
+  - com.gsitm.ustra.java.net.properties.UstraNetProperties
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    fileMailTest:
+      annotations:
+      - Test
+      - Disabled
+      parameters: []
+      return_type: null
+    mailTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    mutiMailTest:
+      annotations:
+      - Test
+      - Disabled
+      parameters: []
+      return_type: null
+    properties:
+      annotations:
+      - BeforeAll
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.net.NetUtilTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    ipRegex:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.unit.sample.MockMvcSampleTest:
+  class_annotations:
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkMockMvcTest
+  implements: []
+  imports:
+  - org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+  - java.util.Arrays
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.http.MediaType
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.result.MockMvcResultHandlers
+  - com.gsitm.ustra.java.autoconfigure.test.base.UstraFrameworkMockMvcTest
+  - com.gsitm.ustra.java.autoconfigure.test.controllers.MockMvcSampleController
+  - com.gsitm.ustra.java.autoconfigure.test.unit.sample.config.MockMvcSampleConfiguration
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  methods:
+    callController:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+com.gsitm.ustra.java.autoconfigure.test.unit.sample.config.MockMvcSampleConfiguration:
+  class_annotations:
+  - Configuration
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - com.gsitm.ustra.java.autoconfigure.test.controllers.MockMvcSampleController
+  methods:
+    mockMvcSampleController:
+      annotations:
+      - Bean
+      parameters: []
+      return_type: MockMvcSampleController
+com.gsitm.ustra.java.autoconfigure.test.unit.security.CustomAuthentication:
+  class_annotations: []
+  extends: UstraAuthentication
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.security.CustomAuthenticationProviderConfigurer:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraAuthenticationConfigurer
+  imports:
+  - java.util.ArrayList
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  methods:
+    userDetailProvider:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraUserDetailProvider
+com.gsitm.ustra.java.autoconfigure.test.unit.security.CustomJwtProviderConfigurer:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraJwtAuthenticationConfigurer
+  imports:
+  - org.springframework.security.core.Authentication
+  - com.gsitm.ustra.java.autoconfigure.test.CustomJwtAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims
+  methods:
+    jwtClaimAppender:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtClaimAppender
+com.gsitm.ustra.java.autoconfigure.test.unit.security.CustomUserRequestToken:
+  class_annotations: []
+  extends: UserNamePasswordAuthenticationRequestToken
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  methods: {}
+com.gsitm.ustra.java.autoconfigure.test.unit.security.UstraSecurityTest:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: UstraFrameworkTest
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.test.UstraFrameworkTest
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    authenticateByRequestToken:
+      annotations: []
+      parameters: []
+      return_type: null
+    authenticationByRequest:
+      annotations: []
+      parameters: []
+      return_type: null
+    authenticationTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+com.gsitm.ustra.java.autoconfigure.test.unit.security.jwt.UstraSecurityJwtTest:
+  class_annotations:
+  - Slf4j
+  - SpringJUnitConfig
+  - EnableAutoConfiguration
+  extends: UstraFrameworkMockMvcTest
+  implements: []
+  imports:
+  - org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
+  - org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+  - java.lang.reflect.InvocationTargetException
+  - java.lang.reflect.Method
+  - org.junit.jupiter.api.Assertions
+  - org.junit.jupiter.api.Test
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - org.springframework.http.MediaType
+  - org.springframework.security.core.Authentication
+  - org.springframework.security.core.context.SecurityContextHolder
+  - org.springframework.test.context.junit.jupiter.SpringJUnitConfig
+  - org.springframework.test.web.servlet.MockMvc
+  - org.springframework.test.web.servlet.MvcResult
+  - org.springframework.test.web.servlet.result.MockMvcResultHandlers
+  - org.springframework.util.LinkedMultiValueMap
+  - org.springframework.util.MultiValueMap
+  - com.gsitm.ustra.java.autoconfigure.test.base.UstraFrameworkMockMvcTest
+  - com.gsitm.ustra.java.autoconfigure.test.config.JwtConfiguration
+  - com.gsitm.ustra.java.autoconfigure.test.controllers.JwtController
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.test.utils.UstraFrameworkConfigurer
+  - io.jsonwebtoken.Claims
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    authenticateByRequestToken:
+      annotations: []
+      parameters: []
+      return_type: null
+    authenticationByRequest:
+      annotations: []
+      parameters: []
+      return_type: null
+    authenticationTest:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    configurer:
+      annotations:
+      - Override
+      parameters: []
+      return_type: UstraFrameworkConfigurer
+    getProcess:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: UstraAuthenticationProcessor
+com.gsitm.ustra.java.autoconfigure.test.utils.ClassScannigTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.util.Set
+  - org.junit.jupiter.api.Test
+  - org.reflections.Reflections
+  - org.springframework.beans.factory.config.BeanDefinition
+  - org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider
+  - org.springframework.core.type.filter.AnnotationTypeFilter
+  - com.gsitm.ustra.java.data.mapping.TableMapping
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    scanByAnnotation:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.utils.PropertyCrytoStringGenerator:
+  class_annotations:
+  - Slf4j
+  - EnableAutoConfiguration
+  extends: null
+  implements: []
+  imports:
+  - java.io.UnsupportedEncodingException
+  - org.jasypt.encryption.StringEncryptor
+  - org.jasypt.encryption.pbe.PooledPBEStringEncryptor
+  - org.jasypt.encryption.pbe.config.SimpleStringPBEConfig
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.autoconfigure.EnableAutoConfiguration
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    createKey:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    createKeyForAes:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    decodeString:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    encodeString:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    setUp:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testClientEncryption:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.test.utils.SuperTypeTokenTest:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.lang.reflect.Type
+  - org.junit.jupiter.api.Test
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.core.ResolvableType
+  - com.fasterxml.jackson.core.type.TypeReference
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.type.TypeFactory
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - lombok.Data
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getGenericType:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    getGenericType2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    getParamGenericType:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    getParamGenericType2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    getTypeRef:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clazz
+        type: Class
+      return_type: JavaType
+    utilTest1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    utilTest2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.autoconfigure.websocket.UstraDelegatingWebSocketConfiguration:
+  class_annotations:
+  - Configuration
+  extends: DelegatingWebSocketConfiguration
+  implements: []
+  imports:
+  - org.springframework.context.annotation.Bean
+  - org.springframework.context.annotation.Configuration
+  - org.springframework.core.Ordered
+  - org.springframework.lang.Nullable
+  - org.springframework.scheduling.TaskScheduler
+  - org.springframework.web.servlet.HandlerMapping
+  - org.springframework.web.socket.config.annotation.DelegatingWebSocketConfiguration
+  - org.springframework.web.socket.server.support.WebSocketHandlerMapping
+  methods:
+    webSocketHandlerMapping:
+      annotations:
+      - Bean
+      - Override
+      parameters:
+      - annotations:
+        - Nullable
+        name: defaultSockJsTaskScheduler
+        type: TaskScheduler
+      return_type: HandlerMapping
+com.gsitm.ustra.java.autoconfigure.websocket.WebSocketHandlerValidationChecker:
+  class_annotations: []
+  extends: null
+  implements:
+  - HandlerValidationChecker
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.web.HandlerValidationChecker
+  - com.gsitm.ustra.web.socket.utils.UstraWebSocketUtils
+  methods:
+    validate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: Boolean

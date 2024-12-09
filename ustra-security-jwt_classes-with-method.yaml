@@ -1,0 +1,1783 @@
+com.gsitm.ustra.java.security.jwt.UstraSecurityJwt:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.security.jwt.authentication.UstraCurrentJwtInfo:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - org.springframework.http.HttpHeaders
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  methods:
+    getAccessAndRefreshTokenHeader:
+      annotations: []
+      parameters: []
+      return_type: HttpHeaders
+    getAccessToken:
+      annotations: []
+      parameters: []
+      return_type: String
+    getAccessTokenHeader:
+      annotations: []
+      parameters: []
+      return_type: HttpHeaders
+    getLoginToken:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRefreshToken:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRefreshTokenHeader:
+      annotations: []
+      parameters: []
+      return_type: HttpHeaders
+com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer:
+  class_annotations: []
+  extends: UstraAuthenticationConfigurer
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.EmptyTokenJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookiePostmanJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  methods:
+    authenticationProperties:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationProperties
+    jwtAuthenticationParser:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtAuthenticationParser
+    jwtAuthenticationStore:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtAuthenticationStore
+    jwtClaimAppender:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtClaimAppender
+    jwtClaimChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtClaimChecker
+    jwtRefreshTokenStore:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtRefreshTokenStore
+    jwtValidationFailureDecisioner:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraJwtValidationFailureDecisioner
+com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager:
+  class_annotations: []
+  extends: UstraAuthenticationManager
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.security.core.context.SecurityContextHolder
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  methods:
+    addClientData:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: null
+    addServerData:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: null
+    clearCilentData:
+      annotations: []
+      parameters: []
+      return_type: null
+    clearServerData:
+      annotations: []
+      parameters: []
+      return_type: null
+    getAuthenticationProcessor:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: UstraJwtAuthenticationProcessor
+    getClientData:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      return_type: Map
+    getClientSecretKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    getCurrentToken:
+      annotations: []
+      parameters: []
+      return_type: UstraCurrentJwtInfo
+    getServerData:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      return_type: Map
+    recreateToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: null
+    removeCilentData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      return_type: null
+    removeClientData:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
+    removeServerData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: groupName
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication:
+  class_annotations:
+  - Slf4j
+  - Data
+  - EqualsAndHashCode
+  extends: UstraAuthentication
+  implements: []
+  imports:
+  - java.util.Map
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - io.jsonwebtoken.Claims
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    addAdditionalPeroperties:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: null
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+    getAdditionalProperties:
+      annotations: []
+      parameters: []
+      return_type: Map
+    getName:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+    isAnonymous:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean
+    parseData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      - annotations: []
+        name: clientCryptoSecret
+        type: String
+      return_type: UstraJwtAuthentication
+    removeAdditionalPeroperties:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
+    setAdditionalProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: addtionalProperties
+        type: Map
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.claims.AccessInfo:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - java.util.LinkedHashMap
+  - java.util.Map
+  - org.apache.commons.beanutils.BeanUtils
+  - lombok.Data
+  methods:
+    toMap:
+      annotations: []
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - UstraJwtClaimAppender
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.security.core.Authentication
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    append:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: claims
+        type: UstraJwtClaims
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.security.core.Authentication
+  methods:
+    append:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: UstraJwtClaims
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - io.jsonwebtoken.Claims
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: boolean
+com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - java.util.HashMap
+  - java.util.Map
+  - lombok.Data
+  methods:
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Object
+    put:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: obj
+        type: Object
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.decisioner.EmptyTokenJwtValidationFailureDecisioner:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraJwtValidationFailureDecisioner
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  methods:
+    decide:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods:
+    decide:
+      annotations: []
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.security.jwt.authentication.parser.DefaultUstraJwtAuthenticationParser:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - UstraJwtAuthenticationParser
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.HashMap
+  - java.util.Map
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.SignatureAlgorithm
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - io.jsonwebtoken.impl.TextCodec
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    create:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: String
+    createHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authSysCd
+        type: String
+      return_type: Object
+    createJwtToken:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations:
+        - Nonnull
+        name: condition
+        type: TokenCreationCondition
+      return_type: String
+    getJwtAuthenticationProperties:
+      annotations: []
+      parameters: []
+      return_type: UstraJwtAuthenticationProperties
+    isAuthenticatedToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: boolean
+    parse:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: headerClaims
+        type: HeaderClaims
+      return_type: UstraJwtAuthentication
+    parseHeader:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: JwsHeader
+    refresh:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: headers
+        type: JwsHeader
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+com.gsitm.ustra.java.security.jwt.authentication.parser.EncryptedUstraJwtAuthenticationParser:
+  class_annotations:
+  - Slf4j
+  extends: DefaultUstraJwtAuthenticationParser
+  implements: []
+  imports:
+  - java.security.KeyFactory
+  - java.security.interfaces.RSAPrivateKey
+  - java.security.interfaces.RSAPublicKey
+  - java.security.spec.RSAPrivateKeySpec
+  - java.security.spec.RSAPublicKeySpec
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.LinkedHashMap
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.UUID
+  - javax.annotation.Nonnull
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.utils.UstraEncRsaUtils
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - com.nimbusds.jose.EncryptionMethod
+  - com.nimbusds.jose.JWEAlgorithm
+  - com.nimbusds.jose.JWEHeader
+  - com.nimbusds.jose.crypto.RSADecrypter
+  - com.nimbusds.jose.crypto.RSAEncrypter
+  - com.nimbusds.jwt.EncryptedJWT
+  - com.nimbusds.jwt.JWTClaimsSet
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.impl.DefaultClaims
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    create:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: String
+    createHeader:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authSysCd
+        type: String
+      return_type: Object
+    createJwtToken:
+      annotations: []
+      parameters:
+      - annotations:
+        - Nonnull
+        name: condition
+        type: DefaultUstraJwtAuthenticationParser
+      return_type: String
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    parse:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      - annotations: []
+        name: includeExpiredToken
+        type: boolean
+      return_type: HeaderClaims
+    refresh:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: headers
+        type: JwsHeader
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties.EncryptionType
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.JwsHeader
+  methods:
+    create:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: String
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: jwtAuthenticationProperties
+        type: UstraJwtAuthenticationProperties
+      return_type: UstraJwtAuthenticationParser
+    isAuthenticatedToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: boolean
+    parse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      - annotations: []
+        name: includeExpiredToken
+        type: boolean
+      return_type: HeaderClaims
+    parseHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: JwsHeader
+    refresh:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: headers
+        type: JwsHeader
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor:
+  class_annotations:
+  - Getter
+  extends: DefaultUstraAuthenticationProcessor
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  - lombok.Getter
+  methods:
+    authenticate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: R
+    createAnonymousAuthentication:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: previousAuthentication
+        type: R
+      return_type: R
+    recreateToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+    setApplicationContext:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      return_type: null
+    setConfigurer:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: configurer
+        type: UstraAuthenticationConfigurer
+      return_type: null
+    unAuthenticate:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: R
+com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  extends: UstraAuthenticationProperties
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods:
+    isExcludeValidationUrl:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestUri
+        type: String
+      return_type: boolean
+com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel:
+  class_annotations:
+  - Data
+  - AllArgsConstructor
+  - NoArgsConstructor
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  methods: {}
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookieJwtAuthenticationStore:
+  class_annotations: []
+  extends: HttpHeaderJwtAuthenticationStore
+  implements: []
+  imports:
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.ResponseCookie
+  - com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - lombok.Getter
+  - lombok.Setter
+  methods:
+    getToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+    getTokenFromCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+    recreateToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+    storeAuthenticationToCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+    storeToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      - annotations: []
+        name: token
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookiePostmanJwtAuthenticationStore:
+  class_annotations: []
+  extends: HttpHeaderCookieJwtAuthenticationStore
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  methods:
+    getTokenFromCookie:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+    storeAuthenticationToCookie:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderJwtAuthenticationStore:
+  class_annotations: []
+  extends: UstraJwtAuthenticationStore
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  methods:
+    getToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+    storeToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      - annotations: []
+        name: token
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.store.HttpParameterJwtAuthenticatonStore:
+  class_annotations: []
+  extends: HttpHeaderJwtAuthenticationStore
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  methods:
+    getToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+com.gsitm.ustra.java.security.jwt.authentication.store.NonStoredUstraJwtRefreshTokenStore:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraJwtRefreshTokenStore
+  imports:
+  - java.util.Collections
+  - java.util.Date
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.DefaultUstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.SignatureAlgorithm
+  methods:
+    createRefreshToken:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: validSeconds
+        type: Long
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: String
+    get:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    getTokenUsedList:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: refreshTokens
+        type: List
+      return_type: List
+    refresh:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: claims
+        type: Claims
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: reUse
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: refreshToken
+        type: String
+      return_type: null
+    updatePayload:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: accessToken
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - UstraAuthenticationStore
+  imports:
+  - java.time.ZoneId
+  - java.util.Date
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.exception.UstraException
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken
+  - com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims
+  - com.gsitm.ustra.java.security.jwt.authentication.decisioner.UstraJwtValidationFailureDecisioner
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.impl.DefaultClaims
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    createToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: headers
+        type: JwsHeader
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+    get:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: UstraJwtAuthentication
+    getJwtAuthenticationProperties:
+      annotations: []
+      parameters: []
+      return_type: UstraJwtAuthenticationProperties
+    getToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      return_type: String
+    isRequiredIssueLoginToken:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    recreateToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: null
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      return_type: null
+    resolveToken:
+      annotations: []
+      parameters: []
+      return_type: String
+    set:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      - annotations: []
+        name: updateFlag
+        type: boolean
+      return_type: null
+    setIsRequiredIssueLoginToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: required
+        type: boolean
+      return_type: null
+    storeToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: tokenKey
+        type: String
+      - annotations: []
+        name: token
+        type: String
+      return_type: null
+    updateToken:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: headers
+        type: JwsHeader
+      - annotations: []
+        name: claims
+        type: Claims
+      - annotations: []
+        name: refreshToken
+        type: String
+      return_type: null
+    validateToken:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      return_type: HeaderClaims
+com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.UUID
+  - com.devskiller.friendly_id.FriendlyId
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - io.jsonwebtoken.Claims
+  methods:
+    createRefreshToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: validSeconds
+        type: Long
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: String
+    createTokenKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    getTokenUsedList:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: refreshTokens
+        type: List
+      return_type: List
+    refresh:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: claims
+        type: Claims
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: reUse
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    remove:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: refreshToken
+        type: String
+      return_type: null
+    removeExpiredTokens:
+      annotations: []
+      parameters: []
+      return_type: null
+    updatePayload:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: accessToken
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.config.DefaultUstraSecurityJwtConfigure:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraSecurityConfigure
+  - Ordered
+  imports:
+  - org.springframework.core.Ordered
+  - org.springframework.security.config.annotation.web.builders.HttpSecurity
+  - org.springframework.security.config.http.SessionCreationPolicy
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  methods:
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    postConfigure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: http
+        type: HttpSecurity
+      return_type: null
+com.gsitm.ustra.java.security.jwt.redis.RedisRefreshTokenDto:
+  class_annotations:
+  - RedisHash
+  - Builder
+  - Data
+  - NoArgsConstructor
+  - AllArgsConstructor
+  - EnableRedisRepositories
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.concurrent.TimeUnit
+  - org.springframework.data.annotation.Id
+  - org.springframework.data.redis.core.RedisHash
+  - org.springframework.data.redis.core.TimeToLive
+  - org.springframework.data.redis.core.index.Indexed
+  - org.springframework.data.redis.repository.configuration.EnableRedisRepositories
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  methods:
+    create:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: validSecond
+        type: Long
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations: []
+        name: dvcId
+        type: String
+      - annotations: []
+        name: chnlCd
+        type: String
+      return_type: RedisRefreshTokenDto
+com.gsitm.ustra.java.security.jwt.redis.RedisRefreshTokenRepository:
+  class_annotations: []
+  extends: CrudRepository
+  implements: []
+  imports:
+  - org.springframework.data.repository.CrudRepository
+  methods:
+    findAllByUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      return_type: Iterable
+    findAllByUsrIdAndUserIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations: []
+        name: userIp
+        type: String
+      return_type: Iterable
+com.gsitm.ustra.java.security.jwt.redis.RedisUstraJwtRefreshTokenStore:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - UstraJwtRefreshTokenStore
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.properties.AuthenticationDuplicationCheckType
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.parser.UstraJwtAuthenticationParser
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.provider.UstraJwtRefreshTokenModel
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  - com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils
+  - com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils.HeaderClaims
+  - io.jsonwebtoken.Claims
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    createRefreshToken:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: validSeconds
+        type: Long
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: String
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: refreshToken
+        type: String
+      return_type: RedisRefreshTokenDto
+    get:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: checkDuplication
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    getTokenUsedList:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: refreshTokens
+        type: List
+      return_type: List
+    refresh:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: accessToken
+        type: String
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: claims
+        type: Claims
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: reUse
+        type: boolean
+      return_type: UstraJwtRefreshTokenModel
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: refreshToken
+        type: String
+      return_type: null
+    updatePayload:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: refreshToken
+        type: String
+      - annotations: []
+        name: accessToken
+        type: String
+      return_type: null
+com.gsitm.ustra.java.security.jwt.test.SecurityJwtApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.security.jwt.utils.UstraClaimUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.util.Date
+  - java.util.Map
+  - java.util.Optional
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - io.jsonwebtoken.Claims
+  - lombok.experimental.UtilityClass
+  methods:
+    applyProcessId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Map
+      return_type: null
+    getAccessInfo:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: Map
+    getChnlCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+    getDvcId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+    getProcessId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Map
+      return_type: String
+    getUserId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+    getUserIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: claims
+        type: Claims
+      return_type: String
+com.gsitm.ustra.java.security.jwt.utils.UstraJwtUtils:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - java.text.SimpleDateFormat
+  - java.time.LocalDateTime
+  - java.util.Date
+  - java.util.HashMap
+  - java.util.Map
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.UstraDateUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - io.jsonwebtoken.Claims
+  - io.jsonwebtoken.ExpiredJwtException
+  - io.jsonwebtoken.JwsHeader
+  - io.jsonwebtoken.JwtParser
+  - io.jsonwebtoken.Jwts
+  - io.jsonwebtoken.impl.DefaultJwsHeader
+  - io.jsonwebtoken.impl.TextCodec
+  - lombok.AllArgsConstructor
+  - lombok.Builder
+  - lombok.Data
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    createHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: prop
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: authSysCd
+        type: String
+      return_type: Map
+    dateToTokenString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: dt
+        type: LocalDateTime
+      return_type: Long
+    decodeHeader:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: JwsHeader
+    getAuthSysCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: String
+      return_type: String
+    isAuthenticatedToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: prop
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: token
+        type: String
+      return_type: boolean
+    parseClaim:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: prop
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: token
+        type: String
+      - annotations: []
+        name: includeExpiredToken
+        type: boolean
+      return_type: Claims
+    parseHeaderClaim:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: prop
+        type: UstraJwtAuthenticationProperties
+      - annotations: []
+        name: token
+        type: String
+      - annotations: []
+        name: includeExpiredToken
+        type: boolean
+      return_type: HeaderClaims
+    str2dt:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: date
+        type: String
+      return_type: Date
+com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationAdvice:
+  class_annotations:
+  - ControllerAdvice
+  extends: null
+  implements:
+  - ResponseBodyAdvice
+  imports:
+  - org.springframework.core.MethodParameter
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.server.ServerHttpRequest
+  - org.springframework.http.server.ServerHttpResponse
+  - org.springframework.web.bind.annotation.ControllerAdvice
+  - org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  methods:
+    beforeBodyWrite:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: selectedContentType
+        type: MediaType
+      - annotations: []
+        name: selectedConverterType
+        type: Class
+      - annotations: []
+        name: request
+        type: ServerHttpRequest
+      - annotations: []
+        name: response
+        type: ServerHttpResponse
+      return_type: Object
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: converterType
+        type: Class
+      return_type: boolean
+com.gsitm.ustra.java.security.jwt.web.UstraJwtAuthenticationInterceptorWebMvcConfigurer:
+  class_annotations: []
+  extends: null
+  implements:
+  - WebMvcConfigurer
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.web.method.HandlerMethod
+  - org.springframework.web.servlet.HandlerInterceptor
+  - org.springframework.web.servlet.ModelAndView
+  - org.springframework.web.servlet.config.annotation.InterceptorRegistry
+  - org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationManager
+  methods:
+    addInterceptors:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: registry
+        type: InterceptorRegistry
+      return_type: null

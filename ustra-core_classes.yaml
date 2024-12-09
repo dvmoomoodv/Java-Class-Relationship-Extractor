@@ -1,11 +1,8 @@
 com.gsitm.ustra.java.core.UstraCore:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -19,55 +16,14 @@ com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport:
   - org.springframework.context.annotation.ComponentScan
   - org.springframework.core.annotation.AnnotationUtils
   - org.springframework.core.io.ClassPathResource
-  methods:
-    appendPropertySources:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: builder
-        type: SpringApplicationBuilder
-      - annotations: []
-        name: propertyFileNames
-        type: List
-      return_type: null
-    applyBasePackage:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: applicationClass
-        type: Class
-      return_type: null
-    builderProperties:
-      annotations:
-      - SuppressWarnings
-      parameters:
-      - annotations: []
-        name: builder
-        type: SpringApplicationBuilder
-      return_type: Map
-    getFrameworkPropertySourceFileNames:
-      annotations: []
-      parameters: []
-      return_type: List
 com.gsitm.ustra.java.core.app.ApplicationControlSupport:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
   - org.springframework.boot.SpringApplication
   - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
   - lombok.experimental.UtilityClass
-  methods:
-    initiateShutdown:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: returnCode
-        type: int
-      return_type: null
 com.gsitm.ustra.java.core.app.BasePackages:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -77,29 +33,7 @@ com.gsitm.ustra.java.core.app.BasePackages:
   - java.util.Set
   - org.apache.commons.lang3.StringUtils
   - com.google.common.collect.Sets
-  methods:
-    add:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: basePackage
-        type: String
-      return_type: null
-    adjustBasePackage:
-      annotations: []
-      parameters: []
-      return_type: null
-    asList:
-      annotations: []
-      parameters: []
-      return_type: List
-    get:
-      annotations: []
-      parameters: []
-      return_type: String
 com.gsitm.ustra.java.core.app.ConsoleApplicationRunner:
-  class_annotations:
-  - ComponentScan
   extends: null
   implements:
   - CommandLineRunner
@@ -112,23 +46,7 @@ com.gsitm.ustra.java.core.app.ConsoleApplicationRunner:
   - org.springframework.context.annotation.ComponentScan
   - org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
-  methods:
-    run:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: clazz
-        type: Class
-      - annotations: []
-        name: builder
-        type: SpringApplicationBuilder
-      - annotations: []
-        name: args
-        type: String
-      return_type: ApplicationContext
 com.gsitm.ustra.java.core.app.UstraApplicationRunner:
-  class_annotations:
-  - EnableAutoConfiguration
   extends: null
   implements: []
   imports:
@@ -136,22 +54,7 @@ com.gsitm.ustra.java.core.app.UstraApplicationRunner:
   - org.springframework.boot.autoconfigure.EnableAutoConfiguration
   - org.springframework.boot.builder.SpringApplicationBuilder
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
-  methods:
-    run:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: clazz
-        type: Class
-      - annotations: []
-        name: builder
-        type: SpringApplicationBuilder
-      - annotations: []
-        name: args
-        type: String
-      return_type: null
 com.gsitm.ustra.java.core.app.listener.OnceContextRefreshedEventApplicationListener:
-  class_annotations: []
   extends: null
   implements:
   - ApplicationListener
@@ -159,24 +62,7 @@ com.gsitm.ustra.java.core.app.listener.OnceContextRefreshedEventApplicationListe
   - java.util.concurrent.atomic.AtomicBoolean
   - org.springframework.context.ApplicationListener
   - org.springframework.context.event.ContextRefreshedEvent
-  methods:
-    innerOnApplicationEvent:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: event
-        type: ContextRefreshedEvent
-      return_type: null
-    onApplicationEvent:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: ContextRefreshedEvent
-      return_type: null
 com.gsitm.ustra.java.core.cache.EhChacheMangerPostProcessor:
-  class_annotations: []
   extends: null
   implements:
   - BeanDefinitionRegistryPostProcessor
@@ -203,41 +89,7 @@ com.gsitm.ustra.java.core.cache.EhChacheMangerPostProcessor:
   - com.gsitm.ustra.java.core.properties.UstraProperties
   - com.gsitm.ustra.java.core.properties.UstraProperties.CoreInfo.CacheInfo.EhInfo
   - com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils
-  methods:
-    postProcessBeanDefinitionRegistry:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: registry
-        type: BeanDefinitionRegistry
-      return_type: null
-    postProcessBeanFactory:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: beanFactory
-        type: ConfigurableListableBeanFactory
-      return_type: null
-    setApplicationContext:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: applicationContext
-        type: ApplicationContext
-      return_type: null
-    setEnvironment:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: environment
-        type: Environment
-      return_type: null
 com.gsitm.ustra.java.core.cache.UstraCacheEventLoggingListener:
-  class_annotations: []
   extends: null
   implements:
   - CacheEventListener
@@ -246,17 +98,7 @@ com.gsitm.ustra.java.core.cache.UstraCacheEventLoggingListener:
   - org.ehcache.event.CacheEventListener
   - org.slf4j.Logger
   - org.slf4j.LoggerFactory
-  methods:
-    onEvent:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: CacheEvent
-      return_type: null
 com.gsitm.ustra.java.core.cache.UstraCacheManager:
-  class_annotations: []
   extends: SimpleCacheManager
   implements: []
   imports:
@@ -276,22 +118,7 @@ com.gsitm.ustra.java.core.cache.UstraCacheManager:
   - com.github.benmanes.caffeine.cache.Caffeine
   - com.gsitm.ustra.java.core.properties.UstraProperties
   - com.gsitm.ustra.java.core.properties.UstraProperties.CoreInfo.CacheInfo.CaffeineInfo
-  methods:
-    getCaches:
-      annotations: []
-      parameters: []
-      return_type: List
-    getCaffeineCacheLoader:
-      annotations:
-      - SuppressWarnings
-      parameters:
-      - annotations: []
-        name: className
-        type: String
-      return_type: Function
 com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -301,36 +128,15 @@ com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport:
   - org.springframework.data.redis.cache.RedisCacheManager
   - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
   - lombok.experimental.UtilityClass
-  methods:
-    getCache:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: cacheName
-        type: String
-      return_type: Cache
-    getCacheManager:
-      annotations: []
-      parameters: []
-      return_type: CacheManager
-    redisCacheManager:
-      annotations: []
-      parameters: []
-      return_type: RedisCacheManager
 com.gsitm.ustra.java.core.cache.UstraCacheNames:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.core.cache.UstraEhCacheNames:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.core.exception.ResponseCode:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -338,52 +144,11 @@ com.gsitm.ustra.java.core.exception.ResponseCode:
   - org.slf4j.LoggerFactory
   - org.springframework.core.env.Environment
   - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
-  methods:
-    exception:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: cause
-        type: Throwable
-      return_type: UstraException
-    getBody:
-      annotations: []
-      parameters: []
-      return_type: T
-    getCode:
-      annotations: []
-      parameters: []
-      return_type: String
-    getMessage:
-      annotations: []
-      parameters: []
-      return_type: String
-    httpStatusCode:
-      annotations: []
-      parameters: []
-      return_type: Integer
-    isSuccess:
-      annotations: []
-      parameters: []
-      return_type: boolean
-    messageArguments:
-      annotations: []
-      parameters: []
-      return_type: String
-    messageCode:
-      annotations: []
-      parameters: []
-      return_type: String
 com.gsitm.ustra.java.core.exception.UstraCoreException:
-  class_annotations: []
   extends: UstraException
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.core.exception.UstraException:
-  class_annotations:
-  - Data
-  - EqualsAndHashCode
   extends: RuntimeException
   implements:
   - ResponseCode
@@ -396,28 +161,7 @@ com.gsitm.ustra.java.core.exception.UstraException:
   - lombok.EqualsAndHashCode
   - lombok.Getter
   - lombok.Setter
-  methods:
-    getCode:
-      annotations: []
-      parameters: []
-      return_type: String
-    getMessage:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    httpStatusCode:
-      annotations:
-      - Override
-      parameters: []
-      return_type: Integer
-    isSuccess:
-      annotations:
-      - Override
-      parameters: []
-      return_type: boolean
 com.gsitm.ustra.java.core.imaging.ImageProcessorTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -436,24 +180,7 @@ com.gsitm.ustra.java.core.imaging.ImageProcessorTest:
   - com.gsitm.ustra.java.core.io.imaging.ImageProcessOption
   - com.gsitm.ustra.java.core.io.imaging.ImageProcessor
   - com.gsitm.ustra.java.core.io.imaging.ImageResizeOption
-  methods:
-    testProcess:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    testProcess_Crop:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    testProcess_Resize:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.io.UstraFileSystemResource:
-  class_annotations: []
   extends: FileSystemResource
   implements: []
   imports:
@@ -462,15 +189,7 @@ com.gsitm.ustra.java.core.io.UstraFileSystemResource:
   - org.springframework.core.io.FileSystemResource
   - lombok.Getter
   - lombok.Setter
-  methods:
-    getFilename:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
 com.gsitm.ustra.java.core.io.UstraNamedResource:
-  class_annotations:
-  - RequiredArgsConstructor
   extends: null
   implements:
   - Resource
@@ -482,62 +201,7 @@ com.gsitm.ustra.java.core.io.UstraNamedResource:
   - java.net.URL
   - org.springframework.core.io.Resource
   - lombok.RequiredArgsConstructor
-  methods:
-    contentLength:
-      annotations:
-      - Override
-      parameters: []
-      return_type: long
-    createRelative:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: relativePath
-        type: String
-      return_type: Resource
-    exists:
-      annotations:
-      - Override
-      parameters: []
-      return_type: boolean
-    getDescription:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    getFile:
-      annotations:
-      - Override
-      parameters: []
-      return_type: File
-    getFilename:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    getInputStream:
-      annotations:
-      - Override
-      parameters: []
-      return_type: InputStream
-    getURI:
-      annotations:
-      - Override
-      parameters: []
-      return_type: URI
-    getURL:
-      annotations:
-      - Override
-      parameters: []
-      return_type: URL
-    lastModified:
-      annotations:
-      - Override
-      parameters: []
-      return_type: long
 com.gsitm.ustra.java.core.io.UstraOutputStreamResource:
-  class_annotations: []
   extends: AbstractResource
   implements:
   - WritableResource
@@ -547,31 +211,7 @@ com.gsitm.ustra.java.core.io.UstraOutputStreamResource:
   - java.io.OutputStream
   - org.springframework.core.io.AbstractResource
   - org.springframework.core.io.WritableResource
-  methods:
-    getDescription:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    getFilename:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    getInputStream:
-      annotations:
-      - Override
-      parameters: []
-      return_type: InputStream
-    getOutputStream:
-      annotations:
-      - Override
-      parameters: []
-      return_type: OutputStream
 com.gsitm.ustra.java.core.io.imaging.ImageCropOption:
-  class_annotations:
-  - Getter
-  - Builder
   extends: null
   implements:
   - ImageProcessOption
@@ -579,17 +219,11 @@ com.gsitm.ustra.java.core.io.imaging.ImageCropOption:
   - lombok.Builder
   - lombok.Getter
   - lombok.RequiredArgsConstructor
-  methods: {}
 com.gsitm.ustra.java.core.io.imaging.ImageProcessOption:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.core.io.imaging.ImageProcessor:
-  class_annotations:
-  - RequiredArgsConstructor
-  - Getter
   extends: null
   implements: []
   imports:
@@ -603,81 +237,27 @@ com.gsitm.ustra.java.core.io.imaging.ImageProcessor:
   - java.io.InputStream
   - java.io.OutputStream
   - java.util.List
-  methods:
-    cropImage:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: currentImage
-        type: BufferedImage
-      - annotations: []
-        name: option
-        type: ImageCropOption
-      return_type: BufferedImage
-    process:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: is
-        type: InputStream
-      - annotations: []
-        name: os
-        type: OutputStream
-      - annotations: []
-        name: formatName
-        type: String
-      return_type: null
-    resizeImage:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: currentImage
-        type: BufferedImage
-      - annotations: []
-        name: option
-        type: ImageResizeOption
-      return_type: BufferedImage
 com.gsitm.ustra.java.core.io.imaging.ImageResizeOption:
-  class_annotations:
-  - Getter
-  - Builder
   extends: null
   implements:
   - ImageProcessOption
   imports:
   - lombok.Builder
   - lombok.Getter
-  methods: {}
 com.gsitm.ustra.java.core.logging.LogbackSystemFilter:
-  class_annotations: []
   extends: Filter
   implements: []
   imports:
   - ch.qos.logback.classic.spi.ILoggingEvent
   - ch.qos.logback.core.filter.Filter
   - ch.qos.logback.core.spi.FilterReply
-  methods:
-    decide:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: ILoggingEvent
-      return_type: FilterReply
 com.gsitm.ustra.java.core.message.Message:
-  class_annotations:
-  - Data
-  - AllArgsConstructor
   extends: null
   implements: []
   imports:
   - lombok.AllArgsConstructor
   - lombok.Data
-  methods: {}
 com.gsitm.ustra.java.core.message.MessageContext:
-  class_annotations:
-  - Component
   extends: null
   implements: []
   imports:
@@ -687,38 +267,13 @@ com.gsitm.ustra.java.core.message.MessageContext:
   - org.springframework.context.NoSuchMessageException
   - org.springframework.context.i18n.LocaleContextHolder
   - org.springframework.stereotype.Component
-  methods:
-    getMessage:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: code
-        type: String
-      - annotations: []
-        name: args
-        type: String
-      - annotations: []
-        name: defaultMessage
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.message.MessageParameter:
-  class_annotations:
-  - Data
   extends: null
   implements: []
   imports:
   - org.springframework.util.StringUtils
   - lombok.Data
-  methods:
-    convertArgsToStringArray:
-      annotations: []
-      parameters: []
-      return_type: String
 com.gsitm.ustra.java.core.message.MessageSourceConfiguration:
-  class_annotations:
-  - Configuration
-  - ConditionalOnMissingBean
-  - AutoConfigureOrder
   extends: MessageSourceAutoConfiguration
   implements: []
   imports:
@@ -731,18 +286,7 @@ com.gsitm.ustra.java.core.message.MessageSourceConfiguration:
   - org.springframework.context.annotation.Bean
   - org.springframework.context.annotation.Configuration
   - org.springframework.core.Ordered
-  methods:
-    messageSource:
-      annotations:
-      - Override
-      - Bean
-      parameters:
-      - annotations: []
-        name: properties
-        type: MessageSourceProperties
-      return_type: MessageSource
 com.gsitm.ustra.java.core.process.ProcessInfo:
-  class_annotations: []
   extends: null
   implements:
   - Closeable
@@ -753,159 +297,37 @@ com.gsitm.ustra.java.core.process.ProcessInfo:
   - com.gsitm.ustra.java.core.utils.UstraSystemUtils
   - lombok.Getter
   - lombok.Setter
-  methods:
-    close:
-      annotations:
-      - Override
-      parameters: []
-      return_type: null
-    create:
-      annotations: []
-      parameters: []
-      return_type: ProcessInfo
-    getProcessSeq:
-      annotations: []
-      parameters: []
-      return_type: Integer
-    increaseProcessSeq:
-      annotations: []
-      parameters: []
-      return_type: Integer
 com.gsitm.ustra.java.core.process.ProcessInfoContextHolder:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.lang.Nullable
-  methods:
-    getCurrentProcessInfo:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: ProcessInfo
-    removeCurrentProcessInfo:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: ProcessInfo
-    setCurrentProcessInfo:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: processInfo
-        type: ProcessInfo
-      return_type: null
 com.gsitm.ustra.java.core.process.ProcessInfoUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
   - org.springframework.lang.Nullable
   - lombok.experimental.UtilityClass
-  methods:
-    createIfNotExists:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: processInfo
-        type: ProcessInfo
-      return_type: ProcessInfo
-    createRootIfNotExists:
-      annotations: []
-      parameters: []
-      return_type: ProcessInfo
-    currentProcessInfo:
-      annotations: []
-      parameters: []
-      return_type: ProcessInfo
-    getCurrentProcessId:
-      annotations: []
-      parameters: []
-      return_type: String
-    getCurrentProcessSeq:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: increasement
-        type: boolean
-      return_type: Integer
-    getCurrentRequestId:
-      annotations: []
-      parameters: []
-      return_type: String
-    getRootProcessId:
-      annotations: []
-      parameters: []
-      return_type: String
-    remove:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: ProcessInfo
 com.gsitm.ustra.java.core.process.RootProcessInfoContextHolder:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.lang.Nullable
-  methods:
-    getCurrentProcessInfo:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: ProcessInfo
-    removeCurrentProcessInfo:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: ProcessInfo
-    setCurrentProcessInfo:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: processInfo
-        type: ProcessInfo
-      return_type: null
 com.gsitm.ustra.java.core.properties.UstraProperties:
-  class_annotations:
-  - Data
-  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - java.util.Map
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
-  methods: {}
 com.gsitm.ustra.java.core.test.CaseFormatUtilsTest:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - com.gsitm.ustra.java.core.utils.UstraCaseFormatUtils
   - lombok.extern.slf4j.Slf4j
-  methods:
-    camelCaseToUnderScore:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: toUpperCase
-        type: boolean
-      return_type: String
-    toUnderScoreCase:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.test.CollectionUtilityTest:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -914,46 +336,21 @@ com.gsitm.ustra.java.core.test.CollectionUtilityTest:
   - org.junit.jupiter.api.Test
   - com.gsitm.ustra.java.core.utils.UstraCollectionUtils
   - lombok.extern.slf4j.Slf4j
-  methods:
-    seperateList:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.test.CoreApplicationTests:
-  class_annotations:
-  - SpringBootTest
-  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
-  methods:
-    contextLoads:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.test.EncUtilsTest:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - com.gsitm.ustra.java.core.utils.UstraEncAesUtils
   - lombok.extern.slf4j.Slf4j
-  methods:
-    expiredCryptoTest:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.test.MaskingUtilityTest:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -968,68 +365,14 @@ com.gsitm.ustra.java.core.test.MaskingUtilityTest:
   - lombok.NoArgsConstructor
   - lombok.extern.slf4j.Slf4j
   - org.junit.jupiter.api.Assertions.assertEquals
-  methods:
-    accNo:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    address:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    cardNo:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    email:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    exclusion:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    name:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    personalNo:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    postalCode:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    testMaskObject:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.test.StringUtilityTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Assertions
   - org.junit.jupiter.api.Test
   - com.gsitm.ustra.java.core.utils.UstraStringUtils
-  methods:
-    testWhildCardMatch:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.utils.ApplicationContextProvider:
-  class_annotations: []
   extends: null
   implements:
   - ApplicationContextAware
@@ -1044,66 +387,7 @@ com.gsitm.ustra.java.core.utils.ApplicationContextProvider:
   - org.springframework.context.EnvironmentAware
   - org.springframework.core.Ordered
   - org.springframework.core.env.Environment
-  methods:
-    get:
-      annotations: []
-      parameters: []
-      return_type: ApplicationContext
-    getBean:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: requiredType
-        type: Class
-      return_type: T
-    getBeanCollection:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: requiredType
-        type: Class
-      return_type: Collection
-    getBeanProvider:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: requiredType
-        type: Class
-      return_type: ObjectProvider
-    getBeanSafety:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: requiredType
-        type: Class
-      return_type: T
-    getEnvironment:
-      annotations: []
-      parameters: []
-      return_type: Environment
-    getOrder:
-      annotations:
-      - Override
-      parameters: []
-      return_type: int
-    setApplicationContext:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: applicationContext
-        type: ApplicationContext
-      return_type: null
-    setEnvironment:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: environment
-        type: Environment
-      return_type: null
 com.gsitm.ustra.java.core.utils.ListTrackerTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -1118,15 +402,7 @@ com.gsitm.ustra.java.core.utils.ListTrackerTest:
   - java.util.concurrent.atomic.AtomicInteger
   - java.util.function.Function
   - org.junit.jupiter.api.Assertions.assertEquals
-  methods:
-    test:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.utils.PieCutter:
-  class_annotations:
-  - Builder
   extends: null
   implements: []
   imports:
@@ -1134,30 +410,14 @@ com.gsitm.ustra.java.core.utils.PieCutter:
   - java.math.BigDecimal
   - java.math.RoundingMode
   - java.util.concurrent.atomic.AtomicLong
-  methods:
-    cut:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: count
-        type: int
-      return_type: long
 com.gsitm.ustra.java.core.utils.PieCutterTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - java.math.BigDecimal
   - org.junit.jupiter.api.Assertions.assertEquals
-  methods:
-    testCut:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.utils.PojoWatchTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -1166,29 +426,7 @@ com.gsitm.ustra.java.core.utils.PojoWatchTest:
   - java.time.LocalDateTime
   - java.util.List
   - org.junit.jupiter.api.Assertions.assertEquals
-  methods:
-    test_1:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    test_2:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    test_3:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    test_4:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.core.utils.ProfileSupport:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -1201,58 +439,7 @@ com.gsitm.ustra.java.core.utils.ProfileSupport:
   - org.springframework.core.env.Profiles
   - org.springframework.util.Assert
   - lombok.Getter
-  methods:
-    getAvailableProfiles:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: env
-        type: Environment
-      return_type: Profiles
-    getCurrentProfile:
-      annotations: []
-      parameters: []
-      return_type: Profile
-    hasAdditionalProfile:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: env
-        type: Environment
-      - annotations: []
-        name: profile
-        type: Profile
-      return_type: boolean
-    hasProfile:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: env
-        type: Environment
-      - annotations: []
-        name: profile
-        type: String
-      return_type: boolean
-    isDev:
-      annotations: []
-      parameters: []
-      return_type: boolean
-    isLocal:
-      annotations: []
-      parameters: []
-      return_type: boolean
-    isProduction:
-      annotations: []
-      parameters: []
-      return_type: boolean
-    isStaging:
-      annotations: []
-      parameters: []
-      return_type: boolean
 com.gsitm.ustra.java.core.utils.TestPojo:
-  class_annotations:
-  - Getter
-  - Builder
   extends: null
   implements: []
   imports:
@@ -1260,10 +447,7 @@ com.gsitm.ustra.java.core.utils.TestPojo:
   - lombok.Getter
   - java.math.BigDecimal
   - java.time.LocalDateTime
-  methods: {}
 com.gsitm.ustra.java.core.utils.UstraAnnotationUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1271,22 +455,7 @@ com.gsitm.ustra.java.core.utils.UstraAnnotationUtils:
   - java.lang.reflect.AnnotatedElement
   - java.lang.reflect.Method
   - lombok.experimental.UtilityClass
-  methods:
-    getAnnotationFromDeclarations:
-      annotations:
-      - SafeVarargs
-      parameters:
-      - annotations: []
-        name: source
-        type: AnnotatedElement
-      - annotations: []
-        name: clazz
-        type: Class
-      return_type: Annotation
 com.gsitm.ustra.java.core.utils.UstraBeanUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1301,43 +470,7 @@ com.gsitm.ustra.java.core.utils.UstraBeanUtils:
   - com.gsitm.ustra.java.core.utils.annotation.MapField
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    getFieldValue:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: object
-        type: Object
-      - annotations: []
-        name: fieldName
-        type: String
-      return_type: Object
-    populate:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: bean
-        type: T
-      - annotations: []
-        name: map
-        type: Map
-      return_type: T
-    setFieldValue:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: object
-        type: Object
-      - annotations: []
-        name: fieldName
-        type: String
-      - annotations: []
-        name: value
-        type: Object
-      return_type: null
 com.gsitm.ustra.java.core.utils.UstraBigDecimalUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1349,217 +482,13 @@ com.gsitm.ustra.java.core.utils.UstraBigDecimalUtils:
   - java.util.Arrays
   - java.util.List
   - java.util.stream.Stream
-  methods:
-    divide:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: BigDecimal
-    equals:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: boolean
-    floor:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value
-        type: BigDecimal
-      - annotations: []
-        name: newScale
-        type: int
-      return_type: BigDecimal
-    greatThan:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: boolean
-    lessThan:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: boolean
-    max:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: arg0
-        type: BigDecimal
-      - annotations: []
-        name: arg1
-        type: BigDecimal
-      return_type: BigDecimal
-    min:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: arg0
-        type: BigDecimal
-      - annotations: []
-        name: arg1
-        type: BigDecimal
-      return_type: BigDecimal
-    multiply:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: BigDecimal
-    round:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value
-        type: BigDecimal
-      - annotations: []
-        name: newScale
-        type: int
-      return_type: BigDecimal
-    subtract:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: left
-        type: BigDecimal
-      - annotations: []
-        name: right
-        type: BigDecimal
-      return_type: BigDecimal
-    sum:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: targetStream
-        type: Stream
-      return_type: BigDecimal
 com.gsitm.ustra.java.core.utils.UstraCaseFormatUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
   - com.google.common.base.CaseFormat
   - lombok.experimental.UtilityClass
-  methods:
-    camelToKebabCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    camelToPascalCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    camelToUnderscoreCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    camelToUpperUnderscoreCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    kebabToCamelCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    underscoreToCamelCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    underscoreToKebabCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    underscoreToPascalCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    underscoreToUpperUnderscoreCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    upperUnderscoreToCamelCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    upperUnderscoreToKebabCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    upperUnderscoreToPascalCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    upperUnderscoreToUpperUnderscoreCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraCollectionUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1568,32 +497,7 @@ com.gsitm.ustra.java.core.utils.UstraCollectionUtils:
   - java.util.stream.Collectors
   - org.springframework.lang.NonNull
   - lombok.experimental.UtilityClass
-  methods:
-    seperateList:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: list
-        type: List
-      - annotations: []
-        name: numbers
-        type: int
-      return_type: List
-    subtract:
-      annotations: []
-      parameters:
-      - annotations:
-        - NonNull
-        name: list1
-        type: List
-      - annotations:
-        - NonNull
-        name: list2
-        type: List
-      return_type: List
 com.gsitm.ustra.java.core.utils.UstraDateUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1604,32 +508,7 @@ com.gsitm.ustra.java.core.utils.UstraDateUtils:
   - java.util.Date
   - java.util.TimeZone
   - lombok.experimental.UtilityClass
-  methods:
-    toDate:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: localDateTime
-        type: LocalDateTime
-      return_type: Date
-    toLocalDate:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: date
-        type: Date
-      return_type: LocalDate
-    toLocalDateTime:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: time
-        type: long
-      return_type: LocalDateTime
 com.gsitm.ustra.java.core.utils.UstraDomUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -1648,26 +527,7 @@ com.gsitm.ustra.java.core.utils.UstraDomUtils:
   - org.w3c.dom.Node
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    createDocument:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations: []
-        name: xmlText
-        type: String
-      return_type: Document
-    getXmlText:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations: []
-        name: node
-        type: Node
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraEncAesUtils:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -1689,221 +549,14 @@ com.gsitm.ustra.java.core.utils.UstraEncAesUtils:
   - org.bouncycastle.crypto.params.ParametersWithIV
   - com.gsitm.ustra.java.core.exception.UstraResponseCode
   - lombok.extern.slf4j.Slf4j
-  methods:
-    decodeAes256:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: byte
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: byte
-    decodeAes256ForCryptbox:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: key
-        type: String
-      return_type: String
-    decodeAes256Type2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: String
-    decodeAes256WithBouncyCastle:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: String
-    decrypt:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: strToDecrypt
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    decryptClientData:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: T
-    decryptExpiredAes256:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    decryptForClient:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: strToDecrypt
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    encodeAes256:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: byte
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: byte
-    encodeAes256ForCryptbox:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: key
-        type: String
-      return_type: String
-    encodeAes256Type2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: String
-    encodeAes256WithBouncyCastle:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: String
-    encrypt:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    encryptClientData:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: Object
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    encryptExpiredAes256:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: String
-      - annotations: []
-        name: expireSencods
-        type: Long
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    encryptForClient:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: String
-      - annotations: []
-        name: secret
-        type: String
-      return_type: String
-    generateKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: secret
-        type: String
-      return_type: Key
-    getKeySpec:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: secretKey
-        type: String
-      return_type: Key
-    getRandomKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: length
-        type: int
-      return_type: byte
-    getRandomStringKey:
-      annotations: []
-      parameters: []
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraEncDesUtils:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.Arrays
   - org.apache.commons.lang3.StringUtils
   - com.gsitm.ustra.java.core.utils.enc.DES
-  methods:
-    decodeDes:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    encodeDes:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraEncRsaUtils:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -1921,49 +574,7 @@ com.gsitm.ustra.java.core.utils.UstraEncRsaUtils:
   - javax.annotation.Nullable
   - javax.crypto.Cipher
   - lombok.extern.slf4j.Slf4j
-  methods:
-    createKeyPair:
-      annotations:
-      - Nullable
-      parameters: []
-      return_type: StringKeyPair
-    decryptByPrivateKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      - annotations: []
-        name: key
-        type: String
-      return_type: String
-    encryptByPublicKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      - annotations: []
-        name: key
-        type: String
-      return_type: String
-    getPrivateKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: privateKey
-        type: String
-      return_type: PrivateKey
-    getPublicKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: publicKey
-        type: String
-      return_type: PublicKey
 com.gsitm.ustra.java.core.utils.UstraEncShaUtils:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -1974,40 +585,7 @@ com.gsitm.ustra.java.core.utils.UstraEncShaUtils:
   - org.apache.commons.lang3.StringUtils
   - org.bouncycastle.util.encoders.Hex
   - lombok.extern.slf4j.Slf4j
-  methods:
-    createSalt:
-      annotations: []
-      parameters: []
-      return_type: byte
-    encodeSha256WithoutSaltkey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    encodeSha512:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: salt
-        type: byte
-      return_type: String
-    encodeWithMessageDigest:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: algorithm
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -2015,24 +593,7 @@ com.gsitm.ustra.java.core.utils.UstraEnvironmentUtils:
   - org.springframework.boot.context.properties.bind.Binder
   - org.springframework.boot.context.properties.source.ConfigurationPropertySource
   - org.springframework.core.env.Environment
-  methods:
-    bindProperties:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: t
-        type: Class
-      - annotations: []
-        name: prefix
-        type: String
-      - annotations: []
-        name: sources
-        type: ConfigurationPropertySource
-      return_type: T
 com.gsitm.ustra.java.core.utils.UstraFileUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2064,81 +625,7 @@ com.gsitm.ustra.java.core.utils.UstraFileUtils:
   - org.springframework.util.ResourceUtils
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    compressZipFile:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: zipFilePath
-        type: String
-      - annotations: []
-        name: filePaths
-        type: List
-      return_type: null
-    fileToBase64String:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: filePath
-        type: String
-      return_type: String
-    getFileFromResource:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations:
-        - NonNull
-        name: resource
-        type: Resource
-      return_type: File
-    getLastDirectoryName:
-      annotations: []
-      parameters:
-      - annotations:
-        - NonNull
-        name: path
-        type: String
-      return_type: String
-    getResourceMimeType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: stream
-        type: InputStream
-      - annotations: []
-        name: fileName
-        type: String
-      return_type: String
-    matchPathAntPattern:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: path
-        type: String
-      - annotations: []
-        name: patterns
-        type: String
-      return_type: boolean
-    readBytesFromStream:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: stream
-        type: InputStream
-      return_type: byte
-    recursiveDeleteFilesByDays:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: dir
-        type: String
-      - annotations: []
-        name: days
-        type: int
-      return_type: null
 com.gsitm.ustra.java.core.utils.UstraFunctionUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2147,18 +634,7 @@ com.gsitm.ustra.java.core.utils.UstraFunctionUtils:
   - java.util.function.Function
   - java.util.function.Predicate
   - lombok.experimental.UtilityClass
-  methods:
-    distinctByKey:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: keyExtractor
-        type: Function
-      return_type: Predicate
 com.gsitm.ustra.java.core.utils.UstraJsonUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2189,61 +665,7 @@ com.gsitm.ustra.java.core.utils.UstraJsonUtils:
   - com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    createMapper:
-      annotations: []
-      parameters: []
-      return_type: ObjectMapper
-    deepCopy:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: T
-      - annotations: []
-        name: clazz
-        type: Class
-      return_type: T
-    deserialize:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: clazz
-        type: Class
-      return_type: T
-    getMapper:
-      annotations: []
-      parameters: []
-      return_type: ObjectMapper
-    prettyPrint:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Object
-      return_type: String
-    serialize:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: os
-        type: OutputStream
-      - annotations: []
-        name: value
-        type: Object
-      return_type: null
-    toJsonNode:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value
-        type: Object
-      return_type: JsonNode
 com.gsitm.ustra.java.core.utils.UstraListJoinUtils:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -2252,37 +674,7 @@ com.gsitm.ustra.java.core.utils.UstraListJoinUtils:
   - java.util.List
   - java.util.function.BiPredicate
   - java.util.stream.Collectors
-  methods:
-    innerJoin:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: from
-        type: List
-      - annotations: []
-        name: to
-        type: List
-      - annotations: []
-        name: filter
-        type: BiPredicate
-      return_type: List
-    leftOuterJoin:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: from
-        type: List
-      - annotations: []
-        name: to
-        type: List
-      - annotations: []
-        name: filter
-        type: BiPredicate
-      return_type: List
 com.gsitm.ustra.java.core.utils.UstraMapUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2309,228 +701,7 @@ com.gsitm.ustra.java.core.utils.UstraMapUtils:
   - com.gsitm.ustra.java.core.utils.data.BiValue
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    camelCaseToUnderScore:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      return_type: Map
-    camelCaseToUnderScoreLowerCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      return_type: Map
-    camelCaseToUnderScoreParameter:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      return_type: Map
-    convertKey:
-      annotations: []
-      parameters:
-      - annotations:
-        - NonNull
-        name: map
-        type: Map
-      - annotations:
-        - NonNull
-        name: convertFn
-        type: Function
-      return_type: Map
-    fromObject:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      return_type: Map
-    getMap:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: k1
-        type: K
-      - annotations: []
-        name: v1
-        type: V
-      - annotations: []
-        name: k2
-        type: K
-      - annotations: []
-        name: v2
-        type: V
-      - annotations: []
-        name: k3
-        type: K
-      - annotations: []
-        name: v3
-        type: V
-      - annotations: []
-        name: k4
-        type: K
-      - annotations: []
-        name: v4
-        type: V
-      - annotations: []
-        name: k5
-        type: K
-      - annotations: []
-        name: v5
-        type: V
-      - annotations: []
-        name: k6
-        type: K
-      - annotations: []
-        name: v6
-        type: V
-      - annotations: []
-        name: k7
-        type: K
-      - annotations: []
-        name: v7
-        type: V
-      - annotations: []
-        name: k8
-        type: K
-      - annotations: []
-        name: v8
-        type: V
-      - annotations: []
-        name: k9
-        type: K
-      - annotations: []
-        name: v9
-        type: V
-      - annotations: []
-        name: k10
-        type: K
-      - annotations: []
-        name: v10
-        type: V
-      return_type: Map
-    getMapValue:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      return_type: Object
-    getResultList:
-      annotations:
-      - SuppressWarnings
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      return_type: List
-    getTypeStr:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: entry
-        type: Map
-      return_type: String
-    obj2str:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      return_type: String
-    objectToMap:
-      annotations:
-      - SuppressWarnings
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      - annotations: []
-        name: excludeKeys
-        type: String
-      return_type: Map
-    putMap:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: m
-        type: Map
-      - annotations: []
-        name: k1
-        type: K
-      - annotations: []
-        name: v1
-        type: V
-      - annotations: []
-        name: k2
-        type: K
-      - annotations: []
-        name: v2
-        type: V
-      - annotations: []
-        name: k3
-        type: K
-      - annotations: []
-        name: v3
-        type: V
-      - annotations: []
-        name: k4
-        type: K
-      - annotations: []
-        name: v4
-        type: V
-      - annotations: []
-        name: k5
-        type: K
-      - annotations: []
-        name: v5
-        type: V
-      - annotations: []
-        name: k6
-        type: K
-      - annotations: []
-        name: v6
-        type: V
-      return_type: null
-    underScoreToCamelCase:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      - annotations: []
-        name: writeLog
-        type: boolean
-      - annotations: []
-        name: eraseOt
-        type: boolean
-      return_type: Map
-    underScoreToCamelCaseList:
-      annotations:
-      - SuppressWarnings
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      - annotations: []
-        name: eraseOt
-        type: boolean
-      return_type: List
-    underScoreToCamelCaseSingle:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: Map
-      return_type: Map
 com.gsitm.ustra.java.core.utils.UstraMaskingUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2545,47 +716,7 @@ com.gsitm.ustra.java.core.utils.UstraMaskingUtils:
   - org.springframework.util.ObjectUtils
   - com.gsitm.ustra.java.core.utils.annotation.Masked
   - lombok.experimental.UtilityClass
-  methods:
-    maskText:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: type
-        type: String
-      - annotations: []
-        name: text
-        type: String
-      return_type: String
-    maskTextFields:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      - annotations: []
-        name: excludeFieldsName
-        type: String
-      return_type: null
-    registerMask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: key
-        type: String
-      - annotations: []
-        name: mask
-        type: Mask
-      return_type: null
-    unregisterMask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: key
-        type: String
-      return_type: null
 com.gsitm.ustra.java.core.utils.UstraNetUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2596,30 +727,7 @@ com.gsitm.ustra.java.core.utils.UstraNetUtils:
   - java.net.UnknownHostException
   - java.util.Enumeration
   - lombok.experimental.UtilityClass
-  methods:
-    checkIPMatching:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: pattern
-        type: String
-      - annotations: []
-        name: address
-        type: String
-      return_type: boolean
-    getLocalIp:
-      annotations: []
-      parameters: []
-      return_type: String
-    isLocalAreaIp:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: address
-        type: String
-      return_type: boolean
 com.gsitm.ustra.java.core.utils.UstraObjectCompareUtils:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -2635,41 +743,7 @@ com.gsitm.ustra.java.core.utils.UstraObjectCompareUtils:
   - java.util.ArrayList
   - java.util.Arrays
   - java.util.List
-  methods:
-    compareBean:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: source
-        type: T
-      - annotations: []
-        name: target
-        type: T
-      return_type: List
-    includes:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: activeTags
-        type: String
-      - annotations: []
-        name: tags
-        type: String
-      return_type: boolean
-    readField:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: field
-        type: Field
-      - annotations: []
-        name: target
-        type: Object
-      return_type: Object
 com.gsitm.ustra.java.core.utils.UstraReflectionUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2694,88 +768,7 @@ com.gsitm.ustra.java.core.utils.UstraReflectionUtils:
   - com.fasterxml.jackson.core.type.TypeReference
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    forEachFields:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      - annotations: []
-        name: handler
-        type: BiConsumer
-      return_type: null
-    getClass:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: className
-        type: String
-      return_type: Class
-    getInheritedFields:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: type
-        type: Class
-      - annotations: []
-        name: cached
-        type: boolean
-      return_type: List
-    isArrayType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: cls
-        type: Class
-      return_type: Boolean
-    isCollectionType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: cls
-        type: Class
-      return_type: Boolean
-    isListType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: cls
-        type: Class
-      return_type: Boolean
-    isObjectType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: object
-        type: Object
-      return_type: boolean
-    isPrimitiveType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: object
-        type: Object
-      return_type: boolean
-    toParameterizedReference:
-      annotations: []
-      parameters:
-      - annotations:
-        - Nonnull
-        name: typeReference
-        type: TypeReference
-      return_type: ParameterizedTypeReference
-    toResolvableType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: typeReference
-        type: TypeReference
-      return_type: ResolvableType
 com.gsitm.ustra.java.core.utils.UstraResourceUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2796,42 +789,7 @@ com.gsitm.ustra.java.core.utils.UstraResourceUtils:
   - com.gsitm.ustra.java.core.utils.spring.SpecificResourcePatternResolver
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    getClassPathResourceFile:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: path
-        type: String
-      return_type: File
-    getResourceName:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: resource
-        type: Resource
-      return_type: String
-    getResourcesByPattern:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: pattern
-        type: String
-      return_type: List
-    readResourceAsString:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: resource
-        type: Resource
-      - annotations: []
-        name: charsetName
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraSoapUtils:
-  class_annotations:
-  - Slf4j
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2851,61 +809,7 @@ com.gsitm.ustra.java.core.utils.UstraSoapUtils:
   - com.fasterxml.jackson.core.JsonProcessingException
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
-  methods:
-    createMessage:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations: []
-        name: body
-        type: Object
-      return_type: SOAPMessage
-    getSoapXmlDocument:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: obj
-        type: Object
-      return_type: Document
-    parseBody:
-      annotations:
-      - SuppressWarnings
-      - Nullable
-      parameters:
-      - annotations: []
-        name: message
-        type: SOAPMessage
-      - annotations: []
-        name: targetClass
-        type: Class
-      - annotations: []
-        name: charsetName
-        type: String
-      return_type: T
-    parseMessage:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: messageText
-        type: String
-      - annotations: []
-        name: charsetName
-        type: String
-      return_type: SOAPMessage
-    toText:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations: []
-        name: soapMessage
-        type: SOAPMessage
-      - annotations: []
-        name: charsetName
-        type: String
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraStringUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -2924,120 +828,7 @@ com.gsitm.ustra.java.core.utils.UstraStringUtils:
   - org.apache.commons.lang3.StringUtils
   - com.gsitm.ustra.java.core.utils.enc.Base62
   - lombok.experimental.UtilityClass
-  methods:
-    byteSubstring:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: text
-        type: String
-      - annotations: []
-        name: maxLength
-        type: int
-      return_type: String
-    camelCaseToUnderScore:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    decodeBase62:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    decodeBase64:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    decodeBase64String:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: byte
-    decodeUrl:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: enc
-        type: String
-      return_type: String
-    encodeBase62:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      return_type: String
-    encodeBase64:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: byte
-      return_type: byte
-    encodeBase64String:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: byte
-      return_type: String
-    encodeUrl:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: enc
-        type: String
-      return_type: String
-    escapeSql:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: sql
-        type: String
-      return_type: String
-    getBase64String:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: byte
-      return_type: String
-    matchWildCard:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: sourceStr
-        type: String
-      - annotations: []
-        name: regex
-        type: String
-      return_type: boolean
-    randomNumberAlphaString:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: length
-        type: int
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraSystemUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -3047,29 +838,7 @@ com.gsitm.ustra.java.core.utils.UstraSystemUtils:
   - org.apache.commons.lang3.RandomStringUtils
   - com.gsitm.ustra.java.core.utils.enc.Base62
   - lombok.experimental.UtilityClass
-  methods:
-    generateUrl62UUIDv4:
-      annotations: []
-      parameters: []
-      return_type: String
-    processBase62UniqueId:
-      annotations: []
-      parameters: []
-      return_type: String
-    processUniqueId:
-      annotations: []
-      parameters: []
-      return_type: String
-    randomAlphanumeric:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: count
-        type: int
-      return_type: String
 com.gsitm.ustra.java.core.utils.UstraXmlUtils:
-  class_annotations:
-  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -3103,43 +872,7 @@ com.gsitm.ustra.java.core.utils.UstraXmlUtils:
   - com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule
   - com.gsitm.ustra.java.core.utils.map.XmlEmptyElementWithWhitespacesModule
   - lombok.experimental.UtilityClass
-  methods:
-    createSchemaFile:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: targetClass
-        type: Class
-      - annotations: []
-        name: filePath
-        type: String
-      return_type: null
-    deserialize:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: String
-      - annotations: []
-        name: clazz
-        type: Class
-      return_type: T
-    getMapper:
-      annotations: []
-      parameters: []
-      return_type: ObjectMapper
-    serialize:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: os
-        type: OutputStream
-      - annotations: []
-        name: value
-        type: Object
-      return_type: null
 com.gsitm.ustra.java.core.utils.config.YamlPropertySourceFactory:
-  class_annotations: []
   extends: null
   implements:
   - PropertySourceFactory
@@ -3151,211 +884,26 @@ com.gsitm.ustra.java.core.utils.config.YamlPropertySourceFactory:
   - org.springframework.core.env.PropertySource
   - org.springframework.core.io.support.EncodedResource
   - org.springframework.core.io.support.PropertySourceFactory
-  methods:
-    createPropertySource:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: name
-        type: String
-      - annotations: []
-        name: encodedResource
-        type: EncodedResource
-      return_type: PropertySource
 com.gsitm.ustra.java.core.utils.data.BiValue:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    getValue1:
-      annotations: []
-      parameters: []
-      return_type: T1
-    getValue2:
-      annotations: []
-      parameters: []
-      return_type: T2
-    of:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      - annotations: []
-        name: value2
-        type: T2
-      return_type: BiValue
-    setValue1:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      return_type: null
-    setValue2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value2
-        type: T2
-      return_type: null
 com.gsitm.ustra.java.core.utils.data.CodeValueType:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.EnumSet
   - org.apache.commons.lang3.StringUtils
   - com.fasterxml.jackson.annotation.JsonValue
-  methods:
-    getCode:
-      annotations:
-      - JsonValue
-      parameters: []
-      return_type: String
-    getValue:
-      annotations: []
-      parameters: []
-      return_type: String
-    toCode:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: enumValue
-        type: T
-      return_type: String
-    valueOf:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: enumClass
-        type: Class
-      - annotations: []
-        name: code
-        type: String
-      return_type: T
 com.gsitm.ustra.java.core.utils.data.QuadValue:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    getValue1:
-      annotations: []
-      parameters: []
-      return_type: T1
-    getValue2:
-      annotations: []
-      parameters: []
-      return_type: T2
-    getValue3:
-      annotations: []
-      parameters: []
-      return_type: T3
-    getValue4:
-      annotations: []
-      parameters: []
-      return_type: T4
-    of:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      - annotations: []
-        name: value2
-        type: T2
-      - annotations: []
-        name: value3
-        type: T3
-      - annotations: []
-        name: value4
-        type: T4
-      return_type: QuadValue
-    setValue1:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      return_type: null
-    setValue2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value2
-        type: T2
-      return_type: null
-    setValue3:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value3
-        type: T3
-      return_type: null
-    setValue4:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value4
-        type: T4
-      return_type: null
 com.gsitm.ustra.java.core.utils.data.TriValue:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    getValue1:
-      annotations: []
-      parameters: []
-      return_type: T1
-    getValue2:
-      annotations: []
-      parameters: []
-      return_type: T2
-    getValue3:
-      annotations: []
-      parameters: []
-      return_type: T3
-    of:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      - annotations: []
-        name: value2
-        type: T2
-      - annotations: []
-        name: value3
-        type: T3
-      return_type: TriValue
-    setValue1:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value1
-        type: T1
-      return_type: null
-    setValue2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value2
-        type: T2
-      return_type: null
-    setValue3:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: value3
-        type: T3
-      return_type: null
 com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeDeserializer:
-  class_annotations: []
   extends: StdDeserializer
   implements:
   - ContextualDeserializer
@@ -3373,32 +921,7 @@ com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeDeserializer:
   - com.fasterxml.jackson.databind.deser.ContextualDeserializer
   - com.fasterxml.jackson.databind.deser.std.StdDeserializer
   - com.gsitm.ustra.java.core.utils.data.CodeValueType
-  methods:
-    createContextual:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: ctxt
-        type: DeserializationContext
-      - annotations: []
-        name: property
-        type: BeanProperty
-      return_type: JsonDeserializer
-    deserialize:
-      annotations:
-      - SuppressWarnings
-      - Override
-      parameters:
-      - annotations: []
-        name: p
-        type: JsonParser
-      - annotations: []
-        name: ctxt
-        type: DeserializationContext
-      return_type: Enum
 com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule:
-  class_annotations: []
   extends: Module
   implements: []
   imports:
@@ -3417,27 +940,7 @@ com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeModule:
   - com.fasterxml.jackson.databind.type.ClassKey
   - com.fasterxml.jackson.databind.util.TypeKey
   - com.gsitm.ustra.java.core.utils.data.CodeValueType
-  methods:
-    getModuleName:
-      annotations:
-      - Override
-      parameters: []
-      return_type: String
-    setupModule:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: context
-        type: SetupContext
-      return_type: null
-    version:
-      annotations:
-      - Override
-      parameters: []
-      return_type: Version
 com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeSerializer:
-  class_annotations: []
   extends: StdSerializer
   implements: []
   imports:
@@ -3447,254 +950,27 @@ com.gsitm.ustra.java.core.utils.data.jackson.CodeValueTypeSerializer:
   - com.fasterxml.jackson.databind.SerializerProvider
   - com.fasterxml.jackson.databind.ser.std.StdSerializer
   - com.gsitm.ustra.java.core.utils.data.CodeValueType
-  methods:
-    serialize:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: value
-        type: CodeValueType
-      - annotations: []
-        name: gen
-        type: JsonGenerator
-      - annotations: []
-        name: provider
-        type: SerializerProvider
-      return_type: null
 com.gsitm.ustra.java.core.utils.enc.Base62:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.Arrays
-  methods:
-    decode:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: base62String
-        type: String
-      return_type: byte
-    decodedBitsForCharacter:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: character
-        type: char
-      return_type: int
-    encode:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: byte
-      return_type: String
 com.gsitm.ustra.java.core.utils.enc.DES:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    E:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: int
-      return_type: long
-    FP:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: long
-      return_type: long
-    IP:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: long
-      return_type: long
-    P:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: int
-      return_type: int
-    PC1:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: long
-      return_type: long
-    PC2:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: src
-        type: long
-      return_type: long
-    S:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: boxNumber
-        type: int
-      - annotations: []
-        name: src
-        type: byte
-      return_type: byte
-    createSubkeys:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: key
-        type: long
-      return_type: long
-    decrypt:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: challenge
-        type: byte
-      - annotations: []
-        name: password
-        type: String
-      return_type: byte
-    decryptBlock:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: ciphertext
-        type: byte
-      - annotations: []
-        name: ciphertextOffset
-        type: int
-      - annotations: []
-        name: message
-        type: byte
-      - annotations: []
-        name: messageOffset
-        type: int
-      - annotations: []
-        name: key
-        type: byte
-      return_type: null
-    encrypt:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: challenge
-        type: byte
-      - annotations: []
-        name: password
-        type: String
-      return_type: byte
-    encryptBlock:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: byte
-      - annotations: []
-        name: messageOffset
-        type: int
-      - annotations: []
-        name: ciphertext
-        type: byte
-      - annotations: []
-        name: ciphertextOffset
-        type: int
-      - annotations: []
-        name: key
-        type: byte
-      return_type: null
-    feistel:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: r
-        type: int
-      - annotations: []
-        name: subkey
-        type: long
-      return_type: int
-    getBytesFromLong:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: ba
-        type: byte
-      - annotations: []
-        name: offset
-        type: int
-      - annotations: []
-        name: l
-        type: long
-      return_type: null
-    getLongFromBytes:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: ba
-        type: byte
-      - annotations: []
-        name: offset
-        type: int
-      return_type: long
-    permute:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: table
-        type: byte
-      - annotations: []
-        name: srcWidth
-        type: int
-      - annotations: []
-        name: src
-        type: long
-      return_type: long
 com.gsitm.ustra.java.core.utils.event.UstraEventListener:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    listen:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: arg
-        type: T
-      return_type: null
 com.gsitm.ustra.java.core.utils.event.UstraEventUtils:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.Collection
   - java.util.List
   - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
-  methods:
-    notifyAll:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: clazz
-        type: Class
-      - annotations: []
-        name: arg
-        type: T
-      return_type: null
 com.gsitm.ustra.java.core.utils.list.UstraListTracker:
-  class_annotations:
-  - Builder
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -3709,16 +985,7 @@ com.gsitm.ustra.java.core.utils.list.UstraListTracker:
   - java.util.function.Consumer
   - java.util.function.Function
   - java.util.stream.Collectors
-  methods:
-    data:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: data
-        type: List
-      return_type: null
 com.gsitm.ustra.java.core.utils.map.XmlEmptyElementWithWhitespacesModule:
-  class_annotations: []
   extends: SimpleModule
   implements: []
   imports:
@@ -3735,17 +1002,7 @@ com.gsitm.ustra.java.core.utils.map.XmlEmptyElementWithWhitespacesModule:
   - com.fasterxml.jackson.databind.deser.BeanDeserializerModifier
   - com.fasterxml.jackson.databind.deser.std.StringDeserializer
   - com.fasterxml.jackson.databind.module.SimpleModule
-  methods:
-    setupModule:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: context
-        type: SetupContext
-      return_type: null
 com.gsitm.ustra.java.core.utils.reflection.ParameterizedTypeSupport:
-  class_annotations: []
   extends: null
   implements:
   - ParameterizedType
@@ -3754,26 +1011,7 @@ com.gsitm.ustra.java.core.utils.reflection.ParameterizedTypeSupport:
   - java.lang.reflect.Type
   - lombok.Getter
   - lombok.Setter
-  methods:
-    createGenericType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: genericTye
-        type: Type
-      - annotations: []
-        name: parameterType
-        type: Type
-      return_type: ParameterizedTypeSupport
-    createType:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: rawType
-        type: Type
-      return_type: ParameterizedTypeSupport
 com.gsitm.ustra.java.core.utils.spring.EmbeddedValueResolverProvider:
-  class_annotations: []
   extends: null
   implements:
   - EmbeddedValueResolverAware
@@ -3782,22 +1020,7 @@ com.gsitm.ustra.java.core.utils.spring.EmbeddedValueResolverProvider:
   - java.util.function.Supplier
   - org.springframework.context.EmbeddedValueResolverAware
   - org.springframework.util.StringValueResolver
-  methods:
-    get:
-      annotations:
-      - Override
-      parameters: []
-      return_type: StringValueResolver
-    setEmbeddedValueResolver:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: resolver
-        type: StringValueResolver
-      return_type: null
 com.gsitm.ustra.java.core.utils.spring.ResourceLoaderProvider:
-  class_annotations: []
   extends: null
   implements:
   - ResourceLoaderAware
@@ -3806,22 +1029,7 @@ com.gsitm.ustra.java.core.utils.spring.ResourceLoaderProvider:
   - java.util.function.Supplier
   - org.springframework.context.ResourceLoaderAware
   - org.springframework.core.io.ResourceLoader
-  methods:
-    get:
-      annotations:
-      - Override
-      parameters: []
-      return_type: ResourceLoader
-    setResourceLoader:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: resourceLoader
-        type: ResourceLoader
-      return_type: null
 com.gsitm.ustra.java.core.utils.spring.SpecificResourcePatternResolver:
-  class_annotations: []
   extends: PathMatchingResourcePatternResolver
   implements: []
   imports:
@@ -3832,17 +1040,7 @@ com.gsitm.ustra.java.core.utils.spring.SpecificResourcePatternResolver:
   - java.util.Set
   - org.springframework.core.io.Resource
   - org.springframework.core.io.support.PathMatchingResourcePatternResolver
-  methods:
-    doFindAllClassPathResources:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: path
-        type: String
-      return_type: Set
 com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor:
-  class_annotations: []
   extends: null
   implements:
   - EnvironmentPostProcessor
@@ -3861,77 +1059,7 @@ com.gsitm.ustra.java.core.utils.spring.SpringEnvironmentPostProcessor:
   - org.springframework.core.io.Resource
   - org.springframework.lang.NonNull
   - org.springframework.lang.Nullable
-  methods:
-    addLast:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: environment
-        type: ConfigurableEnvironment
-      - annotations: []
-        name: propertySource
-        type: PropertySource
-      return_type: null
-    addNotExistsPropertyToMap:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: map
-        type: Map
-      - annotations: []
-        name: propertyKey
-        type: String
-      - annotations: []
-        name: originValue
-        type: String
-      - annotations: []
-        name: value
-        type: String
-      return_type: null
-    addOrReplaceToDefault:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: environment
-        type: ConfigurableEnvironment
-      - annotations: []
-        name: map
-        type: Map
-      return_type: null
-    copyProperty:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: environment
-        type: ConfigurableEnvironment
-      - annotations: []
-        name: sourcePropertyName
-        type: String
-      - annotations: []
-        name: targetPropertyName
-        type: String
-      - annotations: []
-        name: defaultValue
-        type: String
-      return_type: null
-    getUstraPropertySource:
-      annotations:
-      - Nullable
-      parameters:
-      - annotations:
-        - NonNull
-        name: environment
-        type: ConfigurableEnvironment
-      return_type: MapPropertySource
-    loadYamlPropertySources:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: path
-        type: Resource
-      return_type: List
 org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider:
-  class_annotations: []
   extends: null
   implements:
   - BindConstructorProvider
@@ -3939,22 +1067,3 @@ org.springframework.boot.context.properties.bind.DefaultBindConstructorProvider:
   - java.lang.reflect.Constructor
   - org.springframework.beans.BeanUtils
   - org.springframework.core.KotlinDetector
-  methods:
-    getBindConstructor:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: bindable
-        type: Bindable
-      - annotations: []
-        name: isNestedConstructorBinding
-        type: boolean
-      return_type: Constructor
-    getDeducedKotlinConstructor:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: type
-        type: Class
-      return_type: Constructor

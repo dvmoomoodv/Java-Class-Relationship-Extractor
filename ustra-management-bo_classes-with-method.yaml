@@ -1,0 +1,3902 @@
+com.gsitm.ustra.java.management.bo.UstraManagementBo:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.ManagementBoSecurityConfigure:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraSecurityConfigure
+  imports:
+  - org.springframework.security.config.annotation.web.builders.WebSecurity
+  - com.gsitm.ustra.java.security.config.UstraSecurityConfigure
+  methods:
+    postConfigure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: web
+        type: WebSecurity
+      return_type: null
+com.gsitm.ustra.java.management.bo.authentication.claims.ManagementJwtClaimAppender:
+  class_annotations: []
+  extends: DefaultUstraJwtClaimAppender
+  implements: []
+  imports:
+  - org.springframework.security.core.Authentication
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.DefaultUstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaims
+  methods:
+    append:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: claims
+        type: UstraJwtClaims
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: null
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoAuthenticationController:
+  class_annotations:
+  - RestController
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDate
+  - java.time.LocalDateTime
+  - java.time.temporal.ChronoUnit
+  - java.util.List
+  - java.util.Optional
+  - javax.validation.Valid
+  - lombok.Getter
+  - lombok.Setter
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.security.core.Authentication
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserAuthenticationKeyRequestToken
+  - com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserRequestToken
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.management.services.policies.UstraUserAccountPolicyResolver
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    completeLogin:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraBoLoginCompleteReqVo
+      return_type: UstraLoginResVo
+    currentAuthentication:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: Authentication
+    editPassword:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - Valid
+        - RequestBody
+        name: in
+        type: UstraPasswordEditReqVo
+      return_type: ResponseCode
+    getLoginResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      return_type: UstraLoginResVo
+    getUserMenus:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations: []
+        name: sysCd
+        type: String
+      return_type: List
+    login:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraBoLoginReqVo
+      return_type: UstraLoginResVo
+    logout:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: UstraLoginResVo
+    postValidateId:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: param
+        type: ValidateUserIdParam
+      return_type: UstraUserAccountPolicyResolver
+    postValidatePassword:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: param
+        type: ValidatePasswordParam
+      return_type: UstraUserAccountPolicyResolver
+    validateId:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: userId
+        type: String
+      return_type: UstraUserAccountPolicyResolver
+    validatePassword:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: password
+        type: String
+      - annotations: []
+        name: oldPassword
+        type: String
+      - annotations: []
+        name: userId
+        type: String
+      return_type: UstraUserAccountPolicyResolver
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoLoginCompleteReqVo:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraBoLoginReqVo:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  extends: null
+  implements: []
+  imports:
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraLoginResVo:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - java.util.Collection
+  - java.util.List
+  - org.springframework.security.core.GrantedAuthority
+  - com.fasterxml.jackson.annotation.JsonProperty
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.controller.UstraPasswordEditReqVo:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.constraints.NotEmpty
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - UstraAuthenticationListener
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils
+  - com.gsitm.ustra.java.data.utils.UstraTransactionUtils.TransactionExecuteOption
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getAuthenticationSystemCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: String
+    getUserFromException:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: UstraSystemUser
+    onAuthenticateFailure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authenticationToken
+        type: S
+      - annotations: []
+        name: e
+        type: Exception
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+    onAuthenticateSuccess:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authenticationToken
+        type: S
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+    onAutomaticUnauthenticated:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: procId
+        type: String
+      - annotations: []
+        name: userName
+        type: String
+      - annotations: []
+        name: clientIp
+        type: String
+      return_type: null
+    onUnauthenticateSuccess:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+com.gsitm.ustra.java.management.bo.authentication.processor.ManagementBoAuthenticationProcessor:
+  class_annotations: []
+  extends: DefaultUstraAuthenticationProcessor
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener
+  - com.gsitm.ustra.java.management.bo.authentication.user.CachedManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+  methods:
+    getConfigurer:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraManagementBoProperties
+      return_type: UstraAuthenticationConfigurer
+com.gsitm.ustra.java.management.bo.authentication.processor.ManagementBoJwtAuthenticationProcessor:
+  class_annotations: []
+  extends: UstraJwtAuthenticationProcessor
+  implements: []
+  imports:
+  - javax.validation.constraints.NotNull
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.management.bo.authentication.claims.ManagementJwtClaimAppender
+  - com.gsitm.ustra.java.management.bo.authentication.listener.ManagementAuthenticationListener
+  - com.gsitm.ustra.java.management.bo.authentication.user.CachedJwtManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport
+  - com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener
+  - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
+  - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker
+  - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
+  - com.gsitm.ustra.java.security.jwt.authentication.UstraJwtAuthenticationConfigurer
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  - com.gsitm.ustra.java.security.jwt.authentication.claims.UstraJwtClaimAppender
+  - com.gsitm.ustra.java.security.jwt.authentication.processor.UstraJwtAuthenticationProcessor
+  - com.gsitm.ustra.java.security.jwt.authentication.properties.UstraJwtAuthenticationProperties
+  - com.gsitm.ustra.java.security.jwt.authentication.store.HttpHeaderCookieJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtAuthenticationStore
+  - com.gsitm.ustra.java.security.jwt.authentication.store.UstraJwtRefreshTokenStore
+  methods:
+    getConfigurer:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraManagementBoProperties
+      - annotations: []
+        name: refreshTokenStore
+        type: UstraJwtRefreshTokenStore
+      return_type: UstraJwtAuthenticationConfigurer
+com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserAuthenticationKeyRequestToken:
+  class_annotations:
+  - EqualsAndHashCode
+  extends: UserNameWithKeyAuthenticationRequestToken
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.request.ManagementUserRequestToken:
+  class_annotations:
+  - EqualsAndHashCode
+  extends: UserNamePasswordAuthenticationRequestToken
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.authentication.user.CachedJwtManagementUserDetailProvider:
+  class_annotations:
+  - SuppressWarnings
+  extends: UstraCachedUserDetailProvider
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  methods:
+    getInternalUserDetails:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraJwtAuthentication
+      return_type: UstraUser
+    setApplicationContext:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      return_type: null
+com.gsitm.ustra.java.management.bo.authentication.user.CachedManagementUserDetailProvider:
+  class_annotations:
+  - SuppressWarnings
+  extends: UstraCachedUserDetailProvider
+  implements:
+  - ApplicationContextAware
+  imports:
+  - org.springframework.beans.BeansException
+  - org.springframework.context.ApplicationContext
+  - org.springframework.context.ApplicationContextAware
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  methods:
+    getInternalUserDetails:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: UstraUser
+    setApplicationContext:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      return_type: null
+com.gsitm.ustra.java.management.bo.authentication.user.ManagementUserDetailProvider:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraUserDetailProvider
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Stream
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.management.authentication.ManagementGrantedAuthority
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider
+  - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
+  - com.gsitm.ustra.java.security.jwt.authentication.authentication.UstraJwtAuthentication
+  methods:
+    getUser:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: userName
+        type: String
+      return_type: UstraUser
+    getUserDetails:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: T
+      return_type: UstraUser
+    isAccountNonLockedUser:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: user
+        type: UstraUserModel
+      return_type: boolean
+    isCredentialsNonExpiredUser:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: user
+        type: UstraUserModel
+      return_type: boolean
+    isEnabledUser:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: user
+        type: UstraUserModel
+      return_type: boolean
+    isNonExpiredUser:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: user
+        type: UstraUserModel
+      return_type: boolean
+com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
+  - JsonIgnoreProperties
+  extends: UstraUser
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.util.Collection
+  - org.springframework.security.core.GrantedAuthority
+  - com.fasterxml.jackson.annotation.JsonCreator
+  - com.fasterxml.jackson.annotation.JsonIgnoreProperties
+  - com.fasterxml.jackson.annotation.JsonProperty
+  - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  methods: {}
+com.gsitm.ustra.java.management.bo.controllers.UstraAppSttController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAppSttOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraAppSttRqVo
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addAppStt:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraAppSttModel
+    delAppStt:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttOneRqVo
+      return_type: UstraAppSttModel
+    delAppSttPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttOneRqVo
+      return_type: UstraAppSttModel
+    getAppStt:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttOneRqVo
+      return_type: UstraAppSttModel
+    getAppSttList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAppSttModel
+      return_type: List
+    modAppStt:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraAppSttModel
+    modAppSttPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraAppSttRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraAppSttModel
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    getAuthorityForAuthGrp:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: authGrpId
+        type: Integer
+      return_type: UstraAuthorityModel
+    getAuthorityForUser:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      return_type: UstraAuthorityModel
+    hasApproval:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations: []
+        name: targetUsrId
+        type: String
+      - annotations: []
+        name: usrApvTyCd
+        type: String
+      return_type: Boolean
+    saveAuthority:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: authority
+        type: UstraAuthorityModel
+      return_type: UstraAuthorityModel
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityGroupController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupCheckRqVo
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addAuthorityGroup:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraAuthorityGroupModel
+    childGroupCheck:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraAuthorityGroupCheckRqVo
+      return_type: null
+    delAuthorityGroup:
+      annotations:
+      - Permission
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraAuthorityGroupModel
+    delAuthorityGroupPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraAuthorityGroupModel
+    getAuthorityGroup:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: authGrpId
+        type: Integer
+      return_type: UstraAuthorityGroupModel
+    getAuthorityGroups:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityGroupModel
+      return_type: List
+    getRequestableGroupsOfUser:
+      annotations:
+      - Permission
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: sysCd
+        type: String
+      - annotations: []
+        name: usrId
+        type: String
+      return_type: List
+    modAuthorityGroup:
+      annotations:
+      - Permission
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraAuthorityGroupModel
+    modAuthorityGroupPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraAuthorityGroupModel
+    registerUsers:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations:
+        - JsonStringParameter
+        name: authGrpIds
+        type: List
+      - annotations: []
+        name: addInfVal
+        type: String
+      return_type: int
+com.gsitm.ustra.java.management.bo.controllers.UstraAuthorityStatusController:
+  class_annotations:
+  - Slf4j
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    authDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraAuthorityStatusModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+    currentDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraAuthorityStatusModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+    getCurrentHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: List
+    getGrpHistories:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: List
+    getHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: List
+    getPeriodHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: List
+    getUserHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: List
+    grpDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraAuthorityStatusModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+    periodDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraAuthorityStatusModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.validation.Valid
+  - org.apache.commons.lang3.tuple.Pair
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addBatch:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    delBatch:
+      annotations:
+      - Permission
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchOneRqVo
+      return_type: ResponseCode
+    delBatchPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchOneRqVo
+      return_type: ResponseCode
+    getBatch:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchOneRqVo
+      return_type: UstraBatchModel
+    getBatchList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchModel
+      return_type: List
+    modBatch:
+      annotations:
+      - Permission
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modBatchPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    startBatch:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchOneRqVo
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchHistController:
+  class_annotations:
+  - Slf4j
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.List
+  - javax.validation.Valid
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - org.springframework.web.servlet.mvc.method.annotation.SseEmitter
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchHistOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getBatchHist:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraBatchHistOneRqVo
+      return_type: UstraBatchHistModel
+    getBatchHistList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchHistModel
+      return_type: PaginationList
+    getLog:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - RequestParam
+        name: batHistId
+        type: String
+      return_type: SseEmitter
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchManagerController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  - RequiredArgsConstructor
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchManagerRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchManagerService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.RequiredArgsConstructor
+  methods:
+    createManager:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerRqVo
+        type: UstraBatchManagerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    deleteManager:
+      annotations:
+      - DeleteMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: criteria
+        type: UstraBatchManagerModel
+      return_type: ResponseCode
+    deleteManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: criteria
+        type: UstraBatchManagerModel
+      return_type: ResponseCode
+    disableManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerModel
+        type: UstraBatchManagerModel
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+    disableManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerModel
+        type: UstraBatchManagerModel
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+    enableManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerModel
+        type: UstraBatchManagerModel
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+    enableManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerModel
+        type: UstraBatchManagerModel
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+    getManager:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchManagerModel
+      return_type: UstraBatchManagerModel
+    getManagerList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchManagerModel
+      return_type: List
+    modifyManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerRqVo
+        type: UstraBatchManagerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+    modifyManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchManagerRqVo
+        type: UstraBatchManagerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchManagerModel
+com.gsitm.ustra.java.management.bo.controllers.UstraBatchWorkerController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  - RequiredArgsConstructor
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.management.models.vo.UstraBatchWorkerRqVo
+  - com.gsitm.ustra.java.management.services.UstraBatchWorkerService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.RequiredArgsConstructor
+  methods:
+    createManager:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    deleteManager:
+      annotations:
+      - DeleteMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: criteria
+        type: UstraBatchWorkerModel
+      return_type: ResponseCode
+    deleteManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: criteria
+        type: UstraBatchWorkerModel
+      return_type: ResponseCode
+    disableManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+    disableManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+    enableManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+    enableManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+    getManager:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchWorkerModel
+      return_type: UstraBatchWorkerModel
+    getWorkerList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraBatchWorkerModel
+      return_type: List
+    modifyManager:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+    modifyManagerPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: ustraBatchWorkerRqVo
+        type: UstraBatchWorkerRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: UstraBatchWorkerModel
+com.gsitm.ustra.java.management.bo.controllers.UstraCodeController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeGroupDepthVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeGroupVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraCodeRqVo
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addCode:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    delCode:
+      annotations:
+      - DeleteMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeOneRqVo
+      return_type: ResponseCode
+    delCodePost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeOneRqVo
+      return_type: ResponseCode
+    getCode:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeListRqVo
+      return_type: List
+    getCodeDetail:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeOneRqVo
+      return_type: UstraCodeModel
+    getCodeGroupDepth:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeGroupDepthVo
+      return_type: List
+    getCodeList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeModel
+      return_type: List
+    getGroupList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeGroupVo
+      return_type: List
+    getGroupListByTable:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeGroupVo
+      return_type: List
+    modCode:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modCodePost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraCodeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraFileController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.io.FileNotFoundException
+  - java.io.FileOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - org.springframework.web.multipart.MultipartFile
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileModel
+  - com.gsitm.ustra.java.management.models.vo.UstraFileListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileService
+  methods:
+    addFile:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: MultipartHttpServletRequest
+      return_type: ResponseCode
+    delFile:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileOneRqVo
+      return_type: ResponseCode
+    delFilePost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileOneRqVo
+      return_type: ResponseCode
+    getFile:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileOneRqVo
+      return_type: UstraFileModel
+    getFiles:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraFileListRqVo
+      return_type: List
+com.gsitm.ustra.java.management.bo.controllers.UstraFileGroupController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraFileGroupOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileGroupRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addFileGroup:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    delFileGroup:
+      annotations:
+      - DeleteMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupOneRqVo
+      return_type: ResponseCode
+    delFileGroupPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupOneRqVo
+      return_type: ResponseCode
+    getFileGroup:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupOneRqVo
+      return_type: UstraFileGroupModel
+    getFileGroups:
+      annotations:
+      - PostMapping
+      parameters: []
+      return_type: List
+    modFileGroup:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modFileGroupPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraFileGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraIfsController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addIfs:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    delIfs:
+      annotations:
+      - Permission
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsOneRqVo
+      return_type: ResponseCode
+    delIfsPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsOneRqVo
+      return_type: ResponseCode
+    getIfs:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsOneRqVo
+      return_type: UstraIfsModel
+    getIfsList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraIfsModel
+      return_type: List
+    modIfs:
+      annotations:
+      - Permission
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modIfsPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraIfsHistoryController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsHistoryOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  methods:
+    downloadExcel:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraIfsHistoryModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+    getIfsHistory:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraIfsHistoryOneRqVo
+      return_type: UstraIfsHistoryModel
+    getIfsHistoryList:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraIfsHistoryModel
+      return_type: List
+com.gsitm.ustra.java.management.bo.controllers.UstraInitializingDataController:
+  class_annotations:
+  - RestController
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.bo.data.BoInitialDataProvider
+  methods:
+    initialData:
+      annotations:
+      - PostMapping
+      parameters: []
+      return_type: Object
+com.gsitm.ustra.java.management.bo.controllers.UstraLoginHistoryController:
+  class_annotations:
+  - Slf4j
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getAccCnt:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: List
+    getCurrentAcc:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: List
+    getListHhChart:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: List
+    getLoginHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: List
+    listDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraLoginHistoryModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ResponseEntity
+com.gsitm.ustra.java.management.bo.controllers.UstraMenuController:
+  class_annotations:
+  - Slf4j
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestMethod
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuFunctionAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMenuBatchUpdateRqVo
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    addAccessFunctionHistory:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: history
+        type: UstraMenuFunctionAccessHistoryModel
+      return_type: UstraMenuFunctionAccessHistoryModel
+    addAccessHistory:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: history
+        type: UstraMenuAccessHistoryModel
+      return_type: UstraMenuAccessHistoryModel
+    addMenu:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+    downloadAccessHistories:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraMenuAccessHistoryModel
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ResponseEntity
+    getAccessHistories:
+      annotations:
+      - Permission
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraMenuAccessHistoryModel
+      return_type: List
+    getAuthorityGroup:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: mnuId
+        type: String
+      return_type: UstraMenuModel
+    getMenuGuide:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: mnuId
+        type: String
+      return_type: UstraMenuModel
+    getMenus:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraMenuModel
+      return_type: List
+    hasAccessiableMenu:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: mnuId
+        type: String
+      return_type: boolean
+    removeMenu:
+      annotations:
+      - Permission
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+    removeMenuPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+    setMenuGuide:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+    updateMenu:
+      annotations:
+      - Permission
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+    updateMenuBatch:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: vo
+        type: UstraMenuBatchUpdateRqVo
+      return_type: ResponseCode
+    updateMenuPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraMenuModel
+com.gsitm.ustra.java.management.bo.controllers.UstraMessageController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMessageModel
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeRqVo
+  - com.gsitm.ustra.java.management.services.UstraMessageService
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation
+  - javax.validation.Valid
+  - java.time.LocalDateTime
+  - java.time.format.DateTimeFormatter
+  - java.util.List
+  methods:
+    addMsg:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    cancelMsg:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageOneRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    getMsg:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageOneRqVo
+      return_type: UstraMessageModel
+    getMsgs:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraMessageModel
+      return_type: List
+    removeMsg:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageOneRqVo
+      return_type: ResponseCode
+    removeMsgPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageOneRqVo
+      return_type: ResponseCode
+    resendMsg:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageOneRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraMessageTypeController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.message.provider.ConsoleMessageProvider
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.message.provider.JavaMailMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProvider
+  - com.gsitm.ustra.java.data.message.provider.UstraMessageProviderStore
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraMessageTypeModel
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraMessageTypeRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostRqVo
+  - com.gsitm.ustra.java.management.services.UstraMessageTypeService
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+  methods:
+    addMsgType:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    getMsgType:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeOneRqVo
+      return_type: UstraMessageTypeModel
+    getMsgTypes:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraMessageTypeModel
+      return_type: List
+    getProviderList:
+      annotations:
+      - PostMapping
+      parameters: []
+      return_type: List
+    removeMsgType:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeOneRqVo
+      return_type: ResponseCode
+    removeMsgTypePost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeOneRqVo
+      return_type: ResponseCode
+    updateMsgType:
+      annotations:
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    updateMsgTypePost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraMessageTypeRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraPostController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostModel
+  - com.gsitm.ustra.java.management.models.vo.UstraPostOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostRqVo
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostService
+  methods:
+    addPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    checkLinkedData:
+      annotations: []
+      parameters:
+      - annotations:
+        - Valid
+        name: in
+        type: UstraPostModel
+      return_type: null
+    delPost:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostOneRqVo
+      return_type: ResponseCode
+    delPostPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostOneRqVo
+      return_type: ResponseCode
+    getPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostOneRqVo
+      return_type: UstraPostModel
+    getPosts:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraPostModel
+      return_type: List
+    modPost:
+      annotations:
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modPostPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraPostGroupController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraPostGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraPostGroupOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraPostGroupRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.management.services.UstraPostGroupService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addPostGroup:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    checkLinkedData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: in
+        type: UstraPostGroupModel
+      return_type: null
+    delPostGroup:
+      annotations:
+      - Permission
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupOneRqVo
+      return_type: ResponseCode
+    delPostGroupPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupOneRqVo
+      return_type: ResponseCode
+    getPostGroup:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupOneRqVo
+      return_type: UstraPostGroupModel
+    getPostGroups:
+      annotations:
+      - PostMapping
+      parameters: []
+      return_type: List
+    modPostGroup:
+      annotations:
+      - Permission
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modPostGroupPost:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraPostGroupRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraPrivateInfoAccessHistoryController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addHistory:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: history
+        type: UstraPrivateInfoAccessHistoryModel
+      return_type: int
+    getHistories:
+      annotations:
+      - Permission
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraPrivateInfoAccessHistoryModel
+      return_type: List
+com.gsitm.ustra.java.management.bo.controllers.UstraTextTemplateController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngine
+  - com.gsitm.ustra.java.data.text.UstraTextTemplateEngineStore
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraTextTemplateModel
+  - com.gsitm.ustra.java.management.models.vo.TextTemplateParam
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraTextTemplateRqVo
+  - com.gsitm.ustra.java.management.services.UstraTextTemplateService
+  - lombok.Getter
+  - lombok.Setter
+  - org.apache.commons.lang3.ObjectUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation
+  - javax.validation.Valid
+  - java.util.ArrayList
+  - java.util.HashMap
+  - java.util.List
+  - java.util.Map
+  methods:
+    addTextTemplate:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraTextTemplateRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    getTextTemplateEngineList:
+      annotations:
+      - GetMapping
+      parameters: []
+      return_type: List
+    getTextTemplete:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraTextTemplateOneRqVo
+      return_type: UstraTextTemplateModel
+    getTextTempletes:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraTextTemplateModel
+      return_type: List
+    removeTextTemplate:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraTextTemplateOneRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    testTextTemplate:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: txtTmplId
+        type: String
+      - annotations:
+        - RequestBody
+        name: in
+        type: TextTemplateTestParam
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: String
+    updateTextTemplate:
+      annotations:
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraTextTemplateRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraUserApprovalController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    approval:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: approval
+        type: UstraUserApprovalModel
+      return_type: UstraUserApprovalModel
+    getApproval:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: usrApvId
+        type: Integer
+      return_type: UstraUserApprovalModel
+    getApprovals:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraUserApprovalModel
+      return_type: List
+    getPersonalApprovals:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraUserApprovalModel
+      return_type: List
+    hasApproval:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations: []
+        name: usrId
+        type: String
+      - annotations: []
+        name: usrApvId
+        type: Integer
+      return_type: Boolean
+    requestApproval:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: approval
+        type: UstraUserApprovalModel
+      return_type: UstraUserApprovalModel
+com.gsitm.ustra.java.management.bo.controllers.UstraUserController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.validation.Errors
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.management.exception.UstraManagementResponseCode
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserOneRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraUserPasswordCheckRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraUserRqVo
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    addUser:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    checkPassword:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraUserPasswordCheckRqVo
+      return_type: Boolean
+    delUser:
+      annotations:
+      - DeleteMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserOneRqVo
+      return_type: ResponseCode
+    delUserPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserOneRqVo
+      return_type: ResponseCode
+    getPrivateUser:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserOneRqVo
+      return_type: UstraUserModel
+    getUser:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserOneRqVo
+      return_type: UstraUserModel
+    getUsers:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraUserModel
+      return_type: List
+    modPrivateUser:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraUserRqVo
+      return_type: ResponseCode
+    modUser:
+      annotations:
+      - PutMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+    modUserPost:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        - Valid
+        name: in
+        type: UstraUserRqVo
+      - annotations: []
+        name: errs
+        type: Errors
+      return_type: ResponseCode
+com.gsitm.ustra.java.management.bo.controllers.UstraUserHistoryController:
+  class_annotations:
+  - Slf4j
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestParam
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter
+  - com.gsitm.ustra.java.mvc.handler.resolver.JsonStringParameter
+  - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getUserHistorys:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraUserHistoryModel
+      return_type: List
+    listDownload:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - JsonStringParameter
+        name: criteria
+        type: UstraUserHistoryModel
+      - annotations:
+        - JsonStringParameter
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - RequestParam
+        name: maskYn
+        type: String
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ResponseEntity
+com.gsitm.ustra.java.management.bo.controllers.UstraUserMenuController:
+  class_annotations:
+  - RestController
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.web.bind.annotation.DeleteMapping
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.PutMapping
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.RequestMethod
+  - org.springframework.web.bind.annotation.RestController
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addUserMenu:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraUserMenuModel
+    getUserMenus:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: criteria
+        type: UstraUserMenuModel
+      return_type: List
+    removeUserMenu:
+      annotations:
+      - DeleteMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraUserMenuModel
+    removeUserMenuPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraUserMenuModel
+    updateDefUserMenu:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraUserMenuModel
+    updateUserMenu:
+      annotations:
+      - PutMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuListRqVo
+      return_type: UstraUserMenuListRqVo
+    updateUserMenuPost:
+      annotations:
+      - PostMapping
+      - Permission
+      parameters:
+      - annotations:
+        - RequestBody
+        name: menu
+        type: UstraUserMenuListRqVo
+      return_type: UstraUserMenuListRqVo
+com.gsitm.ustra.java.management.bo.data.BoInitialDataProvider:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.Map
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  methods:
+    getAppProp:
+      annotations: []
+      parameters: []
+      return_type: UstraManagementBoProperties
+    getCodeMappingRules:
+      annotations: []
+      parameters: []
+      return_type: Map
+    getCommonCodes:
+      annotations: []
+      parameters: []
+      return_type: List
+    getCurrentSystemCode:
+      annotations: []
+      parameters: []
+      return_type: String
+    getFileGroups:
+      annotations: []
+      parameters: []
+      return_type: List
+    getMenus:
+      annotations: []
+      parameters: []
+      return_type: List
+    getProjectProp:
+      annotations: []
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.management.bo.data.DefaultBoInitialDataProvider:
+  class_annotations: []
+  extends: null
+  implements:
+  - BoInitialDataProvider
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.Map
+  - java.util.stream.Collectors
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicy
+  - com.gsitm.ustra.java.data.file.policy.FileGroupPolicyStore
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties
+  - com.gsitm.ustra.java.management.properties.UstraManagementBoProperties.AppInfo
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  methods:
+    getAppProp:
+      annotations:
+      - Override
+      parameters: []
+      return_type: AppInfo
+    getCodeMappingRules:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Map
+    getCommonCodes:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
+    getCurrentSystemCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+    getFileGroups:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
+    getMenus:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
+    getProjectProp:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Map
+com.gsitm.ustra.java.management.bo.logging.UstraManagementBoInterfaceHistoryModifier:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraManagementInterfaceHistoryModifier
+  imports:
+  - com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport
+  - com.gsitm.ustra.java.management.logging.intefaces.UstraManagementInterfaceHistoryModifier
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  methods:
+    modify:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: history
+        type: UstraIfsHistoryModel
+      return_type: null
+com.gsitm.ustra.java.management.bo.services.rest.TaskDetailConverter:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - lombok.experimental.UtilityClass
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - java.util.Arrays
+  - java.util.Collections
+  - java.util.stream.Collectors
+  methods:
+    convert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: batch
+        type: UstraBatchModel
+      return_type: UstraBatchTaskApiService
+    getTaskScheduleType:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: schdlDvCd
+        type: String
+      return_type: UstraBatchTaskApiService
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchApiServiceTemplate:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.net.URI
+  - java.net.URISyntaxException
+  - java.util.List
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Value
+  - org.springframework.web.client.RestTemplate
+  - com.gsitm.ustra.java.data.mybatis.proxy.MapperManager
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.repositories.UstraBatchManagerRepository
+  methods:
+    endpoint:
+      annotations: []
+      parameters: []
+      return_type: String
+    restTemplate:
+      annotations: []
+      parameters: []
+      return_type: RestTemplate
+    uri:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: apiPath
+        type: String
+      return_type: URI
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchApiServiceTest:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Assertions.assertEquals
+  - java.time.LocalDateTime
+  - java.util.List
+  - org.junit.jupiter.api.BeforeEach
+  - org.junit.jupiter.api.Test
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel.Criteria
+  methods:
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testAddBatch:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testGetBatch:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testGetBatches:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchManagerApiService:
+  class_annotations:
+  - SuppressWarnings
+  - Service
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchManagerService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.util.List
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel
+  - com.gsitm.ustra.java.management.models.UstraBatchManagerModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchManagerService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  methods:
+    addBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchManager
+        type: UstraBatchManagerModel
+      return_type: int
+    disableBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: UstraBatchManagerModel
+    enableBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: UstraBatchManagerModel
+    getBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: UstraBatchManagerModel
+    getBatchManagerList:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: criteria
+        type: Criteria
+      return_type: List
+    removeBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: int
+    updateBatchManager:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchManager
+        type: UstraBatchManagerModel
+      return_type: UstraBatchManagerModel
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskApiService:
+  class_annotations:
+  - Service
+  - SuppressWarnings
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - java.nio.charset.Charset
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.time.LocalDateTime
+  - java.util
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - com.gsitm.ustra.java.management.models.UstraBatchParamModel
+  - org.apache.commons.collections4.ListUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.lang3.tuple.Pair
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - org.springframework.web.client.RestTemplate
+  - org.springframework.web.util.UriComponents
+  - org.springframework.web.util.UriComponentsBuilder
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.management.models.UstraBatchInstanceModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel
+  - com.gsitm.ustra.java.management.models.UstraBatchModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchService
+  - com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraBatchServiceEventListener.BatchEventArg
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener
+  - com.gsitm.ustra.java.management.services.listeners.UstraUserServiceEventListener.UserEventArg
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.ToString
+  methods:
+    addBatch:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batch
+        type: UstraBatchModel
+      return_type: int
+    getBatch:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batId
+        type: String
+      return_type: UstraBatchModel
+    getBatches:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: criteria
+        type: Criteria
+      return_type: List
+    getSchdlDvCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskScheduleType
+        type: TaskScheduleType
+      return_type: String
+    removeBatch:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batId
+        type: String
+      return_type: int
+    startBatch:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batId
+        type: String
+      - annotations: []
+        name: parameterList
+        type: List
+      return_type: int
+    updateBatch:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batch
+        type: UstraBatchModel
+      return_type: int
+    ustraBatchModelOf:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskDetail
+        type: TaskDetail
+      return_type: UstraBatchModel
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchTaskInstanceApiService:
+  class_annotations:
+  - SuppressWarnings
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchHistService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.time.LocalDateTime
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.Optional
+  - java.util.List
+  - lombok.ToString
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.web.util.UriComponentsBuilder
+  - com.fasterxml.jackson.annotation.JsonFormat
+  - com.gsitm.ustra.java.data.domains.PaginationList
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.data.domains.PaginationRequest.OrderDirection
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel
+  - com.gsitm.ustra.java.management.models.UstraBatchHistModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchHistService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  - lombok.Getter
+  - lombok.Setter
+  methods:
+    addBatHist:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batHist
+        type: UstraBatchHistModel
+      return_type: int
+    getBatchHist:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batHistId
+        type: String
+      return_type: UstraBatchHistModel
+    getBatchHistLog:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batHistId
+        type: String
+      return_type: String
+    getBatchHists:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: pagination
+        type: PaginationRequest
+      - annotations: []
+        name: criteria
+        type: Criteria
+      return_type: PaginationList
+    stopBathHist:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batHist
+        type: UstraBatchHistModel
+      return_type: int
+    updateBatHist:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batHist
+        type: UstraBatchHistModel
+      return_type: int
+com.gsitm.ustra.java.management.bo.services.rest.UstraBatchWorkerApiService:
+  class_annotations:
+  - Service
+  - SuppressWarnings
+  extends: UstraBatchApiServiceTemplate
+  implements:
+  - UstraBatchWorkerService
+  imports:
+  - org.springframework.http.HttpMethod.GET
+  - org.springframework.http.HttpMethod.POST
+  - java.net.URI
+  - java.util.List
+  - org.springframework.core.ParameterizedTypeReference
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.RequestEntity
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Service
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel
+  - com.gsitm.ustra.java.management.models.UstraBatchWorkerModel.Criteria
+  - com.gsitm.ustra.java.management.services.UstraBatchWorkerService
+  - com.gsitm.ustra.java.mvc.rest.model.RestResult
+  methods:
+    addBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchWorker
+        type: UstraBatchWorkerModel
+      return_type: int
+    disableBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchWorker
+        type: UstraBatchWorkerModel
+      return_type: UstraBatchWorkerModel
+    enableBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchWorker
+        type: UstraBatchWorkerModel
+      return_type: UstraBatchWorkerModel
+    getBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: UstraBatchWorkerModel
+    getBatchWorkerList:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: criteria
+        type: Criteria
+      return_type: List
+    removeBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: int
+    updateBatchWorker:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: batchWorker
+        type: UstraBatchWorkerModel
+      return_type: UstraBatchWorkerModel
+com.gsitm.ustra.java.management.bo.utils.ManagementBoSupport:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.management.bo.authentication.user.UstraSystemUser
+  - com.gsitm.ustra.java.management.data.mapper.UstraCommonCodeDataMapper
+  - com.gsitm.ustra.java.management.properties.UstraManagementCoreProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    getCommonCodeValue:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: grpCd
+        type: String
+      - annotations: []
+        name: dtlCd
+        type: String
+      return_type: String
+    getCurrentMenuId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getCurrentProgramId:
+      annotations: []
+      parameters: []
+      return_type: String
+    isPrivacyInfoManager:
+      annotations: []
+      parameters: []
+      return_type: boolean

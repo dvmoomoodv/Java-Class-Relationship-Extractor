@@ -33,10 +33,18 @@ def get_classes_and_relations(java_files):
         package_name = tree.package.name if tree.package else ''
         
         for type_decl in tree.types:
+            # 클래스나 인터페이스 선언일 경우
             if isinstance(type_decl, (javalang.tree.ClassDeclaration, javalang.tree.InterfaceDeclaration)):
                 class_name = package_name + '.' + type_decl.name if package_name else type_decl.name
                 
-                # extends 처리
+                # 클래스 어노테이션 추출
+                class_annotations = []
+                if type_decl.annotations:
+                    for ann in type_decl.annotations:
+                        # 어노테이션 이름 추출
+                        class_annotations.append(ann.name)
+
+                # 상속 처리
                 parent = None
                 if isinstance(type_decl, javalang.tree.ClassDeclaration):
                     if type_decl.extends:
@@ -45,27 +53,64 @@ def get_classes_and_relations(java_files):
                     if type_decl.extends and len(type_decl.extends) > 0:
                         parent = type_decl.extends[0].name
                 
-                # implements 처리
+                # 구현 처리
                 if hasattr(type_decl, 'implements') and type_decl.implements is not None:
                     implements = [impl.name for impl in type_decl.implements]
                 else:
                     implements = []
                 
-                # imports
+                # import 처리
                 imports = [imp.path for imp in tree.imports if imp.path]
-                
+
+                # 메서드 정보 추출
+                methods_info = {}
+                if hasattr(type_decl, 'methods'):
+                    for method in type_decl.methods:
+                        # 메서드명
+                        method_name = method.name
+                        # 리턴 타입
+                        return_type = method.return_type.name if method.return_type else None
+                        
+                        # 메서드 어노테이션
+                        method_annotations = []
+                        if method.annotations:
+                            for ann in method.annotations:
+                                method_annotations.append(ann.name)
+                        
+                        # 파라미터 정보
+                        parameters_info = []
+                        for param in method.parameters:
+                            param_type = param.type.name if param.type else None
+                            param_name = param.name
+                            param_annotations = []
+                            if param.annotations:
+                                for pann in param.annotations:
+                                    param_annotations.append(pann.name)
+                            parameters_info.append({
+                                'type': param_type,
+                                'name': param_name,
+                                'annotations': param_annotations
+                            })
+
+                        methods_info[method_name] = {
+                            'return_type': return_type,
+                            'annotations': method_annotations,
+                            'parameters': parameters_info
+                        }
+
                 classes[class_name] = {
                     'extends': parent,
                     'implements': implements,
-                    'imports': imports
+                    'imports': imports,
+                    'class_annotations': class_annotations,
+                    'methods': methods_info
                 }
-                logging.debug(f"Discovered class: {class_name}, extends: {parent}, implements: {implements}, imports: {len(imports)}")
+                logging.debug(f"Discovered class: {class_name}, extends: {parent}, implements: {implements}, imports: {len(imports)}, annotations: {class_annotations}, methods: {len(methods_info)}")
     
     logging.info(f"Total classes found: {len(classes)}")
     return classes
 
 def print_as_yaml(classes):
-    # classes 딕셔너리를 YAML 형태로 출력
     yaml_str = yaml.dump(classes, default_flow_style=False, sort_keys=True, allow_unicode=True)
     print(yaml_str)
 
@@ -80,6 +125,7 @@ if __name__ == '__main__':
         print("Usage: python test.py [TARGET_DIR]")
         sys.exit(1)
 
+    # 대상 디렉토리 경로 설정
     target_dir = '/Users/dvmoomoodv/Project/company/gsitm/framework/ustra-framework2.2-java/framework/' + sys.argv[1]
     if not os.path.isdir(target_dir):
         print("Invalid directory:", target_dir)
@@ -91,5 +137,5 @@ if __name__ == '__main__':
     print_as_yaml(classes)
 
     base_name = os.path.basename(target_dir.rstrip('/'))
-    output_file = f"{base_name}_classes.yaml"
+    output_file = f"{base_name}_classes-with-method.yaml"
     save_as_yaml(classes, output_file)

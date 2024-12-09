@@ -1,0 +1,1320 @@
+com.gsitm.ustra.java.mvc.tobe.nexacro.UstraMvcTobeNexacro:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.mvc.tobe.nexacro.config.NexacroTemplateResolverFactoryBean:
+  class_annotations:
+  - Data
+  extends: null
+  implements:
+  - FactoryBean
+  imports:
+  - org.springframework.beans.factory.FactoryBean
+  - org.springframework.context.ApplicationContext
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - org.thymeleaf.templatemode.TemplateMode
+  - com.gsitm.ustra.java.core.utils.ProfileSupport
+  - lombok.Data
+  methods:
+    getObject:
+      annotations:
+      - Override
+      parameters: []
+      return_type: SpringResourceTemplateResolver
+    getObjectType:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Class
+com.gsitm.ustra.java.mvc.tobe.nexacro.config.UstraNexacroSpringTemplateEngineCustomizer:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraSpringTemplateEngineCustomizer
+  imports:
+  - org.thymeleaf.spring5.SpringTemplateEngine
+  - org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
+  - com.gsitm.ustra.java.mvc.view.config.UstraSpringTemplateEngineCustomizer
+  methods:
+    customize:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: templateEngine
+        type: SpringTemplateEngine
+      return_type: null
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAppSttController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  - Permission
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAppSttModel
+  - com.gsitm.ustra.java.management.services.UstraAppSttService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addAppStt:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: appStt
+        type: UstraAppSttModel
+      return_type: UstraAppSttModel
+    delAppStt:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: appSttId
+        type: Integer
+      return_type: UstraAppSttModel
+    editAppStt:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: appStt
+        type: UstraAppSttModel
+      return_type: UstraAppSttModel
+    getAppStt:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: appSttId
+        type: Integer
+      return_type: UstraXApiResult
+    getAppSttList:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAppSttModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAuthorityModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    getAuthorityForAuthGrp:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: authGrpId
+        type: Integer
+      return_type: UstraXApiResult
+    getAuthorityForUser:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: usrId
+        type: String
+      return_type: UstraXApiResult
+    hasApproval:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: usrId
+        type: String
+      - annotations:
+        - ParamVariable
+        name: targetUsrId
+        type: String
+      - annotations:
+        - ParamVariable
+        name: usrApvTyCd
+        type: String
+      return_type: UstraXApiResult
+    saveAuthority:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: authority
+        type: UstraAuthorityModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityGroupController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestBody
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraAuthorityGroupModel
+  - com.gsitm.ustra.java.management.models.vo.UstraAuthorityGroupCheckRqVo
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupService
+  - com.gsitm.ustra.java.management.services.UstraAuthorityGroupUserService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addAuthorityGroup:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraXApiResult
+    childGroupCheck:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - RequestBody
+        name: in
+        type: UstraAuthorityGroupCheckRqVo
+      return_type: null
+    delAuthorityGroup:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraXApiResult
+    editAuthorityGroup:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: group
+        type: UstraAuthorityGroupModel
+      return_type: UstraXApiResult
+    getAuthorityGroup:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: authGrpId
+        type: Integer
+      return_type: UstraXApiResult
+    getAuthorityGroups:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityGroupModel
+      return_type: UstraXApiResult
+    registerUsers:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: usrId
+        type: String
+      - annotations:
+        - ParamVariable
+        name: authGrpIds
+        type: List
+      - annotations:
+        - ParamVariable
+        name: addInfVal
+        type: String
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroAuthorityStatusController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  - Permission
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraAuthorityStatusModel
+  - com.gsitm.ustra.java.management.services.UstraAuthorityStatusService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    getCurrentHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: UstraXApiResult
+    getGrpHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: UstraXApiResult
+    getHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: UstraXApiResult
+    getPeriodHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: UstraXApiResult
+    getUserHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraAuthorityStatusModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroCodeController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.Arrays
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraCodeModel
+  - com.gsitm.ustra.java.management.services.UstraCodeService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addCode:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamDataSet
+        name: code
+        type: UstraCodeModel
+      return_type: UstraXApiResult
+    editCode:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamDataSet
+        name: code
+        type: UstraCodeModel
+      return_type: UstraXApiResult
+    getCode:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: grpCd
+        type: String
+      - annotations:
+        - ParamVariable
+        name: dtlCd
+        type: String
+      return_type: UstraXApiResult
+    getCodeGroupDepth:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: uprGrpCd
+        type: String
+      - annotations:
+        - ParamVariable
+        name: uprDtlCd
+        type: String
+      return_type: UstraXApiResult
+    getCodeList:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: grpCd
+        type: String
+      return_type: UstraXApiResult
+    getGroupList:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: grpCd
+        type: String
+      - annotations:
+        - ParamVariable
+        name: grpNm
+        type: String
+      return_type: UstraXApiResult
+    removeCode:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: grpCd
+        type: String
+      - annotations:
+        - ParamVariable
+        name: dtlCd
+        type: String
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.vo.UstraFileListRqVo
+  - com.gsitm.ustra.java.management.models.vo.UstraFileOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraFileService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  methods:
+    delFile:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraFileOneRqVo
+      return_type: UstraXApiResult
+    getFile:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: fileId
+        type: String
+      - annotations:
+        - ParamVariable
+        name: fileNo
+        type: Integer
+      return_type: UstraXApiResult
+    getFiles:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraFileListRqVo
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroFileGroupController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraFileGroupModel
+  - com.gsitm.ustra.java.management.services.UstraFileGroupService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addFileGroup:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamDataSet
+        name: fileGrp
+        type: UstraFileGroupModel
+      return_type: UstraXApiResult
+    delFileGroup:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: fileGrpId
+        type: String
+      return_type: UstraXApiResult
+    getFileGroup:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: fileGrpId
+        type: String
+      return_type: UstraXApiResult
+    getFileGroups:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: UstraXApiResult
+    modFileGroup:
+      annotations:
+      - RequestMapping
+      - Permission
+      parameters:
+      - annotations:
+        - ParamDataSet
+        name: fileGrp
+        type: UstraFileGroupModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraIfsHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraIfsModel
+  - com.gsitm.ustra.java.management.models.vo.UstraIfsOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraIfsHistoryService
+  - com.gsitm.ustra.java.management.services.UstraIfsService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addIfs:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: ifs
+        type: UstraIfsModel
+      return_type: UstraXApiResult
+    delIfs:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: criteria
+        type: UstraIfsOneRqVo
+      return_type: UstraXApiResult
+    getIfs:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: criteria
+        type: UstraIfsOneRqVo
+      return_type: UstraXApiResult
+    getIfsHistory:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: historyId
+        type: Integer
+      return_type: UstraXApiResult
+    getIfsHistoryList:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraIfsHistoryModel
+      return_type: UstraXApiResult
+    getIfsList:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraIfsModel
+      return_type: UstraXApiResult
+    modIfs:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: ifs
+        type: UstraIfsModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroIfsRequestControlController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - javax.validation.Valid
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraInterfaceRequestControlModel
+  - com.gsitm.ustra.java.management.services.UstraInterfaceRequestControlService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    add:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: model
+        type: UstraInterfaceRequestControlModel
+      return_type: UstraXApiResult
+    edit:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        - Valid
+        name: model
+        type: UstraInterfaceRequestControlModel
+      return_type: UstraXApiResult
+    list:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: reqCtrlId
+        type: Integer
+      return_type: UstraXApiResult
+    remove:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: reqCtrlId
+        type: Integer
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroLoginHistoryController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraLoginHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraLoginHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  methods:
+    getAccCnt:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: UstraXApiResult
+    getCurrentAcc:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: UstraXApiResult
+    getListHhChart:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: UstraXApiResult
+    getLoginHistories:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraLoginHistoryModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroMenuController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.GetMapping
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.bind.annotation.ResponseBody
+  - com.gsitm.ustra.java.management.models.UstraMenuAccessHistoryModel
+  - com.gsitm.ustra.java.management.models.UstraMenuModel
+  - com.gsitm.ustra.java.management.services.UstraMenuService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamDataSet
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addAccessHistory:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: history
+        type: UstraMenuAccessHistoryModel
+      return_type: UstraXApiResult
+    addMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraXApiResult
+    getAuthorityGroup:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: mnuId
+        type: String
+      return_type: UstraXApiResult
+    getMenuGuide:
+      annotations:
+      - GetMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: mnuId
+        type: String
+      return_type: UstraXApiResult
+    getMenus:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraMenuModel
+      return_type: UstraXApiResult
+    hasAccessiableMenu:
+      annotations:
+      - GetMapping
+      - ResponseBody
+      parameters:
+      - annotations: []
+        name: mnuId
+        type: String
+      return_type: boolean
+    removeMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: mnuId
+        type: String
+      return_type: UstraXApiResult
+    setMenuGuide:
+      annotations:
+      - Permission
+      - PostMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraXApiResult
+    updateMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraMenuModel
+      return_type: UstraXApiResult
+    updateMenuBatch:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamDataSet
+        name: menus
+        type: List
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroPrivateInfoAccessHistoryController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraPrivateInfoAccessHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraPrivateInfoAccessHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addHistory:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: history
+        type: UstraPrivateInfoAccessHistoryModel
+      return_type: UstraXApiResult
+    getHistories:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraPrivateInfoAccessHistoryModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserApprovalController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserApprovalModel
+  - com.gsitm.ustra.java.management.services.UstraUserApprovalService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    approval:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: approval
+        type: UstraUserApprovalModel
+      return_type: UstraXApiResult
+    editApproval:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: approval
+        type: UstraUserApprovalModel
+      return_type: UstraXApiResult
+    getApproval:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: usrApvId
+        type: Integer
+      return_type: UstraXApiResult
+    getApprovals:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraUserApprovalModel
+      return_type: UstraXApiResult
+    requestApproval:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: approval
+        type: UstraUserApprovalModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserOneRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserAccountPolicyService
+  - com.gsitm.ustra.java.management.services.UstraUserService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addUser:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: user
+        type: UstraUserModel
+      return_type: UstraXApiResult
+    checkPassword:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: pwd
+        type: String
+      return_type: UstraXApiResult
+    delUser:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: usrId
+        type: String
+      return_type: UstraXApiResult
+    getUser:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraUserOneRqVo
+      return_type: UstraXApiResult
+    getUsers:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraUserModel
+      return_type: UstraXApiResult
+    modPrivateUser:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: user
+        type: UstraUserModel
+      return_type: UstraXApiResult
+    modUser:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: user
+        type: UstraUserModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserHistoryController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.data.domains.PaginationRequest
+  - com.gsitm.ustra.java.management.models.UstraUserHistoryModel
+  - com.gsitm.ustra.java.management.services.UstraUserHistoryService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  methods:
+    getUserHistorys:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: paginationRequest
+        type: PaginationRequest
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraUserHistoryModel
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.bo.UstraNexacroUserMenuController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - com.gsitm.ustra.java.management.models.UstraUserMenuModel
+  - com.gsitm.ustra.java.management.models.vo.UstraUserMenuListRqVo
+  - com.gsitm.ustra.java.management.services.UstraUserMenuService
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - com.gsitm.ustra.java.security.authority.permission.Permission
+  methods:
+    addUserMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraXApiResult
+    getUserMenus:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: criteria
+        type: UstraUserMenuModel
+      return_type: UstraXApiResult
+    removeUserMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraXApiResult
+    updateDefUserMenu:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraUserMenuModel
+      return_type: UstraXApiResult
+    updateUserMenu:
+      annotations:
+      - Permission
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: menu
+        type: UstraUserMenuListRqVo
+      return_type: UstraXApiResult
+com.gsitm.ustra.java.mvc.tobe.nexacro.management.controllers.UstraNexacroFileActionController:
+  class_annotations:
+  - Slf4j
+  - Controller
+  extends: null
+  implements: []
+  imports:
+  - java.io.File
+  - java.util.Arrays
+  - java.util.List
+  - java.util.stream.Collectors
+  - java.util.stream.Stream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections4.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.beans.factory.annotation.Autowired
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.PathVariable
+  - org.springframework.web.bind.annotation.PostMapping
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.multipart.MultipartHttpServletRequest
+  - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataException
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.FileOperationManager
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput.FileMetaId
+  - com.gsitm.ustra.java.data.file.model.FileMetaData
+  - com.gsitm.ustra.java.data.file.model.FileMetaDataInput
+  - com.gsitm.ustra.java.data.file.model.FileUploadOutput
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.ExcelFileToMultiSheetDataProcessConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalImageBase64FileConvert
+  - com.gsitm.ustra.java.data.file.processor.convert.LocalTextFileConvert
+  - com.gsitm.ustra.java.data.poi.convert.DefaultDataFormatter
+  - com.gsitm.ustra.java.management.data.file.utils.FileConvertVo
+  - com.gsitm.ustra.java.management.data.file.utils.UstraFileInputUtils
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.annotation.ParamVariable
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiFileResult
+  - com.gsitm.ustra.java.mvc.tobe.spring.core.data.UstraXApiResult
+  - com.gsitm.ustra.java.mvc.tobe.utils.UstraXApiResultBuilder
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    download:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: fileGrpId
+        type: String
+      - annotations:
+        - PathVariable
+        name: fileId
+        type: String
+      - annotations:
+        - PathVariable
+        name: fileNo
+        type: Integer
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: Object
+    fileList:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - ParamVariable
+        name: input
+        type: FileMetaDataInput
+      return_type: UstraXApiResult
+    fileResourceConvert:
+      annotations:
+      - PostMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: MultipartHttpServletRequest
+      return_type: UstraXApiResult
+    upload:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: MultipartHttpServletRequest
+      return_type: UstraXApiResult
+    view:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations:
+        - PathVariable
+        name: fileGrpId
+        type: String
+      - annotations:
+        - PathVariable
+        name: fileId
+        type: String
+      - annotations:
+        - PathVariable
+        name: fileNo
+        type: Integer
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+com.gsitm.ustra.java.mvc.tobe.nexacro.properties.UstraMvcTobeNexacroProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+  methods: {}

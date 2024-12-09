@@ -1,84 +1,16 @@
 com.gsitm.ustra.java.batch.logger.ConsoleUstraBatchLogger:
-  class_annotations: []
   extends: UstraBatchLogger
   implements: []
   imports:
   - java.io.InputStream
   - com.gsitm.ustra.java.batch.logger.UstraBatchLogger.LogLevel
-  methods:
-    openInputStream:
-      annotations: []
-      parameters: []
-      return_type: InputStream
-    write:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: logLevel
-        type: LogLevel
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.logger.FileUstraBatchLogger:
-  class_annotations: []
   extends: UstraBatchLogger
   implements: []
   imports:
   - java.io.InputStream
   - com.gsitm.ustra.java.batch.logger.UstraBatchLogger.LogLevel
-  methods:
-    debug:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    error:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    info:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    trace:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    warn:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    write:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: logLevel
-        type: LogLevel
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.logger.LogPathPattern:
-  class_annotations:
-  - Getter
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -90,119 +22,24 @@ com.gsitm.ustra.java.batch.logger.LogPathPattern:
   - org.apache.commons.lang3.StringUtils
   - java.io.File
   - java.util
-  methods:
-    findFiles:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: ioFileFilter
-        type: IOFileFilter
-      return_type: List
-    getParentPath:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      return_type: String
-    init:
-      annotations: []
-      parameters: []
-      return_type: null
-    matches:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: file
-        type: File
-      return_type: boolean
 com.gsitm.ustra.java.batch.logger.LogPathPatternTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - java.io.File
   - org.junit.jupiter.api.Assertions.assertTrue
-  methods: {}
 com.gsitm.ustra.java.batch.logger.UstraBatchLogger:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods:
-    debug:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    error:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    info:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    trace:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    warn:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
-    write:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: logLevel
-        type: LogLevel
-      - annotations: []
-        name: message
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.logger.UstraBatchLoggerFactory:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.apache.commons.lang3.AnnotationUtils
   - org.apache.commons.lang3.ClassUtils
-  methods:
-    getLogger:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: UstraBatchLogger
 com.gsitm.ustra.java.batch.runner.CommandLineTaskRunner:
-  class_annotations:
-  - Slf4j
   extends: ConsoleApplicationRunner
   implements: []
   imports:
@@ -216,33 +53,7 @@ com.gsitm.ustra.java.batch.runner.CommandLineTaskRunner:
   - com.gsitm.ustra.java.batch.task.UstraBatchTask
   - com.gsitm.ustra.java.core.app.ConsoleApplicationRunner
   - lombok.extern.slf4j.Slf4j
-  methods:
-    initLogger:
-      annotations: []
-      parameters: []
-      return_type: null
-    initTaskRunner:
-      annotations: []
-      parameters: []
-      return_type: null
-    run:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      return_type: null
-    runTask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.runner.DefaultUstraBatchTaskRunnerObserver:
-  class_annotations:
-  - Slf4j
-  - RequiredArgsConstructor
   extends: UstraBatchTaskRunnerObserver
   implements: []
   imports:
@@ -253,32 +64,7 @@ com.gsitm.ustra.java.batch.runner.DefaultUstraBatchTaskRunnerObserver:
   - com.gsitm.ustra.java.batch.task.UstraBatchTask
   - lombok.RequiredArgsConstructor
   - lombok.extern.slf4j.Slf4j
-  methods:
-    after:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
 com.gsitm.ustra.java.batch.runner.ProcessInfoObserver:
-  class_annotations:
-  - Slf4j
   extends: UstraBatchTaskRunnerObserver
   implements: []
   imports:
@@ -287,31 +73,7 @@ com.gsitm.ustra.java.batch.runner.ProcessInfoObserver:
   - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
   - lombok.extern.slf4j.Slf4j
-  methods:
-    after:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
 com.gsitm.ustra.java.batch.runner.Slf4jMdcObserver:
-  class_annotations: []
   extends: UstraBatchTaskRunnerObserver
   implements: []
   imports:
@@ -321,33 +83,7 @@ com.gsitm.ustra.java.batch.runner.Slf4jMdcObserver:
   - com.gsitm.ustra.java.batch.task.UstraBatchTask
   - java.sql.Timestamp
   - java.util.Arrays
-  methods:
-    after:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
 com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunner:
-  class_annotations:
-  - RequiredArgsConstructor
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -358,81 +94,13 @@ com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunner:
   - lombok.RequiredArgsConstructor
   - lombok.extern.slf4j.Slf4j
   - org.springframework.stereotype.Component
-  methods:
-    after:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    registerObserver:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: observer
-        type: UstraBatchTaskRunnerObserver
-      return_type: null
-    run:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    unregisterObserver:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: observer
-        type: UstraBatchTaskRunnerObserver
-      return_type: null
 com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunnerObserver:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.model.TaskInstance
   - com.gsitm.ustra.java.batch.task.UstraBatchTask
-  methods:
-    after:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
 com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContext:
-  class_annotations:
-  - RequiredArgsConstructor
-  - Getter
-  - ToString
   extends: null
   implements: []
   imports:
@@ -441,32 +109,12 @@ com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContext:
   - lombok.Getter
   - lombok.RequiredArgsConstructor
   - lombok.ToString
-  methods: {}
 com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContextHolder:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.apache.commons.lang3.NotImplementedException
-  methods:
-    clear:
-      annotations: []
-      parameters: []
-      return_type: null
-    getContext:
-      annotations: []
-      parameters: []
-      return_type: UstraBatchWorkerContext
-    setContext:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: ustraBatchContext
-        type: UstraBatchWorkerContext
-      return_type: null
 com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContextObserver:
-  class_annotations:
-  - RequiredArgsConstructor
   extends: UstraBatchTaskRunnerObserver
   implements: []
   imports:
@@ -479,37 +127,7 @@ com.gsitm.ustra.java.batch.runner.UstraBatchWorkerContextObserver:
   - com.gsitm.ustra.java.batch.worker.connector.ManagerConnector
   - lombok.RequiredArgsConstructor
   - java.util.List
-  methods:
-    after:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      - annotations: []
-        name: task
-        type: UstraBatchTask
-      return_type: null
-    before:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      - annotations: []
-        name: ustraBatchTask
-        type: UstraBatchTask
-      return_type: null
 com.gsitm.ustra.java.batch.task.SampleSimpleTask:
-  class_annotations:
-  - Component
-  - Slf4j
   extends: UstraBatchSimpleTask
   implements: []
   imports:
@@ -517,30 +135,13 @@ com.gsitm.ustra.java.batch.task.SampleSimpleTask:
   - com.gsitm.ustra.java.batch.model.TaskInstance
   - org.springframework.stereotype.Component
   - lombok.extern.slf4j.Slf4j
-  methods:
-    execute:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
 com.gsitm.ustra.java.batch.task.SampleTaskConfig:
-  class_annotations:
-  - Configuration
-  - ComponentScan
   extends: null
   implements: []
   imports:
   - org.springframework.context.annotation.ComponentScan
   - org.springframework.context.annotation.Configuration
-  methods: {}
 com.gsitm.ustra.java.batch.task.SampleTaskTest:
-  class_annotations:
-  - ExtendWith
-  - Configuration
-  - Import
   extends: null
   implements: []
   imports:
@@ -553,15 +154,7 @@ com.gsitm.ustra.java.batch.task.SampleTaskTest:
   - org.springframework.context.annotation.Import
   - org.springframework.test.context.junit.jupiter.SpringExtension
   - java.util.UUID
-  methods:
-    testSimpleTask:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.task.UstraBatchProgressTask:
-  class_annotations:
-  - Slf4j
   extends: UstraBatchTask
   implements: []
   imports:
@@ -575,124 +168,24 @@ com.gsitm.ustra.java.batch.task.UstraBatchProgressTask:
   - java.util.List
   - java.util.concurrent.TimeUnit
   - java.util.concurrent.atomic.AtomicLong
-  methods:
-    close:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
-    count:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: long
-    execute:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      - annotations: []
-        name: data
-        type: T
-      return_type: null
-    fetch:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: List
-    prepare:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
 com.gsitm.ustra.java.batch.task.UstraBatchSimpleTask:
-  class_annotations: []
   extends: UstraBatchTask
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.model.TaskInstance
-  methods:
-    close:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
-    prepare:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
 com.gsitm.ustra.java.batch.task.UstraBatchTask:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.model.TaskInstance
   - lombok.extern.slf4j.Slf4j
-  methods:
-    close:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
-    execute:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
-    prepare:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
-    run:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null
 com.gsitm.ustra.java.batch.worker.ServerMain:
-  class_annotations:
-  - SpringBootApplication
   extends: null
   implements: []
   imports:
   - org.springframework.boot.SpringApplication
   - org.springframework.boot.autoconfigure.SpringBootApplication
-  methods:
-    main:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: args
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.worker.TaskConfig:
-  class_annotations:
-  - Configuration
   extends: null
   implements: []
   imports:
@@ -700,15 +193,7 @@ com.gsitm.ustra.java.batch.worker.TaskConfig:
   - org.springframework.context.annotation.Configuration
   - com.gsitm.ustra.java.batch.task.SampleSimpleTask
   - com.gsitm.ustra.java.batch.task.UstraBatchSimpleTask
-  methods:
-    sampleSimpleTask:
-      annotations:
-      - Bean
-      parameters: []
-      return_type: UstraBatchSimpleTask
 com.gsitm.ustra.java.batch.worker.UstraBatchConfigPropertiesTest:
-  class_annotations:
-  - ExtendWith
   extends: null
   implements: []
   imports:
@@ -717,22 +202,11 @@ com.gsitm.ustra.java.batch.worker.UstraBatchConfigPropertiesTest:
   - org.springframework.beans.factory.annotation.Autowired
   - org.springframework.test.context.junit.jupiter.SpringExtension
   - com.gsitm.ustra.java.batch.UstraBatchConfigProperties
-  methods:
-    test:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.UstraBatchWorker:
-  class_annotations: []
   extends: null
   implements: []
   imports: []
-  methods: {}
 com.gsitm.ustra.java.batch.worker.WorkerApp:
-  class_annotations:
-  - Slf4j
-  - RequiredArgsConstructor
   extends: null
   implements:
   - ApplicationListener
@@ -746,26 +220,7 @@ com.gsitm.ustra.java.batch.worker.WorkerApp:
   - com.gsitm.ustra.java.batch.worker.service.BatchService
   - com.gsitm.ustra.java.batch.worker.service.WorkerCommandService
   - lombok.extern.slf4j.Slf4j
-  methods:
-    initialize:
-      annotations: []
-      parameters: []
-      return_type: null
-    onApplicationEvent:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: ApplicationReadyEvent
-      return_type: null
-    pollCommand:
-      annotations:
-      - Scheduled
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.config.LogPathGenerator:
-  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -779,23 +234,7 @@ com.gsitm.ustra.java.batch.worker.config.LogPathGenerator:
   - java.util.HashMap
   - java.util.List
   - java.util.Map
-  methods:
-    generate:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      - annotations: []
-        name: taskInstanceCreateDateTime
-        type: LocalDateTime
-      return_type: String
 com.gsitm.ustra.java.batch.worker.config.LogPathGeneratorTest:
-  class_annotations:
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -805,39 +244,14 @@ com.gsitm.ustra.java.batch.worker.config.LogPathGeneratorTest:
   - java.time.LocalDateTime
   - java.time.format.DateTimeFormatter
   - org.junit.jupiter.api.Assertions
-  methods:
-    test:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    testGenerate_2:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.config.LoggerConfig:
-  class_annotations:
-  - Builder
-  - Getter
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.UstraBatchConfigProperties
   - lombok.Builder
   - lombok.Getter
-  methods:
-    of:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: ustraBatchConfigProperties
-        type: UstraBatchConfigProperties
-      return_type: LoggerConfig
 com.gsitm.ustra.java.batch.worker.config.LoggerInitializer:
-  class_annotations:
-  - Component
-  - RequiredArgsConstructor
   extends: null
   implements:
   - ApplicationListener
@@ -870,57 +284,7 @@ com.gsitm.ustra.java.batch.worker.config.LoggerInitializer:
   - ch.qos.logback.core.sift.Discriminator
   - ch.qos.logback.core.spi.FilterReply
   - lombok.RequiredArgsConstructor
-  methods:
-    initializeLogger:
-      annotations: []
-      parameters: []
-      return_type: null
-    makeDiscriminator:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: lc
-        type: LoggerContext
-      return_type: MDCBasedDiscriminator
-    makeFileAppender:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: discriminatingValue
-        type: String
-      - annotations: []
-        name: lc
-        type: LoggerContext
-      - annotations: []
-        name: layout
-        type: Layout
-      return_type: FileAppender
-    makeLayout:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: lc
-        type: LoggerContext
-      return_type: PatternLayout
-    makeSiftingAppender:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: lc
-        type: LoggerContext
-      return_type: SiftingAppender
-    onApplicationEvent:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: ApplicationReadyEvent
-      return_type: null
 com.gsitm.ustra.java.batch.worker.config.UstraBatchTaskRunnerInitializer:
-  class_annotations:
-  - Component
-  - RequiredArgsConstructor
   extends: null
   implements:
   - ApplicationListener
@@ -930,23 +294,7 @@ com.gsitm.ustra.java.batch.worker.config.UstraBatchTaskRunnerInitializer:
   - org.springframework.context.ApplicationListener
   - org.springframework.stereotype.Component
   - lombok.RequiredArgsConstructor
-  methods:
-    onApplicationEvent:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: event
-        type: ApplicationReadyEvent
-      return_type: null
-    registerTaskRunnerObserver:
-      annotations: []
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.connector.ManagerConnector:
-  class_annotations:
-  - RequiredArgsConstructor
-  - Slf4j
   extends: null
   implements: []
   imports:
@@ -966,65 +314,7 @@ com.gsitm.ustra.java.batch.worker.connector.ManagerConnector:
   - java.util.Arrays
   - java.util.Collections
   - java.util.Objects
-  methods:
-    finishTaskInstance:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: manager
-        type: Manager
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      - annotations: []
-        name: resultCd
-        type: String
-      return_type: TaskInstance
-    getTask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: manager
-        type: Manager
-      - annotations: []
-        name: taskId
-        type: String
-      return_type: Task
-    getTaskInstance:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: manager
-        type: Manager
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: TaskInstance
-    pollCommand:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: manager
-        type: Manager
-      - annotations: []
-        name: worker
-        type: Worker
-      return_type: Command
-    register:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: manager
-        type: Manager
-      - annotations: []
-        name: worker
-        type: Worker
-      return_type: Worker
 com.gsitm.ustra.java.batch.worker.controller.WorkerTaskInstanceController:
-  class_annotations:
-  - RestController
-  - RequiredArgsConstructor
-  - RequestMapping
   extends: null
   implements: []
   imports:
@@ -1041,23 +331,7 @@ com.gsitm.ustra.java.batch.worker.controller.WorkerTaskInstanceController:
   - com.gsitm.ustra.java.batch.model.TaskInstance
   - com.gsitm.ustra.java.batch.worker.service.WorkerTaskInstanceService
   - lombok.RequiredArgsConstructor
-  methods:
-    getLog:
-      annotations:
-      - GetMapping
-      parameters:
-      - annotations:
-        - PathVariable
-        name: taskInstanceId
-        type: String
-      - annotations: []
-        name: response
-        type: HttpServletResponse
-      return_type: null
 com.gsitm.ustra.java.batch.worker.service.BatchService:
-  class_annotations:
-  - Service
-  - RequiredArgsConstructor
   extends: null
   implements: []
   imports:
@@ -1083,62 +357,14 @@ com.gsitm.ustra.java.batch.worker.service.BatchService:
   - com.gsitm.ustra.java.batch.task.UstraBatchTask
   - com.gsitm.ustra.java.batch.runner.UstraBatchTaskRunner
   - lombok.RequiredArgsConstructor
-  methods:
-    flushFinishedFuture:
-      annotations: []
-      parameters: []
-      return_type: null
-    postConstruct:
-      annotations:
-      - PostConstruct
-      parameters: []
-      return_type: null
-    startTask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: null
-    stopTask:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: null
 com.gsitm.ustra.java.batch.worker.service.BatchServiceTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.beans.factory.annotation.Autowired
   - com.gsitm.ustra.java.batch.worker.service.BatchService
-  methods:
-    startTask:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    stopTask_1:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
-    stopTask_2:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.service.WorkerCommandService:
-  class_annotations:
-  - RequiredArgsConstructor
-  - Slf4j
-  - Service
   extends: null
   implements: []
   imports:
@@ -1153,15 +379,7 @@ com.gsitm.ustra.java.batch.worker.service.WorkerCommandService:
   - lombok.extern.slf4j.Slf4j
   - org.springframework.stereotype.Service
   - java.util.List
-  methods:
-    poll:
-      annotations: []
-      parameters: []
-      return_type: Command
 com.gsitm.ustra.java.batch.worker.service.WorkerMaintainService:
-  class_annotations:
-  - Service
-  - RequiredArgsConstructor
   extends: null
   implements: []
   imports:
@@ -1176,34 +394,14 @@ com.gsitm.ustra.java.batch.worker.service.WorkerMaintainService:
   - lombok.RequiredArgsConstructor
   - java.util.Collections
   - java.util.List
-  methods:
-    register:
-      annotations: []
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.service.WorkerManagerTaskInstanceServiceTest:
-  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.BeforeEach
   - org.junit.jupiter.api.Test
   - com.gsitm.ustra.java.batch.worker.service.WorkerTaskInstanceService
-  methods:
-    before:
-      annotations:
-      - BeforeEach
-      parameters: []
-      return_type: null
-    notifyTaskInstanceFinished:
-      annotations:
-      - Test
-      parameters: []
-      return_type: null
 com.gsitm.ustra.java.batch.worker.service.WorkerTaskInstanceService:
-  class_annotations:
-  - Service
-  - RequiredArgsConstructor
   extends: null
   implements: []
   imports:
@@ -1220,52 +418,14 @@ com.gsitm.ustra.java.batch.worker.service.WorkerTaskInstanceService:
   - com.gsitm.ustra.java.batch.worker.config.LogPathGenerator
   - lombok.RequiredArgsConstructor
   - org.springframework.stereotype.Service
-  methods:
-    getLogInputStream:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskId
-        type: String
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: InputStream
-    getTaskInstance:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: TaskInstance
-    notifyTaskInstanceFinished:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: taskInstanceId
-        type: String
-      return_type: TaskInstance
 com.gsitm.ustra.java.demo.batch.CLRunner:
-  class_annotations:
-  - SpringBootApplication
   extends: CommandLineTaskRunner
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.runner.CommandLineTaskRunner
   - com.gsitm.ustra.java.core.app.ConsoleApplicationRunner
   - org.springframework.boot.autoconfigure.SpringBootApplication
-  methods:
-    main:
-      annotations: []
-      parameters:
-      - annotations: []
-        name: args
-        type: String
-      return_type: null
 com.gsitm.ustra.java.demo.batch.SampleSimpleTask:
-  class_annotations:
-  - Component
-  - Slf4j
   extends: UstraBatchSimpleTask
   implements: []
   imports:
@@ -1274,12 +434,3 @@ com.gsitm.ustra.java.demo.batch.SampleSimpleTask:
   - lombok.extern.slf4j.Slf4j
   - org.springframework.stereotype.Component
   - java.util.stream.IntStream
-  methods:
-    execute:
-      annotations:
-      - Override
-      parameters:
-      - annotations: []
-        name: taskInstance
-        type: TaskInstance
-      return_type: null

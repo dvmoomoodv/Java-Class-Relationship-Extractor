@@ -1,0 +1,1945 @@
+com.gsitm.ustra.java.mvc.UstraMvc:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods: {}
+com.gsitm.ustra.java.mvc.app.ServletApplicationRunner:
+  class_annotations:
+  - Slf4j
+  - ComponentScan
+  extends: SpringBootServletInitializer
+  implements: []
+  imports:
+  - java.io.IOException
+  - org.springframework.boot.SpringApplication
+  - org.springframework.boot.WebApplicationType
+  - org.springframework.boot.builder.SpringApplicationBuilder
+  - org.springframework.boot.web.servlet.support.SpringBootServletInitializer
+  - org.springframework.context.annotation.ComponentScan
+  - org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGenerator
+  - org.springframework.web.context.WebApplicationContext
+  - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    configure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: builder
+        type: SpringApplicationBuilder
+      return_type: SpringApplicationBuilder
+    run:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clazz
+        type: Class
+      - annotations: []
+        name: builder
+        type: SpringApplicationBuilder
+      - annotations: []
+        name: args
+        type: String
+      return_type: null
+com.gsitm.ustra.java.mvc.converter.HttpStringMappingJackson2XmlHttpMessageConverter:
+  class_annotations: []
+  extends: MappingJackson2XmlHttpMessageConverter
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.lang.reflect.Type
+  - org.apache.commons.io.IOUtils
+  - org.springframework.http.HttpInputMessage
+  - org.springframework.http.converter.HttpMessageConversionException
+  - org.springframework.http.converter.HttpMessageNotReadableException
+  - org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.databind.JavaType
+  - com.fasterxml.jackson.databind.JsonMappingException
+  - com.fasterxml.jackson.databind.exc.InvalidDefinitionException
+  - com.fasterxml.jackson.databind.exc.MismatchedInputException
+  - com.gsitm.ustra.java.core.utils.UstraXmlUtils
+  methods:
+    read:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: type
+        type: Type
+      - annotations: []
+        name: contextClass
+        type: Class
+      - annotations: []
+        name: inputMessage
+        type: HttpInputMessage
+      return_type: Object
+    readJavaType:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: javaType
+        type: JavaType
+      - annotations: []
+        name: httpBodyString
+        type: String
+      - annotations: []
+        name: inputMessage
+        type: HttpInputMessage
+      return_type: Object
+com.gsitm.ustra.java.mvc.converter.UstraConverterConfigurationApplicationListener:
+  class_annotations: []
+  extends: null
+  implements:
+  - ApplicationListener
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.ArrayList
+  - java.util.List
+  - java.util.stream.Collectors
+  - org.springframework.context.ApplicationListener
+  - org.springframework.context.event.ContextRefreshedEvent
+  - org.springframework.core.Ordered
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter
+  - com.fasterxml.jackson.core.JsonParser
+  - com.fasterxml.jackson.core.JsonProcessingException
+  - com.fasterxml.jackson.core.Version
+  - com.fasterxml.jackson.databind.DeserializationContext
+  - com.fasterxml.jackson.databind.JsonDeserializer
+  - com.fasterxml.jackson.databind.Module
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.fasterxml.jackson.databind.module.SimpleModule
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.UstraXmlUtils
+  methods:
+    createDeserializer:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clazz
+        type: Class
+      - annotations: []
+        name: targetClass
+        type: Class
+      return_type: JsonDeserializer
+    createModule:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: definition
+        type: UstraDeserializationTypeDefinition
+      return_type: Module
+    findMappingConverters:
+      annotations: []
+      parameters: []
+      return_type: List
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    onApplicationEvent:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: event
+        type: ContextRefreshedEvent
+      return_type: null
+com.gsitm.ustra.java.mvc.converter.UstraConverterDefitionHelper:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.List
+  methods:
+    addConverterDefinition:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: definition
+        type: UstraDeserializationTypeDefinition
+      return_type: null
+    getDefinitionTargetType:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: clazz
+        type: Class
+      return_type: Class
+com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinition:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.lang.NonNull
+  - org.springframework.util.Assert
+  - lombok.Data
+  methods:
+    of:
+      annotations: []
+      parameters:
+      - annotations:
+        - NonNull
+        name: sourceClass
+        type: Class
+      - annotations:
+        - NonNull
+        name: targetClass
+        type: Class
+      return_type: UstraDeserializationTypeDefinition
+com.gsitm.ustra.java.mvc.converter.UstraDeserializationTypeDefinitionProvider:
+  class_annotations:
+  - FunctionalInterface
+  extends: null
+  implements: []
+  imports:
+  - java.util.List
+  methods:
+    provide:
+      annotations: []
+      parameters: []
+      return_type: List
+com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter:
+  class_annotations: []
+  extends: null
+  implements:
+  - FileConverter
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.Arrays
+  - java.util.List
+  - javax.servlet.ServletOutputStream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.core.io.ByteArrayResource
+  - org.springframework.core.io.Resource
+  - org.springframework.core.io.WritableResource
+  - org.springframework.http.ResponseEntity
+  - org.springframework.util.Assert
+  - com.google.common.net.HttpHeaders
+  - com.gsitm.ustra.java.core.io.UstraOutputStreamResource
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverterOption
+  - com.gsitm.ustra.java.data.poi.UstraExcelCellInfoModel
+  - com.gsitm.ustra.java.data.poi.UstraExcelModel
+  - com.gsitm.ustra.java.data.poi.UstraExcelUtils
+  - com.gsitm.ustra.java.data.poi.UstraExcelWorkbook
+  - com.gsitm.ustra.java.data.poi.support.UstraExcelWorksheetDataProvider
+  - com.gsitm.ustra.java.mvc.data.file.DataToExcelWebResourceConverter.Option
+  - com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  methods:
+    builder:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: provider
+        type: UstraExcelWorksheetDataProvider
+      - annotations: []
+        name: clazz
+        type: Class
+      - annotations: []
+        name: attachmentFileName
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: FileConvertInput
+    convert:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: option
+        type: Option
+      return_type: ResponseEntity
+    entityBuilder:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: models
+        type: List
+      - annotations: []
+        name: attachmentFileName
+        type: String
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: FileConvertInput
+com.gsitm.ustra.java.mvc.data.file.MultipartFileResourceInfoExtractor:
+  class_annotations: []
+  extends: null
+  implements:
+  - ResourceInfoExtractor
+  imports:
+  - org.apache.commons.io.FilenameUtils
+  - org.springframework.core.io.Resource
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractor
+  - com.gsitm.ustra.java.mvc.utils.UstraMultipartFileResource
+  methods:
+    extract:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: resource
+        type: Resource
+      return_type: ResourceInfo
+    supportType:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Class
+com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter:
+  class_annotations:
+  - Slf4j
+  extends: null
+  implements:
+  - FileConverter
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.UnsupportedEncodingException
+  - java.net.URLConnection
+  - java.nio.file.Files
+  - java.nio.file.Paths
+  - java.util.List
+  - java.util.zip.ZipEntry
+  - java.util.zip.ZipOutputStream
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.io.FilenameUtils
+  - org.apache.commons.io.IOUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.io.ByteArrayResource
+  - org.springframework.core.io.FileSystemResource
+  - org.springframework.core.io.FileUrlResource
+  - org.springframework.core.io.Resource
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.ResponseEntity
+  - com.google.common.net.HttpHeaders
+  - com.gsitm.ustra.java.data.exception.UstraDataException
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput
+  - com.gsitm.ustra.java.data.file.model.FileConvertInput.FileMetaId
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverter
+  - com.gsitm.ustra.java.data.file.processor.convert.FileConverterOption
+  - com.gsitm.ustra.java.data.utils.UstraByteArrayResource
+  - com.gsitm.ustra.java.mvc.data.file.WebResourceAttachFileConverter.Option
+  - com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils
+  - lombok.AllArgsConstructor
+  - lombok.Data
+  - lombok.EqualsAndHashCode
+  - lombok.NoArgsConstructor
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    builder:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: fileGrpId
+        type: String
+      - annotations: []
+        name: metaDataId
+        type: FileMetaId
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: FileConvertInput
+    convert:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: option
+        type: Option
+      return_type: ResponseEntity
+    extractFileDownloadInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resource
+        type: Resource
+      - annotations: []
+        name: attachmentFileName
+        type: String
+      return_type: FileDownloadInfo
+    oneFileDown:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resource
+        type: Resource
+      - annotations: []
+        name: attachmentFileName
+        type: String
+      - annotations: []
+        name: attach
+        type: Boolean
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ResponseEntity
+    zipFileDown:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resources
+        type: List
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: ResponseEntity
+com.gsitm.ustra.java.mvc.data.file.WebResourceInfoExtractorResolver:
+  class_annotations: []
+  extends: null
+  implements:
+  - ResourceInfoExtractorResolver
+  imports:
+  - java.util.Set
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractor
+  - com.gsitm.ustra.java.data.file.processor.extractor.ResourceInfoExtractorResolver
+  methods:
+    supportedExtractors:
+      annotations: []
+      parameters: []
+      return_type: Set
+com.gsitm.ustra.java.mvc.error.DefaultErrorController:
+  class_annotations:
+  - Controller
+  - RequestMapping
+  extends: AbstractErrorController
+  implements: []
+  imports:
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.http.HttpServletRequest
+  - javax.validation.constraints.NotNull
+  - org.apache.commons.collections.CollectionUtils
+  - org.springframework.beans.factory.ObjectProvider
+  - org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController
+  - org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver
+  - org.springframework.boot.web.servlet.error.ErrorAttributes
+  - org.springframework.http.HttpStatus
+  - org.springframework.http.MediaType
+  - org.springframework.http.ResponseEntity
+  - org.springframework.stereotype.Controller
+  - org.springframework.web.bind.annotation.RequestMapping
+  - org.springframework.web.servlet.ModelAndView
+  - com.gsitm.ustra.java.core.exception.ResponseCode
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    error:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: Object
+    getException:
+      annotations: []
+      parameters:
+      - annotations:
+        - NotNull
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: withDefaultException
+        type: boolean
+      return_type: Exception
+    getStatus:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: exception
+        type: Exception
+      return_type: HttpStatus
+com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  methods:
+    handleResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: viewName
+        type: String
+      - annotations: []
+        name: exception
+        type: Exception
+      return_type: Object
+com.gsitm.ustra.java.mvc.filter.UstraAppRequestContextHolder:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.NamedThreadLocal
+  - org.springframework.lang.Nullable
+  methods:
+    clear:
+      annotations:
+      - Nullable
+      parameters: []
+      return_type: null
+    get:
+      annotations:
+      - Nullable
+      parameters: []
+      return_type: HttpServletRequest
+    getResponse:
+      annotations:
+      - Nullable
+      parameters: []
+      return_type: HttpServletResponse
+    set:
+      annotations:
+      - Nullable
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: null
+com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper:
+  class_annotations: []
+  extends: HttpServletRequestWrapper
+  implements: []
+  imports:
+  - java.io.BufferedReader
+  - java.io.ByteArrayInputStream
+  - java.io.IOException
+  - java.io.InputStream
+  - java.io.InputStreamReader
+  - java.nio.charset.Charset
+  - java.nio.charset.StandardCharsets
+  - java.util.ArrayList
+  - java.util.Arrays
+  - java.util.Collections
+  - java.util.Enumeration
+  - java.util.HashMap
+  - java.util.LinkedHashMap
+  - java.util.List
+  - java.util.Map
+  - javax.servlet.ReadListener
+  - javax.servlet.ServletInputStream
+  - javax.servlet.ServletRequest
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletRequestWrapper
+  - org.apache.commons.codec.DecoderException
+  - org.apache.commons.codec.net.URLCodec
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.MediaType
+  - org.springframework.util.StreamUtils
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.filter.security.ParsedSecuredRequestParameter
+  - com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.Getter
+  - lombok.Setter
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    applyParseSecuredRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
+    getInputStream:
+      annotations:
+      - Override
+      parameters: []
+      return_type: ServletInputStream
+    getParameter:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: name
+        type: String
+      return_type: String
+    getParameterMap:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters: []
+      return_type: Map
+    getParameterNames:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters: []
+      return_type: Enumeration
+    getParameterValues:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: name
+        type: String
+      return_type: String
+    getParameters:
+      annotations: []
+      parameters: []
+      return_type: HashMap
+    getReader:
+      annotations:
+      - Override
+      parameters: []
+      return_type: BufferedReader
+    getRequest:
+      annotations:
+      - Override
+      parameters: []
+      return_type: ServletRequest
+    getRequestContent:
+      annotations: []
+      parameters: []
+      return_type: String
+    init:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
+    parseParameters:
+      annotations: []
+      parameters: []
+      return_type: null
+    support:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper:
+  class_annotations: []
+  extends: HttpServletResponseWrapper
+  implements: []
+  imports:
+  - java.io.ByteArrayOutputStream
+  - java.io.DataOutputStream
+  - java.io.IOException
+  - java.io.OutputStream
+  - java.util.List
+  - javax.servlet.ServletOutputStream
+  - javax.servlet.WriteListener
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - javax.servlet.http.HttpServletResponseWrapper
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    getDataStream:
+      annotations: []
+      parameters: []
+      return_type: byte
+    getOutputStream:
+      annotations:
+      - Override
+      parameters: []
+      return_type: ServletOutputStream
+    getResponseContent:
+      annotations: []
+      parameters: []
+      return_type: String
+    isSupport:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    writeToResponse:
+      annotations: []
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods:
+    getRequestWrapper:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: applicaitonRequestWapper
+        type: UstraApplicationRequestWrapper
+      return_type: null
+    getResponseWrapper:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: applicationResponseWrapper
+        type: UstraApplicationResponseWrapper
+      return_type: null
+com.gsitm.ustra.java.mvc.filter.UstraGlobalWrapperFilter:
+  class_annotations:
+  - Slf4j
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.List
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.Ordered
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    awareRequestWrapper:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestWrapper
+        type: UstraApplicationRequestWrapper
+      return_type: null
+    awareResponseWrapper:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: responseWrapper
+        type: UstraApplicationResponseWrapper
+      return_type: null
+    doFilterInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: filterChain
+        type: FilterChain
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+com.gsitm.ustra.java.mvc.filter.conditioner.ConfigBasedApplicationWrapperConditioner:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraApplicationWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    supportsRequest:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    supportsResponse:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: boolean
+com.gsitm.ustra.java.mvc.filter.conditioner.UstraApplicationWrapperConditioner:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  methods:
+    supportsRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    supportsResponse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: boolean
+com.gsitm.ustra.java.mvc.filter.conditioner.WebSocketRequestApplicationWrapperConditioner:
+  class_annotations: []
+  extends: null
+  implements:
+  - UstraApplicationWrapperConditioner
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    supportsRequest:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    supportsResponse:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: boolean
+com.gsitm.ustra.java.mvc.filter.security.ParsedSecuredRequestParameter:
+  class_annotations:
+  - Data
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.Map
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  methods:
+    parse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ParsedSecuredRequestParameter
+    support:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolver:
+  class_annotations: []
+  extends: null
+  implements:
+  - HandlerMethodArgumentResolver
+  imports:
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.MethodParameter
+  - org.springframework.web.bind.support.WebDataBinderFactory
+  - org.springframework.web.context.request.NativeWebRequest
+  - org.springframework.web.method.support.HandlerMethodArgumentResolver
+  - org.springframework.web.method.support.ModelAndViewContainer
+  - com.fasterxml.jackson.databind.type.TypeFactory
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.core.utils.UstraStringUtils
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+  - com.gsitm.ustra.web.core.exception.UstraWebResponseCode
+  methods:
+    resolveArgument:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: parameter
+        type: MethodParameter
+      - annotations: []
+        name: mavContainer
+        type: ModelAndViewContainer
+      - annotations: []
+        name: webRequest
+        type: NativeWebRequest
+      - annotations: []
+        name: binderFactory
+        type: WebDataBinderFactory
+      return_type: Object
+    supportsParameter:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: parameter
+        type: MethodParameter
+      return_type: boolean
+com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener:
+  class_annotations: []
+  extends: UstraEventListener
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.utils.event.UstraEventListener
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+  - lombok.Getter
+  methods: {}
+com.gsitm.ustra.java.mvc.handler.web.UstraCookieHandler:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.http.ResponseCookie
+  - org.springframework.http.ResponseCookie.ResponseCookieBuilder
+  - com.gsitm.ustra.java.mvc.utils.UstraCookieUtils
+  methods:
+    addCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: cookieBuilder
+        type: ResponseCookieBuilder
+      return_type: null
+    deleteCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: name
+        type: String
+      return_type: null
+    getCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: name
+        type: String
+      return_type: Optional
+com.gsitm.ustra.java.mvc.logging.interfaces.ConfigBasedWebInterfaceLoggingFilter:
+  class_annotations: []
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.logging.interfaces.ResourceWebInterfaceLoggingFilter:
+  class_annotations: []
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceContextHolder:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InboundInterfaceContextHolder
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    get:
+      annotations: []
+      parameters: []
+      return_type: InterfaceHolderInfo
+    init:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: currentInboundInterfaceInfo
+        type: InterfaceInfo
+      return_type: null
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInboundInterfaceLoggingFilter:
+  class_annotations: []
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - java.util.List
+  - java.util.stream.Collectors
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - org.apache.commons.lang3.ObjectUtils
+  - org.slf4j.Logger
+  - org.slf4j.LoggerFactory
+  - org.springframework.core.Ordered
+  - org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.data.logging.interfaces.InterfaceLogWriter
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceLogType
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.InterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  methods:
+    doFilterInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: filterChain
+        type: FilterChain
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    getWriters:
+      annotations: []
+      parameters: []
+      return_type: List
+    isExcludeRequestFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    requiredWriteLog:
+      annotations: []
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceExtractedInfoSetter:
+  class_annotations: []
+  extends: DefaultInterfaceExtractedInfoSetter
+  implements: []
+  imports:
+  - java.util.List
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceHttpMethod
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.setter.DefaultInterfaceExtractedInfoSetter
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.rest.RestResCodeStore
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    afterSet:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: interfaceInfo
+        type: InterfaceInfo
+      - annotations: []
+        name: extractedInfo
+        type: InterfaceExtractedInfo
+      return_type: null
+    isSuccessInterface:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: boolean
+    set:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: interfaceInfo
+        type: InterfaceInfo
+      return_type: InterfaceExtractedInfo
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceInfoStoreHelper:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.util.ArrayList
+  - java.util.EnumSet
+  - java.util.LinkedList
+  - java.util.List
+  - java.util.Map
+  - java.util.Map.Entry
+  - java.util.Objects
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.core.exception.UstraResponseCode
+  - org.apache.commons.collections.CollectionUtils
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.cache.Cache
+  - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  - com.gsitm.ustra.java.core.cache.UstraCacheNames
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraNetUtils
+  - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  - com.gsitm.ustra.java.data.logging.interfaces.holder.InterfaceHolderInfo.InterfaceExtractedInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceDirection
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceInfo
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceLogType
+  - com.gsitm.ustra.java.data.logging.interfaces.info.InterfaceType
+  - com.gsitm.ustra.java.data.logging.interfaces.store.InterfaceInfoStore
+  - com.gsitm.ustra.java.data.logging.interfaces.utils.InterfaceLoggingHelper
+  - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationRequestWrapper
+  - com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper
+  - com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.experimental.UtilityClass
+  methods:
+    getAppropriateInboundInterface:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: interfaceInfoStore
+        type: InterfaceInfoStore
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: InterfaceInfo
+    getCacheKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    getCachedInterfaceInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: InterfaceInfo
+    getInboundInterfaces:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: interfaceInfoStore
+        type: InterfaceInfoStore
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: List
+    setCachedInterfaceInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: interfaceInfo
+        type: InterfaceInfo
+      return_type: null
+    validateRequestIpAddress:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: interfacesInfos
+        type: List
+      - annotations: []
+        name: occurException
+        type: boolean
+      return_type: List
+    writeInboundInterfaceMessage:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: interfaceInfo
+        type: InterfaceInfo
+      - annotations: []
+        name: extractedInfo
+        type: InterfaceExtractedInfo
+      return_type: null
+com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  methods:
+    supports:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.logging.interfaces.WebSocketInterfaceLoggingFilter:
+  class_annotations: []
+  extends: null
+  implements:
+  - WebInterfaceLoggingFilter
+  - Ordered
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - org.springframework.core.Ordered
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - com.gsitm.ustra.web.socket.utils.UstraWebSocketUtils
+  methods:
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+com.gsitm.ustra.java.mvc.process.ChannelCodeResolver:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.ServletRequest
+  methods:
+    resolveChannelCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: ServletRequest
+      return_type: String
+com.gsitm.ustra.java.mvc.process.HttpHeaderSystemCodeResolver:
+  class_annotations: []
+  extends: null
+  implements:
+  - SystemCodeResolver
+  imports:
+  - javax.servlet.ServletRequest
+  - javax.servlet.http.HttpServletRequest
+  - org.apache.commons.lang3.StringUtils
+  - org.apache.commons.text.StringEscapeUtils
+  - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  methods:
+    resolveSystemCode:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: ServletRequest
+      return_type: String
+com.gsitm.ustra.java.mvc.process.ProcessInfoFilter:
+  class_annotations: []
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.core.Ordered
+  - org.springframework.lang.Nullable
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.core.properties.UstraProperties
+  methods:
+    doFilterInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: filterChain
+        type: FilterChain
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+com.gsitm.ustra.java.mvc.process.ProcessInfoLoggingFilter:
+  class_annotations:
+  - Slf4j
+  extends: OncePerRequestFilter
+  implements:
+  - Ordered
+  imports:
+  - java.io.IOException
+  - javax.servlet.FilterChain
+  - javax.servlet.ServletException
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.springframework.core.Ordered
+  - org.springframework.web.filter.OncePerRequestFilter
+  - com.gsitm.ustra.java.core.process.ProcessInfoUtils
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.extern.slf4j.Slf4j
+  methods:
+    doFilterInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: filterChain
+        type: FilterChain
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+com.gsitm.ustra.java.mvc.process.ProcessInfoWebUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - com.gsitm.ustra.java.core.process.ProcessInfo
+  - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  - lombok.experimental.UtilityClass
+  methods:
+    getCurrentProcessInfo:
+      annotations: []
+      parameters: []
+      return_type: ProcessInfo
+    storeProcessInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processInfo
+        type: ProcessInfo
+      return_type: null
+com.gsitm.ustra.java.mvc.process.SystemCodeResolver:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.ServletRequest
+  methods:
+    resolveSystemCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: ServletRequest
+      return_type: String
+com.gsitm.ustra.java.mvc.properties.UstraMvcProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
+  extends: null
+  implements: []
+  imports:
+  - org.springframework.boot.context.properties.ConfigurationProperties
+  - lombok.Data
+  methods: {}
+com.gsitm.ustra.java.mvc.rest.RestResCodeStore:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    store:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCd
+        type: String
+      return_type: null
+com.gsitm.ustra.java.mvc.rest.UstraMvcRequestBodyAdvice:
+  class_annotations:
+  - ControllerAdvice
+  - Order
+  extends: RequestBodyAdviceAdapter
+  implements: []
+  imports:
+  - java.lang.reflect.Type
+  - org.springframework.core.MethodParameter
+  - org.springframework.core.Ordered
+  - org.springframework.core.annotation.Order
+  - org.springframework.http.HttpInputMessage
+  - org.springframework.http.converter.HttpMessageConverter
+  - org.springframework.web.bind.annotation.ControllerAdvice
+  - org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter
+  - com.gsitm.ustra.java.core.utils.event.UstraEventUtils
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener
+  - com.gsitm.ustra.java.mvc.handler.resolver.UstraMethodArgumentResolverListener.UstraMethodArgumentResolverListenerEventArg
+  methods:
+    afterBodyRead:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      - annotations: []
+        name: inputMessage
+        type: HttpInputMessage
+      - annotations: []
+        name: parameter
+        type: MethodParameter
+      - annotations: []
+        name: targetType
+        type: Type
+      - annotations: []
+        name: converterType
+        type: Class
+      return_type: Object
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: methodParameter
+        type: MethodParameter
+      - annotations: []
+        name: targetType
+        type: Type
+      - annotations: []
+        name: converterType
+        type: Class
+      return_type: boolean
+com.gsitm.ustra.java.mvc.security.UstraWebAuthenticationInfoDetector:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports: []
+  methods:
+    authenticated:
+      annotations: []
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.mvc.test.MvcApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
+  extends: null
+  implements: []
+  imports:
+  - org.junit.jupiter.api.Test
+  - org.springframework.boot.SpringBootConfiguration
+  - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+com.gsitm.ustra.java.mvc.utils.UstraCookieUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.io.Serializable
+  - java.util.Base64
+  - java.util.Optional
+  - javax.servlet.http.Cookie
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.SerializationUtils
+  - org.springframework.http.HttpHeaders
+  - org.springframework.http.ResponseCookie
+  - lombok.experimental.UtilityClass
+  methods:
+    addCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: cookie
+        type: ResponseCookie
+      return_type: null
+    deleteCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: name
+        type: String
+      - annotations: []
+        name: path
+        type: String
+      return_type: null
+    deserialize:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: cookie
+        type: Cookie
+      - annotations: []
+        name: cls
+        type: Class
+      return_type: T
+    getCookie:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: name
+        type: String
+      return_type: Optional
+    serialize:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: object
+        type: Serializable
+      return_type: String
+com.gsitm.ustra.java.mvc.utils.UstraMultipartFileResource:
+  class_annotations: []
+  extends: AbstractResource
+  implements: []
+  imports:
+  - java.io.IOException
+  - java.io.InputStream
+  - org.springframework.core.io.AbstractResource
+  - org.springframework.lang.Nullable
+  - org.springframework.util.Assert
+  - org.springframework.web.multipart.MultipartFile
+  methods:
+    contentLength:
+      annotations:
+      - Override
+      parameters: []
+      return_type: long
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations:
+        - Nullable
+        name: other
+        type: Object
+      return_type: boolean
+    exists:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean
+    getDescription:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+    getFilename:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+    getInputStream:
+      annotations:
+      - Override
+      parameters: []
+      return_type: InputStream
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    isOpen:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean
+com.gsitm.ustra.java.mvc.utils.UstraMvcFileUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.net.URLEncoder
+  - java.nio.charset.StandardCharsets
+  - javax.servlet.http.HttpServletRequest
+  - lombok.experimental.UtilityClass
+  methods:
+    getAttatchContentDispositionHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: filename
+        type: String
+      return_type: String
+com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper:
+  class_annotations: []
+  extends: null
+  implements: []
+  imports:
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.util.Assert
+  methods:
+    adjustFinalResponse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: null
+    setFinalContentType:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: contentType
+        type: String
+      return_type: null
+com.gsitm.ustra.java.mvc.utils.UstraWebUtils:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.security.AccessController
+  - java.security.PrivilegedAction
+  - java.util.Collection
+  - java.util.Enumeration
+  - java.util.HashMap
+  - java.util.Map
+  - javax.servlet.http.HttpServletRequest
+  - javax.servlet.http.HttpServletResponse
+  - org.apache.commons.lang3.StringUtils
+  - org.springframework.http.HttpHeaders
+  - org.springframework.http.MediaType
+  - org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+  - org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter
+  - org.springframework.web.context.request.RequestContextHolder
+  - org.springframework.web.context.request.ServletRequestAttributes
+  - org.springframework.web.servlet.View
+  - org.springframework.web.servlet.view.json.MappingJackson2JsonView
+  - org.springframework.web.servlet.view.xml.MappingJackson2XmlView
+  - com.fasterxml.jackson.databind.ObjectMapper
+  - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  - com.gsitm.ustra.java.core.utils.UstraJsonUtils
+  - com.gsitm.ustra.java.mvc.filter.UstraAppRequestContextHolder
+  - com.gsitm.ustra.java.mvc.properties.UstraMvcProperties
+  - com.gsitm.ustra.web.core.utils.UstraWebCoreUtils
+  - lombok.experimental.UtilityClass
+  methods:
+    getAppropriateHttpMessageObjectMapper:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ObjectMapper
+    getAppropriateRestView:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: View
+    getClientIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    getCurrentRequest:
+      annotations: []
+      parameters: []
+      return_type: HttpServletRequest
+    getCurrentResponse:
+      annotations: []
+      parameters: []
+      return_type: HttpServletResponse
+    getNativeRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requiredType
+        type: Class
+      return_type: T
+    getNativeResponse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requiredType
+        type: Class
+      return_type: T
+    getQueryParam:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    getRequestHeaders:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    getRequestPath:
+      annotations: []
+      parameters: []
+      return_type: String
+    getResponseHeaders:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: String
+    isErrorPageRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    isFileAttachmentResponse:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      return_type: boolean
+    isIEBrowserRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    isPostmanRequest:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isRestApiRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    isSupportContentType:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: contentType
+        type: String
+      return_type: boolean
+    isWebPageRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    matchUrlAntPattern:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: url
+        type: String
+      - annotations: []
+        name: patterns
+        type: String
+      return_type: boolean
+    matchUrlPattern:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pattern
+        type: String
+      - annotations: []
+        name: url
+        type: String
+      return_type: boolean
+com.gsitm.ustra.java.mvc.utils.UstraZipFileOutputStreamUtil:
+  class_annotations:
+  - UtilityClass
+  extends: null
+  implements: []
+  imports:
+  - java.io.FileInputStream
+  - java.io.FileOutputStream
+  - java.util.List
+  - java.util.zip.ZipEntry
+  - java.util.zip.ZipOutputStream
+  - org.springframework.core.io.Resource
+  - lombok.experimental.UtilityClass
+  methods:
+    fileOutput:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resources
+        type: List
+      return_type: ZipOutputStream
+    memoryOutput:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resources
+        type: List
+      return_type: ZipOutputStream

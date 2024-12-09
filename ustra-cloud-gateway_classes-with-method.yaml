@@ -1,8 +1,12 @@
 com.gsitm.ustra.java.cloud.gateway.UstraCloudGateway:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.cloud.gateway.config.GatewayFilterConfiguration:
+  class_annotations:
+  - Configuration
   extends: null
   implements: []
   imports:
@@ -13,7 +17,28 @@ com.gsitm.ustra.java.cloud.gateway.config.GatewayFilterConfiguration:
   - org.springframework.context.annotation.Configuration
   - com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenAddRequestHeaderGatewayFilterFactory
   - com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenParseGatewayFilterFactory
+  methods:
+    jwtTokenAddRequestHeaderGatewayFilterFactory:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      - ConditionalOnProperty
+      parameters:
+      - annotations: []
+        name: addRequestHeaderGatewayFilterFactory
+        type: AddRequestHeaderGatewayFilterFactory
+      return_type: JwtTokenAddRequestHeaderGatewayFilterFactory
+    jwtTokenParseGatewayFilterFactory:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      - ConditionalOnProperty
+      parameters: []
+      return_type: JwtTokenParseGatewayFilterFactory
 com.gsitm.ustra.java.cloud.gateway.config.GatewayRequestLimitFilterConfiguration:
+  class_annotations:
+  - Configuration
+  - ConditionalOnProperty
   extends: null
   implements: []
   imports:
@@ -36,7 +61,61 @@ com.gsitm.ustra.java.cloud.gateway.config.GatewayRequestLimitFilterConfiguration
   - com.gsitm.ustra.java.cloud.gateway.properties.UstraCloudGatewayProperties
   - com.gsitm.ustra.java.core.app.listener.OnceContextRefreshedEventApplicationListener
   - com.gsitm.ustra.java.data.UstraData
+  methods:
+    managementRequestLimitPolicyProvider:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      - ConditionalOnProperty
+      - ConditionalOnClass
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraCloudGatewayProperties
+      return_type: ManagementRequestLimitPolicyProvider
+    requestLimitChecker:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: requestLimitPolicyStore
+        type: RequestLimitPolicyStore
+      return_type: RequestLimitChecker
+    requestLimitGatewayFilterFactory:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RequestLimitGatewayFilterFactory
+    requestLimitOnceContextRefreshedEventApplicationListener:
+      annotations:
+      - Bean
+      parameters:
+      - annotations: []
+        name: requestLimitPolicyCollector
+        type: RequestLimitPolicyCollector
+      return_type: OnceContextRefreshedEventApplicationListener
+    requestLimitPolicyCollector:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters:
+      - annotations: []
+        name: store
+        type: RequestLimitPolicyStore
+      - annotations: []
+        name: providers
+        type: List
+      return_type: RequestLimitPolicyCollector
+    requestLimitPolicyStore:
+      annotations:
+      - Bean
+      - ConditionalOnMissingBean
+      parameters: []
+      return_type: RequestLimitPolicyStore
 com.gsitm.ustra.java.cloud.gateway.filter.factory.AbstractAddChannelCodeHeaderGatewayFilterFactory:
+  class_annotations: []
   extends: AbstractGatewayFilterFactory
   implements: []
   imports:
@@ -47,7 +126,26 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.AbstractAddChannelCodeHeaderGa
   - org.springframework.cloud.gateway.filter.factory.AddRequestHeaderGatewayFilterFactory
   - org.springframework.web.server.ServerWebExchange
   - lombok.Data
+  methods:
+    apply:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: config
+        type: C
+      - annotations: []
+        name: channelCodeValue
+        type: String
+      return_type: GatewayFilter
+    getChannelCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      return_type: String
 com.gsitm.ustra.java.cloud.gateway.filter.factory.AbstractJwtAuthenticationGatewayFilterFactory:
+  class_annotations: []
   extends: AbstractGatewayFilterFactory
   implements: []
   imports:
@@ -61,7 +159,34 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.AbstractJwtAuthenticationGatew
   - io.jsonwebtoken.ExpiredJwtException
   - io.jsonwebtoken.Jwts
   - lombok.Data
+  methods:
+    getToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      - annotations: []
+        name: config
+        type: Config
+      return_type: String
+    parseClaim:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      - annotations: []
+        name: config
+        type: Config
+      return_type: Claims
+    shortcutFieldOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenAddRequestHeaderGatewayFilterFactory:
+  class_annotations: []
   extends: AbstractAddChannelCodeHeaderGatewayFilterFactory
   implements:
   - Ordered
@@ -73,7 +198,22 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenAddRequestHeaderGatewa
   - io.jsonwebtoken.Claims
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods:
+    apply:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: config
+        type: Config
+      return_type: GatewayFilter
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
 com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenParseGatewayFilterFactory:
+  class_annotations: []
   extends: AbstractJwtAuthenticationGatewayFilterFactory
   implements:
   - Ordered
@@ -81,7 +221,22 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.JwtTokenParseGatewayFilterFact
   - org.springframework.cloud.gateway.filter.GatewayFilter
   - org.springframework.core.Ordered
   - io.jsonwebtoken.Claims
+  methods:
+    apply:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: config
+        type: Config
+      return_type: GatewayFilter
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
 com.gsitm.ustra.java.cloud.gateway.filter.factory.RequestLimitGatewayFilterFactory:
+  class_annotations: []
   extends: AbstractGatewayFilterFactory
   implements: []
   imports:
@@ -92,7 +247,18 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.RequestLimitGatewayFilterFacto
   - org.springframework.http.HttpStatus
   - com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.RequestLimitChecker
   - lombok.Data
+  methods:
+    apply:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: config
+        type: Config
+      return_type: GatewayFilter
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.DefaultRequestLimitChecker:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - RequestLimitChecker
@@ -111,12 +277,57 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.DefaultRequestLimitCheck
   - com.gsitm.ustra.java.core.utils.data.BiValue
   - com.gsitm.ustra.web.core.utils.UstraWebCoreUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    addAndCheckOverflow:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: system
+        type: String
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      return_type: boolean
+    getPolicyAndLimitCount:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: system
+        type: String
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      return_type: BiValue
+    getStorageKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: policy
+        type: RequestLimitPolicy
+      - annotations: []
+        name: channelCode
+        type: String
+      return_type: String
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.RequestLimitChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.web.server.ServerWebExchange
+  methods:
+    addAndCheckOverflow:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: system
+        type: String
+      - annotations: []
+        name: exchange
+        type: ServerWebExchange
+      return_type: boolean
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.ManagementRequestLimitPolicyProvider:
+  class_annotations: []
   extends: UstraJdbcTemplateService
   implements:
   - RequestLimitPolicyProvider
@@ -133,13 +344,23 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.ManagementRequest
   - com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolicy.ChannelPolicy
   - com.gsitm.ustra.java.cloud.gateway.properties.UstraCloudGatewayProperties
   - com.gsitm.ustra.java.data.utils.UstraJdbcTemplateService
+  methods:
+    provide:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolicy:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - java.util.List
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolicyCollector:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -147,12 +368,28 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolic
   - java.util.concurrent.TimeUnit
   - org.springframework.scheduling.Trigger
   - org.springframework.scheduling.support.PeriodicTrigger
+  methods:
+    collect:
+      annotations: []
+      parameters: []
+      return_type: null
+    reloadTrigger:
+      annotations: []
+      parameters: []
+      return_type: Trigger
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolicyProvider:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
+  methods:
+    provide:
+      annotations: []
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolicyStore:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -161,9 +398,35 @@ com.gsitm.ustra.java.cloud.gateway.filter.factory.limit.policy.RequestLimitPolic
   - java.util.concurrent.ConcurrentHashMap
   - java.util.stream.Collectors
   - org.apache.commons.collections.CollectionUtils
+  methods:
+    addAll:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: polices
+        type: List
+      return_type: null
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    find:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: system
+        type: String
+      - annotations: []
+        name: channel
+        type: String
+      return_type: List
 com.gsitm.ustra.java.cloud.gateway.properties.UstraCloudGatewayProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
