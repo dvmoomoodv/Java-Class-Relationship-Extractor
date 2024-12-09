@@ -1,11 +1,22 @@
 com.gsitm.ustra.java.data.jpa.UstraDataJpa:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.data.jpa.test.DataJpaApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null

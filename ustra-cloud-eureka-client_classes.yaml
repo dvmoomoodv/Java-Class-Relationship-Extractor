@@ -1,4 +1,6 @@
 com.gsitm.ustra.java.cloud.eureka.client.UstraCloudEurekaClient:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}

@@ -1,18 +1,27 @@
 com.gsitm.ustra.web.core.UstraWebCore:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.web.core.exception.UstraWebException:
+  class_annotations: []
   extends: UstraException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
   - com.gsitm.ustra.java.core.exception.UstraException
+  methods: {}
 com.gsitm.ustra.web.core.properties.UstraHttpHeaders:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.web.core.properties.UstraWebProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
@@ -20,7 +29,9 @@ com.gsitm.ustra.web.core.properties.UstraWebProperties:
   - java.util.List
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.web.core.utils.UstraWebCoreUtils:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -33,8 +44,56 @@ com.gsitm.ustra.web.core.utils.UstraWebCoreUtils:
   - org.springframework.web.util.pattern.PathPattern
   - org.springframework.web.util.pattern.PathPatternParser
   - com.gsitm.ustra.java.core.utils.UstraFileUtils
+  methods:
+    getClientIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: ServerHttpRequest
+      return_type: String
+    getClientRemoteAddr:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: headers
+        type: HttpHeaders
+      return_type: String
+    getFirstValueFromHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: headers
+        type: HttpHeaders
+      - annotations: []
+        name: headerName
+        type: String
+      return_type: String
+    matchUrlAntPattern:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: url
+        type: String
+      - annotations: []
+        name: patterns
+        type: String
+      return_type: boolean
+    matchUrlPattern:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pattern
+        type: String
+      - annotations: []
+        name: url
+        type: String
+      return_type: boolean
 com.gsitm.ustra.web.core.utils.UstraWebFileUtils:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
   - lombok.experimental.UtilityClass
+  methods: {}

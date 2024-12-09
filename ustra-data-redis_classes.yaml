@@ -1,10 +1,16 @@
 com.gsitm.ustra.java.data.redis.UstraDataRedis:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.data.redis.properties.UstraDataRedisProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}

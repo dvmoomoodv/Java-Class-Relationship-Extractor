@@ -1,8 +1,11 @@
 com.gsitm.ustra.java.mvc.rest.UstraMvcRest:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.condition.ActuatorRestResultWrapperConditioner:
+  class_annotations: []
   extends: null
   implements:
   - RestResultWrapperConditioner
@@ -10,7 +13,17 @@ com.gsitm.ustra.java.mvc.rest.condition.ActuatorRestResultWrapperConditioner:
   - javax.servlet.http.HttpServletRequest
   - org.springframework.beans.factory.annotation.Value
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.mvc.rest.condition.ConfigBasedRestResultWrapperConditioner:
+  class_annotations: []
   extends: null
   implements:
   - RestResultWrapperConditioner
@@ -18,12 +31,31 @@ com.gsitm.ustra.java.mvc.rest.condition.ConfigBasedRestResultWrapperConditioner:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
+  methods:
+    supports:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.mvc.rest.error.BasicExceptionMessageHandler:
+  class_annotations: []
   extends: null
   implements:
   - RestExceptionMessageHandler
@@ -32,20 +64,60 @@ com.gsitm.ustra.java.mvc.rest.error.BasicExceptionMessageHandler:
   - java.util.List
   - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
   - com.gsitm.ustra.java.mvc.rest.error.ExceptionMessageInfo.MessageFormatter
+  methods:
+    addDynamicException:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: exceptionMessages
+        type: List
+      - annotations: []
+        name: clazz
+        type: Class
+      - annotations: []
+        name: formatter
+        type: MessageFormatter
+      return_type: null
+    getExceptionMessageList:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.mvc.rest.error.EmptyExceptionMessageHandler:
+  class_annotations: []
   extends: null
   implements:
   - RestExceptionMessageHandler
   imports:
   - java.util.ArrayList
   - java.util.List
+  methods:
+    getExceptionMessageList:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.mvc.rest.error.ExceptionMessageInfo:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - org.apache.commons.lang3.StringUtils
   - lombok.Data
+  methods:
+    getExceptionMessage:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: e
+        type: Throwable
+      return_type: String
 com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler:
+  class_annotations:
+  - RestControllerAdvice
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -75,14 +147,94 @@ com.gsitm.ustra.java.mvc.rest.error.RestBaseExceptionHandler:
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
   - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    getExceptionResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: Object
+    getExcetionResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: Object
+    getFailureResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: Object
+    getFailureResultWithBody:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Object
+    getResultStatusCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: int
+    handleException:
+      annotations:
+      - ExceptionHandler
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: e
+        type: Exception
+      - annotations: []
+        name: handlerMethod
+        type: HandlerMethod
+      return_type: Object
+    storeResCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.error.RestBodyWriteEvent:
+  class_annotations: []
   extends: ApplicationEvent
   implements: []
   imports:
   - org.springframework.context.ApplicationEvent
   - lombok.Getter
   - lombok.Setter
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.error.RestErrorController:
+  class_annotations:
+  - Controller
+  - RequestMapping
   extends: DefaultErrorController
   implements: []
   imports:
@@ -109,44 +261,117 @@ com.gsitm.ustra.java.mvc.rest.error.RestErrorController:
   - com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler
   - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    errorRest:
+      annotations:
+      - RequestMapping
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: Object
+    getResponseCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ResponseCode
 com.gsitm.ustra.java.mvc.rest.error.RestErrorHandler:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - org.springframework.http.HttpStatus
   - org.springframework.lang.Nullable
+  methods:
+    handleError:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: status
+        type: HttpStatus
+      - annotations:
+        - Nullable
+        name: exception
+        type: Exception
+      return_type: Object
 com.gsitm.ustra.java.mvc.rest.error.RestExceptionHandler:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - org.springframework.lang.Nullable
   - org.springframework.web.method.HandlerMethod
+  methods:
+    handleException:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: e
+        type: Exception
+      - annotations:
+        - Nullable
+        name: handlerMethod
+        type: HandlerMethod
+      return_type: Object
 com.gsitm.ustra.java.mvc.rest.error.RestExceptionMessageHandler:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
+  methods:
+    getExceptionMessageList:
+      annotations: []
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.mvc.rest.error.RestExceptionMessageManager:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
   - org.apache.commons.lang3.exception.ExceptionUtils
   - com.gsitm.ustra.java.core.utils.ApplicationContextProvider
+  methods:
+    process:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
 com.gsitm.ustra.java.mvc.rest.model.PaginationRestVo:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.model.RestDataVo:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: RestVo
   implements: []
   imports:
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.model.RestErrResult:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: RestResult
   implements: []
   imports:
@@ -161,7 +386,69 @@ com.gsitm.ustra.java.mvc.rest.model.RestErrResult:
   - com.gsitm.ustra.java.core.exception.UstraResponseCode
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods:
+    error:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: field
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      return_type: RestErrResult
+    errors:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: errList
+        type: List
+      return_type: RestErrResult
+    failure:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: msg
+        type: String
+      - annotations: []
+        name: errors
+        type: List
+      return_type: RestErrResult
+    failureAsMap:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: ResponseCode
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Map
+    validationErrors:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: errList
+        type: List
+      return_type: RestErrResult
 com.gsitm.ustra.java.mvc.rest.model.RestHeader:
+  class_annotations:
+  - JsonDeserialize
   extends: null
   implements:
   - PaginationRequest
@@ -176,7 +463,26 @@ com.gsitm.ustra.java.mvc.rest.model.RestHeader:
   - com.gsitm.ustra.java.data.domains.PaginationRequest
   - lombok.Getter
   - lombok.Setter
+  methods:
+    getProperties:
+      annotations:
+      - JsonAnyGetter
+      parameters: []
+      return_type: Map
+    setProperties:
+      annotations:
+      - JsonAnySetter
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.model.RestResult:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
@@ -186,27 +492,62 @@ com.gsitm.ustra.java.mvc.rest.model.RestResult:
   - com.gsitm.ustra.java.core.exception.UstraResponseCode
   - com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils
   - lombok.Data
+  methods:
+    success:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: body
+        type: T
+      return_type: RestResult
+    successAsMap:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Map
 com.gsitm.ustra.java.mvc.rest.model.RestVo:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - javax.validation.Valid
   - javax.validation.constraints.NotNull
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.mvc.rest.test.MvcRestApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.utils.DefaultBodyWriteHandler:
+  class_annotations: []
   extends: null
   implements:
   - RestBodyWriteHandler
@@ -229,7 +570,71 @@ com.gsitm.ustra.java.mvc.rest.utils.DefaultBodyWriteHandler:
   - com.gsitm.ustra.java.mvc.rest.model.RestResult
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    getFailureResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Object
+    getSuccessResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Object
+    handleBodyWrite:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcRestProperties
+      - annotations: []
+        name: conditioners
+        type: List
+      - annotations: []
+        name: body
+        type: Object
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: selectedContentType
+        type: MediaType
+      - annotations: []
+        name: selectedConverterType
+        type: Class
+      - annotations: []
+        name: request
+        type: ServerHttpRequest
+      - annotations: []
+        name: response
+        type: ServerHttpResponse
+      return_type: Object
+    storeResCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -242,7 +647,64 @@ com.gsitm.ustra.java.mvc.rest.utils.RestBodyWriteHandler:
   - org.springframework.http.server.ServerHttpResponse
   - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  methods:
+    getFailureResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: code
+        type: String
+      - annotations: []
+        name: message
+        type: String
+      return_type: Object
+    getSuccessResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      return_type: Object
+    handleBodyWrite:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraMvcRestProperties
+      - annotations: []
+        name: conditioners
+        type: List
+      - annotations: []
+        name: body
+        type: Object
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: selectedContentType
+        type: MediaType
+      - annotations: []
+        name: selectedConverterType
+        type: Class
+      - annotations: []
+        name: request
+        type: ServerHttpRequest
+      - annotations: []
+        name: response
+        type: ServerHttpResponse
+      return_type: Object
+    supports:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: conditioners
+        type: List
+      return_type: boolean
 com.gsitm.ustra.java.mvc.rest.utils.RestRequestHeaderInjector:
+  class_annotations: []
   extends: null
   implements:
   - UstraApplicationWrapperAware
@@ -252,7 +714,26 @@ com.gsitm.ustra.java.mvc.rest.utils.RestRequestHeaderInjector:
   - com.gsitm.ustra.java.mvc.filter.UstraApplicationResponseWrapper
   - com.gsitm.ustra.java.mvc.filter.UstraApplicationWrapperAware
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
+  methods:
+    getRequestWrapper:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicaitonRequestWapper
+        type: UstraApplicationRequestWrapper
+      return_type: null
+    getResponseWrapper:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationResponseWrapper
+        type: UstraApplicationResponseWrapper
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.utils.RestResponseBodyAdvice:
+  class_annotations:
+  - RestControllerAdvice
   extends: null
   implements:
   - ResponseBodyAdvice
@@ -277,7 +758,53 @@ com.gsitm.ustra.java.mvc.rest.utils.RestResponseBodyAdvice:
   - com.gsitm.ustra.java.mvc.rest.properties.UstraMvcRestProperties
   - com.gsitm.ustra.java.mvc.utils.UstraWebResponseHelper
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    adjustResult:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: selectedConverterType
+        type: Class
+      - annotations: []
+        name: result
+        type: Object
+      return_type: Object
+    beforeBodyWrite:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: selectedContentType
+        type: MediaType
+      - annotations: []
+        name: selectedConverterType
+        type: Class
+      - annotations: []
+        name: request
+        type: ServerHttpRequest
+      - annotations: []
+        name: response
+        type: ServerHttpResponse
+      return_type: Object
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: returnType
+        type: MethodParameter
+      - annotations: []
+        name: converterType
+        type: Class
+      return_type: boolean
 com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -295,7 +822,47 @@ com.gsitm.ustra.java.mvc.rest.utils.UstraRestUtils:
   - com.gsitm.ustra.java.mvc.rest.model.RestHeader
   - com.gsitm.ustra.java.mvc.rest.model.RestVo
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    addParameterForOldFramework:
+      annotations: []
+      parameters:
+      - annotations:
+        - NonNull
+        name: header
+        type: RestHeader
+      return_type: null
+    applyDataResponseHeader:
+      annotations: []
+      parameters:
+      - annotations:
+        - NonNull
+        name: header
+        type: RestHeader
+      - annotations: []
+        name: body
+        type: Object
+      return_type: null
+    getCurrentApiHeader:
+      annotations: []
+      parameters: []
+      return_type: RestHeader
+    getPaginationInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: Object
+      return_type: PaginationInfo
+    injectApiHeader:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: UstraApplicationRequestWrapper
+      return_type: null
 com.gsitm.ustra.java.mvc.rest.validation.ValidationBasicGroups:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}

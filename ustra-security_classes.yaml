@@ -1,4 +1,5 @@
 com.gsitm.ustra.java.security.UstraDummyAuthenticationProvider:
+  class_annotations: []
   extends: null
   implements:
   - AuthenticationProvider
@@ -8,11 +9,31 @@ com.gsitm.ustra.java.security.UstraDummyAuthenticationProvider:
   - org.springframework.security.core.AuthenticationException
   - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    authenticate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: Authentication
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: Class
+      return_type: boolean
 com.gsitm.ustra.java.security.UstraSecurity:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -34,7 +55,86 @@ com.gsitm.ustra.java.security.authentication.UstraAuthenticationConfigurer:
   - com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker
   - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator
   - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidatorFactory
+  methods:
+    authenticationAuthorityChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationAuthorityChecker
+    authenticationChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationChecker
+    authenticationKeyChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationKeyChecker
+    authenticationListener:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationListener
+    authenticationProperties:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationProperties
+    authenticationPropertiesProvider:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthenticationPropertiesProvider
+    authenticationStore:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationStore
+    clientValidator:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraClientValidator
+    requestTokenChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraAuthenticationRequestTokenChecker
+    userDetailChecker:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraUserDetailChecker
+    userDetailProvider:
+      annotations:
+      - NotNull
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      return_type: UstraUserDetailProvider
 com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -50,7 +150,70 @@ com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager:
   - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - com.gsitm.ustra.java.security.exception.UstraSecurityException
+  methods:
+    authenticate:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: UstraAuthenticationRequestToken
+      return_type: UstraAuthentication
+    getAuthentication:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthentication
+    getAuthenticationProcessor:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: UstraAuthenticationProcessor
+    getProcessors:
+      annotations:
+      - SuppressWarnings
+      parameters: []
+      return_type: List
+    getRequestProcessor:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: UstraAuthenticationProcessor
+    getUnAuthenticationProcessor:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: UstraAuthenticationProcessor
+    getUserKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    isAuthenticated:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    request:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: UstraAuthentication
+    unAuthenticate:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: null
 com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication:
+  class_annotations: []
   extends: null
   implements:
   - Authentication
@@ -68,7 +231,210 @@ com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication:
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser
   - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  methods:
+    addAdditionalPeroperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: null
+    getAddtionalProperties:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: clazz
+        type: Class
+      return_type: T
+    getAuthSystemCode:
+      annotations: []
+      parameters: []
+      return_type: String
+    getAuthenticationKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    getAuthenticationKeyExpireDateTime:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getAuthenticationRequestNumbers:
+      annotations: []
+      parameters: []
+      return_type: int
+    getAuthorities:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Collection
+    getChannelCode:
+      annotations: []
+      parameters: []
+      return_type: String
+    getCredentials:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Object
+    getDetails:
+      annotations: []
+      parameters: []
+      return_type: Object
+    getDeviceId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getDuplicationKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    getName:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
+    getPrincipal:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Object
+    getProcessId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRequestToken:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthenticationRequestToken
+    getUser:
+      annotations: []
+      parameters: []
+      return_type: UstraUser
+    hasRole:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: roles
+        type: String
+      return_type: boolean
+    isAnonymous:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isAuthenticated:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean
+    isAuthenticationCompleted:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isModifiedData:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    removeAdditionalPeroperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
+    setAuthSystemCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authSystemCode
+        type: String
+      return_type: null
+    setAuthenticated:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: isAuthenticated
+        type: boolean
+      return_type: null
+    setAuthenticationCompleted:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationCompleted
+        type: boolean
+      return_type: null
+    setAuthenticationKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationKey
+        type: String
+      return_type: null
+    setAuthenticationKeyExpireDateTime:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationKeyExpireDateTime
+        type: LocalDateTime
+      return_type: null
+    setAuthenticationRequestNumbers:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationRequestNumbers
+        type: int
+      return_type: null
+    setChannelCode:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: channelCode
+        type: String
+      return_type: null
+    setDetails:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: details
+        type: Object
+      return_type: null
+    setDeviceId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: deviceId
+        type: String
+      return_type: null
+    setModifiedData:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: isModifiedData
+        type: boolean
+      return_type: null
+    setProcessId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processId
+        type: String
+      return_type: null
+    setRequestToken:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      return_type: null
 com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -77,44 +443,209 @@ com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthent
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: null
 com.gsitm.ustra.java.security.authentication.authentication.checker.UstraAuthenticationKeyChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  methods:
+    checkKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: token
+        type: UserNameWithKeyAuthenticationRequestToken
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: boolean
+    publishKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: String
+    supports:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: boolean
 com.gsitm.ustra.java.security.authentication.authority.UstraAuthenticationAuthorityChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: null
 com.gsitm.ustra.java.security.authentication.authority.UstraGrantedAuthority:
+  class_annotations: []
   extends: null
   implements:
   - GrantedAuthority
   imports:
   - org.springframework.security.core.GrantedAuthority
   - org.springframework.util.Assert
+  methods:
+    anonymous:
+      annotations: []
+      parameters: []
+      return_type: UstraGrantedAuthority
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authority
+        type: String
+      return_type: UstraGrantedAuthority
+    getAuthority:
+      annotations: []
+      parameters: []
+      return_type: String
+    setAuthority:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authority
+        type: String
+      return_type: null
 com.gsitm.ustra.java.security.authentication.cache.SecurityCacheNames:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.security.authentication.cache.SecurityCacheSupport:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.cache.Cache
   - com.gsitm.ustra.java.core.cache.UstraCacheManagerSupport
+  methods:
+    getDefaultUserCache:
+      annotations: []
+      parameters: []
+      return_type: Cache
 com.gsitm.ustra.java.security.authentication.listener.UstraAuthenticationListener:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  methods:
+    onAuthenticateFailure:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authenticationToken
+        type: S
+      - annotations: []
+        name: e
+        type: Exception
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+    onAuthenticateSuccess:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authenticationToken
+        type: S
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+    onAutomaticUnauthenticated:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: procId
+        type: String
+      - annotations: []
+        name: userName
+        type: String
+      - annotations: []
+        name: clientIp
+        type: String
+      return_type: null
+    onUnauthenticateFailure:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
+    onUnauthenticateSuccess:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: resCode
+        type: String
+      return_type: null
 com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticationProcessor:
+  class_annotations:
+  - Slf4j
   extends: UstraAuthenticationProcessor
   implements: []
   imports:
@@ -142,7 +673,53 @@ com.gsitm.ustra.java.security.authentication.processor.DefaultUstraAuthenticatio
   - com.gsitm.ustra.java.security.exception.UstraSecurityException
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
   - lombok.extern.slf4j.Slf4j
+  methods:
+    authenticate:
+      annotations:
+      - Override
+      parameters:
+      - annotations:
+        - NonNull
+        name: authenticationRequestToken
+        type: S
+      return_type: R
+    createAnonymousAuthentication:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: previousAuthentication
+        type: R
+      return_type: R
+    createDefaultAuthentication:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: R
+    init:
+      annotations: []
+      parameters: []
+      return_type: null
+    request:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: R
+    unAuthenticate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: R
 com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor:
+  class_annotations:
+  - Getter
   extends: null
   implements:
   - ApplicationContextAware
@@ -168,7 +745,81 @@ com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProces
   - com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator
   - com.gsitm.ustra.java.security.exception.UstraSecurityException
   - lombok.Getter
+  methods:
+    authenticate:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: R
+    awareApplicationContext:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      - annotations: []
+        name: objects
+        type: Object
+      return_type: null
+    getAuthenticationProperties:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthenticationProperties
+    request:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: R
+    setApplicationContext:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicationContext
+        type: ApplicationContext
+      return_type: null
+    setConfigurer:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: configurer
+        type: UstraAuthenticationConfigurer
+      return_type: null
+    supportsAuthentication:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: boolean
+    supportsRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    supportsUnAuthentication:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: boolean
+    unAuthenticate:
+      annotations: []
+      parameters:
+      - annotations:
+        - Nullable
+        name: authentication
+        type: R
+      return_type: R
 com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessorContextHolder:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -179,20 +830,69 @@ com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProces
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - lombok.Data
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    getProcessor:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthenticationProcessor
+    getProperties:
+      annotations: []
+      parameters: []
+      return_type: UstraAuthenticationProperties
+    setProcessor:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      return_type: null
 com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationPropertiesProvider:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.security.authentication.processor.UstraAuthenticationProcessor
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  methods:
+    getProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: processor
+        type: UstraAuthenticationProcessor
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      return_type: UstraAuthenticationProperties
 com.gsitm.ustra.java.security.authentication.request.UstraAuthenticationRequestTokenChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -202,37 +902,88 @@ com.gsitm.ustra.java.security.authentication.request.UstraAuthenticationRequestT
   - com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: authenticationRequestToken
+        type: S
+      return_type: null
 com.gsitm.ustra.java.security.authentication.request.token.AnonymousUserRequestToken:
+  class_annotations: []
   extends: UstraAuthenticationRequestToken
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.security.authentication.request.token.AuthenticationStoredToken:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.security.core.Authentication
+  methods:
+    getAuthentication:
+      annotations: []
+      parameters: []
+      return_type: Authentication
+    setAuthentication:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: null
 com.gsitm.ustra.java.security.authentication.request.token.DeviceIdContainedToken:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods:
+    getDeviceId:
+      annotations: []
+      parameters: []
+      return_type: String
+    setDeviceId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: deviceId
+        type: String
+      return_type: null
 com.gsitm.ustra.java.security.authentication.request.token.UserNamePasswordAuthenticationRequestToken:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: UstraAuthenticationRequestToken
   implements: []
   imports:
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods: {}
 com.gsitm.ustra.java.security.authentication.request.token.UserNameWithKeyAuthenticationRequestToken:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: UstraAuthenticationRequestToken
   implements: []
   imports:
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods: {}
 com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.security.authentication.store.SessionAuthenticationStore:
+  class_annotations: []
   extends: null
   implements:
   - UstraAuthenticationStore
@@ -245,14 +996,82 @@ com.gsitm.ustra.java.security.authentication.store.SessionAuthenticationStore:
   - com.gsitm.ustra.java.core.process.ProcessInfoContextHolder
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  methods:
+    get:
+      annotations:
+      - Override
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: R
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      return_type: null
+    set:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: updateFlag
+        type: boolean
+      return_type: null
 com.gsitm.ustra.java.security.authentication.store.UstraAuthenticationStore:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
+  methods:
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: R
+    remove:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      return_type: null
+    set:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      - annotations: []
+        name: authentication
+        type: R
+      - annotations: []
+        name: updateFlag
+        type: boolean
+      return_type: null
 com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser:
+  class_annotations: []
   extends: UstraUser
   implements: []
   imports:
@@ -260,7 +1079,15 @@ com.gsitm.ustra.java.security.authentication.user.UstraAnonymousUser:
   - java.util.Collection
   - org.springframework.security.core.GrantedAuthority
   - com.gsitm.ustra.java.security.authentication.authority.UstraGrantedAuthority
+  methods:
+    getAuthorities:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Collection
 com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - UstraUserDetailProvider
@@ -270,7 +1097,30 @@ com.gsitm.ustra.java.security.authentication.user.UstraCachedUserDetailProvider:
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - lombok.extern.slf4j.Slf4j
+  methods:
+    getCache:
+      annotations: []
+      parameters: []
+      return_type: Cache
+    getInternalUserDetails:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: UstraUser
+    getUserDetails:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: UstraUser
 com.gsitm.ustra.java.security.authentication.user.UstraUser:
+  class_annotations:
+  - Data
+  - JsonIgnoreProperties
   extends: User
   implements: []
   imports:
@@ -283,13 +1133,45 @@ com.gsitm.ustra.java.security.authentication.user.UstraUser:
   - com.fasterxml.jackson.annotation.JsonProperty
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: rhs
+        type: Object
+      return_type: boolean
+    getDuplicationKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUserKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
 com.gsitm.ustra.java.security.authentication.user.UstraUserDetailProvider:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
+  methods:
+    getUserDetails:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: R
+      return_type: UstraUser
 com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetailChecker:
+  class_annotations: []
   extends: null
   implements:
   - UstraUserDetailChecker
@@ -301,13 +1183,38 @@ com.gsitm.ustra.java.security.authentication.user.checker.DefaultUstraUserDetail
   - com.gsitm.ustra.java.security.authentication.user.UstraUser
   - com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    check:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: S
+      - annotations: []
+        name: userDetails
+        type: UstraUser
+      return_type: null
 com.gsitm.ustra.java.security.authentication.user.checker.UstraUserDetailChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.request.token.UstraAuthenticationRequestToken
   - com.gsitm.ustra.java.security.authentication.user.UstraUser
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requestToken
+        type: S
+      - annotations: []
+        name: userDetails
+        type: UstraUser
+      return_type: null
 com.gsitm.ustra.java.security.authentication.validation.DeviceIdClientValidator:
+  class_annotations: []
   extends: null
   implements:
   - UstraClientValidator
@@ -319,7 +1226,27 @@ com.gsitm.ustra.java.security.authentication.validation.DeviceIdClientValidator:
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
   - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
+  methods:
+    isExcludeUrl:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    validate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
 com.gsitm.ustra.java.security.authentication.validation.HttpHeaderClientValidator:
+  class_annotations: []
   extends: null
   implements:
   - UstraClientValidator
@@ -331,37 +1258,106 @@ com.gsitm.ustra.java.security.authentication.validation.HttpHeaderClientValidato
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
   - com.gsitm.ustra.java.security.authentication.properties.ClientValidationValueEncryptionType
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
+  methods:
+    getDecyrptedHeaderValue:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: headerValue
+        type: String
+      return_type: String
+    isExcludeUrl:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    validate:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
 com.gsitm.ustra.java.security.authentication.validation.UstraClientValidator:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    validate:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
 com.gsitm.ustra.java.security.authentication.validation.UstraClientValidatorFactory:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.properties.ClientValidationType
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties
   - com.gsitm.ustra.java.security.authentication.properties.UstraAuthenticationProperties.ClientValidation
+  methods:
+    getClientValidator:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: UstraAuthenticationProperties
+      return_type: UstraClientValidator
 com.gsitm.ustra.java.security.authority.UstraAuthority:
+  class_annotations:
+  - Data
   extends: null
   implements: []
   imports:
   - org.springframework.http.HttpMethod
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.security.authority.UstraAuthorityChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - org.springframework.security.core.Authentication
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: authentication
+        type: Authentication
+      return_type: boolean
 com.gsitm.ustra.java.security.authority.UstraGlobalAuthorityConfigurer:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
+  methods:
+    getAuthorities:
+      annotations: []
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.security.authority.permission.AllGrantedPermissionAuthorityCheckerExecutor:
+  class_annotations: []
   extends: null
   implements:
   - PermissionAuthorityCheckerExecutor
@@ -369,7 +1365,23 @@ com.gsitm.ustra.java.security.authority.permission.AllGrantedPermissionAuthority
   - java.util.List
   - org.apache.commons.collections.CollectionUtils
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    execute:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: checkers
+        type: List
+      - annotations: []
+        name: permission
+        type: Permission
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: boolean
 com.gsitm.ustra.java.security.authority.permission.DefaultPermissionAuthorityChecker:
+  class_annotations: []
   extends: null
   implements:
   - PermissionAuthorityChecker
@@ -377,7 +1389,20 @@ com.gsitm.ustra.java.security.authority.permission.DefaultPermissionAuthorityChe
   - org.apache.commons.lang3.StringUtils
   - com.gsitm.ustra.java.core.process.ProcessInfoUtils
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    check:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: permission
+        type: Permission
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: boolean
 com.gsitm.ustra.java.security.authority.permission.OneGrantedPermissionAuthorityCheckerExecutor:
+  class_annotations: []
   extends: null
   implements:
   - PermissionAuthorityCheckerExecutor
@@ -385,7 +1410,24 @@ com.gsitm.ustra.java.security.authority.permission.OneGrantedPermissionAuthority
   - java.util.List
   - org.apache.commons.collections.CollectionUtils
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    execute:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: checkers
+        type: List
+      - annotations: []
+        name: permission
+        type: Permission
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: boolean
 com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckInterceptor:
+  class_annotations:
+  - Slf4j
   extends: HandlerInterceptorAdapter
   implements: []
   imports:
@@ -406,18 +1448,92 @@ com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckInter
   - com.gsitm.ustra.java.security.exception.UstraSecurityResponseCode
   - com.gsitm.ustra.java.security.utils.UstraSecurityUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    checkAuthenticationGlobalConfig:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
+    checkPermissions:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: handler
+        type: Object
+      return_type: null
+    preHandle:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: handler
+        type: Object
+      return_type: boolean
 com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    check:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: permission
+        type: Permission
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: boolean
+    getChannels:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: permission
+        type: Permission
+      return_type: String
+    getRoles:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: permission
+        type: Permission
+      return_type: String
 com.gsitm.ustra.java.security.authority.permission.PermissionAuthorityCheckerExecutor:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
   - com.gsitm.ustra.java.security.authentication.authentication.UstraAuthentication
+  methods:
+    execute:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: checkers
+        type: List
+      - annotations: []
+        name: permission
+        type: Permission
+      - annotations: []
+        name: authentication
+        type: UstraAuthentication
+      return_type: boolean
 com.gsitm.ustra.java.security.config.DefaultUstraSecurityConfigure:
+  class_annotations: []
   extends: null
   implements:
   - UstraSecurityConfigure
@@ -443,13 +1559,62 @@ com.gsitm.ustra.java.security.config.DefaultUstraSecurityConfigure:
   - com.gsitm.ustra.java.security.authority.UstraAuthorityChecker
   - com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter
   - com.gsitm.ustra.web.socket.config.UstraWebSocketConfigurer
+  methods:
+    addWebSocketIgnoreMatchers:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: web
+        type: WebSecurity
+      - annotations: []
+        name: webSocketConfigurers
+        type: List
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    postConfigure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: web
+        type: WebSecurity
+      return_type: null
+    preConfigure:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: http
+        type: HttpSecurity
+      return_type: null
 com.gsitm.ustra.java.security.config.UstraSecurityConfigure:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.springframework.security.config.annotation.web.builders.HttpSecurity
   - org.springframework.security.config.annotation.web.builders.WebSecurity
+  methods:
+    postConfigure:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: web
+        type: WebSecurity
+      return_type: null
+    preConfigure:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: web
+        type: WebSecurity
+      return_type: null
 com.gsitm.ustra.java.security.connection.ConcurrentMapConnectionStorage:
+  class_annotations: []
   extends: null
   implements:
   - UstraConnectionStorage
@@ -458,68 +1623,228 @@ com.gsitm.ustra.java.security.connection.ConcurrentMapConnectionStorage:
   - java.util.Map
   - java.util.concurrent.ConcurrentHashMap
   - java.util.stream.Collectors
+  methods:
+    add:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: connection
+        type: T
+      return_type: null
+    contains:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: boolean
+    get:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: T
+    getAll:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
+    getByDuplicationKey:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: duplicationKey
+        type: String
+      return_type: List
+    remove:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
 com.gsitm.ustra.java.security.connection.ConnectionInfo:
+  class_annotations: []
   extends: Serializable
   implements: []
   imports:
   - java.io.Serializable
   - java.util.concurrent.atomic.AtomicInteger
+  methods:
+    getCheckNumber:
+      annotations: []
+      parameters: []
+      return_type: AtomicInteger
+    getClientIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getDuplicationKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    getProcId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUserKey:
+      annotations: []
+      parameters: []
+      return_type: String
+    isDuplicated:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isExpired:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    setDuplicated:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: value
+        type: boolean
+      return_type: null
+    setExpired:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: value
+        type: boolean
+      return_type: null
 com.gsitm.ustra.java.security.connection.UstraConnectionStorage:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
+  methods:
+    add:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: connection
+        type: T
+      return_type: null
+    contains:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: boolean
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: T
+    getAll:
+      annotations: []
+      parameters: []
+      return_type: List
+    getByDuplicationKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: duplicationKey
+        type: String
+      return_type: List
+    remove:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: null
 com.gsitm.ustra.java.security.exception.AccountLockedUserException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.CannotAnonymousAccessException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.CredentialsExpiredUserException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.DisabledUserException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.DuplicatedAuthenticationException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.ExpiredUserException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.InvalidAuthenticationRequestException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.NotAllowedConnectionRegionException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.NotMatchPasswordException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.NotMatchUserException:
+  class_annotations: []
   extends: UstraSecurityException
   implements: []
   imports:
   - com.gsitm.ustra.java.core.exception.ResponseCode
+  methods: {}
 com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: UstraSecurityException
   implements: []
   imports:
@@ -528,7 +1853,39 @@ com.gsitm.ustra.java.security.exception.UstraSecurityAuthenticationException:
   - com.gsitm.ustra.java.security.authentication.user.UstraUser
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods:
+    from:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: ResponseCode
+      return_type: UstraSecurityAuthenticationException
+    getAuthenticationFailureData:
+      annotations: []
+      parameters: []
+      return_type: AuthenticationFailureData
+    getClientOutputCode:
+      annotations: []
+      parameters: []
+      return_type: String
+    of:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: resCode
+        type: ResponseCode
+      - annotations: []
+        name: requestToken
+        type: UstraAuthenticationRequestToken
+      - annotations: []
+        name: user
+        type: UstraUser
+      return_type: UstraSecurityAuthenticationException
 com.gsitm.ustra.java.security.exception.UstraSecurityException:
+  class_annotations:
+  - Data
+  - EqualsAndHashCode
   extends: UstraException
   implements: []
   imports:
@@ -537,7 +1894,15 @@ com.gsitm.ustra.java.security.exception.UstraSecurityException:
   - com.gsitm.ustra.java.core.exception.UstraException
   - lombok.Data
   - lombok.EqualsAndHashCode
+  methods:
+    httpStatusCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: Integer
 com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter:
+  class_annotations:
+  - Slf4j
   extends: OncePerRequestFilter
   implements:
   - Ordered
@@ -553,7 +1918,29 @@ com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter:
   - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
   - com.gsitm.ustra.java.security.exception.DuplicatedAuthenticationException
   - lombok.extern.slf4j.Slf4j
+  methods:
+    doFilterInternal:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: filterChain
+        type: FilterChain
+      return_type: null
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
 com.gsitm.ustra.java.security.filter.UstraXssApplicationWrapperAware:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - UstraApplicationWrapperAware
@@ -567,12 +1954,33 @@ com.gsitm.ustra.java.security.filter.UstraXssApplicationWrapperAware:
   - com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper
   - com.gsitm.ustra.java.security.properties.UstraSecurityProperties
   - lombok.extern.slf4j.Slf4j
+  methods:
+    getRequestWrapper:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: applicaitonRequestWapper
+        type: UstraApplicationRequestWrapper
+      return_type: null
 com.gsitm.ustra.java.security.filter.xss.DefaultXssTextEscaper:
+  class_annotations: []
   extends: null
   implements:
   - UstraXssTextEscaper
   imports: []
+  methods:
+    escapeXssText:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: text
+        type: String
+      return_type: String
 com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper:
+  class_annotations:
+  - FunctionalInterface
   extends: null
   implements: []
   imports:
@@ -583,30 +1991,75 @@ com.gsitm.ustra.java.security.filter.xss.UstraXssTextEscaper:
   - org.springframework.core.annotation.AnnotationUtils
   - com.gsitm.ustra.java.core.utils.UstraBeanUtils
   - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
+  methods:
+    escapeXssText:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: text
+        type: String
+      return_type: String
+    escapeXssTextValues:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: obj
+        type: Object
+      return_type: null
 com.gsitm.ustra.java.security.properties.UstraSecurityProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - java.util.List
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.security.test.SecurityApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.security.utils.UstraSecurityUtils:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.security.filter.UstraAuthenticationRequestFilter
+  methods:
+    isSecurityRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.security.web.DefaultUstraWebAuthenticationInfoDetector:
+  class_annotations: []
   extends: null
   implements:
   - UstraWebAuthenticationInfoDetector
   imports:
   - com.gsitm.ustra.java.mvc.security.UstraWebAuthenticationInfoDetector
   - com.gsitm.ustra.java.security.authentication.UstraAuthenticationManager
+  methods:
+    authenticated:
+      annotations:
+      - Override
+      parameters: []
+      return_type: boolean

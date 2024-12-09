@@ -1,4 +1,5 @@
 ch.qos.logback.core.joran.event.SaxEventRecorder:
+  class_annotations: []
   extends: DefaultHandler
   implements:
   - ContextAware
@@ -22,11 +23,189 @@ ch.qos.logback.core.joran.event.SaxEventRecorder:
   - ch.qos.logback.core.spi.ContextAware
   - ch.qos.logback.core.spi.ContextAwareImpl
   - ch.qos.logback.core.status.Status
+  methods:
+    addError:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: msg
+        type: String
+      - annotations: []
+        name: ex
+        type: Throwable
+      return_type: null
+    addInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: msg
+        type: String
+      - annotations: []
+        name: ex
+        type: Throwable
+      return_type: null
+    addStatus:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: status
+        type: Status
+      return_type: null
+    addWarn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: msg
+        type: String
+      - annotations: []
+        name: ex
+        type: Throwable
+      return_type: null
+    buildSaxParser:
+      annotations: []
+      parameters: []
+      return_type: SAXParser
+    characters:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ch
+        type: char
+      - annotations: []
+        name: start
+        type: int
+      - annotations: []
+        name: length
+        type: int
+      return_type: null
+    endElement:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: namespaceURI
+        type: String
+      - annotations: []
+        name: localName
+        type: String
+      - annotations: []
+        name: qName
+        type: String
+      return_type: null
+    error:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: spe
+        type: SAXParseException
+      return_type: null
+    fatalError:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: spe
+        type: SAXParseException
+      return_type: null
+    getContext:
+      annotations: []
+      parameters: []
+      return_type: Context
+    getLastEvent:
+      annotations: []
+      parameters: []
+      return_type: SaxEvent
+    getLocator:
+      annotations: []
+      parameters: []
+      return_type: Locator
+    getSaxEventList:
+      annotations: []
+      parameters: []
+      return_type: List
+    getTagName:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: localName
+        type: String
+      - annotations: []
+        name: qName
+        type: String
+      return_type: String
+    handleError:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: errMsg
+        type: String
+      - annotations: []
+        name: t
+        type: Throwable
+      return_type: null
+    isSpaceOnly:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: bodyStr
+        type: String
+      return_type: boolean
+    recordEvents:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: inputSource
+        type: InputSource
+      return_type: List
+    setContext:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: context
+        type: Context
+      return_type: null
+    setDocumentLocator:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: l
+        type: Locator
+      return_type: null
+    startDocument:
+      annotations: []
+      parameters: []
+      return_type: null
+    startElement:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: namespaceURI
+        type: String
+      - annotations: []
+        name: localName
+        type: String
+      - annotations: []
+        name: qName
+        type: String
+      - annotations: []
+        name: atts
+        type: Attributes
+      return_type: null
+    warning:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: spe
+        type: SAXParseException
+      return_type: null
 com.gsitm.ustra.java.batch.UstraBatch:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.batch.UstraBatchConfigProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
@@ -37,13 +216,25 @@ com.gsitm.ustra.java.batch.UstraBatchConfigProperties:
   - com.gsitm.ustra.java.batch.model.TaskScheduleType
   - lombok.Data
   - org.springframework.context.annotation.Configuration
+  methods: {}
 com.gsitm.ustra.java.batch.bootstrap.BatchServerMain:
+  class_annotations:
+  - SpringBootApplication
   extends: null
   implements: []
   imports:
   - org.springframework.boot.SpringApplication
   - org.springframework.boot.autoconfigure.SpringBootApplication
+  methods:
+    main:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: args
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.bootstrap.ManagerServerMain:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -52,7 +243,16 @@ com.gsitm.ustra.java.batch.bootstrap.ManagerServerMain:
   - org.springframework.boot.builder.SpringApplicationBuilder
   - org.springframework.context.ApplicationContext
   - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  methods:
+    run:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: args
+        type: String
+      return_type: ApplicationContext
 com.gsitm.ustra.java.batch.bootstrap.UstraBatchServer:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -63,7 +263,16 @@ com.gsitm.ustra.java.batch.bootstrap.UstraBatchServer:
   - org.springframework.boot.builder.SpringApplicationBuilder
   - org.springframework.context.ApplicationContext
   - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  methods:
+    run:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: args
+        type: String
+      return_type: ApplicationContext
 com.gsitm.ustra.java.batch.bootstrap.WorkerServerMain:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -72,19 +281,45 @@ com.gsitm.ustra.java.batch.bootstrap.WorkerServerMain:
   - org.springframework.boot.builder.SpringApplicationBuilder
   - org.springframework.context.ApplicationContext
   - com.gsitm.ustra.java.core.app.ApplicationConfigurationSupport
+  methods:
+    run:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: args
+        type: String
+      return_type: ApplicationContext
 com.gsitm.ustra.java.batch.common.DigestUtils:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.apache.commons.lang3.StringUtils
   - java.nio.charset.StandardCharsets
+  methods:
+    createMD5String:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sourceStrings
+        type: String
+      return_type: String
 com.gsitm.ustra.java.batch.common.DigestUtilsTest:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.junit.jupiter.api.Assertions
+  methods:
+    createMD5String:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.common.DurationUtils:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -93,14 +328,34 @@ com.gsitm.ustra.java.batch.common.DurationUtils:
   - java.time.Instant
   - java.time.ZoneOffset
   - java.time.format.DateTimeFormatter
+  methods:
+    formatDuration:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: duration
+        type: Duration
+      - annotations: []
+        name: pattern
+        type: String
+      return_type: String
 com.gsitm.ustra.java.batch.common.DurationUtilsTest:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - java.time.Duration
   - org.junit.jupiter.api.Assertions
+  methods:
+    testFormatSeconds:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.common.NetworkUtils:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -114,7 +369,21 @@ com.gsitm.ustra.java.batch.common.NetworkUtils:
   - java.net.InetAddress
   - java.net.NetworkInterface
   - java.net.UnknownHostException
+  methods:
+    getHostAddress:
+      annotations: []
+      parameters: []
+      return_type: String
+    getHostname:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.config.BatchInterfaceLoggingFilter:
+  class_annotations: []
   extends: null
   implements:
   - WebInterfaceLoggingFilter
@@ -124,7 +393,22 @@ com.gsitm.ustra.java.batch.config.BatchInterfaceLoggingFilter:
   - org.springframework.core.Ordered
   - com.gsitm.ustra.java.mvc.logging.interfaces.WebInterfaceLoggingFilter
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
+  methods:
+    getOrder:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.batch.data.domain.mapper.TaskDomainMapper:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -134,7 +418,28 @@ com.gsitm.ustra.java.batch.data.domain.mapper.TaskDomainMapper:
   - com.gsitm.ustra.java.data.domains.PaginationRequest
   - org.apache.ibatis.annotations.Param
   - java.util.List
+  methods:
+    selectByFilter:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: filter
+        type: TaskFilter
+      - annotations: []
+        name: paginationRequest
+        type: PaginationRequest
+      return_type: List
+    selectById:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: taskId
+        type: String
+      return_type: TaskDetail
 com.gsitm.ustra.java.batch.data.domain.mapper.TaskInstanceDomainMapper:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -143,7 +448,37 @@ com.gsitm.ustra.java.batch.data.domain.mapper.TaskInstanceDomainMapper:
   - com.gsitm.ustra.java.data.domains.PaginationRequest
   - org.apache.ibatis.annotations.Param
   - java.util.List
+  methods:
+    countByFilter:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: taskInstanceFilter
+        type: TaskInstanceFilter
+      return_type: long
+    selectByFilter:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: taskInstanceFilter
+        type: TaskInstanceFilter
+      - annotations: []
+        name: paginationRequest
+        type: PaginationRequest
+      return_type: List
+    selectById:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: taskInstanceId
+        type: String
+      return_type: TaskInstance
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatMngrMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -152,7 +487,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatMngrMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatMngrExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatMngrExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mngrId
+        type: String
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatMngr
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatMngr
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatMngrExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mngrId
+        type: String
+      return_type: UstraBatMngr
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatMngr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatMngrExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatMngr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatMngrExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatMngr
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatMngr
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -161,7 +586,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskExecId
+        type: String
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExec
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExec
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskExecId
+        type: String
+      return_type: UstraBatTaskExec
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskExec
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExecExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskExec
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExecExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExec
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExec
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecParamMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -171,7 +686,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskExecParamMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecParamExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecParamExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskExecParamKey
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExecParam
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExecParam
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExecParamExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskExecParamKey
+      return_type: UstraBatTaskExecParam
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskExecParam
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExecParamExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskExecParam
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExecParamExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExecParam
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskExecParam
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -180,7 +785,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTask
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTask
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: UstraBatTask
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTask
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTask
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTask
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTask
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskParamMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -190,7 +885,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskParamMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskParamExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskParamExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskParamKey
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskParam
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskParam
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskParamExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskParamKey
+      return_type: UstraBatTaskParam
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskParam
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskParamExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskParam
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskParamExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskParam
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskParam
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskSchdlMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -200,7 +985,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskSchdlMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskSchdlExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskSchdlExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskSchdlKey
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskSchdl
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskSchdl
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskSchdlExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: UstraBatTaskSchdlKey
+      return_type: UstraBatTaskSchdl
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskSchdl
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskSchdlExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskSchdl
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskSchdlExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskSchdl
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskSchdl
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskWrkrMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -209,7 +1084,69 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatTaskWrkrMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskWrkrExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskWrkrExample
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskWrkr
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatTaskWrkr
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatTaskWrkrExample
+      return_type: List
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskWrkr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskWrkrExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatTaskWrkr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatTaskWrkrExample
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapper:
+  class_annotations:
+  - Mapper
   extends: null
   implements: []
   imports:
@@ -218,7 +1155,97 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapper:
   - java.util.List
   - org.apache.ibatis.annotations.Mapper
   - org.apache.ibatis.annotations.Param
+  methods:
+    countByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatWrkrExample
+      return_type: long
+    deleteByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatWrkrExample
+      return_type: int
+    deleteByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wrkrId
+        type: String
+      return_type: int
+    insert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatWrkr
+      return_type: int
+    insertSelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatWrkr
+      return_type: int
+    selectByExample:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: UstraBatWrkrExample
+      return_type: List
+    selectByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wrkrId
+        type: String
+      return_type: UstraBatWrkr
+    updateByExample:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatWrkr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatWrkrExample
+      return_type: int
+    updateByExampleSelective:
+      annotations: []
+      parameters:
+      - annotations:
+        - Param
+        name: record
+        type: UstraBatWrkr
+      - annotations:
+        - Param
+        name: example
+        type: UstraBatWrkrExample
+      return_type: int
+    updateByPrimaryKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatWrkr
+      return_type: int
+    updateByPrimaryKeySelective:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: record
+        type: UstraBatWrkr
+      return_type: int
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapperTest:
+  class_annotations:
+  - MybatisTest
   extends: null
   implements: []
   imports:
@@ -226,66 +1253,274 @@ com.gsitm.ustra.java.batch.data.mapper.table.UstraBatWrkrMapperTest:
   - org.mybatis.spring.boot.test.autoconfigure.MybatisTest
   - org.springframework.beans.factory.annotation.Autowired
   - org.junit.jupiter.api.Assertions
+  methods:
+    test:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.UstraBatchSpringConfig:
+  class_annotations:
+  - SpringBootApplication
   extends: null
   implements: []
   imports:
   - org.springframework.boot.autoconfigure.SpringBootApplication
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatMngrTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskExecParamTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskExecTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskParamTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskSchdlTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatTaskWrkrTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.mapping.UstraBatWrkrTableMapping:
+  class_annotations:
+  - TableMapping
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.data.mapping.TableMapping
+  methods: {}
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngr:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
   - java.time.LocalDateTime
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getMngrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getMstrYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getRegUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getUpdUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUrl:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUseYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setMngrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mngrId
+        type: String
+      return_type: null
+    setMstrYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mstrYn
+        type: String
+      return_type: null
+    setRegDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regDttm
+        type: LocalDateTime
+      return_type: null
+    setRegUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrId
+        type: String
+      return_type: null
+    setRegUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrIp
+        type: String
+      return_type: null
+    setUpdDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updDttm
+        type: LocalDateTime
+      return_type: null
+    setUpdUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrId
+        type: String
+      return_type: null
+    setUpdUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrIp
+        type: String
+      return_type: null
+    setUrl:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: url
+        type: String
+      return_type: null
+    setUseYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: useYn
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatMngrExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.time.LocalDateTime
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
@@ -293,7 +1528,159 @@ com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask:
   - java.io.Serializable
   - java.math.BigDecimal
   - java.time.LocalDateTime
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getDlyS:
+      annotations: []
+      parameters: []
+      return_type: BigDecimal
+    getRegDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getRegUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskDesc:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskNm:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getUpdUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUseYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    getWipPlcyCd:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setDlyS:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: dlyS
+        type: BigDecimal
+      return_type: null
+    setRegDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regDttm
+        type: LocalDateTime
+      return_type: null
+    setRegUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrId
+        type: String
+      return_type: null
+    setRegUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrIp
+        type: String
+      return_type: null
+    setTaskDesc:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskDesc
+        type: String
+      return_type: null
+    setTaskId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    setTaskNm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskNm
+        type: String
+      return_type: null
+    setUpdDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updDttm
+        type: LocalDateTime
+      return_type: null
+    setUpdUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrId
+        type: String
+      return_type: null
+    setUpdUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrIp
+        type: String
+      return_type: null
+    setUseYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: useYn
+        type: String
+      return_type: null
+    setWipPlcyCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wipPlcyCd
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -301,66 +1688,714 @@ com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExample:
   - java.time.LocalDateTime
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExec:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
   - java.time.LocalDateTime
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getEndDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getMngrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getRegUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRsltCd:
+      annotations: []
+      parameters: []
+      return_type: String
+    getSrtDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getSttCd:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskExecId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskSchdlExpr:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskSchdlTypeCd:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getUpdUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getWrkrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setEndDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: endDttm
+        type: LocalDateTime
+      return_type: null
+    setMngrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mngrId
+        type: String
+      return_type: null
+    setRegDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regDttm
+        type: LocalDateTime
+      return_type: null
+    setRegUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrId
+        type: String
+      return_type: null
+    setRegUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrIp
+        type: String
+      return_type: null
+    setRsltCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: rsltCd
+        type: String
+      return_type: null
+    setSrtDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: srtDttm
+        type: LocalDateTime
+      return_type: null
+    setSttCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sttCd
+        type: String
+      return_type: null
+    setTaskExecId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskExecId
+        type: String
+      return_type: null
+    setTaskId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    setTaskSchdlExpr:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskSchdlExpr
+        type: String
+      return_type: null
+    setTaskSchdlTypeCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskSchdlTypeCd
+        type: String
+      return_type: null
+    setUpdDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updDttm
+        type: LocalDateTime
+      return_type: null
+    setUpdUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrId
+        type: String
+      return_type: null
+    setUpdUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrIp
+        type: String
+      return_type: null
+    setWrkrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wrkrId
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.time.LocalDateTime
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParam:
+  class_annotations: []
   extends: UstraBatTaskExecParamKey
   implements:
   - Serializable
   imports:
   - java.io.Serializable
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getTaskParamVal:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setTaskParamVal:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskParamVal
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecParamKey:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getTaskExecId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskParamId:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setTaskExecId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskExecId
+        type: String
+      return_type: null
+    setTaskParamId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskParamId
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParam:
+  class_annotations: []
   extends: UstraBatTaskParamKey
   implements:
   - Serializable
   imports:
   - java.io.Serializable
   - java.math.BigDecimal
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getDelYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRequireYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    getSrtNo:
+      annotations: []
+      parameters: []
+      return_type: BigDecimal
+    getTaskParamDesc:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskParamNm:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUseYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setDelYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: delYn
+        type: String
+      return_type: null
+    setRequireYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: requireYn
+        type: String
+      return_type: null
+    setSrtNo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: srtNo
+        type: BigDecimal
+      return_type: null
+    setTaskParamDesc:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskParamDesc
+        type: String
+      return_type: null
+    setTaskParamNm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskParamNm
+        type: String
+      return_type: null
+    setUseYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: useYn
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.math.BigDecimal
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskParamKey:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getTaskId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskParamId:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setTaskId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    setTaskParamId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskParamId
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdl:
+  class_annotations: []
   extends: UstraBatTaskSchdlKey
   implements:
   - Serializable
   imports:
   - java.io.Serializable
   - java.time.LocalDateTime
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getLastExecDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getNextExecDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getTaskSchdlExpr:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskSchdlTypeCd:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUseYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setLastExecDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: lastExecDttm
+        type: LocalDateTime
+      return_type: null
+    setNextExecDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: nextExecDttm
+        type: LocalDateTime
+      return_type: null
+    setTaskSchdlExpr:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskSchdlExpr
+        type: String
+      return_type: null
+    setTaskSchdlTypeCd:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskSchdlTypeCd
+        type: String
+      return_type: null
+    setUseYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: useYn
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -368,26 +2403,198 @@ com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlExample:
   - java.time.LocalDateTime
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskSchdlKey:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
   - java.math.BigDecimal
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getTaskId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getTaskSchdlNo:
+      annotations: []
+      parameters: []
+      return_type: BigDecimal
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setTaskId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    setTaskSchdlNo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskSchdlNo
+        type: BigDecimal
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkr:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
   imports:
   - java.io.Serializable
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getTaskId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getWrkrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setTaskId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    setWrkrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wrkrId
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskWrkrExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
@@ -395,7 +2602,137 @@ com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkr:
   - java.io.Serializable
   - java.math.BigDecimal
   - java.time.LocalDateTime
+  methods:
+    equals:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: that
+        type: Object
+      return_type: boolean
+    getCpct:
+      annotations: []
+      parameters: []
+      return_type: BigDecimal
+    getRegDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getRegUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getRegUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdDttm:
+      annotations: []
+      parameters: []
+      return_type: LocalDateTime
+    getUpdUsrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUpdUsrIp:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUrl:
+      annotations: []
+      parameters: []
+      return_type: String
+    getUseYn:
+      annotations: []
+      parameters: []
+      return_type: String
+    getWrkrId:
+      annotations: []
+      parameters: []
+      return_type: String
+    hashCode:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    setCpct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: cpct
+        type: BigDecimal
+      return_type: null
+    setRegDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regDttm
+        type: LocalDateTime
+      return_type: null
+    setRegUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrId
+        type: String
+      return_type: null
+    setRegUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: regUsrIp
+        type: String
+      return_type: null
+    setUpdDttm:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updDttm
+        type: LocalDateTime
+      return_type: null
+    setUpdUsrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrId
+        type: String
+      return_type: null
+    setUpdUsrIp:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: updUsrIp
+        type: String
+      return_type: null
+    setUrl:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: url
+        type: String
+      return_type: null
+    setUseYn:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: useYn
+        type: String
+      return_type: null
+    setWrkrId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: wrkrId
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -403,7 +2740,51 @@ com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatWrkrExample:
   - java.time.LocalDateTime
   - java.util.ArrayList
   - java.util.List
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    createCriteria:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    createCriteriaInternal:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    getOrderByClause:
+      annotations: []
+      parameters: []
+      return_type: String
+    getOredCriteria:
+      annotations: []
+      parameters: []
+      return_type: List
+    isDistinct:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    or:
+      annotations: []
+      parameters: []
+      return_type: Criteria
+    setDistinct:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: distinct
+        type: boolean
+      return_type: null
+    setOrderByClause:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderByClause
+        type: String
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.CommandLocalRepository:
+  class_annotations: []
   extends: null
   implements:
   - CommandRepository
@@ -420,7 +2801,45 @@ com.gsitm.ustra.java.batch.data.repository.CommandLocalRepository:
   - com.gsitm.ustra.java.batch.model.CommandFilter
   - com.gsitm.ustra.java.batch.model.Manager
   - com.gsitm.ustra.java.batch.model.Worker
+  methods:
+    delete:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: command
+        type: Command
+      return_type: null
+    find:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filter
+        type: CommandFilter
+      - annotations: []
+        name: rowBounds
+        type: RowBounds
+      return_type: List
+    poll:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: Command
+    register:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: command
+        type: Command
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.CommandLocalRepositoryTest:
+  class_annotations:
+  - Tag
   extends: null
   implements: []
   imports:
@@ -433,7 +2852,36 @@ com.gsitm.ustra.java.batch.data.repository.CommandLocalRepositoryTest:
   - java.util.Arrays
   - java.util.List
   - org.junit.jupiter.api.Assertions
+  methods:
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testFind_1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testFind_2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testFind_3:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testRegister:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.CommandRemoteRepository:
+  class_annotations:
+  - RequiredArgsConstructor
+  - Slf4j
   extends: null
   implements:
   - CommandRepository
@@ -452,7 +2900,47 @@ com.gsitm.ustra.java.batch.data.repository.CommandRemoteRepository:
   - com.gsitm.ustra.java.mvc.rest.model.RestResult
   - lombok.RequiredArgsConstructor
   - lombok.extern.slf4j.Slf4j
+  methods:
+    delete:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: command
+        type: Command
+      return_type: null
+    find:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: filter
+        type: CommandFilter
+      - annotations: []
+        name: rowBounds
+        type: RowBounds
+      return_type: List
+    poll:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: Command
+    register:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: example
+        type: Command
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.CommandRepository:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -462,7 +2950,43 @@ com.gsitm.ustra.java.batch.data.repository.CommandRepository:
   - com.gsitm.ustra.java.batch.model.CommandFilter
   - com.gsitm.ustra.java.batch.model.Manager
   - com.gsitm.ustra.java.batch.model.Worker
+  methods:
+    delete:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: command
+        type: Command
+      return_type: null
+    find:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filter
+        type: CommandFilter
+      - annotations: []
+        name: rowBounds
+        type: RowBounds
+      return_type: List
+    poll:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: Command
+    register:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: example
+        type: Command
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.ManagerDatabaseRepository:
+  class_annotations: []
   extends: null
   implements:
   - ManagerRepository
@@ -478,12 +3002,74 @@ com.gsitm.ustra.java.batch.data.repository.ManagerDatabaseRepository:
   - com.gsitm.ustra.java.batch.model.ManagerFilter
   - org.springframework.cache.annotation.CacheEvict
   - org.springframework.cache.annotation.Cacheable
+  methods:
+    createManager:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
+    deleteManager:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: null
+    existsByManagerId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: boolean
+    findByFilter:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: filter
+        type: ManagerFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: Manager
+    updateManager:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.ManagerHolder:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.model.Manager
+  methods:
+    get:
+      annotations: []
+      parameters: []
+      return_type: Manager
+    set:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.ManagerLocalRepository:
+  class_annotations:
+  - RequiredArgsConstructor
   extends: null
   implements:
   - ManagerRepository
@@ -493,7 +3079,52 @@ com.gsitm.ustra.java.batch.data.repository.ManagerLocalRepository:
   - com.gsitm.ustra.java.batch.model.Manager
   - com.gsitm.ustra.java.batch.model.ManagerFilter
   - lombok.RequiredArgsConstructor
+  methods:
+    createManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
+    deleteManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: null
+    existsByManagerId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: boolean
+    findByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filter
+        type: ManagerFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: Manager
+    updateManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.ManagerRepository:
+  class_annotations:
+  - Repository
   extends: null
   implements: []
   imports:
@@ -501,14 +3132,68 @@ com.gsitm.ustra.java.batch.data.repository.ManagerRepository:
   - org.springframework.stereotype.Repository
   - com.gsitm.ustra.java.batch.model.Manager
   - com.gsitm.ustra.java.batch.model.ManagerFilter
+  methods:
+    createManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
+    deleteManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: null
+    existsByManagerId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: boolean
+    findByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filter
+        type: ManagerFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: managerId
+        type: String
+      return_type: Manager
+    updateManager:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.SimpleFileRepository:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.io.File
   - java.io.FileInputStream
   - java.io.FileNotFoundException
+  methods:
+    load:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filePath
+        type: String
+      return_type: FileInputStream
 com.gsitm.ustra.java.batch.data.repository.TaskDatabaseRepository:
+  class_annotations:
+  - DataSource
   extends: null
   implements:
   - TaskRepository
@@ -529,7 +3214,65 @@ com.gsitm.ustra.java.batch.data.repository.TaskDatabaseRepository:
   - org.apache.commons.lang3.StringUtils
   - org.springframework.cache.annotation.CacheEvict
   - org.springframework.cache.annotation.Cacheable
+  methods:
+    create:
+      annotations:
+      - Override
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: task
+        type: TaskDetail
+      return_type: null
+    delete:
+      annotations:
+      - Override
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations:
+      - Override
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: filter
+        type: TaskFilter
+      return_type: List
+    findById:
+      annotations:
+      - Override
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: TaskDetail
+    getTaskScheduleListByFilter:
+      annotations:
+      - Override
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: taskScheduleFilter
+        type: TaskScheduleFilter
+      return_type: List
+    modify:
+      annotations:
+      - Override
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: taskDetail
+        type: TaskDetail
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.TaskInstanceRepository:
+  class_annotations:
+  - RequiredArgsConstructor
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -552,7 +3295,50 @@ com.gsitm.ustra.java.batch.data.repository.TaskInstanceRepository:
   - java.time.LocalDateTime
   - java.util.List
   - java.util.UUID
+  methods:
+    count:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: taskInstanceFilter
+        type: TaskInstanceFilter
+      return_type: long
+    createTaskInstance:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: example
+        type: TaskInstance
+      return_type: null
+    findByFilter:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: taskInstanceFilter
+        type: TaskInstanceFilter
+      return_type: List
+    findById:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: taskInstanceId
+        type: String
+      return_type: TaskInstance
+    modify:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: example
+        type: TaskInstance
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.TaskLocalRepository:
+  class_annotations:
+  - RequiredArgsConstructor
   extends: null
   implements:
   - TaskRepository
@@ -567,7 +3353,57 @@ com.gsitm.ustra.java.batch.data.repository.TaskLocalRepository:
   - com.gsitm.ustra.java.batch.model.TaskSchedule
   - com.gsitm.ustra.java.batch.model.TaskScheduleFilter
   - lombok.RequiredArgsConstructor
+  methods:
+    create:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: task
+        type: TaskDetail
+      return_type: null
+    delete:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: filter
+        type: TaskFilter
+      return_type: List
+    findById:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: TaskDetail
+    getTaskScheduleListByFilter:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: taskScheduleFilter
+        type: TaskScheduleFilter
+      return_type: List
+    modify:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: taskDetail
+        type: TaskDetail
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.TaskRepository:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -577,7 +3413,52 @@ com.gsitm.ustra.java.batch.data.repository.TaskRepository:
   - com.gsitm.ustra.java.batch.model.TaskFilter
   - com.gsitm.ustra.java.batch.model.TaskSchedule
   - com.gsitm.ustra.java.batch.model.TaskScheduleFilter
+  methods:
+    create:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: TaskDetail
+      return_type: null
+    delete:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: filter
+        type: TaskFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: TaskDetail
+    getTaskScheduleListByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskScheduleFilter
+        type: TaskScheduleFilter
+      return_type: List
+    modify:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskDetail
+        type: TaskDetail
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecConverter:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -586,7 +3467,17 @@ com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecConverter:
   - com.gsitm.ustra.java.batch.model.TaskInstance
   - lombok.experimental.UtilityClass
   - java.time.LocalDateTime
+  methods:
+    convert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskInstance
+        type: TaskInstance
+      return_type: UstraBatTaskExec
 com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecParamConverter:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -595,16 +3486,30 @@ com.gsitm.ustra.java.batch.data.repository.UstraBatTaskExecParamConverter:
   - lombok.experimental.UtilityClass
   - java.util.List
   - java.util.stream.Collectors
+  methods:
+    convert:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskInstance
+        type: TaskInstance
+      return_type: List
 com.gsitm.ustra.java.batch.data.repository.UstraBatchCache:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.batch.data.repository.UstraBatchSpringConfig:
+  class_annotations:
+  - SpringBootApplication
   extends: null
   implements: []
   imports:
   - org.springframework.boot.autoconfigure.SpringBootApplication
+  methods: {}
 com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepository:
+  class_annotations: []
   extends: null
   implements:
   - WorkerRepository
@@ -619,7 +3524,57 @@ com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepository:
   - com.gsitm.ustra.java.batch.model.WorkerFilter
   - org.springframework.cache.annotation.CacheEvict
   - org.springframework.cache.annotation.Cacheable
+  methods:
+    create:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
+    delete:
+      annotations:
+      - Override
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: workerFilter
+        type: WorkerFilter
+      return_type: List
+    findById:
+      annotations:
+      - Cacheable
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: Worker
+    modify:
+      annotations:
+      - CacheEvict
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepositoryTest:
+  class_annotations:
+  - MybatisTest
+  - Import
+  - AutoConfigureTestDatabase
+  - Transactional
   extends: null
   implements: []
   imports:
@@ -641,19 +3596,106 @@ com.gsitm.ustra.java.batch.data.repository.WorkerDatabaseRepositoryTest:
   - org.springframework.test.annotation.Rollback
   - org.springframework.transaction.annotation.Transactional
   - java.util.List
+  methods:
+    beforeAll:
+      annotations:
+      - BeforeAll
+      parameters: []
+      return_type: null
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testFindByFilter:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testFindById:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testInit:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testModify:
+      annotations:
+      - Test
+      - Rollback
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.WorkerHolder:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.model.Worker
+  methods:
+    get:
+      annotations: []
+      parameters: []
+      return_type: Worker
+    set:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.WorkerRepository:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.util.List
   - com.gsitm.ustra.java.batch.model.Worker
   - com.gsitm.ustra.java.batch.model.WorkerFilter
+  methods:
+    create:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
+    delete:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerFilter
+        type: WorkerFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: Worker
+    modify:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
 com.gsitm.ustra.java.batch.data.repository.WorkerYmlRepository:
+  class_annotations:
+  - RequiredArgsConstructor
   extends: null
   implements:
   - WorkerRepository
@@ -666,7 +3708,53 @@ com.gsitm.ustra.java.batch.data.repository.WorkerYmlRepository:
   - com.gsitm.ustra.java.batch.model.Worker
   - com.gsitm.ustra.java.batch.model.WorkerFilter
   - lombok.RequiredArgsConstructor
+  methods:
+    create:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
+    delete:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: null
+    findByFilter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerFilter
+        type: WorkerFilter
+      return_type: List
+    findById:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      return_type: Worker
+    modify:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: workerId
+        type: String
+      - annotations: []
+        name: worker
+        type: Worker
+      return_type: null
 com.gsitm.ustra.java.batch.model.Command:
+  class_annotations:
+  - Setter
+  - Getter
+  - ToString
   extends: null
   implements: []
   imports:
@@ -677,14 +3765,37 @@ com.gsitm.ustra.java.batch.model.Command:
   - lombok.Getter
   - lombok.Setter
   - lombok.ToString
+  methods:
+    newInstanceWithTask:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: Task
+      return_type: Command
+    of:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: TaskDetail
+      - annotations: []
+        name: taskInstance
+        type: TaskInstance
+      return_type: Command
 com.gsitm.ustra.java.batch.model.CommandFilter:
+  class_annotations:
+  - Getter
+  - Builder
   extends: null
   implements: []
   imports:
   - java.util.List
   - lombok.Builder
   - lombok.Getter
+  methods: {}
 com.gsitm.ustra.java.batch.model.CommandTest:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -692,7 +3803,21 @@ com.gsitm.ustra.java.batch.model.CommandTest:
   - java.util.Arrays
   - java.util.UUID
   - org.junit.jupiter.api.Test
+  methods:
+    testNewInstanceWithTaskInstance_1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testNewInstanceWithTaskInstance_2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.model.Manager:
+  class_annotations:
+  - Getter
+  - Setter
   extends: null
   implements:
   - Serializable
@@ -704,20 +3829,49 @@ com.gsitm.ustra.java.batch.model.Manager:
   - lombok.Setter
   - java.io.Serializable
   - java.time.LocalDateTime
+  methods:
+    generateManagerId:
+      annotations: []
+      parameters: []
+      return_type: String
+    newInstance:
+      annotations: []
+      parameters: []
+      return_type: Manager
 com.gsitm.ustra.java.batch.model.ManagerFilter:
+  class_annotations:
+  - Getter
+  - Builder
+  - ToString
   extends: null
   implements: []
   imports:
   - lombok.Builder
   - lombok.Getter
   - lombok.ToString
+  methods: {}
 com.gsitm.ustra.java.batch.model.Schedule:
+  class_annotations:
+  - Getter
+  - EqualsAndHashCode
   extends: null
   implements: []
   imports:
   - lombok.EqualsAndHashCode
   - lombok.Getter
+  methods:
+    newInstance:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: TaskDetail
+      - annotations: []
+        name: taskSchedule
+        type: TaskSchedule
+      return_type: Schedule
 com.gsitm.ustra.java.batch.model.ScheduleTest:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -725,7 +3879,28 @@ com.gsitm.ustra.java.batch.model.ScheduleTest:
   - org.junit.jupiter.api.Assertions.assertNotEquals
   - org.junit.jupiter.api.BeforeEach
   - org.junit.jupiter.api.Test
+  methods:
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    testEquals_1:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testEquals_2:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.batch.model.Task:
+  class_annotations:
+  - Getter
+  - Setter
+  - ToString
+  - EqualsAndHashCode
   extends: null
   implements:
   - Serializable
@@ -739,7 +3914,12 @@ com.gsitm.ustra.java.batch.model.Task:
   - lombok.ToString
   - com.fasterxml.jackson.annotation.JsonFormat
   - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
+  methods: {}
 com.gsitm.ustra.java.batch.model.TaskDetail:
+  class_annotations:
+  - Getter
+  - Setter
+  - EqualsAndHashCode
   extends: Task
   implements: []
   imports:
@@ -758,7 +3938,32 @@ com.gsitm.ustra.java.batch.model.TaskDetail:
   - java.util.Map
   - java.util.concurrent.atomic.AtomicInteger
   - java.util.stream.Collectors
+  methods:
+    of:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ustraBatTask
+        type: UstraBatTask
+      return_type: TaskDetail
+    toUstraBatTaskSchdl:
+      annotations: []
+      parameters: []
+      return_type: UstraBatTaskSchdl
+    toUstraBatTaskSchdlList:
+      annotations: []
+      parameters: []
+      return_type: List
+    toUstraBatTaskWrkrList:
+      annotations: []
+      parameters: []
+      return_type: List
 com.gsitm.ustra.java.batch.model.TaskFilter:
+  class_annotations:
+  - Getter
+  - Builder
+  - ToString
+  - EqualsAndHashCode
   extends: null
   implements: []
   imports:
@@ -768,7 +3973,11 @@ com.gsitm.ustra.java.batch.model.TaskFilter:
   - lombok.ToString
   - java.time.LocalDateTime
   - java.util.Set
+  methods: {}
 com.gsitm.ustra.java.batch.model.TaskInstance:
+  class_annotations:
+  - Getter
+  - Setter
   extends: null
   implements:
   - Serializable
@@ -783,7 +3992,64 @@ com.gsitm.ustra.java.batch.model.TaskInstance:
   - lombok.Getter
   - lombok.Setter
   - org.apache.commons.lang3.StringUtils
+  methods:
+    getProperties:
+      annotations: []
+      parameters: []
+      return_type: Map
+    getProperty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: String
+      return_type: String
+    newInstance:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: Task
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: TaskInstance
+    of:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: Task
+      - annotations: []
+        name: manager
+        type: Manager
+      - annotations: []
+        name: userId
+        type: String
+      - annotations: []
+        name: userIp
+        type: String
+      - annotations: []
+        name: parameterList
+        type: List
+      return_type: TaskInstance
+    setProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: Map
+      return_type: null
 com.gsitm.ustra.java.batch.model.TaskInstanceFilter:
+  class_annotations:
+  - Getter
+  - Builder
+  - With
+  - ToString
+  - EqualsAndHashCode
   extends: null
   implements: []
   imports:
@@ -798,7 +4064,16 @@ com.gsitm.ustra.java.batch.model.TaskInstanceFilter:
   - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample
   - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTaskExecExample.Criteria
   - org.springframework.format.annotation.DateTimeFormat
+  methods:
+    toUstraBatTaskExecExample:
+      annotations: []
+      parameters: []
+      return_type: UstraBatTaskExecExample
 com.gsitm.ustra.java.batch.model.TaskInstanceParam:
+  class_annotations:
+  - Setter
+  - Getter
+  - ToString
   extends: null
   implements:
   - Serializable
@@ -807,14 +4082,35 @@ com.gsitm.ustra.java.batch.model.TaskInstanceParam:
   - lombok.Setter
   - lombok.ToString
   - java.io.Serializable
+  methods: {}
 com.gsitm.ustra.java.batch.model.TaskObjectMapper:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - com.gsitm.ustra.java.batch.data.mapper.table.model.UstraBatTask
   - org.apache.commons.lang3.StringUtils
   - java.math.BigDecimal
+  methods:
+    fromUstraBatTask:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ustraBatTask
+        type: UstraBatTask
+      return_type: Task
+    toUstraBatTask:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: task
+        type: Task
+      return_type: UstraBatTask
 com.gsitm.ustra.java.batch.model.TaskParam:
+  class_annotations:
+  - Getter
+  - Setter
+  - ToString
   extends: null
   implements:
   - Serializable
@@ -826,7 +4122,27 @@ com.gsitm.ustra.java.batch.model.TaskParam:
   - org.apache.commons.lang3.StringUtils
   - java.io.Serializable
   - java.math.BigDecimal
+  methods:
+    toUstraBatchTaskParam:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: taskId
+        type: String
+      return_type: UstraBatTaskParam
+    valueOf:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ustraBatTaskParam
+        type: UstraBatTaskParam
+      return_type: TaskParam
 com.gsitm.ustra.java.batch.model.TaskSchedule:
+  class_annotations:
+  - Getter
+  - Setter
+  - ToString
+  - EqualsAndHashCode
   extends: null
   implements: []
   imports:
@@ -835,7 +4151,11 @@ com.gsitm.ustra.java.batch.model.TaskSchedule:
   - lombok.Setter
   - lombok.ToString
   - java.time.LocalDateTime
+  methods: {}
 com.gsitm.ustra.java.batch.model.TaskScheduleFilter:
+  class_annotations:
+  - Getter
+  - Builder
   extends: null
   implements: []
   imports:
@@ -843,14 +4163,42 @@ com.gsitm.ustra.java.batch.model.TaskScheduleFilter:
   - lombok.Getter
   - java.time.LocalDateTime
   - java.util.List
+  methods: {}
 com.gsitm.ustra.java.batch.model.TaskTrigger:
+  class_annotations:
+  - Setter
+  - Getter
   extends: null
   implements: []
   imports:
   - java.util.UUID
   - lombok.Getter
   - lombok.Setter
+  methods:
+    newInstanceWithManual:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      return_type: TaskTrigger
+    newInstanceWithTaskSchedule:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: manager
+        type: Manager
+      - annotations: []
+        name: taskSchedule
+        type: TaskSchedule
+      return_type: TaskTrigger
 com.gsitm.ustra.java.batch.model.Worker:
+  class_annotations:
+  - Getter
+  - Setter
+  - ToString
+  - AllArgsConstructor
+  - NoArgsConstructor
   extends: null
   implements:
   - Serializable
@@ -868,7 +4216,24 @@ com.gsitm.ustra.java.batch.model.Worker:
   - lombok.Setter
   - lombok.ToString
   - lombok.With
+  methods:
+    of:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: workerProperties
+        type: WorkerProperties
+      return_type: Worker
+    toUstraBatWrkr:
+      annotations: []
+      parameters: []
+      return_type: UstraBatWrkr
 com.gsitm.ustra.java.batch.model.WorkerFilter:
+  class_annotations:
+  - Getter
+  - Setter
+  - ToString
+  - EqualsAndHashCode
   extends: null
   implements: []
   imports:
@@ -879,10 +4244,24 @@ com.gsitm.ustra.java.batch.model.WorkerFilter:
   - lombok.Getter
   - lombok.Setter
   - lombok.ToString
+  methods:
+    toUstraBatWrkrExample:
+      annotations: []
+      parameters: []
+      return_type: UstraBatWrkrExample
 com.gsitm.ustra.java.batch.test.BatchApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null

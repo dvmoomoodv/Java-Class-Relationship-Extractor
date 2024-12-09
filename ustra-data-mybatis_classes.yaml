@@ -1,8 +1,12 @@
 com.gsitm.ustra.java.data.mybatis.UstraDataMybatis:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.data.mybatis.config.DynamicMapperScanConfigurer:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - BeanDefinitionRegistryPostProcessor
@@ -27,7 +31,55 @@ com.gsitm.ustra.java.data.mybatis.config.DynamicMapperScanConfigurer:
   - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties.SourceProperties
   - com.microsoft.sqlserver.jdbc.StringUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    crateMapperScannerConfigurerDefinition:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: registry
+        type: BeanDefinitionRegistry
+      - annotations: []
+        name: beanNameSuffix
+        type: String
+      - annotations: []
+        name: basePackages
+        type: String
+      - annotations: []
+        name: annotationClassName
+        type: String
+      - annotations: []
+        name: markerInterfaceName
+        type: String
+      - annotations: []
+        name: isDefault
+        type: boolean
+      return_type: BeanDefinition
+    postProcessBeanDefinitionRegistry:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: registry
+        type: BeanDefinitionRegistry
+      return_type: null
+    postProcessBeanFactory:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: beanFactory
+        type: ConfigurableListableBeanFactory
+      return_type: null
+    setEnvironment:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: environment
+        type: Environment
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -39,7 +91,58 @@ com.gsitm.ustra.java.data.mybatis.executor.MybatisStatementExecutor:
   - org.springframework.beans.factory.annotation.Autowired
   - com.gsitm.ustra.java.core.utils.UstraReflectionUtils
   - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  methods:
+    execute:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      - annotations: []
+        name: param
+        type: Map
+      - annotations: []
+        name: rowBounds
+        type: RowBounds
+      return_type: Object
+    isDeleteMethod:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      return_type: boolean
+    isInsertMethod:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      return_type: boolean
+    isMultiSelectMethod:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      return_type: boolean
+    isSelectMethod:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      return_type: boolean
+    isUpdateMethod:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: method
+        type: Method
+      return_type: boolean
 com.gsitm.ustra.java.data.mybatis.interceptor.MybatisLoggingInterceptor:
+  class_annotations:
+  - Intercepts
   extends: null
   implements:
   - Interceptor
@@ -68,7 +171,44 @@ com.gsitm.ustra.java.data.mybatis.interceptor.MybatisLoggingInterceptor:
   - com.gsitm.ustra.java.core.utils.data.BiValue
   - com.gsitm.ustra.java.data.logging.query.QueryLogWriter
   - com.gsitm.ustra.java.data.properties.UstraDataProperties
+  methods:
+    cutLoggingString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: mappedSql
+        type: String
+      return_type: BiValue
+    getLogWriters:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: statementId
+        type: String
+      return_type: List
+    intercept:
+      annotations:
+      - Override
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: invocation
+        type: Invocation
+      return_type: Object
+    isGlobalExcludeStatement:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: statementId
+        type: String
+      return_type: boolean
 com.gsitm.ustra.java.data.mybatis.interceptor.MybatisPaginationInterceptor:
+  class_annotations:
+  - Slf4j
+  - Intercepts
   extends: null
   implements:
   - Interceptor
@@ -118,7 +258,145 @@ com.gsitm.ustra.java.data.mybatis.interceptor.MybatisPaginationInterceptor:
   - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils
   - com.gsitm.ustra.java.data.pagination.PaginationRequestContextHolder
   - lombok.extern.slf4j.Slf4j
+  methods:
+    copyFromBoundSql:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      - annotations: []
+        name: boundSql
+        type: BoundSql
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: parameterMappings
+        type: List
+      - annotations: []
+        name: parameter
+        type: Object
+      return_type: BoundSql
+    copyFromMappedStatement:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      - annotations: []
+        name: newSqlSource
+        type: SqlSource
+      return_type: MappedStatement
+    copyFromNewSql:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      - annotations: []
+        name: boundSql
+        type: BoundSql
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: parameterMappings
+        type: List
+      - annotations: []
+        name: parameter
+        type: Object
+      return_type: MappedStatement
+    getPaginationRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: queryArgs
+        type: Object
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      return_type: PaginationRequest
+    getPaginator:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: limitResult
+        type: List
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      - annotations: []
+        name: executor
+        type: Executor
+      - annotations: []
+        name: parameter
+        type: Object
+      - annotations: []
+        name: boundSql
+        type: BoundSql
+      - annotations: []
+        name: dialect
+        type: Dialect
+      - annotations: []
+        name: pageBounds
+        type: PageBounds
+      return_type: Paginator
+    intercept:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: invocation
+        type: Invocation
+      return_type: Object
+    isPaginationRequestMethod:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      return_type: boolean
+    plugin:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: target
+        type: Object
+      return_type: Object
+    setAsyncTotalCount:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: asyncTotalCount
+        type: boolean
+      return_type: null
+    setDialectClass:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: dialectClass
+        type: String
+      return_type: null
+    setPoolMaxSize:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: poolMaxSize
+        type: int
+      return_type: null
+    setProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: properties
+        type: Properties
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.interceptor.MybatisParameterModifierInterceptor:
+  class_annotations:
+  - Intercepts
+  - Slf4j
   extends: null
   implements:
   - Interceptor
@@ -143,7 +421,32 @@ com.gsitm.ustra.java.data.mybatis.interceptor.MybatisParameterModifierIntercepto
   - com.gsitm.ustra.java.data.datasource.MultiDataSourceProperties
   - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    intercept:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: invocation
+        type: Invocation
+      return_type: Object
+    patchParameter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: queryArgs
+        type: Object
+      return_type: null
+    patchVendor:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mappedStatement
+        type: MappedStatement
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.interceptor.MybatisStatementIdInterceptor:
+  class_annotations:
+  - Intercepts
   extends: null
   implements:
   - Interceptor
@@ -160,7 +463,17 @@ com.gsitm.ustra.java.data.mybatis.interceptor.MybatisStatementIdInterceptor:
   - org.apache.ibatis.reflection.DefaultReflectorFactory
   - org.apache.ibatis.reflection.MetaObject
   - org.apache.ibatis.reflection.SystemMetaObject
+  methods:
+    intercept:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: invocation
+        type: Invocation
+      return_type: Object
 com.gsitm.ustra.java.data.mybatis.pagination.CleanupMybatisPaginatorListener:
+  class_annotations: []
   extends: null
   implements:
   - ServletContextListener
@@ -168,7 +481,23 @@ com.gsitm.ustra.java.data.mybatis.pagination.CleanupMybatisPaginatorListener:
   - javax.servlet.ServletContextEvent
   - javax.servlet.ServletContextListener
   - com.gsitm.ustra.java.data.mybatis.interceptor.MybatisPaginationInterceptor
+  methods:
+    contextDestroyed:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: servletContextEvent
+        type: ServletContextEvent
+      return_type: null
+    contextInitialized:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: servletContextEvent
+        type: ServletContextEvent
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -188,7 +517,71 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect:
   - org.apache.ibatis.type.TypeHandlerRegistry
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.Order
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
+  methods:
+    createSql:
+      annotations: []
+      parameters: []
+      return_type: null
+    getCountSQL:
+      annotations: []
+      parameters: []
+      return_type: String
+    getCountString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getLimitString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: offset
+        type: int
+      - annotations: []
+        name: limit
+        type: int
+      - annotations: []
+        name: orders
+        type: List
+      return_type: String
+    getPageSQL:
+      annotations: []
+      parameters: []
+      return_type: String
+    getParameterMappings:
+      annotations: []
+      parameters: []
+      return_type: List
+    getParameterObject:
+      annotations: []
+      parameters: []
+      return_type: Object
+    init:
+      annotations:
+      - SuppressWarnings
+      parameters: []
+      return_type: null
+    setPageParameter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: name
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      - annotations: []
+        name: type
+        type: Class
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.MultiRoutingDataSourceDialect:
+  class_annotations:
+  - Slf4j
   extends: Dialect
   implements: []
   imports:
@@ -209,49 +602,188 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.MultiRoutingDataSourceDiale
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
   - com.gsitm.ustra.java.data.mybatis.provider.MybatisVendorDatabaseIdProvider
   - lombok.extern.slf4j.Slf4j
+  methods:
+    getCountString:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getLimitString:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: offset
+        type: int
+      - annotations: []
+        name: limit
+        type: int
+      - annotations: []
+        name: orders
+        type: List
+      return_type: String
+    getVendorDialect:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: databaseId
+        type: String
+      return_type: VendorDialect
+    init:
+      annotations:
+      - Override
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.PaginationQueryExtractor:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
   - lombok.Data
   - lombok.experimental.UtilityClass
+  methods: {}
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods:
+    replace:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    restore:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.NonParsingAreaReplaceSql:
+  class_annotations: []
   extends: null
   implements:
   - ReplaceSql
   imports:
   - org.apache.commons.lang3.StringUtils
   - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  methods:
+    replace:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    restore:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.OracleStringConnectionReplaceSql:
+  class_annotations: []
   extends: null
   implements:
   - ReplaceSql
   imports:
   - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  methods:
+    replace:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    restore:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.OracleStringConnectionReplaceSqlTest:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
   - lombok.extern.slf4j.Slf4j
   - org.junit.jupiter.api.Test
   - org.junit.jupiter.api.Assertions.assertEquals
+  methods:
+    test:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.RegexWithNolockReplaceSql:
+  class_annotations: []
   extends: null
   implements:
   - ReplaceSql
   imports:
   - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  methods:
+    replace:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    restore:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.replace.SimpleWithNolockReplaceSql:
+  class_annotations: []
   extends: null
   implements:
   - ReplaceSql
   imports:
   - com.gsitm.ustra.java.data.mybatis.pagination.dialect.ReplaceSql
+  methods:
+    replace:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    restore:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.DB2VendorDialect:
+  class_annotations:
+  - Slf4j
   extends: VendorDialect
   implements: []
   imports:
@@ -265,7 +797,33 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.DB2VendorDialect:
   - net.sf.jsqlparser.schema.Column
   - net.sf.jsqlparser.statement.select.PlainSelect
   - net.sf.jsqlparser.statement.select.SelectItem
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.H2VendorDialect:
+  class_annotations: []
   extends: VendorDialect
   implements: []
   imports:
@@ -275,7 +833,33 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.H2VendorDialect:
   - net.sf.jsqlparser.statement.select.Limit
   - net.sf.jsqlparser.statement.select.Offset
   - net.sf.jsqlparser.statement.select.PlainSelect
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.HSQLVendorDialect:
+  class_annotations: []
   extends: VendorDialect
   implements: []
   imports:
@@ -285,7 +869,33 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.HSQLVendorDialect:
   - net.sf.jsqlparser.statement.select.Limit
   - net.sf.jsqlparser.statement.select.Offset
   - net.sf.jsqlparser.statement.select.PlainSelect
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.MySqlVendorDialect:
+  class_annotations: []
   extends: VendorDialect
   implements: []
   imports:
@@ -296,7 +906,34 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.MySqlVendorDialect:
   - net.sf.jsqlparser.statement.select.Limit
   - net.sf.jsqlparser.statement.select.PlainSelect
   - net.sf.jsqlparser.statement.select.SelectItem
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialect:
+  class_annotations:
+  - Slf4j
   extends: VendorDialect
   implements: []
   imports:
@@ -311,7 +948,83 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialect:
   - net.sf.jsqlparser.expression.Expression
   - net.sf.jsqlparser.parser.CCJSqlParserUtil
   - net.sf.jsqlparser.schema.Column
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    getCountSql:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getPageSql:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getPageSqlWhenParseException:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
+    wrapSetOperationList:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: setOperationList
+        type: SetOperationList
+      - annotations: []
+        name: alias
+        type: String
+      return_type: PlainSelect
+    wrapSetPlainSelect:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: plainSelect
+        type: PlainSelect
+      - annotations: []
+        name: alias
+        type: String
+      return_type: PlainSelect
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialectTest:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -327,7 +1040,19 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.OracleVendorDialectT
   - org.apache.ibatis.session.Configuration
   - org.junit.jupiter.api.BeforeEach
   - org.junit.jupiter.api.Test
+  methods:
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    test:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.PostgreSQLVendorDialect:
+  class_annotations: []
   extends: VendorDialect
   implements: []
   imports:
@@ -340,7 +1065,33 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.PostgreSQLVendorDial
   - net.sf.jsqlparser.statement.select.Offset
   - net.sf.jsqlparser.statement.select.PlainSelect
   - net.sf.jsqlparser.statement.select.SelectItem
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDialect:
+  class_annotations: []
   extends: VendorDialect
   implements: []
   imports:
@@ -359,7 +1110,84 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDiale
   - net.sf.jsqlparser.statement.select.OrderByElement
   - net.sf.jsqlparser.statement.select.PlainSelect
   - net.sf.jsqlparser.statement.select.SelectItem
+  methods:
+    addRowNumberSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyPaginationScope:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    getCountSql:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getCountSqlWhenParseException:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
+    getDefaultOrderByElements:
+      annotations:
+      - Override
+      parameters: []
+      return_type: List
+    getOrderByPart:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getPageSql:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getPageSqlWhenParseException:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDialectTest:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -376,7 +1204,20 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.SqlServerVendorDiale
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
   - lombok.extern.slf4j.Slf4j
   - net.sf.jsqlparser.parser.ParseException
+  methods:
+    beforeEach:
+      annotations:
+      - BeforeEach
+      parameters: []
+      return_type: null
+    test:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.VendorDialect:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -399,7 +1240,122 @@ com.gsitm.ustra.java.data.mybatis.pagination.dialect.vendor.VendorDialect:
   - net.sf.jsqlparser.schema.Column
   - net.sf.jsqlparser.schema.Table
   - net.sf.jsqlparser.statement.Statement
+  methods:
+    addRowNumberSelectItem:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    addTotalCountSelectItem:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    applyOrderByElements:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: Select
+      - annotations: []
+        name: alias
+        type: String
+      return_type: null
+    applyPaginationScope:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: body
+        type: PlainSelect
+      return_type: null
+    getCountSql:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getCountSqlWhenParseException:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
+    getDefaultOrderByElements:
+      annotations: []
+      parameters: []
+      return_type: List
+    getOrderByString:
+      annotations: []
+      parameters: []
+      return_type: String
+    getPageSql:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      return_type: String
+    getPageSqlWhenParseException:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: sql
+        type: String
+      - annotations: []
+        name: e
+        type: Exception
+      return_type: String
+    setPageParameter:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: name
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      - annotations: []
+        name: type
+        type: Class
+      return_type: null
+    wrapSetOperationList:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: setOperationList
+        type: SetOperationList
+      - annotations: []
+        name: aliasName
+        type: String
+      return_type: PlainSelect
+    wrapSetPlainSelect:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: plainSelect
+        type: PlainSelect
+      - annotations: []
+        name: aliasName
+        type: String
+      return_type: PlainSelect
+    wrapStatement:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: statement
+        type: Select
+      return_type: Select
 com.gsitm.ustra.java.data.mybatis.pagination.domain.Order:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
@@ -410,7 +1366,91 @@ com.gsitm.ustra.java.data.mybatis.pagination.domain.Order:
   - java.util.Locale
   - java.util.regex.Pattern
   - com.gsitm.ustra.java.data.exception.UstraDataResponseCode
+  methods:
+    _formString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderSegment
+        type: String
+      - annotations: []
+        name: orderExpr
+        type: String
+      return_type: Order
+    create:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: property
+        type: String
+      - annotations: []
+        name: direction
+        type: String
+      - annotations: []
+        name: orderExpr
+        type: String
+      return_type: Order
+    formString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderSegment
+        type: String
+      - annotations: []
+        name: orderExpr
+        type: String
+      return_type: List
+    getDirection:
+      annotations: []
+      parameters: []
+      return_type: Direction
+    getOrderExpr:
+      annotations: []
+      parameters: []
+      return_type: String
+    getProperty:
+      annotations: []
+      parameters: []
+      return_type: String
+    getPropertyWithCheckInjection:
+      annotations: []
+      parameters: []
+      return_type: String
+    isSQLInjection:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: str
+        type: String
+      return_type: boolean
+    setDirection:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: direction
+        type: Direction
+      return_type: null
+    setOrderExpr:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orderExpr
+        type: String
+      return_type: null
+    setProperty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: property
+        type: String
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds:
+  class_annotations: []
   extends: RowBounds
   implements:
   - Serializable
@@ -420,14 +1460,87 @@ com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds:
   - java.util.Arrays
   - java.util.List
   - org.apache.ibatis.session.RowBounds
+  methods:
+    getAsyncTotalCount:
+      annotations: []
+      parameters: []
+      return_type: Boolean
+    getLimit:
+      annotations: []
+      parameters: []
+      return_type: int
+    getOffset:
+      annotations:
+      - Override
+      parameters: []
+      return_type: int
+    getOrders:
+      annotations: []
+      parameters: []
+      return_type: List
+    getPage:
+      annotations: []
+      parameters: []
+      return_type: int
+    isContainsTotalCount:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    setAsyncTotalCount:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: asyncTotalCount
+        type: Boolean
+      return_type: null
+    setContainsTotalCount:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: containsTotalCount
+        type: boolean
+      return_type: null
+    setLimit:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: limit
+        type: int
+      return_type: null
+    setOrders:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: orders
+        type: List
+      return_type: null
+    setPage:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: page
+        type: int
+      return_type: null
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList:
+  class_annotations: []
   extends: PaginationList
   implements: []
   imports:
   - java.util.Collection
   - com.gsitm.ustra.java.data.domains.PaginationInfo
   - com.gsitm.ustra.java.data.domains.PaginationList
+  methods:
+    getPaginator:
+      annotations: []
+      parameters: []
+      return_type: Paginator
 com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator:
+  class_annotations: []
   extends: null
   implements:
   - Serializable
@@ -435,7 +1548,127 @@ com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator:
   imports:
   - java.io.Serializable
   - com.gsitm.ustra.java.data.domains.PaginationInfo
+  methods:
+    computeLastPageNumber:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: totalItems
+        type: int
+      - annotations: []
+        name: pageSize
+        type: int
+      return_type: int
+    computePageNo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: page
+        type: int
+      return_type: int
+    computePageNumber:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: page
+        type: int
+      - annotations: []
+        name: pageSize
+        type: int
+      - annotations: []
+        name: totalItems
+        type: int
+      return_type: int
+    generateLinkPageNumbers:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: currentPageNumber
+        type: int
+      - annotations: []
+        name: lastPageNumber
+        type: int
+      - annotations: []
+        name: count
+        type: int
+      return_type: Integer
+    getEndRow:
+      annotations: []
+      parameters: []
+      return_type: int
+    getLimit:
+      annotations: []
+      parameters: []
+      return_type: int
+    getNextPage:
+      annotations: []
+      parameters: []
+      return_type: int
+    getOffset:
+      annotations: []
+      parameters: []
+      return_type: int
+    getPage:
+      annotations: []
+      parameters: []
+      return_type: int
+    getPrePage:
+      annotations: []
+      parameters: []
+      return_type: int
+    getSlider:
+      annotations: []
+      parameters: []
+      return_type: Integer
+    getStartRow:
+      annotations: []
+      parameters: []
+      return_type: int
+    getTotalCount:
+      annotations: []
+      parameters: []
+      return_type: int
+    getTotalPages:
+      annotations: []
+      parameters: []
+      return_type: int
+    isDisabledPage:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: page
+        type: int
+      return_type: boolean
+    isFirstPage:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isHasNextPage:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isHasPrePage:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    isLastPage:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    slider:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: slidersCount
+        type: int
+      return_type: Integer
+    toString:
+      annotations:
+      - Override
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonMapper:
+  class_annotations: []
   extends: ObjectMapper
   implements: []
   imports:
@@ -443,7 +1676,10 @@ com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonMapper:
   - com.fasterxml.jackson.databind.ObjectMapper
   - com.fasterxml.jackson.databind.module.SimpleModule
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
+  methods: {}
 com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonSerializer:
+  class_annotations:
+  - SuppressWarnings
   extends: JsonSerializer
   implements: []
   imports:
@@ -458,7 +1694,24 @@ com.gsitm.ustra.java.data.mybatis.pagination.jackson.PageListJsonSerializer:
   - com.fasterxml.jackson.databind.SerializerProvider
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageList
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.Paginator
+  methods:
+    serialize:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: value
+        type: PageList
+      - annotations: []
+        name: jgen
+        type: JsonGenerator
+      - annotations: []
+        name: provider
+        type: SerializerProvider
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.support.DefaultParameterHandler:
+  class_annotations: []
   extends: null
   implements:
   - ParameterHandler
@@ -478,7 +1731,21 @@ com.gsitm.ustra.java.data.mybatis.pagination.support.DefaultParameterHandler:
   - org.apache.ibatis.type.JdbcType
   - org.apache.ibatis.type.TypeHandler
   - org.apache.ibatis.type.TypeHandlerRegistry
+  methods:
+    getParameterObject:
+      annotations: []
+      parameters: []
+      return_type: Object
+    setParameters:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: ps
+        type: PreparedStatement
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.pagination.support.PropertiesHelper:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -497,7 +1764,353 @@ com.gsitm.ustra.java.data.mybatis.pagination.support.PropertiesHelper:
   - java.util.Set
   - java.util.StringTokenizer
   - java.util.Map.Entry
+  methods:
+    clear:
+      annotations: []
+      parameters: []
+      return_type: null
+    contains:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: value
+        type: Object
+      return_type: boolean
+    containsKey:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: Object
+      return_type: boolean
+    containsValue:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: value
+        type: Object
+      return_type: boolean
+    elements:
+      annotations: []
+      parameters: []
+      return_type: Enumeration
+    entrySet:
+      annotations: []
+      parameters: []
+      return_type: Set
+    get:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: Object
+      return_type: Object
+    getAndTryFromSystem:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getBoolean:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: boolean
+      return_type: boolean
+    getDouble:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: double
+      return_type: double
+    getFloat:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: float
+      return_type: float
+    getInt:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: int
+      return_type: int
+    getIntArray:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: int
+    getInteger:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Integer
+    getLong:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: defaultValue
+        type: long
+      return_type: long
+    getNullIfBlank:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getNullIfEmpty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getProperties:
+      annotations: []
+      parameters: []
+      return_type: Properties
+    getProperty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getRequiredBoolean:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: boolean
+    getRequiredDouble:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Double
+    getRequiredFloat:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Float
+    getRequiredInt:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: int
+    getRequiredLong:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: Long
+    getRequiredString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getStartsWithProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: prefix
+        type: String
+      return_type: Properties
+    getStringArray:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    getSystemProperty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    isBlankString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: value
+        type: String
+      return_type: boolean
+    isEmpty:
+      annotations: []
+      parameters: []
+      return_type: boolean
+    keySet:
+      annotations: []
+      parameters: []
+      return_type: Set
+    keys:
+      annotations: []
+      parameters: []
+      return_type: Enumeration
+    list:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: out
+        type: PrintWriter
+      return_type: null
+    load:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: inStream
+        type: InputStream
+      return_type: null
+    loadFromXML:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: in
+        type: InputStream
+      return_type: null
+    propertyNames:
+      annotations: []
+      parameters: []
+      return_type: Enumeration
+    put:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: Object
+      - annotations: []
+        name: value
+        type: Object
+      return_type: Object
+    putAll:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: t
+        type: Map
+      return_type: null
+    remove:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: Object
+      return_type: Object
+    save:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: out
+        type: OutputStream
+      - annotations: []
+        name: comments
+        type: String
+      return_type: null
+    setProperties:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: props
+        type: Properties
+      return_type: null
+    setProperty:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: String
+      return_type: Object
+    size:
+      annotations: []
+      parameters: []
+      return_type: int
+    store:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: out
+        type: OutputStream
+      - annotations: []
+        name: comments
+        type: String
+      return_type: null
+    storeToXML:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: os
+        type: OutputStream
+      - annotations: []
+        name: comment
+        type: String
+      return_type: null
+    toIntArray:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: array
+        type: String
+      return_type: int
+    toString:
+      annotations: []
+      parameters: []
+      return_type: String
+    tokenizeToStringArray:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: str
+        type: String
+      - annotations: []
+        name: seperators
+        type: String
+      return_type: String
+    values:
+      annotations: []
+      parameters: []
+      return_type: Collection
 com.gsitm.ustra.java.data.mybatis.pagination.support.SQLHelp:
+  class_annotations: []
   extends: null
   implements: []
   imports:
@@ -511,7 +2124,29 @@ com.gsitm.ustra.java.data.mybatis.pagination.support.SQLHelp:
   - org.slf4j.Logger
   - org.slf4j.LoggerFactory
   - com.gsitm.ustra.java.data.mybatis.pagination.dialect.Dialect
+  methods:
+    getCount:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mappedStatement
+        type: MappedStatement
+      - annotations: []
+        name: transaction
+        type: Transaction
+      - annotations: []
+        name: parameterObject
+        type: Object
+      - annotations: []
+        name: boundSql
+        type: BoundSql
+      - annotations: []
+        name: dialect
+        type: Dialect
+      return_type: int
 com.gsitm.ustra.java.data.mybatis.pagination.support.SqlParserHelper:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -519,24 +2154,53 @@ com.gsitm.ustra.java.data.mybatis.pagination.support.SqlParserHelper:
   - lombok.experimental.UtilityClass
   - net.sf.jsqlparser.schema.Column
   - net.sf.jsqlparser.schema.Table
+  methods:
+    replaceColumnName:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: column
+        type: Column
+      - annotations: []
+        name: prefixName
+        type: String
+      return_type: Column
 com.gsitm.ustra.java.data.mybatis.properties.UstraDataMybatisProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.data.mybatis.provider.MybatisVendorDatabaseIdProvider:
+  class_annotations: []
   extends: VendorDatabaseIdProvider
   implements: []
   imports:
   - java.util.Properties
   - org.apache.ibatis.mapping.VendorDatabaseIdProvider
+  methods: {}
 com.gsitm.ustra.java.data.mybatis.proxy.MapperManager:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - java.lang.reflect.Proxy
+  methods:
+    get:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: clazz
+        type: Class
+      return_type: T
 com.gsitm.ustra.java.data.mybatis.proxy.MapperProxyHandler:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - InvocationHandler
@@ -565,7 +2229,70 @@ com.gsitm.ustra.java.data.mybatis.proxy.MapperProxyHandler:
   - com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils
   - com.gsitm.ustra.java.data.utils.UstraDataUtils
   - lombok.extern.slf4j.Slf4j
+  methods:
+    extractRowBounds:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: args
+        type: Object
+      return_type: BiValue
+    getParameterMap:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: parameters
+        type: Parameter
+      - annotations: []
+        name: args
+        type: Object
+      return_type: Map
+    invoke:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: proxy
+        type: Object
+      - annotations: []
+        name: method
+        type: Method
+      - annotations: []
+        name: args
+        type: Object
+      return_type: Object
+    mappingArguments:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: tableInfoKey
+        type: String
+      - annotations: []
+        name: argumentPrefix
+        type: String
+      - annotations: []
+        name: argumentPrefix2
+        type: String
+      - annotations: []
+        name: method
+        type: Method
+      - annotations: []
+        name: args
+        type: Object
+      return_type: Map
+    mappingObject:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: map
+        type: Map
+      - annotations: []
+        name: obj
+        type: Object
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.typehandler.CodeValueTypeHandler:
+  class_annotations: []
   extends: BaseTypeHandler
   implements: []
   imports:
@@ -576,13 +2303,92 @@ com.gsitm.ustra.java.data.mybatis.typehandler.CodeValueTypeHandler:
   - org.apache.ibatis.type.BaseTypeHandler
   - org.apache.ibatis.type.JdbcType
   - com.gsitm.ustra.java.core.utils.data.CodeValueType
+  methods:
+    getNullableResult:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: cs
+        type: CallableStatement
+      - annotations: []
+        name: columnIndex
+        type: int
+      return_type: E
+    setNonNullParameter:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: ps
+        type: PreparedStatement
+      - annotations: []
+        name: i
+        type: int
+      - annotations: []
+        name: parameter
+        type: E
+      - annotations: []
+        name: jdbcType
+        type: JdbcType
+      return_type: null
 com.gsitm.ustra.java.data.mybatis.utils.CamelCaseMap:
+  class_annotations: []
   extends: LinkedHashMap
   implements: []
   imports:
   - java.util.LinkedHashMap
   - org.springframework.jdbc.support.JdbcUtils
+  methods:
+    getDouble:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: double
+    getFloat:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: float
+    getInt:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: int
+    getLong:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: long
+    getString:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      return_type: String
+    put:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: value
+        type: Object
+      return_type: Object
 com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils:
+  class_annotations:
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -594,7 +2400,18 @@ com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisPaginationUtils:
   - com.gsitm.ustra.java.data.domains.PaginationRequest.Order
   - com.gsitm.ustra.java.data.mybatis.pagination.domain.PageBounds
   - lombok.experimental.UtilityClass
+  methods:
+    toPageBounds:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: pageRequest
+        type: PageRequest
+      return_type: PageBounds
 com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisUtils:
+  class_annotations:
+  - Slf4j
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -608,7 +2425,41 @@ com.gsitm.ustra.java.data.mybatis.utils.UstraMybatisUtils:
   - org.apache.ibatis.reflection.MetaObject
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
+  methods:
+    forObject:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: object
+        type: Object
+      return_type: MetaObject
+    getParameterMap:
+      annotations:
+      - SuppressWarnings
+      parameters:
+      - annotations: []
+        name: ms
+        type: MappedStatement
+      - annotations: []
+        name: parameterObject
+        type: Object
+      - annotations: []
+        name: boundSql
+        type: BoundSql
+      return_type: Map
+    updateDatabaseId:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: mappedStatement
+        type: MappedStatement
+      - annotations: []
+        name: value
+        type: String
+      return_type: null
 net.sf.jsqlparser.parser.CCJSqlParserTest:
+  class_annotations:
+  - Slf4j
   extends: null
   implements: []
   imports:
@@ -622,3 +2473,24 @@ net.sf.jsqlparser.parser.CCJSqlParserTest:
   - net.sf.jsqlparser.statement.select.SetOperationList
   - org.junit.jupiter.api.Assertions.assertNotNull
   - org.junit.jupiter.api.Assertions.assertThrows
+  methods:
+    testDeclareUnionAllOrderBy:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testWithAs:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testWithNolock:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
+    testWithNolockUnionAll:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null

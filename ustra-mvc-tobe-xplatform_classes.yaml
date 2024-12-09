@@ -1,4 +1,6 @@
 com.gsitm.ustra.java.mvc.tobe.xplatform.UstraMvcTobeXplatform:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}

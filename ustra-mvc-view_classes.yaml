@@ -1,13 +1,25 @@
 com.gsitm.ustra.java.mvc.view.UstraMvcView:
+  class_annotations: []
   extends: null
   implements: []
   imports: []
+  methods: {}
 com.gsitm.ustra.java.mvc.view.config.UstraSpringTemplateEngineCustomizer:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - org.thymeleaf.spring5.SpringTemplateEngine
+  methods:
+    customize:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: templateEngine
+        type: SpringTemplateEngine
+      return_type: null
 com.gsitm.ustra.java.mvc.view.error.StaticResourceWebPageRequestErrorResultHandler:
+  class_annotations: []
   extends: null
   implements:
   - WebPageRequestErrorResultHandler
@@ -15,13 +27,34 @@ com.gsitm.ustra.java.mvc.view.error.StaticResourceWebPageRequestErrorResultHandl
   - javax.servlet.http.HttpServletRequest
   - com.gsitm.ustra.java.mvc.error.WebPageRequestErrorResultHandler
   - com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler
+  methods:
+    handleResult:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: viewName
+        type: String
+      - annotations: []
+        name: exception
+        type: Exception
+      return_type: Object
 com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties:
+  class_annotations:
+  - Data
+  - ConfigurationProperties
   extends: null
   implements: []
   imports:
   - org.springframework.boot.context.properties.ConfigurationProperties
   - lombok.Data
+  methods: {}
 com.gsitm.ustra.java.mvc.view.rest.DefaultUstraSecuredWebRequestParser:
+  class_annotations:
+  - Slf4j
   extends: null
   implements:
   - UstraSecuredWebRequestParser
@@ -37,7 +70,25 @@ com.gsitm.ustra.java.mvc.view.rest.DefaultUstraSecuredWebRequestParser:
   - com.gsitm.ustra.java.mvc.filter.security.UstraSecuredWebRequestParser
   - com.gsitm.ustra.web.core.properties.UstraHttpHeaders
   - lombok.extern.slf4j.Slf4j
+  methods:
+    parse:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: ParsedSecuredRequestParameter
+    support:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.mvc.view.rest.RawApiRestResultWrapperConditioner:
+  class_annotations: []
   extends: null
   implements:
   - RestResultWrapperConditioner
@@ -45,7 +96,17 @@ com.gsitm.ustra.java.mvc.view.rest.RawApiRestResultWrapperConditioner:
   - javax.servlet.http.HttpServletRequest
   - org.apache.commons.lang3.StringUtils
   - com.gsitm.ustra.java.mvc.rest.condition.RestResultWrapperConditioner
+  methods:
+    supports:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
 com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler:
+  class_annotations: []
   extends: null
   implements:
   - RestExceptionHandler
@@ -63,7 +124,27 @@ com.gsitm.ustra.java.mvc.view.rest.StaticWebpageRestExceptionHandler:
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
   - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
   - com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor
+  methods:
+    handleException:
+      annotations:
+      - SuppressWarnings
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: e
+        type: Exception
+      - annotations:
+        - Nullable
+        name: handlerMethod
+        type: HandlerMethod
+      return_type: Object
 com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils:
+  class_annotations:
+  - Slf4j
+  - UtilityClass
   extends: null
   implements: []
   imports:
@@ -74,7 +155,29 @@ com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils:
   - com.gsitm.ustra.java.mvc.utils.UstraWebUtils
   - lombok.experimental.UtilityClass
   - lombok.extern.slf4j.Slf4j
+  methods:
+    addProfileInfo:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: key
+        type: String
+      - annotations: []
+        name: secret
+        type: String
+      - annotations: []
+        name: cookiePath
+        type: String
+      return_type: null
+    getEncryptedProfile:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: secret
+        type: String
+      return_type: String
 com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor:
+  class_annotations: []
   extends: HandlerInterceptorAdapter
   implements: []
   imports:
@@ -97,12 +200,83 @@ com.gsitm.ustra.java.mvc.view.web.FrontSpaHandlerInterceptor:
   - com.gsitm.ustra.java.mvc.view.properties.ViewType
   - com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils
   - com.gsitm.ustra.web.core.exception.UstraWebResponseCode
+  methods:
+    excludeCannotSerializableModelValues:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: map
+        type: Map
+      return_type: Map
+    getRequestedProfile:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: String
+    isExcludeValidationRequest:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: boolean
+    postHandle:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: handler
+        type: Object
+      - annotations: []
+        name: modelAndView
+        type: ModelAndView
+      return_type: null
+    preHandle:
+      annotations:
+      - Override
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      - annotations: []
+        name: response
+        type: HttpServletResponse
+      - annotations: []
+        name: handler
+        type: Object
+      return_type: boolean
+    validateProfiles:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: null
 com.gsitm.ustra.java.mvc.view.web.HandlerValidationChecker:
+  class_annotations: []
   extends: null
   implements: []
   imports:
   - javax.servlet.http.HttpServletRequest
+  methods:
+    validate:
+      annotations: []
+      parameters:
+      - annotations: []
+        name: request
+        type: HttpServletRequest
+      return_type: Boolean
 com.gsitm.ustra.java.mvc.view.web.ProfileInfoController:
+  class_annotations:
+  - RestController
   extends: null
   implements: []
   imports:
@@ -110,7 +284,16 @@ com.gsitm.ustra.java.mvc.view.web.ProfileInfoController:
   - org.springframework.web.bind.annotation.RestController
   - com.gsitm.ustra.java.mvc.view.properties.UstraMvcViewProperties
   - com.gsitm.ustra.java.mvc.view.utils.UstraMvcViewUtils
+  methods:
+    currentProfile:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: String
 com.gsitm.ustra.java.mvc.view.web.ViewTemplateMappingController:
+  class_annotations:
+  - Controller
+  - Order
   extends: null
   implements: []
   imports:
@@ -120,10 +303,30 @@ com.gsitm.ustra.java.mvc.view.web.ViewTemplateMappingController:
   - org.springframework.web.bind.annotation.RequestMapping
   - org.springframework.web.bind.annotation.RequestMethod
   - org.springframework.web.servlet.ModelAndView
+  methods:
+    forward:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: ModelAndView
+    index:
+      annotations:
+      - RequestMapping
+      parameters: []
+      return_type: ModelAndView
 com.gsitm.ustra.java.mvc.vue.test.MvcVueApplicationTests:
+  class_annotations:
+  - SpringBootTest
+  - SpringBootConfiguration
   extends: null
   implements: []
   imports:
   - org.junit.jupiter.api.Test
   - org.springframework.boot.SpringBootConfiguration
   - org.springframework.boot.test.context.SpringBootTest
+  methods:
+    contextLoads:
+      annotations:
+      - Test
+      parameters: []
+      return_type: null
